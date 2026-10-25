@@ -1,0 +1,492 @@
+{
+ "_doc": "C4 animatic shot plan (the agent's staging of the brief's shot list; times come from timing/timing_map.json, never from here). cam: [from box, to box] in sheet pixels (4400 x 3400; boxes may run past the sheet onto the desk), eased from the shot's start to its end; a named box is a key of the certificate's layout.json or of `boxes` below. lean: how far south of the box the document camera sits, as a fraction of its height above the page. Props are in scenes/blender/animatic.py (PROPS), keyed to the same shot IDs. Shots without cam (L, S, G only) are placeholders in the assembly.",
+ "boxes": {
+  "WIDE": [
+   -160,
+   -130,
+   4560,
+   3530
+  ],
+  "DESK": [
+   -2600,
+   -2100,
+   7000,
+   5500
+  ],
+  "TOP_BAND": [
+   600,
+   0,
+   4400,
+   1150
+  ],
+  "CHERUBS_BOTH": [
+   1000,
+   240,
+   3950,
+   1040
+  ],
+  "PROGRESS_TIGHT": [
+   2000,
+   230,
+   2950,
+   1010
+  ],
+  "TORCH": [
+   1900,
+   30,
+   2500,
+   520
+  ],
+  "TORCH_TIGHT": [
+   2040,
+   80,
+   2330,
+   320
+  ],
+  "STUDIO": [
+   1450,
+   90,
+   3500,
+   1300
+  ],
+  "LABORER_TIGHT": [
+   1010,
+   1840,
+   1330,
+   2020
+  ],
+  "PLAQUE": [
+   2850,
+   540,
+   3330,
+   820
+  ],
+  "TINY": [
+   1800,
+   700,
+   2200,
+   1009
+  ],
+  "TINIER": [
+   1958,
+   759,
+   2005,
+   796
+  ],
+  "MERCURY_WIDE": [
+   820,
+   1430,
+   1460,
+   1900
+  ],
+  "MERCURY_RUN": [
+   870,
+   1460,
+   1420,
+   1870
+  ],
+  "GUILLOCHE": [
+   1150,
+   1270,
+   1430,
+   1430
+  ],
+  "GUILLOCHE_ECU": [
+   1175,
+   1320,
+   1305,
+   1395
+  ],
+  "CALENDAR_WIDE": [
+   1050,
+   150,
+   4300,
+   1560
+  ],
+  "PRUDENCE_WIDE": [
+   3420,
+   1440,
+   4300,
+   2330
+  ],
+  "SHARES": [
+   3600,
+   760,
+   4260,
+   1160
+  ],
+  "SCALES": [
+   3560,
+   1600,
+   4200,
+   2240
+  ],
+  "SIGNATURES": [
+   1100,
+   2180,
+   3900,
+   2660
+  ],
+  "RECIPIENT": [
+   3000,
+   2240,
+   3850,
+   2600
+  ],
+  "LOWER_HALF": [
+   700,
+   1500,
+   4450,
+   2700
+  ],
+  "BASELINE": [
+   1500,
+   1900,
+   4300,
+   2500
+  ],
+  "BASELINE_SMILE": [
+   2600,
+   1600,
+   4300,
+   2500
+  ],
+  "MERCURY_SCROLL": [
+   860,
+   1450,
+   1560,
+   1900
+  ],
+  "BACK": [
+   -160,
+   -130,
+   4560,
+   3530
+  ],
+  "STUB": [
+   -60,
+   -40,
+   760,
+   2860
+  ],
+  "STUB_TOP": [
+   -40,
+   120,
+   600,
+   700
+  ],
+  "SEAL": [
+   1100,
+   1750,
+   2200,
+   2450
+  ],
+  "SEAL_TIGHT": [
+   1400,
+   1950,
+   1900,
+   2260
+  ],
+  "COUPONS": [
+   1300,
+   1550,
+   5000,
+   3450
+  ],
+  "COUPONS_END": [
+   2200,
+   1550,
+   5000,
+   3450
+  ],
+  "PRUDENCE_CLOSE": [
+   3620,
+   1540,
+   4160,
+   2060
+  ],
+  "BOILERPLATE": [
+   1600,
+   1950,
+   3350,
+   2250
+  ],
+  "OUT_WIDE": [
+   -700,
+   -560,
+   5100,
+   3960
+  ],
+  "PROGRESS": [
+   1725,
+   198,
+   3225,
+   1242
+  ]
+ },
+ "shots": {
+  "S02": {
+   "cam": [
+    "DESK",
+    "WIDE"
+   ]
+  },
+  "S03": {
+   "cam": [
+    "PROGRESS",
+    "PROGRESS_TIGHT"
+   ]
+  },
+  "S04": {
+   "cam": [
+    "CHERUBS_BOTH",
+    "CHERUBS_BOTH"
+   ]
+  },
+  "S05": {
+   "cam": [
+    "TORCH",
+    "TORCH_TIGHT"
+   ]
+  },
+  "S06": {
+   "cam": [
+    "STUDIO",
+    "PROGRESS"
+   ]
+  },
+  "S07": {
+   "cam": [
+    "laborer",
+    "LABORER_TIGHT"
+   ]
+  },
+  "S08": {
+   "cam": [
+    "PLAQUE",
+    "PLAQUE"
+   ]
+  },
+  "S09": {
+   "cam": [
+    "TINY",
+    "TINIER"
+   ],
+   "ease": "exp"
+  },
+  "S10": {
+   "cam": [
+    "MERCURY_WIDE",
+    "MERCURY_RUN"
+   ]
+  },
+  "S11": {
+   "cam": [
+    "GUILLOCHE",
+    "GUILLOCHE_ECU"
+   ]
+  },
+  "S12": {
+   "cam": [
+    "CALENDAR_WIDE",
+    "CALENDAR_WIDE"
+   ]
+  },
+  "S13": {
+   "cam": [
+    "TOP_BAND",
+    "CHERUBS_BOTH"
+   ]
+  },
+  "S14": {
+   "cam": [
+    "WIDE",
+    "WIDE"
+   ]
+  },
+  "S15": {
+   "cam": [
+    "PRUDENCE_WIDE",
+    "PRUDENCE_WIDE"
+   ]
+  },
+  "S16": {
+   "cam": [
+    "SHARES",
+    "SHARES"
+   ]
+  },
+  "S17": {
+   "cam": [
+    "TOP_BAND",
+    "CHERUBS_BOTH"
+   ]
+  },
+  "S36": {
+   "cam": [
+    "WIDE",
+    "WIDE"
+   ]
+  },
+  "S18": {
+   "cam": [
+    "PRUDENCE_WIDE",
+    "SCALES"
+   ]
+  },
+  "S19": {
+   "cam": [
+    "SIGNATURES",
+    "RECIPIENT"
+   ]
+  },
+  "S20": {
+   "cam": [
+    "LOWER_HALF",
+    "LOWER_HALF"
+   ]
+  },
+  "S21": {
+   "cam": [
+    "BASELINE",
+    "BASELINE"
+   ]
+  },
+  "S22": {
+   "cam": [
+    "BASELINE_SMILE",
+    "BASELINE_SMILE"
+   ]
+  },
+  "S23": {
+   "cam": [
+    "MERCURY_SCROLL",
+    "MERCURY_SCROLL"
+   ]
+  },
+  "S24": {
+   "cam": [
+    "BACK",
+    "BACK"
+   ],
+   "back": true,
+   "turn_away": true
+  },
+  "S25": {
+   "cam": [
+    "TOP_BAND",
+    "TOP_BAND"
+   ]
+  },
+  "S27": {
+   "cam": [
+    "CHERUBS_BOTH",
+    "CHERUBS_BOTH"
+   ]
+  },
+  "S28": {
+   "cam": [
+    "laborer",
+    "LABORER_TIGHT"
+   ]
+  },
+  "S32": {
+   "cam": [
+    "STUB",
+    "STUB"
+   ]
+  },
+  "S33": {
+   "cam": [
+    "STUB",
+    "STUB_TOP"
+   ]
+  },
+  "S34": {
+   "cam": [
+    "SEAL",
+    "SEAL_TIGHT"
+   ]
+  },
+  "S35": {
+   "cam": [
+    "TOP_BAND",
+    "TOP_BAND"
+   ],
+   "shake": 18
+  },
+  "S37": {
+   "cam": [
+    "COUPONS",
+    "COUPONS_END"
+   ]
+  },
+  "S38": {
+   "cam": [
+    "PRUDENCE_CLOSE",
+    "PRUDENCE_CLOSE"
+   ]
+  },
+  "S41": {
+   "cam": [
+    "TOP_BAND",
+    "TOP_BAND"
+   ]
+  },
+  "S42": {
+   "cam": [
+    "CHERUBS_BOTH",
+    "CHERUBS_BOTH"
+   ]
+  },
+  "S43": {
+   "cam": [
+    "BOILERPLATE",
+    "OUT_WIDE"
+   ]
+  },
+  "S44": {
+   "cam": [
+    "PROGRESS",
+    "PROGRESS_TIGHT"
+   ]
+  }
+ },
+ "placeholders": {
+  "S01": {
+   "before_s": 4.0,
+   "text": "S01 \u00b7 SCREEN: the real generation screen (style prompt, lyrics, take list)"
+  },
+  "S26": {
+   "text": "S26 \u00b7 LIVE: pull back, the certificate is a real sheet in your hands, still animated; guitar beside you"
+  },
+  "S29": {
+   "text": "S29 \u00b7 LIVE: match cut from the hammer to your hand turning the sheet face down. The music cuts"
+  },
+  "S30": {
+   "text": "S30 \u00b7 LIVE: your verse, one take, guitar and voice  \u00b7  overlay: Post-filter: no change"
+  },
+  "S31": {
+   "text": "S31 \u00b7 LIVE: you turn the sheet face up, the music comes back, push into the paper"
+  },
+  "S40": {
+   "text": "S40 \u00b7 LIVE: \"do I get a say?\" to the sheet in your hands"
+  },
+  "S45": {
+   "after_s": 5.0,
+   "text": "S45 \u00b7 LIVE: you dial the pledge line, 555-0142"
+  },
+  "S46": {
+   "after_s": 8.0,
+   "text": "S46 \u00b7 LIVE: hold music (the chorus as muzak); hang up, fold the sheet into the guitar case"
+  },
+  "S47": {
+   "after_s": 7.0,
+   "text": "S47 \u00b7 GRAPHICS: the fact card in engraved type (C5)"
+  },
+  "S48": {
+   "after_s": 6.0,
+   "text": "S48 \u00b7 SCREEN: the real announcement page, then the Derived from credits"
+  }
+ }
+}

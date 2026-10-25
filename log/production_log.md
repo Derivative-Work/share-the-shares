@@ -293,3 +293,37 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   1. An 18 px handle strip left the handle's shaded edge behind. It is now 34 px.
   2. A 280 px search filled the shirt with grey forge glow. 60 px plus a second pass fixed it.
 - **Outputs:** `renders/c1/certificate_v05/` (sheet and plates with the raised hammer; its `static/` and `layout.json` are byte-identical to v04's). `renders/c2/laborer_raised_close.png`, `assets/puppets/laborer/raise_preview.jpg`. Later steps use v05.
+
+## 2026-10-25T19:42:59-04:00 — C4: the animatic
+
+- **What:** the whole cut at final timing, in grey-box, low-res, on the GTX 970: 640×360, Eevee at 8 samples, every second frame (2,920 frames in 42 min, 0.86 s a frame), with the S01 and S45–S48 placeholder cards around the song.
+- **Code and config:**
+  - `scenes/blender/animatic.py`: the certificate world (v05 static print, desk, the C1 light), the C2 puppets, the raised laborer, and every prop the shot list names.
+    - Props in the certificate's type and inks where the brief gives their words: 5%, LLC, the calendar, the shares figures, the transfer form, BASELINE: TBA, +50%, WHOLLY OWNED.
+    - Grey labelled cards elsewhere: mic, door, pen, eraser, quill, scissors, coins, scroll, ledger, seal.
+    - Every frame is a function of song time: puppets on twos, camera smooth, cutting between shots. Nothing is keyed by hand.
+    - Jaws open on each word of the figure's own sections, and the cherubs sway one side per beat through the choruses. The shot actions are tied to their anchors.
+    - Props on the page bend with the sheet's curl (the puppets' world-space modifier).
+  - `config/c4_shots.json`: the agent's framing per rendered shot (from and to boxes in sheet pixels), and the placeholder texts and lengths.
+  - `scripts/animatic_assemble.py`: frames, black cards for the unrendered shots, the mix (delayed by the 4 s S01 pre-roll), and burned-in captions in the certificate's fonts: karaoke lyrics, shot IDs, the title and LIVE bug as graphics stand-ins, and the C5 notes.
+  - `scripts/c4_anchor_sheet.py`: one still per rendered shot.
+- **Commands:** `blender -b --factory-startup --python scenes/blender/animatic.py -- --out renders/c4/anchors_v1 --anchors`; `… -- --out renders/c4/frames_v1 --step 2`, then `… --from 266.0` after S44's reframe; `.venv/bin/python -I scripts/animatic_assemble.py renders/c4/frames_v1 2 renders/c4/c4_animatic.mp4`; `.venv/bin/python -I scripts/c4_anchor_sheet.py renders/c4/anchors_v1 renders/c4/c4_anchor_sheet.jpg 6`
+- **Iterations:**
+  1. Anchors, first pass:
+     - the tinier certificate's box didn't match where it is drawn;
+     - the torch box ignored the raised tip;
+     - Mercury's run panned away from him;
+     - S08's mic card covered the plaque;
+     - the seal's label drifted off (it was parented while the seal sat at the origin).
+  2. The camera now aims with an explicit look-at with north up, since `to_track_quat`'s up axis is ill-conditioned looking straight down. A corner projection confirmed the framing.
+  3. S44 originally pushed in from wide over 17 s, so the drawer shut before Progress read. It is now close on her. The wide frames are archived in `archive/renders/c4/frames_v1_S44_wide/`.
+  4. One assembly was cut off mid-encode by a shell timeout and was re-run.
+- **Outputs:** `renders/c4/c4_animatic.mp4` (313.4 s), `renders/c4/c4_anchor_sheet.jpg`, `renders/c4/anchors_v1/`, `renders/c4/c4_review.md` (what to judge, the stand-ins, the open questions).
+- **Open for the human (`c4_review.md`):**
+  - the long holds in S17 and S25 (inserts or not);
+  - S39, which isn't sung (retire it or move it);
+  - only one cherub has an arm cut;
+  - the stand-ins for S36 and S44;
+  - the placeholder lengths;
+  - the print files for the live shoot (the back's transfer form still to draw).
+- **Status:** **C4 is ready for review.**
