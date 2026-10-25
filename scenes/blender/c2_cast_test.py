@@ -32,7 +32,7 @@ scene = S.setup(w, h, samples, frames)
 S.sheet(cert)
 S.desk()
 S.lights()
-P.print_piece("laborer", layout["laborer"])
+P.print_piece("laborer", layout["laborer"], src=S.LOOK["laborer_ink"])
 pup = {name: P.build(name, layout[name]) for name in ("progress", "prudence", "mercury", "cherubs")}
 pup["cherubs_mirror"] = P.build("cherubs", layout["cherubs_mirror"], mirror=True)
 

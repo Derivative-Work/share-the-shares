@@ -272,3 +272,24 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   - Where Prudence's scales arm crossed the sky, the uncovered strip now continues the ruling, with no pale strip.
   - Seams between fill cells are softer.
   - Still visible at full size: where a swing uncovers her strongly curved drapery (below the scales arm, and along the sword's path), the copied patches can't follow the curve, so they read as patchwork. At the pose sheet's scale it reads as engraving.
+
+## 2026-10-25T17:56:55-04:00 — The laborer's hammer raised; certificate v05
+
+- **Why:** the human chose it (human interventions, same time). C2 is approved. Progress's shield stays as engraved; nothing to change.
+- **What:**
+  1. `config/laborer.json`: hand-traced cuts over the ink on a grid, as for the puppets:
+     - the forearm and fist, turned 60° at the elbow;
+     - the hammer (its handle re-measured from ink-row profiles), turned a further 70° at the fist.
+  2. `scripts/laborer_raise.py` bakes the pose into a new ink piece, `assets/engravings/ink/laborer_raised.png` (the rest-pose piece is kept):
+     - the hole is filled by the puppets' texture synthesis;
+     - the two pieces are pasted back turned, with the scissor edge.
+
+     He still never moves; only his engraving changes.
+  3. `scripts/puppet_build.py`: `synth`/`fill` take a search radius. The laborer uses 60 px, so the shirt and apron fill from themselves rather than from the forge's glow, with a second pass at 280 px for the cells it can't reach.
+  4. `config/look.json`: `laborer_ink`, the ink file for the laborer's box. `scripts/certificate.py`, `scenes/blender/lib/puppet.py` (`print_piece`) and the C2 scenes read it.
+  5. `scenes/blender/laborer_close.py`: a still of the corner in S07's framing.
+- **Commands:** `.venv/bin/python -I scripts/laborer_raise.py`; `.venv/bin/python -I scripts/certificate.py renders/c1/certificate_v05`; `blender -b --factory-startup --python scenes/blender/laborer_close.py -- renders/c1/certificate_v05 renders/c2/laborer_raised_close.png 1280 720 32`
+- **Iterations:**
+  1. An 18 px handle strip left the handle's shaded edge behind. It is now 34 px.
+  2. A 280 px search filled the shirt with grey forge glow. 60 px plus a second pass fixed it.
+- **Outputs:** `renders/c1/certificate_v05/` (sheet and plates with the raised hammer; its `static/` and `layout.json` are byte-identical to v04's). `renders/c2/laborer_raised_close.png`, `assets/puppets/laborer/raise_preview.jpg`. Later steps use v05.

@@ -1,0 +1,119 @@
+{
+ "_doc": "The laborer with his hammer raised (the human chose it: S07, S29). He never moves, so the raised pose is baked into a new ink piece by scripts/laborer_raise.py, from the rest-pose piece (assets/engravings/ink/laborer.png, kept). Cuts are traced over the ink on a grid, in piece pixels, as in config/puppets.json; angles are degrees counter-clockwise on the page. The forearm (and fist) turns at the elbow; the hammer then turns at the fist, so its head ends up above the hand. search = the fill's search radius in px (tighter than the puppets' 280, so the shirt fills from the shirt).",
+ "forearm": {
+  "cut": {
+   "polys": [
+    [
+     [
+      990,
+      600
+     ],
+     [
+      1050,
+      610
+     ],
+     [
+      1110,
+      640
+     ],
+     [
+      1170,
+      665
+     ],
+     [
+      1225,
+      700
+     ],
+     [
+      1270,
+      712
+     ],
+     [
+      1300,
+      735
+     ],
+     [
+      1305,
+      780
+     ],
+     [
+      1290,
+      810
+     ],
+     [
+      1250,
+      815
+     ],
+     [
+      1220,
+      790
+     ],
+     [
+      1180,
+      750
+     ],
+     [
+      1110,
+      715
+     ],
+     [
+      1050,
+      695
+     ],
+     [
+      1000,
+      690
+     ],
+     [
+      975,
+      650
+     ]
+    ]
+   ]
+  },
+  "pivot": [
+   1000,
+   650
+  ],
+  "angle": 60
+ },
+ "hammer": {
+  "cut": {
+   "polys": [
+    [
+     [
+      1355,
+      935
+     ],
+     [
+      1445,
+      935
+     ],
+     [
+      1445,
+      995
+     ],
+     [
+      1355,
+      995
+     ]
+    ]
+   ],
+   "strips": [
+    [
+     1297,
+     788,
+     1397,
+     952,
+     34
+    ]
+   ]
+  },
+  "pivot": [
+   1270,
+   770
+  ],
+  "angle": 70
+ },
+ "search": 60
+}

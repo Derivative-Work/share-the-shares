@@ -116,14 +116,16 @@ def text(img, xy, s, role, size, anchor="mm", fill=255, spacing=0):
 FIGURES = True  # False: lay out the figures' boxes without printing them (the static plates)
 
 
-def piece(plate, name, cx, cy, width, mirror=False):
+def piece(plate, name, cx, cy, width, mirror=False, src=None):
+    """An ink piece on a plate; `src` names a different ink file for the same layout box (the laborer's raised hammer)."""
+    src = src or name
     if not FIGURES:
-        ink = cv2.imread(str(ROOT / "assets/engravings/ink" / f"{name}.png"), cv2.IMREAD_GRAYSCALE)
+        ink = cv2.imread(str(ROOT / "assets/engravings/ink" / f"{src}.png"), cv2.IMREAD_GRAYSCALE)
         h = int(round(ink.shape[0] * width / ink.shape[1]))
         x0, y0 = int(cx - width / 2), int(cy - h / 2)
         layout[name + ("_mirror" if mirror else "")] = [x0, y0, x0 + width, y0 + h]
         return
-    ink = cv2.imread(str(ROOT / "assets/engravings/ink" / f"{name}.png"), cv2.IMREAD_GRAYSCALE)
+    ink = cv2.imread(str(ROOT / "assets/engravings/ink" / f"{src}.png"), cv2.IMREAD_GRAYSCALE)
     h = int(round(ink.shape[0] * width / ink.shape[1]))
     ink = cv2.resize(ink, (width, h), interpolation=cv2.INTER_AREA)
     if mirror:
@@ -202,7 +204,7 @@ def build():
     # Prudence (right) and Mercury (left, in the fine print above the signatures); the laborer, lower left corner
     piece(k, "prudence", x1 - 470, 1880, 540)
     piece(k, "mercury", x0 + 520, 1660, 470)
-    piece(k, "laborer", x0 + 560, y1 - 770, 500)
+    piece(k, "laborer", x0 + 560, y1 - 770, 500, src=LOOK["laborer_ink"])
 
     # Signature lines: President, Secretary and a blank one for the Recipient
     sy = y1 - 360

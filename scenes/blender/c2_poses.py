@@ -45,7 +45,7 @@ scene = S.setup(w, h, samples, 1)
 S.sheet(cert)
 S.desk()
 S.lights()
-P.print_piece("laborer", layout["laborer"])
+P.print_piece("laborer", layout["laborer"], src=S.LOOK["laborer_ink"])
 pup = {n: P.build(n, layout[n]) for n in POSES}
 P.build("cherubs", layout["cherubs_mirror"], mirror=True)
 scene.render.image_settings.file_format = "PNG"

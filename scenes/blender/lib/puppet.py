@@ -205,9 +205,10 @@ def hinge(ob, degrees_fn, f0, f1):
     key_twos(ob, "rotation_euler", 2, lambda f: math.radians(degrees_fn(f)), f0, f1, sign)
 
 
-def print_piece(name, box, lift=0.00015):
-    """A figure that never moves (the laborer): its ink piece printed on the sheet, boiling like the rest."""
-    ink = ROOT / "assets/engravings/ink" / f"{name}.png"
+def print_piece(name, box, lift=0.00015, src=None):
+    """A figure that never moves (the laborer): its ink piece printed on the sheet, boiling like the rest. `src`
+    names the ink file when it differs from the layout name (the laborer's is config/look.json's laborer_ink)."""
+    ink = ROOT / "assets/engravings/ink" / f"{src or name}.png"
     im = image(ink, True)
     from sheet import patch
     ob = patch(f"{name}.print", *box, lift=lift)

@@ -1,36 +1,37 @@
 {
-  "_doc": "The look (style/style_spec.md). Colours are sRGB hex; the certificate prints in two inks on cream paper, as two-colour certificates of the 1860s-1890s did: the green plate (border, guilloche, counters, underprint) and the sepia plate (vignettes, type, rules).",
-  "fps": 24,
-  "animation_on": 2,
-  "palette": {
-    "paper": "#EEE5CC",
-    "paper_shadow": "#D9CBA6",
-    "ink_green": "#2F5E4C",
-    "ink_sepia": "#3E2C1E",
-    "ink_gold": "#A8843A",
-    "desk": "#2B211A",
-    "desk_light": "#5A4535"
-  },
-  "sheet": {
-    "size_in": [
-      11.0,
-      8.5
-    ],
-    "dpi": 400,
-    "_note": "Letter, landscape: the printed prop (brief, 'The prop') and the render share one layout. 4400 x 3400 px."
-  },
-  "fonts": {
-    "display": "assets/fonts/AbrilFatface-Regular.ttf",
-    "body": "assets/fonts/IMFeENrm28P.ttf",
-    "body_italic": "assets/fonts/IMFeENit28P.ttf",
-    "small_caps": "assets/fonts/IMFeENsc28P.ttf",
-    "script": "assets/fonts/PinyonScript-Regular.ttf"
-  },
-  "company": "AMALGAMATED BENEFIT, LLC",
-  "pledge_number": "555-0142",
-  "light": {
-    "_note": "Calibrated so the paper under the key renders at about its printed colour (#EEE5CC) in the Standard view (C1 drafts).",
-    "key_w": 6.5,
-    "fill_w": 1.3
-  }
+ "_doc": "The look (style/style_spec.md). Colours are sRGB hex; the certificate prints in two inks on cream paper, as two-colour certificates of the 1860s-1890s did: the green plate (border, guilloche, counters, underprint) and the sepia plate (vignettes, type, rules).",
+ "fps": 24,
+ "animation_on": 2,
+ "palette": {
+  "paper": "#EEE5CC",
+  "paper_shadow": "#D9CBA6",
+  "ink_green": "#2F5E4C",
+  "ink_sepia": "#3E2C1E",
+  "ink_gold": "#A8843A",
+  "desk": "#2B211A",
+  "desk_light": "#5A4535"
+ },
+ "sheet": {
+  "size_in": [
+   11.0,
+   8.5
+  ],
+  "dpi": 400,
+  "_note": "Letter, landscape: the printed prop (brief, 'The prop') and the render share one layout. 4400 x 3400 px."
+ },
+ "fonts": {
+  "display": "assets/fonts/AbrilFatface-Regular.ttf",
+  "body": "assets/fonts/IMFeENrm28P.ttf",
+  "body_italic": "assets/fonts/IMFeENit28P.ttf",
+  "small_caps": "assets/fonts/IMFeENsc28P.ttf",
+  "script": "assets/fonts/PinyonScript-Regular.ttf"
+ },
+ "company": "AMALGAMATED BENEFIT, LLC",
+ "pledge_number": "555-0142",
+ "light": {
+  "_note": "Calibrated so the paper under the key renders at about its printed colour (#EEE5CC) in the Standard view (C1 drafts).",
+  "key_w": 6.5,
+  "fill_w": 1.3
+ },
+ "laborer_ink": "laborer_raised"
 }

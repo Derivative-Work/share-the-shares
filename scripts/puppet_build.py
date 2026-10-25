@@ -48,7 +48,7 @@ CELL, PAD, SEARCH = 16, 10, 280  # synthesis cell, overlap border and search rad
 FEATHER = 3  # px of the overlap border, on the synthesised side, where a new patch is blended into its neighbours
 
 
-def synth(ink, hole, valid, seed):
+def synth(ink, hole, valid, seed, search=SEARCH):
     """Fill `hole` with real engraving copied from `valid` pixels nearby (exemplar-based texture synthesis, after
     Efros and Leung 1999 / Criminisi et al. 2004, simplified). Cells of CELL px are filled from the hole's edge
     inward; each takes the patch, within SEARCH px, whose already-known surround (a PAD-px border) best matches by
@@ -96,8 +96,8 @@ def synth(ink, hole, valid, seed):
                 continue
             tmpl = out[wy0:wy0 + win, wx0:wx0 + win].astype(np.float32)
             m = known[wy0:wy0 + win, wx0:wx0 + win].astype(np.float32)
-            sy0, sx0 = max(0, wy0 - SEARCH), max(0, wx0 - SEARCH)
-            sy1, sx1 = min(h, wy0 + win + SEARCH), min(w, wx0 + win + SEARCH)
+            sy0, sx0 = max(0, wy0 - search), max(0, wx0 - search)
+            sy1, sx1 = min(h, wy0 + win + search), min(w, wx0 + win + search)
             area = ink[sy0:sy1, sx0:sx1].astype(np.float32)
             ok = src_ok[sy0 + win // 2:sy1 - win + win // 2 + 1, sx0 + win // 2:sx1 - win + win // 2 + 1]
             if not ok.any() or m.sum() < 1:
@@ -133,9 +133,9 @@ def synth(ink, hole, valid, seed):
     return np.where(hole, out, ink), rest
 
 
-def fill(ink, hole, valid, seed, horizontal=False):
+def fill(ink, hole, valid, seed, horizontal=False, search=SEARCH):
     """Texture synthesis from the surrounding engraving (synth): the filled ink and the cells it couldn't reach."""
-    return synth(ink, hole, valid, seed)
+    return synth(ink, hole, valid, seed, search)
 
 
 def line_screen(shape, tone, theta, seed):
