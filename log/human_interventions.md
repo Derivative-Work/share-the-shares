@@ -35,3 +35,9 @@ Every human action: timestamp, what, why, and which production rule allows it. R
 - **What:** The human: "(and yes move S36 to the key change)". The agent moved S36 in the brief from the final chorus to the top of the verse 2 table, cue "The key change, just before verse 2 (where Suno put it)" (Claude Doc rev 30).
 - **Why:** Suno moved the key change (production log, step 2).
 - **Rule:** R1 (choosing between the two options the agent offered). The human said it in words and the agent made the change.
+
+## 2026-10-25T09:48:54-04 — C1 approved — R1
+
+- **What:** The human: "Looks good, keep going". C1 (style spec, look config, the certificate, the two test frames) is approved.
+- **Rule:** R1.
+- **Still open from C1:** the laborer's resting hammer (S07, S29) and Progress's stars-and-stripes shield. The agent keeps both as engraved for now (each is reversible) and raises them again at the next checkpoint.

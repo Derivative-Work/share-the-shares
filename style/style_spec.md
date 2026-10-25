@@ -89,4 +89,4 @@ A document camera (brief, "Motion"): slow pushes, pans and flips, never handheld
 
 ## C1 outcome
 
-Pending review. In C1: the sheet, its sources, the look config and two test frames. Not in C1: the puppet cuts, the torch, the transfer form on the back, the seal (it stamps down in S34), the animation, and the live-shot composite.
+Approved by the human (human_interventions). In C1: the sheet, its sources, the look config and two test frames. Not in C1: the puppet cuts, the torch, the transfer form on the back, the seal (it stamps down in S34), the animation, and the live-shot composite.
