@@ -46,3 +46,8 @@ Every human action: timestamp, what, why, and which production rule allows it. R
 
 - **What:** The human asked how much the non-vocal sync matters and said the lane preview "is hard for me to read -- a score is best if good sync for things like the drums is necessary". Of the cast test: "they look good but mostly the same across frames". The agent's answer: nothing here is note-driven, so C3 needs only the beat grid and three sync points. The human: "yes go ahead" to a click-track ear check and a pose sheet.
 - **Rule:** R1 (choosing how a plan is reviewed). No creative change.
+
+## 2026-10-25T11:17:24-04 — Fix the fill patches — R1 (a change asked for in words)
+
+- **What:** The human: "Yes fix the fill patches". The agent replaced the generated line-screen fill with texture synthesis from the surrounding engraving.
+- **Rule:** R1. The human said it in words and the agent made the change.

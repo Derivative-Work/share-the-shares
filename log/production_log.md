@@ -207,3 +207,21 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
 - **Bug found:** the first pose sheet showed swirled moiré patches behind Mercury's legs and the cherubs. Their layers dated from the first fill method: only Progress and Prudence had been rebuilt after the fill was reworked. So the C2 cast clips of Mercury and the cherubs also carry the old fill. Rebuilt both (`scripts/puppet_build.py mercury cherubs`) and re-rendered the poses. The first sheet is archived in `archive/renders/c2/*poses_superseded_stale-fill*`.
 - **Seen at full swing:** the fills read as straight engraved ruling, but they're visible as patches where a big swing uncovers a large area: Mercury's back leg, and under the cherubs' lifted arm. Prudence's scales arm leaves a lighter ruled strip.
 - **Why:** The human's feedback (human_interventions, same time).
+
+## 2026-10-25T11:17:24-04:00 — C2: fills by texture synthesis from the surrounding engraving
+
+- **What:** `scripts/puppet_build.py` now fills every hole (what a moved part uncovers, and the vignette behind each figure) with exemplar-based texture synthesis, after Efros–Leung and Criminisi et al., simplified:
+  - holes are filled in 24 px cells, from the edge inward;
+  - each cell copies the patch within 280 px whose known 14 px surround best matches (masked squared difference, OpenCV `matchTemplate`);
+  - a tone constraint (the candidate's mean ink within ±30% of the surround's, and at least 70% of it) stops bare paper from "matching" faint sky;
+  - one of the four best candidates is picked at random (seeded), so large holes don't repeat;
+  - sources are untouched pixels only, so nothing synthesised is copied again.
+
+  The line screen (`line_screen`) is kept in the file but is no longer called.
+- **Commands:** `.venv/bin/python -I scripts/puppet_build.py` (6 min for all four figures on CPU); `blender -b --factory-startup --python scenes/blender/c2_poses.py -- renders/c1/certificate_v04 renders/c2/poses 1280 720 32`; `.venv/bin/python -I scripts/c2_pose_sheet.py renders/c2/poses renders/c2/c2_poses.jpg`
+- **Iterations:**
+  1. Without the tone constraint, blank paper outside the vignette won for faint sky, leaving white blocks in Mercury's background. Cells skipped for lack of a source were also dropped, not retried.
+  2. Retries (up to 6) and the tone constraint fixed both. The floor was then tightened from "+0.02" to "at least 70% of the surround".
+- **Outputs:** `assets/puppets/*/layers/` rebuilt; `renders/c2/poses/`, `renders/c2/c2_poses.jpg`. The line-screen pose sheet is archived as `archive/renders/c2/*line-screen-fill*`.
+- **Result:** what a swing uncovers continues Durand's own stipple, ruling and drapery hatching. The C2 cast clips (`renders/c2/cast_*.mp4`) still show the old fill and are superseded for review by the pose sheet.
+- **Remaining:** under Prudence's raised scales arm, the 24 px cells show as faint blocky seams in the diamond hatching at full size; they're not visible at the pose sheet's scale. That's the largest uncovered area in the cast.

@@ -44,14 +44,86 @@ def ring_angle(ink, hole, valid, width=30):
     return 0.5 * np.arctan2(2 * jxy, jxx - jyy) if ring.any() else np.pi / 2  # gradient direction
 
 
+CELL, PAD, SEARCH = 24, 14, 280  # synthesis cell, overlap border and search radius, in piece pixels
+
+
+def synth(ink, hole, valid, seed):
+    """Fill `hole` with real engraving copied from `valid` pixels nearby (exemplar-based texture synthesis, after
+    Efros and Leung 1999 / Criminisi et al. 2004, simplified). Cells of CELL px are filled from the hole's edge
+    inward; each takes the patch, within SEARCH px, whose already-known surround (a PAD-px border) best matches by
+    masked squared difference, so hatching runs on across the seam with its own line, tone and direction. Sources
+    are whole patches of untouched pixels only, so nothing synthesised is ever copied again."""
+    rng = np.random.default_rng(seed)
+    h, w = ink.shape
+    out = ink.copy()
+    known = ~hole
+    win = CELL + 2 * PAD
+    src_ok = cv2.erode(valid.astype(np.uint8), np.ones((win, win), np.uint8)) > 0  # patch centres fully in `valid`
+    if not src_ok.any():
+        return out
+    ys, xs = np.nonzero(hole)
+    gy0, gx0 = ys.min() // CELL * CELL, xs.min() // CELL * CELL
+    todo = {(y, x) for y in range(gy0, ys.max() + 1, CELL) for x in range(gx0, xs.max() + 1, CELL)
+            if hole[y:y + CELL, x:x + CELL].any()}
+    tries = {}
+    while todo:
+        # the cells with the most known surround go first (onion peel)
+        scored = []
+        for (y, x) in todo:
+            k = known[max(0, y - PAD):y + CELL + PAD, max(0, x - PAD):x + CELL + PAD]
+            scored.append((k.mean(), (y, x)))
+        scored.sort(reverse=True)
+        batch = [c for f, c in scored[:max(1, len(scored) // 8)] if f > 0.05] or [scored[0][1]]
+        for (y, x) in batch:
+            tries[(y, x)] = tries.get((y, x), 0) + 1
+            if tries[(y, x)] > 6:
+                todo.discard((y, x))  # unreachable (no valid source near it): left to the mean-tone pass below
+                continue
+            wy0, wx0 = y - PAD, x - PAD
+            if wy0 < 0 or wx0 < 0 or wy0 + win > h or wx0 + win > w:
+                # at the piece's edge: fall back to the nearest valid pixel's value (the vignette fades out there)
+                sel = hole[y:y + CELL, x:x + CELL] & ~known[y:y + CELL, x:x + CELL]
+                out[y:y + CELL, x:x + CELL][sel] = 0.0
+                known[y:y + CELL, x:x + CELL] |= sel
+                todo.discard((y, x))
+                continue
+            tmpl = out[wy0:wy0 + win, wx0:wx0 + win].astype(np.float32)
+            m = known[wy0:wy0 + win, wx0:wx0 + win].astype(np.float32)
+            sy0, sx0 = max(0, wy0 - SEARCH), max(0, wx0 - SEARCH)
+            sy1, sx1 = min(h, wy0 + win + SEARCH), min(w, wx0 + win + SEARCH)
+            area = ink[sy0:sy1, sx0:sx1].astype(np.float32)
+            ok = src_ok[sy0 + win // 2:sy1 - win + win // 2 + 1, sx0 + win // 2:sx1 - win + win // 2 + 1]
+            if not ok.any() or m.sum() < 1:
+                continue  # retried next round once more of its surround is known
+            score = cv2.matchTemplate(area, tmpl, cv2.TM_SQDIFF, mask=m)
+            # tone: a source whose mean ink is far from the known surround's can't win on line placement alone (bare
+            # paper otherwise "matches" faint sky: its error is only the dashes it lacks)
+            tm = float((tmpl * m).sum() / m.sum())
+            am = cv2.boxFilter(area, -1, (win, win), normalize=True, anchor=(0, 0),
+                               borderType=cv2.BORDER_CONSTANT)[:score.shape[0], :score.shape[1]]
+            tone_ok = (np.abs(am - tm) <= 0.3 * tm + 0.01) & (am >= 0.7 * tm)
+            score = np.where(ok[:score.shape[0], :score.shape[1]] & tone_ok, score, np.inf)
+            # pick among the best few, so a large hole isn't one patch repeated
+            flat = np.argsort(score, axis=None)[:4]
+            flat = flat[np.isfinite(score.ravel()[flat])]
+            if not len(flat):
+                continue
+            py, px = np.unravel_index(rng.choice(flat), score.shape)
+            patch = area[py + PAD:py + PAD + CELL, px + PAD:px + PAD + CELL]
+            cell_hole = ~known[y:y + CELL, x:x + CELL]
+            out[y:y + CELL, x:x + CELL][cell_hole] = patch[:cell_hole.shape[0], :cell_hole.shape[1]][cell_hole]
+            known[y:y + CELL, x:x + CELL] = True
+            todo.discard((y, x))
+        todo = {c for c in todo if (~known[c[0]:c[0] + CELL, c[1]:c[1] + CELL] & hole[c[0]:c[0] + CELL, c[1]:c[1] + CELL]).any()}
+    rest = hole & ~known
+    if rest.any():  # cells no source could reach: the local mean tone, as a flat tint (rare; logged by the caller)
+        out[rest] = local_tone(ink, valid)[rest]
+    return np.where(hole, out, ink)
+
+
 def fill(ink, hole, valid, seed, horizontal=False):
-    tone = local_tone(ink, valid)
-    out = np.zeros_like(ink)
-    n, lab = cv2.connectedComponents(hole.astype(np.uint8))
-    for i in range(1, n):
-        comp = lab == i
-        theta = np.pi / 2 if horizontal else ring_angle(ink, comp, valid)
-        out[comp] = line_screen(ink.shape, tone, np.full(ink.shape, theta, np.float32), seed + i)[comp]
+    """Texture synthesis from the surrounding engraving (synth)."""
+    out = synth(ink, hole, valid, seed)
     return out
 
 
@@ -85,7 +157,7 @@ def build(name):
     seed = 41
     layers = {}
     # background: the vignette minus the figure, the figure's area filled
-    bg = np.where(fig, fill(ink, fig, ~fig, seed, horizontal=True), ink)  # Durand's skies are ruled horizontally
+    bg = np.where(fig, fill(ink, fig, ~fig, seed), ink)
     layers["background"] = (bg, np.ones_like(fig))
     # body and parts: each one's own pixels, plus filled holes where a layer in front of it was cut out
     covers = {"body": [pn for pn in parts if parts[pn]["parent"] == "figure"]}
