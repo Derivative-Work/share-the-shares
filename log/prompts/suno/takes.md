@@ -21,3 +21,7 @@ None supplied.
 ## Note: the MP3's lyrics tag
 
 The downloaded MP3's `lyrics-eng` tag (`lyrics_submitted.txt`, extracted in step 1) differs from Suno's page. It drops the [Verse 1], [Pre-Chorus], [Verse 3], [Bridge] and [Final Chorus] tags, repeats chorus 1's last two lines and "then watch us when it's not.", ends the bridge on "(choir) In the coming months!", and drops the Board's and the Lawyer's final-chorus ad-libs. Suno's page is what was submitted, so these aren't lyric edits by the human. The tag may instead track what Suno sang, so it is a lead for the as-sung lyrics at C3, not their source. (Not Yet's MP3 tag also differed from its page, there by one repeated line.)
+
+## Note: the key change
+
+Suno put the whole-step key change right before verse 2, not into the final chorus as the lyrics and style prompt asked (the human, 2026-10-25, by ear). This is an AI change; see the production log, step 2. C3 measures it.

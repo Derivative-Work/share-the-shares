@@ -22,3 +22,10 @@ Every human action: timestamp, what, why, and which production rule allows it. R
 - **Why:** These answer the open questions from step 1.
 - **Rule:** R1 (approving the one-shot take over the brief's section-by-section plan). The post-filter run will be R4, logged when it happens. Replacing the Worker verse's audio with the human's performance is one of the brief's planned EXCEPTIONS, logged when recorded.
 - **Lyrics:** Suno's page shows the submitted lyrics match the brief's (production log, step 2). So the earlier entry's open question is answered: no human lyric edit, no exception. "Spent" in verse 3 predates the audit, and the live verse replaces it.
+
+## 2026-10-25T09:26:30-04 — Key change placement; master timing; A/V offsets — R2 (timing information)
+
+- **What:** The human: "note that suno put the key change in right before verse 2, not where the lyrics prompted. the master does not change the timing -- the only offsets we will need to handle are from the human A/V, which (once I have it) will be fixed offsets against this audio for the end only"
+- **Why:** Information from listening, for the timing map and the shot list.
+- **Rule:** R2 (A/V sync information). Not a creative change.
+- **Consequences:** the timing map (C3) is built on the Suno mix now, without waiting for the post-filtered master. The human's live A/V is synced by fixed offsets against this audio. The key change is Suno's change (below), not the human's.
