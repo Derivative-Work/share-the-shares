@@ -1,0 +1,437 @@
+# Planning chat: Song: Share the Shares (Anthropic's Public Benefit Fund)
+
+Source: https://claude.ai/share/75dfaaef-866c-4979-8016-b7747f9ddaa3 (snapshot taken 2026-10-25T12:19:48.415819Z). Raw snapshot: `planning_chat.json`.
+Tool calls are shown as one-line placeholders; tool results are omitted (they are in the raw JSON).
+
+---
+
+## 1. User (2026-10-20T15:29:00.808069Z)
+
+Summarize Anthropic's Public Benefit Fund
+
+---
+
+## 2. Claude (2026-10-20T15:29:15.642395Z)
+
+> *[Searched the web: "Anthropic Public Benefit Fund"]*
+
+> *[Searched the web: ""Anthropic" "Public Benefit Fund" announced"]*
+
+Anthropic announced the fund on Sunday, October 18, 2026. It's a new entity whose structure increases its stake in the company as the company grows.
+
+**Key points**
+- **Size:** Anthropic is committing 5% of its shares to the fund. It can add another 2% for every 50% increase in Anthropic's value. Those extra grants are at the board's discretion and measured from a baseline that hasn't been announced yet. Anthropic says that, counting the new fund, about 20% of its shares are now dedicated to the public good.
+- **Structure:** It's a wholly-owned LLC rather than a 501(c)(3), which leaves room to switch between different forms of giving.
+- **Purpose:** Most of Anthropic's mission work, such as safety and interpretability research, biomedical research and Claude discounts for nonprofits, stays inside the company. The fund is meant to allow new approaches, like large donations to traditional nonprofits or direct distributions to specific populations.
+- **Labor market focus:** Anthropic has already committed $200 million to study AI's effect on jobs. It says bolder approaches may be needed, and the fund gives it room to pursue them.
+- **Limits:** The fund won't be used for lobbying or political donations, in the US or abroad.
+- **Still to come:** Anthropic says it will share details on the fund's structure, governance and valuation milestones in the coming months, along with a public benefit report.
+
+**Context:** The announcement comes as Anthropic prepares for one of the biggest IPOs in history, possibly as soon as November. Elon Musk replied on X that the shares should go directly to the public.
+
+Sources:
+- [Investing in the public benefit – Anthropic](https://www.anthropic.com/news/public-benefit-fund)
+- [TechCrunch](https://techcrunch.com/2026/10/18/anthropic-says-its-committing-5-of-its-shares-to-a-public-benefit-fund/)
+- [ESG Today](https://www.esgtoday.com/anthropic-commits-5-of-shares-to-a-new-public-benefit-fund/)
+- [Al Jazeera](https://www.aljazeera.com/economy/2026/10/19/anthropic-says-it-will-commit-5-of-shares-to-public-benefit-fund)
+- [The National](https://www.thenationalnews.com/future/technology/2026/10/19/anthropic-public-benefit-fund-elon-musk/)
+
+---
+
+## 3. User (2026-10-20T15:29:48.030153Z)
+
+How might it fit in with the other songs in this project (conflict of interest noted)
+
+---
+
+## 4. Claude (2026-10-20T15:30:36.727598Z)
+
+> *[Projects]*
+
+> *[Conversation search]*
+
+> *[Recent chats]*
+
+Disclosure first, since you raised it: Anthropic makes me, and this fund is Anthropic's. Whatever lyric comes out of this should go through the same audit by another lab's model that's on the Three Hours Blues checklist.
+
+**Best fit: a new verse in the safety-pledge alma mater, not a song of its own**
+
+- **It's the same subject.** The hymn follows Anthropic's promises and the conditions attached to them, and the fund has that same shape. There's a firm headline number, 5% of shares. Then there's more that depends on growth: an additional 2 per cent of Anthropic shares at the board's discretion for every 50 per cent increase in the company's value above a to-be-announced baseline.
+- **The bridge already asks the right question.** "If a promise only holds while holding it is free" now has a twist. Most of this gift only grows if the company does, so the pledge is literally tied to valuation.
+- **It avoids putting too much weight on one lab.** Anthropic already appears in the alma mater, in the Public First caveat in Folks Like Us, and in the conflict line in Three Hours Blues. A fourth standalone piece would make the series look either fixated on Anthropic or, with Claude writing the lyrics, like PR.
+
+**A sketch in the hymn's meter**
+
+> **[v4.0 — October 2026]**
+> We pledged a twentieth to good,
+> And more as value climbs;
+> The terms, and who will hold the purse,
+> Are due in coming times.
+>
+> **Chorus**
+> O pledge, our pledge, we hold you true
+> Through every gain and gate;
+> The more our shares appreciate,
+> The more we'll dedicate.
+
+"Appreciate" carries both meanings. The verse stays gentle on purpose, because the fund is a real commitment. The fair criticism is about its conditions and its governance, which Anthropic says it will share more about in the coming months. The verse is about what's still unknown, not a claim that the money is fake.
+
+**Fine-print additions:** "Fund equity held by a wholly-owned LLC. Valuation milestones and governance to be announced." The coda ("if it's kind, discount the praise") already covers the conflict of interest.
+
+**If you want it standalone anyway:** a charity single in the style of the big all-star benefit records, sung over a telethon tote board that tracks the share price instead of donations. It could be a Short timed to the IPO, which could come as soon as November. But that's the same week as your closing run, so I'd only do it if the alma mater has already shipped.
+
+---
+
+## 5. User (2026-10-20T15:35:07.041399Z)
+
+Draft the charity single
+
+---
+
+## 6. Claude (2026-10-20T15:37:26.517048Z)
+
+I'll draft it as a doc alongside your other songs: lyrics, style prompt, video concept and a fact card.
+
+> *[Claude Docs: Guide]*
+
+> *[Claude Docs: Batch]*
+
+Outline's up; writing the concept first.
+
+> *[Used artifacts]*
+
+> *[Claude Docs: Guide]*
+
+> *[Claude Docs: Update]*
+
+Now the style prompt.
+
+> *[Claude Docs: Update]*
+
+Now the lyrics.
+
+> *[Claude Docs: Update]*
+
+The lyric lines merged into single paragraphs; fixing the line breaks.
+
+> *[Claude Docs: Update]*
+
+Line breaks fixed. Now the video concept.
+
+> *[Claude Docs: Update]*
+
+Now the fact card and disclosure.
+
+> *[Claude Docs: Update]*
+
+Last, production notes and the checklist.
+
+> *[Claude Docs: Update]*
+
+[Share the Shares](https://claude.ai/code/artifact/46e05c0f-8098-4842-97de-31fa74da433a) is drafted. It has the lyrics, style prompt, video beats and a fact card; edit inline or comment and I'll revise.
+
+---
+
+## 7. User (2026-10-21T05:04:07.426889Z)
+
+Suggest some sets, visual jokes, etc. In case it helps: I'm considering performing the worker's verse myself.
+
+---
+
+## 8. Claude (2026-10-21T05:04:43.211519Z)
+
+Performing the Worker's verse yourself is the strongest version of this. The Worker becomes the only real person in an all-company lineup, which is the series' human turn compressed into one verse. I'd build the visual jokes around that.
+
+**Your verse: the person outside the telethon**
+
+- **You're watching it on TV.** Shoot the verse in your own room on a real camera, with the generated telethon playing on a TV or monitor behind you. The choir sways on screen while you sing to it. Play the rendered footage on the screen during the take, so it's in-camera rather than composited.
+- **Nobody on screen hears you.** On "do I get a say?" in the final chorus, cut back to you saying it at the TV. The choir keeps swaying.
+- **You call the pledge line.** In the outro, you dial the number on screen and get hold music: the chorus, re-voiced as muzak. Then you hang up, and the fade continues without you.
+- **Let the filter prove it.** Run your verse through the deslop post-filter like everything else. If it really leaves real audio alone (that's what the identity pairs are for), add an overlay: "Post-filter: no change." Check that it holds before you promise it on screen.
+- **No grading match.** Natural light, a phone or plain camera, room sound. The contrast with the generated glow is the point. Log it as a human intervention, like the alma mater and Suno edits.
+
+**Sets**
+
+- **Studio A, "Wholly Owned."** A brass plaque by the door. The gold records on the wall are framed share certificates, and one console fader is labeled "DISCRETION."
+- **The telethon stage.** A flip-digit tote board, a phone bank, and a banner reading "Underwriters are standing by."
+- **The green room.** A pie-chart cake with a 5% slice cut onto a plate labeled "FUND." It sits untouched all video. Each time the ticker jumps, the Board cuts another 2% sliver and keeps the knife.
+- **The hallway.** Studio doors on both sides, and one unlabeled door for the "through this fund" pan.
+
+**Visual jokes**
+
+- **The arrivals montage.** The all-star lineup pulls up in a line of limos, and they all get out of the same car.
+- **One box for everyone.** Every headphone cable runs into a single junction box stenciled "LLC."
+- **Term sheets.** Everyone's lyric sheet on the music stand is a term sheet, and the Board highlights a clause mid-chorus.
+- **The awareness ribbon** on every lapel is folded into an upward-trending arrow.
+- **Filing the gift.** After signing the giant check, the Board hands it to the Lawyer, who files it in a cabinet in the same studio.
+- **The thermometer** is marked in "+50%" steps instead of dollars, and its bulb is labeled "Baseline: TBA."
+- **The Board checks a phone ticker** during the group-mic sway, and drifts off the beat whenever it dips.
+- **The tote board** stays frozen when a phone operator takes a $5 pledge, then jumps when the ticker ticks.
+
+The "watching on TV" framing changes beats 8, 10 and 11 in the doc's video section. Want me to update it with this version?
+
+---
+
+## 9. User (2026-10-21T11:29:20.560175Z)
+
+What instrumentation should I choose for that? I can do anything the old fashioned way from just piano or guitar accompaniment to a full production exceeding the quality of the Suno output
+
+---
+
+## 10. Claude (2026-10-21T11:29:41.376399Z)
+
+I'd go minimal: one real instrument you play yourself, recorded in the room with your voice. A full production that beats Suno would turn the verse into a contest of polish, when the point is that the Worker is the one person without the studio. Save the big human production for the finale, where the series' takeover is the whole story.
+
+**The pick**
+
+- **Acoustic piano, if you have a real one.** The generated track runs on glassy FM electric piano, and the doc already says the band drops to piano here, so a real piano reads as the human version of the same instrument. A slightly out-of-tune upright is ideal. A digital piano loses most of the contrast, so use guitar instead.
+- **Acoustic guitar otherwise.** It also suits the character, and it echoes the folk sound of Nine Hundred Acres.
+
+**How it plays on screen**
+
+- **The mute is the transition.** At the end of verse 2, you press mute on the remote. The generated band cuts out, and you start playing. At the bridge, you unmute and the telethon comes back mid-phrase. That makes "the band drops out" a literal action, and the edit is just two hard cuts.
+- **Play it free.** The TV is muted, so nothing has to line up with a click. Rubato and room sound are fine, and they help: they're the things the generated track can't do. Just start in the generated take's key (check the actual take; the doc's D major is only the prompt) so the unmute doesn't jar.
+- **One mic, one or two takes,** voice and instrument together, no tuning or comping. It also gives the post-filter the cleanest test of the "no change" claim.
+
+Keep the hold music in the outro generated. It works as a joke because it's the machine version of the song you just sang.
+
+---
+
+## 11. User (2026-10-22T02:56:10.609079Z)
+
+Suggest a generation/rendering pipeline for this. For what it's worth: Folks Like Us' fully-generated video aimed to be photorealistic but became *very* uncanny -- unintentionally in some ways, but it suited that video. I don't think it will work for this one.
+
+---
+
+## 12. Claude (2026-10-22T02:56:47.534291Z)
+
+I'd skip photorealism entirely and make everyone in the telethon claymation. Your verse is then the only real human in the video. The contrast becomes the visual version of the song, and clay hides most of what made Folks Like Us uncanny.
+
+**Why clay works here**
+
+- **Nobody expects clay faces to be real,** so imperfect expressions read as style, not as wrongness.
+- **Stop-motion runs at 12 fps.** Generate at 24 and keep every other frame. That hides flicker and morphing between frames, which are the generators' worst artifacts.
+- **Lip-sync is forgiving.** Stop-motion mouths snap between shapes anyway, so rough sync looks deliberate.
+- **It suits the charity-single warmth:** handmade, cheerful, slightly too earnest. Keep the style generic and avoid prompts that name or imitate a specific studio's look.
+
+**Pipeline**
+
+1. **Reference images first.** Make a character sheet for each soloist (Founder, Board, Lawyer) and the choir in matching fleece, plus one still per set: the studio, telethon stage, green room and hallway. Every shot starts from these, which keeps characters consistent.
+2. **Draft fast, render final.** Rough out every shot with LTX-2.3 to check timing and composition. Then render keepers image-to-video in Wan 2.2 from the reference stills, batched overnight on the 5090.
+3. **Lip-sync only the solo close-ups,** the same way as Folks Like Us. Group-mic shots can sway without it.
+4. **Never generate text.** Video models garble it, and almost every gag here is text: the tote board, ticker, "TBA" check, term sheets, "LLC" box and thermometer. Generate the props blank, then track and composite the text. Build the moving graphics (flip digits, ticker, thermometer fill, chyrons, fact card) in Remotion, so the numbers are exact and match the joke. Give the ticker an invented symbol unless the IPO has happened and you want the real one.
+5. **Broadcast finish on the telethon only.** Apply a light 4:3 1980s video finish to the telethon footage, but leave the studio clean. That way, the "TV show" looks different from the "recording session" even inside the clay world.
+6. **Your verse in camera.** Play the finished clay telethon on a real TV or monitor during your take, so the screen behind you is real footage of generated material. Leave it ungraded, in natural light and at normal frame rate.
+7. **Assemble and log.** Edit to the filtered master, and log prompts, takes and seeds in the public log like the other videos.
+
+**If you'd rather not do clay:** the fallback is a stylized 1985 broadcast look. Keep faces small with wide group shots and soloists backlit, and degrade heavily to 480-line video. It's safer than photorealism but still close enough to real faces to wobble.
+
+Want me to add this as a production section in the doc?
+
+---
+
+## 15. User (2026-10-22T03:05:00.309760Z)
+
+Wait why is generation needed if this is styled like clay? Can't that just be rendered?
+
+---
+
+## 16. Claude (2026-10-22T03:05:18.095389Z)
+
+You're right, and for this video rendering is probably the better choice. A video model's main job is faking things that are hard to build, like real faces, cloth and messy physical motion. Clay figures are simple geometry with a fingerprint texture, and that's easy to build directly.
+
+**What rendering gets you**
+
+- **Exact text in the scene.** The tote board, check, term sheets and thermometer are just objects with real text on them. No compositing or tracking.
+- **Consistency for free.** The Founder is the same model in every shot, so there are no reference images or rerolls.
+- **Perfect lip-sync.** Swap mouth shapes from the phoneme timings in your forced alignment, which is how real stop-motion works anyway.
+- **Reproducible from code.** The public log can hold the scene files and scripts, and anyone can re-render it. That's a stronger record than "take ID, can't be regenerated."
+- **No uncanniness by construction,** since nothing is imitating real footage.
+
+**How it'd work**
+
+- **Blender, driven by Claude Code,** the same way the Ghost in the Machine animation was agent-built. Use simple blobby characters, a clay shader with displacement and thumbprints, and soft studio lighting.
+- **Animate on twos** with slight per-frame jitter in position and texture. That subtle "boiling" is what sells handmade stop-motion.
+- **Procedural motion** covers most of the video: the choir sway, the ticker, flip digits, the thermometer fill, the confetti cannon.
+- **Keep the moving graphics in Remotion** or bake them into Blender textures, whichever is simpler per shot.
+
+**What it costs**
+
+- **Acting is the hard part.** Swaying, mouth shapes and simple gestures are easy. Hand-keyed performance is not, like the Lawyer unrolling a document or the Board signing the check. Stage those as cuts and simple moves rather than continuous action.
+- **More up-front work.** Expect to spend more time setting up characters and sets before the first shot looks right. After that, every shot is quick.
+
+It also changes the credits honestly: "animation by Claude Code" rather than a video model, with your verse as the only real footage. It still fits the series, since the rendering is agent-built, but it's a different claim than "generated," so the credits should say which.
+
+---
+
+## 17. User (2026-10-22T03:06:28.193529Z)
+
+Are there other styles that could suit this topic
+
+---
+
+## 18. Claude (2026-10-22T03:06:51.787384Z)
+
+Several, and some are more on-topic than clay. The best ones draw their look from the subject itself: money, shares and corporate paperwork.
+
+**1. Engraved share certificate (my pick)**
+The whole video takes place inside an old stock certificate. The singers are engraved allegorical figures like the ones on vintage certificates (Industry, Prosperity, a classical figure with a torch), and they sing from inside the guilloche borders.
+- **Why it fits:** the fund is literally made of shares, and the gift and the stock become the same image. The Worker breaks it completely, a real person against a world of engraving.
+- **How:** 2D cutout animation in SVG or Blender, with hinged jaws and limbs like paper puppets. Old engravings are often public domain, so you can build from real ones, as long as each source is actually out of copyright.
+- **Jokes it gives you:** the tote board as the certificate's share-count box, "TBA" printed in the denomination field, and the Board's signature line.
+
+**2. Annual-report infographics**
+The singers are pictogram people from a shareholder letter: flat, smiling, in a palette of corporate blues. The tote board is a bar chart, the choir is a row of pictogram heads, and the thermometer is a progress bar.
+- **Why it fits:** it's the visual language of the IPO prospectus the song is really advertising.
+- **How:** the easiest of all to build, since it's all Remotion or SVG. The trade-off is the least warmth, so the sincere bridge has to carry more.
+
+**3. Stock-photo collage**
+Cut-out stock-photo people (handshakes, smiling headsets, diverse teams pointing at screens), animated crudely like paper.
+- **Why it fits:** stock photos for a stock offering. The phone bank is literally stock photos of call-center workers.
+- **Risk:** you'd need images you're licensed to use, or generated ones, which brings back some uncanniness. Cutting them out crudely keeps them obviously fake.
+
+**4. Telethon graphics only**
+No characters at all. The video is a 1985 broadcast made only of graphics: chyrons naming soloists who never appear, the tote board, the ticker, "Operators are standing by," and the fact card.
+- **Why it fits:** the company is all branding and no faces, and your verse is the only person who appears. It's also the fastest to make.
+- **Risk:** it gives viewers less to look at, so it's better for a Short than a full video.
+
+**What I'd avoid:** felt and crayon, since circle time already uses them, and photorealism, for the reasons you found.
+
+Whichever you choose, the rule from clay still holds: everything except you should look obviously made. If I had to choose, I'd go with the certificate. It's the only style where the setting itself makes the argument.
+
+---
+
+## 19. User (2026-10-22T03:20:46.940108Z)
+
+Draft out some of the scenes of the share certificate
+
+---
+
+## 20. Claude (2026-10-22T03:21:34.660658Z)
+
+> *[Loaded tools]*
+
+> *[Claude Docs: Read]*
+
+I'll add the certificate scenes to the doc as an alternative to the studio version.
+
+> *[Claude Docs: Update]*
+
+I added the share-certificate scenes to the doc as a new section after the studio version. It covers the whole song in 12 scenes, from the opening bookend to the certificate filed away in a "Wholly owned" drawer. Each soloist becomes an allegorical engraving: Progress for the Founder, Prudence for the Board, Mercury for the Lawyer. A still engraved laborer in the corner sets up your live verse.
+
+---
+
+## 21. User (2026-10-22T03:53:53.740755Z)
+
+I had Gemini audit the lyrics after asking it to summarize the fund (much like how I started this session), and it had this to say (it did not provide any citations unfortunately):
+
+---
+
+Here is an audit of your draft's accuracy and fairness regarding Anthropic's Public Benefit Fund:
+
+The Misses (Factual Corrections)
+
+* The Math is Confused: The chorus confidently claims "five in every hundred" (5%), but Anthropic's actual commitment is approximately 20%. The song contradicts itself later in the bridge when the Founder accurately mentions "a fifth of us." You'll want to adjust the chorus lyrics to reflect the 20% reality.
+
+* The LLC Claim: The Lawyer's verse claims the fund is an "LLC, wholly owned." While tech companies do frequently use LLCs for philanthropy to avoid the strict rules of traditional charities (e.g., the Chan Zuckerberg Initiative), Anthropic has not explicitly designated this fund as a wholly owned LLC in its public announcements.
+
+The Hits (Factual Accuracies)
+
+* The Valuation Escalator: The line "And if we grow by half again, two more... then" perfectly captures the actual mechanism where 2% of shares are added for every 50% increase in the company's valuation.
+
+* The $200M Study: The Worker's reference to "two hundred million spent to learn what happens to my place" is a highly accurate nod to Anthropic's prior $200 million commitment to study AI's impact on the global labor market.
+
+The Satirical Fairness As a piece of satire, the draft is remarkably fair and hits the right pressure points. Poking fun at opaque corporate philanthropy—specifically the "baseline to be announced" for the valuation escalators and the Worker's plea for a voice in how the funds are actually distributed—perfectly mirrors legitimate public skepticism regarding tech companies acting as self-appointed wealth redistributors.
+
+You have a solid foundation; just fix the 5% metric in the chorus so the satire is anchored in the correct data.
+
+---
+
+## 22. Claude (2026-10-22T03:54:13.223558Z)
+
+Gemini's fairness read is useful, but both of its corrections are wrong, and the announcement itself settles them. I'd keep the chorus as is.
+
+**The two "misses"**
+
+- **5% is right for the fund.** Anthropic is committing 5% of its shares to the fund. The roughly 20% is a company-wide total: Anthropic said that, combined with the new fund, about 20% of its shares are now dedicated to the public good. So the chorus (the fund) and the bridge ("a fifth of us, all told") describe different things, and both are accurate. Gemini's confusion does show the bridge could mislead viewers, so the fact card should spell it out: "5% to the fund; about 20% in total, counting Anthropic's other commitments."
+- **The LLC is in the announcement, almost word for word.** Anthropic says it is establishing the fund as a wholly-owned LLC rather than a 501(c)(3), to allow different forms of giving.
+
+**One small fix Gemini missed**
+
+- **"Two hundred million spent to learn" should be "pledged to learn."** It's a commitment, not money already spent, and "pledged" scans the same.
+
+**For the audit log**
+
+Record this audit as it is, alongside the primary source that contradicts its corrections, since a cross-lab check is only worth something if it's checked too. I'd also rerun it with the announcement page pasted in, so it judges the lyrics against the source instead of its own summary. Its fairness verdict is the part to keep. I'm the conflicted party in that comparison, so the rerun should settle it rather than my word.
+
+Want me to make the "pledged" change and the fact-card clarification in the doc?
+
+Sources:
+- [Investing in the public benefit – Anthropic](https://www.anthropic.com/news/public-benefit-fund)
+- [ESG Today](https://www.esgtoday.com/anthropic-commits-5-of-shares-to-a-new-public-benefit-fund/)
+
+---
+
+## 23. User (2026-10-22T03:56:05.344182Z)
+
+yes, and record the audit in the doc (it is what will eventually get sent to Claude Code to implement)
+
+---
+
+## 24. Claude (2026-10-22T03:56:25.580783Z)
+
+> *[Claude Docs: Update]*
+
+Done. The Worker's line now says "pledged." The fact card separates the fund's 5% from Anthropic's roughly 20% total. The audit log under the production notes has a table of each finding and how it was resolved. The checklist now includes rerunning the audit with the announcement pasted in, and filling in Gemini's version, which goes in the fact card's credit line too.
+
+---
+
+## 25. User (2026-10-25T11:54:40.499652Z)
+
+Write out the full shot list. Note that I will be performing the worker's verse as a human with a guitar -- either indoors with a TV behind me or outdoors with an iPad for the transitions
+
+---
+
+## 26. Claude (2026-10-25T11:55:59.417279Z)
+
+I'll write the shot list for the share-certificate version, since that's the look we've been developing, with indoor and outdoor variants for your live shots.
+
+> *[Claude Docs: Update]*
+
+The full shot list is in the doc after the certificate scenes: 48 shots grouped by section, each tagged rendered, graphics, live or screen capture. Your live shots (the reveal, the verse, "do I get a say?" and the pledge call) are in one table with indoor and outdoor variants, so you can choose either and shoot them all in one session.
+
+It follows the certificate version. Since this doc is what goes to Claude Code, I'd remove the older studio-and-telethon video section first so it doesn't build both. Want me to cut it?
+
+---
+
+## 27. User (2026-10-25T11:57:41.797812Z)
+
+hm the certificate version may be better served by a physical sheet of paper (composited) to use as the transition
+
+---
+
+## 28. Claude (2026-10-25T11:58:56.254654Z)
+
+That's a better fit. The certificate is paper in the story, so a real sheet you can hold and flip makes more sense than a screen showing one. It also removes the moiré and glare problems. I'll update the live shots in the doc.
+
+> *[Claude Docs: Update]*
+
+> *[Claude Docs: Update]*
+
+The doc now uses a printed certificate instead of a screen. You hold it during the reveal, turning it face down cuts the music for your verse, and turning it face up brings it back for the bridge. The pledge number is printed along its bottom edge, and at the end you fold it into your guitar case.
+
+The live-shots section now covers printing the prop, tracking it from the corner denominations, compositing with a multiply blend, and choosing indoors or outdoors. Without a screen, both work, so choose by light and sound.
+
+---
+
+## 29. User (2026-10-25T12:00:04.294908Z)
+
+yes, remove the telethon
+
+---
+
+## 30. Claude (2026-10-25T12:00:24.940443Z)
+
+> *[Claude Docs: Update]*
+
+I removed the studio-and-telethon video section. The doc now describes one video: the share certificate, with its scenes, shot list and your live shots. I also updated the concept section so it no longer mentions the telethon tote board or the fleece choir.
