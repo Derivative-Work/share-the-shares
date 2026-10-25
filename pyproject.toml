@@ -1,0 +1,15 @@
+[project]
+name = "share-the-shares"
+version = "0.1.0"
+description = "Analysis, artwork and render scripts for the Share the Shares music video"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "numpy",
+    "scipy",
+    "pillow",
+    "opencv-python-headless",
+]
+
+[tool.uv]
+package = false
+environments = ["sys_platform == 'linux'"]  # renders run on Linux boxes only

@@ -29,3 +29,9 @@ Every human action: timestamp, what, why, and which production rule allows it. R
 - **Why:** Information from listening, for the timing map and the shot list.
 - **Rule:** R2 (A/V sync information). Not a creative change.
 - **Consequences:** the timing map (C3) is built on the Suno mix now, without waiting for the post-filtered master. The human's live A/V is synced by fixed offsets against this audio. The key change is Suno's change (below), not the human's.
+
+## 2026-10-25T09:47:00-04 — S36 moves to the key change — R1 (a creative change, asked for in words)
+
+- **What:** The human: "(and yes move S36 to the key change)". The agent moved S36 in the brief from the final chorus to the top of the verse 2 table, cue "The key change, just before verse 2 (where Suno put it)" (Claude Doc rev 30).
+- **Why:** Suno moved the key change (production log, step 2).
+- **Rule:** R1 (choosing between the two options the agent offered). The human said it in words and the agent made the change.

@@ -68,3 +68,52 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   - **Live verse key:** the brief says to start verse 3 "in the key of the generated take". After the change, that's the higher key. C3 will report it.
   - **Timing:** the timing map uses `audio/track/Share the Shares.wav`. The master's offset still gets one cross-correlation check when it arrives (inherited Sandbox Rhapsody step 2), expected 0 samples. The human's live A/V will be synced with fixed offsets against this audio.
 - **Why:** Ghost brief, "Lyrics": Suno's changes are logged as AI changes. Sandbox Rhapsody step 2: master offset.
+
+## 2026-10-25T09:47:00-04:00 — Brief: S36 moved to the key change
+
+- **What:** In the brief, moved row S36 from the "Final chorus" table to the top of "Verse 2 and pre-chorus 2", and reworded its cue to "The key change, just before verse 2 (where Suno put it)". Shot IDs don't change.
+- **Commands:** Docs connector `update` on node `ffb64806-5985`: `move` of row `mqnwstgerpq.22228` after the header row `mqnwstgerpq.19876`, then a text `replace` in that row's cue cell. Doc rev 28 → 30. `docs/brief.md` will be re-exported at the next brief change or checkpoint.
+- **Why:** The human's decision (human_interventions, same time).
+
+## 2026-10-25T09:47:00-04:00 — C1: style spec, look config, the certificate and two test frames
+
+- **What:** There are no inspiration videos, so the style references are public-domain certificate and banknote art.
+  - Searched Wikimedia Commons and the Met's collection API, and downloaded 14 engravings and 6 reference certificates, each with its source logged.
+  - Cut the five figures' rest poses into clean ink maps.
+  - Composed the certificate's static art (two ink plates on cream paper, with generated guilloche and rosettes and OFL type) as a printed sheet for the prop, plus a figure-free version for renders.
+  - Rendered two test frames in Blender at 720p and made the review sheet. Wrote `style/style_spec.md`.
+- **Commands:**
+  - Sources: inline Python against the Commons API (`list=search`, `prop=imageinfo`) and the Met API (`/public/collection/v1.1/search`, `/v1/objects/<id>`); full-size files into `assets/engravings/source/` and `reference/certificates/`; tables in each `sources.tsv` (title, artist, date, page, image URL, licence, hash)
+  - Fonts: `curl` from github.com/google/fonts `ofl/` (Abril Fatface, IM Fell English roman, italic and SC, Pinyon Script) with their OFL texts; `assets/fonts/SHA256SUMS`
+  - `uv sync` (Python 3.12: numpy 2.5.4, scipy 1.18.1, pillow 13.0.0, opencv-python-headless 5.0.0.93)
+  - `.venv/bin/python -I scripts/ink_extract.py`
+  - `.venv/bin/python -I scripts/certificate.py renders/c1/certificate_v04`
+  - `blender -b --factory-startup --python scenes/blender/c1_test_frame.py -- renders/c1/certificate_v04 renders/c1/c1_test_frame_{wide,close}.png 1280 720 64 {wide,close}` (about 5 s each on the GTX 970)
+  - `.venv/bin/python -I scripts/c1_sheet.py renders/c1/certificate_v04 renders/c1/c1_test_frame_wide.png renders/c1/c1_test_frame_close.png renders/c1/c1_sheet.jpg`
+- **Outputs:** `style/style_spec.md`; `config/{look,engravings,seeds}.json`; `scripts/{ink_extract,certificate,c1_sheet}.py`; `scenes/blender/c1_test_frame.py`; `assets/engravings/{sources.tsv,source/,ink/}`; `reference/certificates/{sources.tsv,*.jpg}`; `assets/fonts/`; `pyproject.toml`, `uv.lock`; `renders/c1/certificate_v0{1..4}/`, `renders/c1/draft_{wide,close}_v0{1..5}.png`, `renders/c1/c1_test_frame_{wide,close}.png`, `renders/c1/c1_sheet.jpg`
+- **Sources chosen:**
+  - **Figures:** Asher Brown Durand's banknote vignettes, ca. 1824–37 (Met Open Access, public domain). They are one engraver's work, so the cast matches:
+    - Progress: Allegory of America, 393940;
+    - Prudence: the seated Justice, with sword and scales, 393946;
+    - Mercury: the flying putto with winged helmet and caduceus, 393925;
+    - the cherub choir: three putti, 393931;
+    - the laborer: a blacksmith and forge, 393945.
+  - **Rejected:** NARA's Continental and National Bank Note specimen book, which is lettering only; Rijksmuseum vignettes, an earlier etched style; and the Commons "Guilloche.jpg", which is CC BY-SA.
+  - **Ornament:** Cyrus Durand's lathe work is the reference for the generated ornament; nothing is copied. One piece, 393986, is a lathe rosette built from the repeated words "Five thousand", a real precedent for S11's LLC guilloche.
+  - **Layout references:** six real certificates, 1863–1916, never composited, because they carry real company names.
+- **Iterations** (each version kept under its own name):
+  1. Certificate v01: the cherubs ran into the number-of-shares box and the certificate number; Mercury sat on the body text, and the laborer on a counter and the President line. v02 moved them; v03 split the shares label and pulled the signature lines in from the counters. The laborer's levels went from [0.06, 0.62] to [0.10, 0.85] (too dark, then too pale) and settled at [0.08, 0.74]. Mercury's and Prudence's crops were adjusted once.
+  2. Render draft v01 was blown out (key light 55 W). The light was calibrated against the paper's printed colour: 4 W renders it at 186/255 and 8 W clips, so the key is 6.5 W and the fill 1.3 W.
+  3. Close v02 was soft. At 400 dpi the laborer is only about 500 px across on the sheet. Certificate v04 therefore also writes a figure-free `static/` print, and each figure renders as its own layer at the ink piece's resolution (2177 px for the laborer). That is also how the figures will animate.
+  4. Close v03's layers were grey and grainy (dithered transparency at 16 samples) and showed a seam. Blended transparency and a 0.2 mm lift fixed both. v04's grey sheen came from the ink's specular; the ink now uses the paper's roughness. v05 at f/16 is sharp. Then the layer ink colour was pre-multiplied by the paper colour, so layers match the press's multiply.
+- **Script fix:** `scripts/manifest.sh` (inherited) exited 1 whenever the last file it checked was tracked: `check-ignore && printf` fails under `pipefail`. It now uses an `if`. The manifest also covers the downloaded sources.
+- **Findings for the brief:**
+  - **Coupons:** the brief's note "Coupons belong on bonds, not stock certificates" is not quite right. European share certificates carried dividend coupons; Commons has a category of them, and two of the references (Russian General Oil 1916, Norsk Hydro 1912) have coupon sheets. So the coupons are period-accurate, not a liberty. The fact card is unaffected.
+  - **The laborer's hammer** rests against the anvil block. S07 says "hammer raised" and S29 match-cuts from "the engraved laborer's raised hammer". He never moves, so either another source with a raised hammer, or new wording.
+  - **Progress** holds a spear, not a torch: the torch is a prop piece for the puppet build. The shield carries stars and stripes, an allegory rather than a logo, but it reads as American.
+- **Self-assessment for C1:**
+  - Holds up: it reads at a glance as a real two-colour certificate. The figures share one engraver's line. The paper, raised ink and curl read in both frames, and the close-up keeps the engraving's line.
+  - Weaker: the counter rosettes are loopier and coarser than Durand's lathe work. The Recipient line sits close to the bottom-right counter. The desk is dark and plain. The green underprint behind the company name is faint at the wide framing.
+  - Not in C1: the puppet cuts and torch, the transfer form on the back (S24), the seal (S34), the title card, animation and line boil, and the live composite.
+- **Why:** The inherited checkpoint C1: a style spec, plus a contact sheet of the references beside a test frame in the style.
+- **Status:** **C1 is ready for review.** The agent stops here for approval.

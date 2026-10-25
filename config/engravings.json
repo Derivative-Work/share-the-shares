@@ -1,0 +1,10 @@
+{
+  "_doc": "Ink pieces cut from the public-domain engravings in assets/engravings/source (sources.tsv). box = crop as fractions of the source image [x0, y0, x1, y1]; mask = feathered ellipse filling the crop (the classic vignette fade) or none; feather as a fraction of the crop's short side; levels = ink coverage remapped from [lo, hi] to [0, 1]. scripts/ink_extract.py writes assets/engravings/ink/<name>.png (8-bit ink coverage: 255 = full ink). The C1 pieces are rest poses only; cutting the figures into hinged puppets comes after C1.",
+  "pieces": {
+    "progress":  {"source": "met_393940_america.jpg",                 "box": [0.10, 0.10, 0.76, 0.86], "mask": "ellipse", "feather": 0.10, "levels": [0.06, 0.62], "role": "Progress (the Founder), rest pose; the spear becomes a torch when the puppet is cut"},
+    "prudence":  {"source": "met_393946_liberty_justice.jpg",         "box": [0.55, 0.14, 0.91, 0.88], "mask": "ellipse", "feather": 0.12, "levels": [0.06, 0.62], "role": "Prudence (the Board), rest pose: the seated Justice figure"},
+    "mercury":   {"source": "met_393925_putti_trade_agriculture.jpg", "box": [0.39, 0.10, 0.77, 0.45], "mask": "ellipse", "feather": 0.14, "levels": [0.06, 0.62], "role": "Mercury (the Lawyer), rest pose: the flying putto with winged helmet and caduceus"},
+    "cherubs":   {"source": "met_393931_putti_shepherd_farmer_sailor.jpg", "box": [0.29, 0.25, 0.65, 0.86], "mask": "ellipse", "feather": 0.14, "levels": [0.06, 0.62], "role": "The cherub choir, rest pose: three putti"},
+    "laborer":   {"source": "met_393945_laborer_blacksmith_forge.jpg", "box": [0.24, 0.10, 0.80, 0.92], "mask": "ellipse", "feather": 0.10, "levels": [0.08, 0.74], "role": "The engraved laborer, lower corner; never moves"}
+  }
+}

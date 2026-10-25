@@ -31,3 +31,9 @@ node_modules/
 models/
 *.pt
 *.safetensors
+
+# Downloaded source art (public domain; listed with URLs in each sources.tsv, hashed in the manifest).
+assets/engravings/source/
+reference/certificates/*.jpg
+# Ink pieces and certificate prints regenerate from scripts/ink_extract.py and scripts/certificate.py.
+assets/engravings/ink/
