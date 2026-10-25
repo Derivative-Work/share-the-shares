@@ -56,3 +56,8 @@ Every human action: timestamp, what, why, and which production rule allows it. R
 
 - **What:** The human: "the clicks are correct, but none of the poses are working quite right -- there's bits and pieces of all of them that need to be moved but haven't". C3 (the beat grid, the key change at 98.44 s, the live-verse cut and return) is approved. The C2 pose sheet is rejected: parts of every figure stay put when the limb they belong to moves.
 - **Rule:** R1 (approve; reject with the reason). The agent re-cut the puppets; the human named no fix.
+
+## 2026-10-25T17:29:43-04 — Smaller fill cells with blended seams — R1 (a change asked for in words)
+
+- **What:** The human: "Yes try the smaller build cells with blended seams" (the agent's offer).
+- **Rule:** R1. The human said it in words and the agent made the change.

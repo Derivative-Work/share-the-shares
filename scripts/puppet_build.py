@@ -44,7 +44,8 @@ def ring_angle(ink, hole, valid, width=30):
     return 0.5 * np.arctan2(2 * jxy, jxx - jyy) if ring.any() else np.pi / 2  # gradient direction
 
 
-CELL, PAD, SEARCH = 24, 14, 280  # synthesis cell, overlap border and search radius, in piece pixels
+CELL, PAD, SEARCH = 16, 10, 280  # synthesis cell, overlap border and search radius, in piece pixels
+FEATHER = 3  # px of the overlap border, on the synthesised side, where a new patch is blended into its neighbours
 
 
 def synth(ink, hole, valid, seed):
@@ -52,12 +53,18 @@ def synth(ink, hole, valid, seed):
     Efros and Leung 1999 / Criminisi et al. 2004, simplified). Cells of CELL px are filled from the hole's edge
     inward; each takes the patch, within SEARCH px, whose already-known surround (a PAD-px border) best matches by
     masked squared difference, so hatching runs on across the seam with its own line, tone and direction. Sources
-    are whole patches of untouched pixels only, so nothing synthesised is ever copied again."""
+    are whole patches of untouched pixels only, so nothing synthesised is ever copied again. Seams between synthesised
+    cells are blended: the new patch fades into its already-synthesised neighbours over FEATHER px (original ink is
+    never changed)."""
     rng = np.random.default_rng(seed)
     h, w = ink.shape
     out = ink.copy()
     known = ~hole
     win = CELL + 2 * PAD
+    # blend weight over a window: 1 in the cell, falling linearly to 0 FEATHER px out into the border
+    d = np.maximum(np.maximum(PAD - np.arange(win), np.arange(win) - (PAD + CELL - 1)), 0).astype(np.float32)
+    ramp = np.clip(1 - d / (FEATHER + 1), 0, 1)
+    wblend = np.minimum.outer(ramp, ramp)
     src_ok = cv2.erode(valid.astype(np.uint8), np.ones((win, win), np.uint8)) > 0  # patch centres fully in `valid`
     if not src_ok.any():
         return out
@@ -109,8 +116,13 @@ def synth(ink, hole, valid, seed):
             if not len(flat):
                 continue
             py, px = np.unravel_index(rng.choice(flat), score.shape)
-            patch = area[py + PAD:py + PAD + CELL, px + PAD:px + PAD + CELL]
+            src = area[py:py + win, px:px + win]
+            patch = src[PAD:PAD + CELL, PAD:PAD + CELL]
             cell_hole = ~known[y:y + CELL, x:x + CELL]
+            # feather into the synthesised pixels around the cell (never into original ink, never into the unknown)
+            ring = hole[wy0:wy0 + win, wx0:wx0 + win] & known[wy0:wy0 + win, wx0:wx0 + win] & (wblend > 0) & (wblend < 1)
+            ow = out[wy0:wy0 + win, wx0:wx0 + win]
+            ow[ring] = wblend[ring] * src[ring] + (1 - wblend[ring]) * ow[ring]
             out[y:y + CELL, x:x + CELL][cell_hole] = patch[:cell_hole.shape[0], :cell_hole.shape[1]][cell_hole]
             known[y:y + CELL, x:x + CELL] = True
             todo.discard((y, x))
@@ -183,6 +195,11 @@ def build(name):
         # head-shaped paper patch; what a swing uncovers farther out is the background's fill
         near = cv2.dilate(own[ln].astype(np.uint8), cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (81, 81))) > 0
         holes &= near
+        # and only where this layer is the nearer side: a hole over the sky goes to the background (sky lines), a
+        # hole over drapery to the body; otherwise the body grows a pale paper strip with a scissor edge into the sky
+        d_own = cv2.distanceTransform((~own[ln]).astype(np.uint8), cv2.DIST_L2, 5)
+        d_bg = cv2.distanceTransform(fig.astype(np.uint8), cv2.DIST_L2, 5)
+        holes &= d_own <= d_bg
         mask = own[ln] | holes
         layer = ink * own[ln]
         if holes.any():

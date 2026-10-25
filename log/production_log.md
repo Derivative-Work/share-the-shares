@@ -255,3 +255,20 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
 - **Remaining:**
   - The fill is still blocky where a swing uncovers a large area across two textures: under Prudence's raised scales arm (sky lines copied into the drapery) and in her sword's path.
   - A few ragged fill edges where the left cherub sways.
+
+## 2026-10-25T17:29:43-04:00 — C2: smaller fill cells, feathered seams, holes split by the nearer side
+
+- **Why:** the human asked for it (human interventions, same time), for the blocky fill under Prudence's swings.
+- **What:** `scripts/puppet_build.py`:
+  1. Synthesis cells 24 → 16 px (overlap border 14 → 10).
+  2. Each new patch fades into the already-synthesised pixels around it (never into original ink); see iteration 1 for the width.
+  3. A layer now takes only the part of a hole that lies nearer its own pixels than the background, using distance transforms. A hole over the sky is filled by the background with sky ruling; a hole over drapery goes to the body.
+- **Commands:** `.venv/bin/python -I scripts/puppet_build.py` (7 min, twice); `blender -b --factory-startup --python scenes/blender/c2_poses.py -- renders/c1/certificate_v04 renders/c2/poses 1280 720 32`; `.venv/bin/python -I scripts/c2_pose_sheet.py renders/c2/poses renders/c2/c2_poses.jpg`
+- **Iterations:**
+  1. 16 px cells with an 8 px feather softened the seams only a little, and blending two misaligned cross-hatches greyed them. The feather is now 3 px.
+  2. The cause turned out to be the hole split: the strip the scales arm uncovers had been cut down the middle, half pale body paper with a scissor edge, half sky. The nearer-side split fixed it.
+- **Outputs:** `assets/puppets/*/layers/` rebuilt; `renders/c2/poses/` and `renders/c2/c2_poses.jpg`. The previous renders are archived as `archive/renders/c2/poses_24px-cells/` and `archive/renders/c2/c2_poses_24px-cells.jpg`.
+- **Result:**
+  - Where Prudence's scales arm crossed the sky, the uncovered strip now continues the ruling, with no pale strip.
+  - Seams between fill cells are softer.
+  - Still visible at full size: where a swing uncovers her strongly curved drapery (below the scales arm, and along the sword's path), the copied patches can't follow the curve, so they read as patchwork. At the pose sheet's scale it reads as engraving.
