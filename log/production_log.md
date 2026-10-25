@@ -226,7 +226,7 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
 - **Result:** what a swing uncovers continues Durand's own stipple, ruling and drapery hatching. The C2 cast clips (`renders/c2/cast_*.mp4`) still show the old fill and are superseded for review by the pose sheet.
 - **Remaining:** under Prudence's raised scales arm, the 24 px cells show as faint blocky seams in the diamond hatching at full size; they're not visible at the pose sheet's scale. That's the largest uncovered area in the cast.
 
-## 2026-10-25T17:05:37-04 — C2: every moving part re-cut by hand; the cherubs get bodies
+## 2026-10-25T17:05:37-04:00 — C2: every moving part re-cut by hand; the cherubs get bodies
 
 - **Why:** the human rejected the pose sheet: bits of every pose stayed behind (human interventions, same time). C3 is approved.
 - **Diagnosis:** the old cuts. SAM, prompted with boxes and points, followed the hatching, not the limbs, and every part was clipped to SAM's figure outline. So:
