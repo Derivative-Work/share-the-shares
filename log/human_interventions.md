@@ -41,3 +41,8 @@ Every human action: timestamp, what, why, and which production rule allows it. R
 - **What:** The human: "Looks good, keep going". C1 (style spec, look config, the certificate, the two test frames) is approved.
 - **Rule:** R1.
 - **Still open from C1:** the laborer's resting hammer (S07, S29) and Progress's stars-and-stripes shield. The agent keeps both as engraved for now (each is reversible) and raises them again at the next checkpoint.
+
+## 2026-10-25T11:04:57-04 — Review formats for C2 and C3 — R1 (feedback in words)
+
+- **What:** The human asked how much the non-vocal sync matters and said the lane preview "is hard for me to read -- a score is best if good sync for things like the drums is necessary". Of the cast test: "they look good but mostly the same across frames". The agent's answer: nothing here is note-driven, so C3 needs only the beat grid and three sync points. The human: "yes go ahead" to a click-track ear check and a pose sheet.
+- **Rule:** R1 (choosing how a plan is reviewed). No creative change.

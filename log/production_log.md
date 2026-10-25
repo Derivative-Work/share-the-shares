@@ -196,3 +196,14 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   - **Shot cues:** 42 of 48 resolve to the clock. S01 is pre-roll and S45–S48 come after the audio ends, so they have no time; S39 isn't sung.
 - **Why:** The inherited checkpoint C3: a low-res preview with captions and beat flashes; the human checks sync by ear.
 - **Status:** **C2 and C3 are ready for review.** The agent stops here.
+
+## 2026-10-25T11:04:57-04:00 — C2 and C3 re-presented: a pose sheet, and a click-track ear check
+
+- **What:**
+  - **C3:** replaced the lane preview as the thing to review with `renders/c3/c3_clicks.mp3`: the mix 6 dB down, a click on every beat (accented on downbeats), and a two-note tone at the key change, the cut before the live verse and the music's return. Instructions are in `renders/c3/c3_clicks.md`. The lane preview is kept but is no longer the review item.
+  - **C2:** a pose sheet with each puppet at rest beside three extreme poses (20–40° swings, against the cast test's 4–14°).
+- **Commands:** `.venv/bin/python -I scripts/c3_clicks.py`; `blender -b --factory-startup --python scenes/blender/c2_poses.py -- renders/c1/certificate_v04 renders/c2/poses 1280 720 32`; `.venv/bin/python -I scripts/c2_pose_sheet.py renders/c2/poses renders/c2/c2_poses.jpg`
+- **Outputs:** `scripts/{c3_clicks,c2_pose_sheet}.py`, `scenes/blender/c2_poses.py`, `renders/c3/c3_clicks.{wav,mp3,md}`, `renders/c2/poses/`, `renders/c2/c2_poses.jpg`
+- **Bug found:** the first pose sheet showed swirled moiré patches behind Mercury's legs and the cherubs. Their layers dated from the first fill method: only Progress and Prudence had been rebuilt after the fill was reworked. So the C2 cast clips of Mercury and the cherubs also carry the old fill. Rebuilt both (`scripts/puppet_build.py mercury cherubs`) and re-rendered the poses. The first sheet is archived in `archive/renders/c2/*poses_superseded_stale-fill*`.
+- **Seen at full swing:** the fills read as straight engraved ruling, but they're visible as patches where a big swing uncovers a large area: Mercury's back leg, and under the cherubs' lifted arm. Prudence's scales arm leaves a lighter ruled strip.
+- **Why:** The human's feedback (human_interventions, same time).
