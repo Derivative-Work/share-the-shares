@@ -1,10 +1,10 @@
-# Audit: Gemini (version not recorded)
+# Audit: Gemini 4 Argon
 
 Verbatim from the planning chat (https://claude.ai/share/75dfaaef-866c-4979-8016-b7747f9ddaa3), messages 21–24: the human pasting Gemini's output, Claude's check of it against the sources, the human's go-ahead, and the changes made. Gemini's full response is pasted as text in message 21 (`file_count: 0`), so the share holds it whole; no separate raw file is needed.
 
 - **Auditor output pasted:** 2026-10-22T03:53:53.740755Z (2026-10-21 23:53 EDT, the brief's "October 21, 2026")
 - **Resolved by Claude:** 2026-10-22T03:54:13.223558Z
-- **Version:** not recorded in the chat or the brief (the fact card reads "Gemini [version]"). Open item.
+- **Version:** Gemini 4 Argon (the human, 2026-10-25; not recorded in the chat). The brief's fact card still reads "Gemini [version]".
 - **Lyrics audited:** the draft before this audit. Gemini quotes "two hundred million spent to learn"; the audit changed it to "pledged".
 - **Sources given to Gemini:** none. Per the human, Gemini summarized the fund first and then audited, with no citations. The brief's checklist calls for a rerun with the announcement page pasted in.
 

@@ -15,3 +15,10 @@ Every human action: timestamp, what, why, and which production rule allows it. R
 - **Why:** The agent has no access to Suno.
 - **Rule:** R4 to run Suno; R1 to choose the take. Whether the lyric differences are Suno's or the human's (a human edit would be an EXCEPTION) is still open.
 - **Still needed:** the Suno share link, the style prompt and settings as submitted, any rejected takes, and whether the master will go through the mastering post-filter.
+
+## 2026-10-25T09:20 — Suno link, take confirmed, post-filter plan, Gemini version — R1
+
+- **What:** The human gave the Suno share link (https://suno.com/s/1sz8sZONKQyqeqTj) and said: "the oneshot take worked (though I will be replacing the audio for the worker verse as described). master will go through post-filter on the 5090 box (requires the VRAM). Gemini 4 Argon."
+- **Why:** These answer the open questions from step 1.
+- **Rule:** R1 (approving the one-shot take over the brief's section-by-section plan). The post-filter run will be R4, logged when it happens. Replacing the Worker verse's audio with the human's performance is one of the brief's planned EXCEPTIONS, logged when recorded.
+- **Lyrics:** Suno's page shows the submitted lyrics match the brief's (production log, step 2). So the earlier entry's open question is answered: no human lyric edit, no exception. "Spent" in verse 3 predates the audit, and the live verse replaces it.

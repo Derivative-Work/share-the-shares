@@ -4,7 +4,7 @@ The cross-lab conflict-of-interest audits of the lyrics (brief, "Production note
 
 | # | Auditor | Version | Date (UTC) | Lyrics it audited | Record |
 | --- | --- | --- | --- | --- | --- |
-| 1 | Gemini (Google) | Not recorded (open item; the fact card reads "Gemini [version]") | 2026-10-22, by 03:53 (2026-10-21 EDT) | The pre-audit draft (it quotes "two hundred million spent to learn") | `01_gemini.md`: its output, verbatim from planning chat message 21, plus Claude's check and the resolution |
+| 1 | Gemini (Google) | Gemini 4 Argon (the human, 2026-10-25) | 2026-10-22, by 03:53 (2026-10-21 EDT) | The pre-audit draft (it quotes "two hundred million spent to learn") | `01_gemini.md`: its output, verbatim from planning chat message 21, plus Claude's check and the resolution |
 
 Gemini had no source pasted in. Its fairness verdict stands; its two factual corrections were checked against the announcement and rejected (brief, "Audit log"). The checklist still calls for a rerun with the announcement page pasted in.
 
