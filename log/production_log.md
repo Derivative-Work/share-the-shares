@@ -117,3 +117,82 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   - Not in C1: the puppet cuts and torch, the transfer form on the back (S24), the seal (S34), the title card, animation and line boil, and the live composite.
 - **Why:** The inherited checkpoint C1: a style spec, plus a contact sheet of the references beside a test frame in the style.
 - **Status:** **C1 is ready for review.** The agent stops here for approval.
+
+## 2026-10-25T10:42:07-04:00 — C2: the cast as paper puppets, and a cast test
+
+- **What:** Cut the four moving figures into hinged paper puppets, built their layers, wrote the Blender rig, and rendered a 4 s cast test of every puppet doing the gestures its shots need, on twos with the lines boiling. The laborer never moves, so he is printed, not rigged.
+- **Commands:**
+  - `uv add torch==2.8.* torchvision==0.23.* segment-anything==1.0` (CPU wheels; the GTX 970's sm_52 isn't in current CUDA builds)
+  - `curl -o models/sam_vit_b_01ec64.pth https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth` (sha256 ec2df627…, md5 01ec64…, matching the official checksum)
+  - `.venv/bin/python -I scripts/segment.py` (SAM ViT-B on CPU, 26 s for all four)
+  - `.venv/bin/python -I scripts/puppet_build.py`
+  - `scripts/render_c2.sh` (`scenes/blender/c2_cast_test.py` per view, 1280×720, 24 samples, 96 frames; ffmpeg H.264 CRF 16)
+  - `.venv/bin/python -I scripts/c2_sheet.py renders/c2/c2_sheet.jpg`
+- **Outputs:** `config/puppets.json` (the cut prompts and hand cuts, pivots, parents); `scripts/{segment,puppet_build,c2_sheet}.py`, `scripts/render_c2.sh`; `assets/puppets/<figure>/{masks/,layers/,puppet.json,preview.jpg}`; `scenes/blender/lib/{sheet,puppet}.py`, `scenes/blender/c2_cast_test.py`; `renders/c2/cast_{wide,progress,prudence,mercury,cherubs}.mp4`, `renders/c2/c2_sheet.jpg`
+- **The cast:**
+
+  | Figure | Layers |
+  | --- | --- |
+  | Progress | background, body, spear arm, head, jaw |
+  | Prudence | background, body, sword arm, scales arm, head, jaw |
+  | Mercury | background, body, arm with caduceus, head, wing, back leg, front leg |
+  | Cherubs | background, body, three heads, left arm; mirrored for the right side |
+
+  Each layer's origin is its hinge.
+- **How the cuts were made:**
+  - **Silhouettes:** SAM traced each figure's silhouette from a box plus positive and negative points (scores 0.91–0.97). The prompts are the agent's, in `config/puppets.json`.
+  - **SAM parts:** SAM also cut the heads, jaws, wing, legs and three of the cherubs' parts well (0.81–0.98).
+  - **Hand cuts:** SAM follows the hatching rather than the limb where a limb lies over drapery. Progress's spear arm took the whole cape, and Prudence's sword arm half her body. Those three, plus the left cherub's profile head, are cut by agent-placed polygons and strips (the spear, the blade), clipped to the SAM silhouette. That's how a paper cutout is cut anyway: straight scissor lines at the joints.
+- **Fills:** wherever a layer loses pixels to a layer in front of it, the hole is filled with a generated engraved line screen. Its tone comes from the surrounding pixels; its direction is one angle per hole, measured from the hatching in a ring around it. The vignette behind each figure is ruled horizontally, as Durand's skies are, so a figure can step out (S03). Fills reach only 40 px past a layer's own pixels, so a head over the sky doesn't give the body a head-shaped paper patch.
+- **The rig** (`lib/puppet.py`):
+  - Body and parts are opaque paper cutouts carrying their ink; the background is ink printed on the sheet.
+  - A geometry-nodes modifier adds the sheet's curl at each vertex's world position, so a layer stays on the curved paper however it turns.
+  - Keys go every two frames with constant interpolation.
+  - The line boil is a UV nudge of half a source pixel, reseeded every two frames by a driver on a noise texture's W.
+  - `lib/sheet.py` holds C1's approved sheet, desk, light and camera values for reuse.
+- **Problems fixed on the way** (test frames `renders/c2/frames_progress_t1…t6`):
+  1. Layers took their height from the curl at their own pivot, and the background ended up above the body. Then flat cards near the top of the page sank under the paper, which lifts about 2 mm there, so only their shadows showed. Fixed by the world-space curl modifier.
+  2. The jaw landed at the world origin: a new object's `matrix_world` is stale until the depsgraph updates, so the parenting used identity. Fixed with `view_layer.update()` before parenting.
+  3. Texture aliasing: cubic sampling skips mipmaps, and pieces are minified up to about 12×. Fixed with linear (mipmapped) sampling.
+  4. Eevee draws only the frontmost of several overlapping **blended** surfaces, so stacked layers vanished. Cutouts are now **dithered** (their alpha is the cut, nearly binary); only the print layers stay blended.
+  5. The first renders of the Prudence, Mercury and cherub close-ups came out black: the camera was nearer than Blender's 0.1 m default clip. They were archived to `archive/renders/c2/*_superseded_near-clip-black*` and re-rendered with a 2 mm clip.
+- **Self-assessment:**
+  - Holds up: each figure reads as engraved paper. The hinges turn cleanly and the boil is subtle. What a swing uncovers reads as engraving, not blank paper.
+  - Weaker: the fills are a little paler and more regular than Durand's hatching around them, so a big swing (Prudence's scales arm) shows a lighter ruled patch. The jaws are the whole lower face, which reads as a cutout gag but is coarse.
+  - Not built yet: props (the torch, pen, scissors, coins, scroll, ledger, quill), the transfer form on the back, the second, tinier certificates (S09), and the studio vignette (verse 1).
+- **Also:**
+  - `.gitignore` now covers frame sequences of any name (`**/frames_*/`), `archive/renders/` and the regenerable puppet layers. The masks stay in git, since SAM's output could differ on another machine.
+  - The brief was re-exported at doc rev 30 (S36 moved); `docs/brief.md` differs from rev 28 only in that row.
+- **Why:** The puppet build comes before the animatic (C4). The inherited checkpoints have no step for it, so this is checkpoint C2 here: C2's track check was done retroactively in step 2.
+
+## 2026-10-25T10:42:07-04:00 — C3: as-sung lyrics, word alignment, beats and bars, the key change, the timing map and its preview
+
+- **What:**
+  - Transcribed both vocal stems to find what is sung where, and drafted the as-sung lyrics.
+  - Aligned every word, built the 4/4 grid, and located the key change.
+  - Built the timing map, with every shot in the brief resolved to the clock, and rendered the C3 preview against the Suno mix.
+- **Commands** (all `.venv/bin/python -I`, in order):
+  - `uv add torchaudio==2.8.* librosa soundfile mido faster-whisper "beat-this @ git+…@b95c8ab"` (the beat_this pin approved in Not Yet)
+  - `scripts/first_pass.py`: faster-whisper medium.en, int8, CPU. Its own audio decoding fails on the installed PyAV (`metadata_errors`), so audio is decoded with librosa.
+  - `scripts/align_words.py` (torchaudio MMS_FA, ported from Not Yet; each section names its stem)
+  - `scripts/beats_beat_this.py`, `scripts/meter.py` (ported to 4/4, drum stem), `scripts/key_windows.py`, `scripts/stem_envelopes.py`, `scripts/timing_map.py`, `scripts/c3_preview.py`
+- **Outputs:** `lyrics/as_sung_draft.txt`; `timing/{first_pass_vocals,first_pass_backing,words,beat_this,beats,keys,drum_onsets,timing_map}.json`, `timing/envelopes/{vocals,backing}.npy`, `timing/timing_map.md`; `config/{meter,shot_anchors}.json`; `scripts/{song,first_pass,align_words,beats_beat_this,meter,key_windows,stem_envelopes,timing_map,c3_preview}.py`; `renders/c3/c3_preview.mp4` (960×540, 24 fps, 283.4 s)
+- **Findings:**
+  - **Tempo and bars:** 68.2 bpm, steady (p5–p95 66.7–69.8), against the prompt's 72. 82 bars, all 4 beats except two 2-beat bars:
+    - 131.6 s, where the lyrics' "(beat)" pause before "through this fund" falls; it may be real;
+    - 235.6 s, in the final chorus.
+  - **The key change:** A major → **Bb major**, on the beat at **98.44 s**. That's beat 3 of the bar before verse 2's pickup, so it does sit right before verse 2, as the human heard. A dominates the 1 s windows to 97.5 s and Bb from 98.5 s. It's a **half step**, not the whole step the prompt asked for: another of Suno's changes. S36 now sits at 98.44 s.
+  - **Verse 3** (the live one) is in **Bb major**, the key the human plays in.
+  - **The live window:** 163.90–192.68 s. The brief's S29 says "the downbeat after the chorus" (164.78 s), but the generated verse 3's pickup ("They call me…") starts at 164.14 s, before that downbeat. The map proposes the cut on the beat before the pickup (163.90 s), so no generated word leaks before the music cuts. The music re-enters with the bridge, "And it's real", at 192.68 s. This is for the ear check.
+  - **Suno's changes to the sung words**, from the first pass, to check by ear:
+    - chorus 2 opens with "share the shares" four times;
+    - the choir chants "a place of peace" under the Worker's verse (173–202 s), which is in no draft;
+    - an "oh" choir runs through the bridge into the final chorus (203–232 s);
+    - the bridge's closing "When it's not!" is sung once, by the lead, not twice by the choir;
+    - the final chorus has no "baseline to be announced!": **S39's cue isn't sung**;
+    - the Worker's "do I get a say?" in the final chorus is sung by Suno (239.66 s), and the human's own recording replaces it (S40);
+    - verse 3 is sung as submitted, with "spent".
+  - **Alignment:** all 68 lines aligned; 112 of 421 words score below 0.3, nearly all choir lines under the full band. The words are listed in `timing/timing_map.md`.
+  - **Shot cues:** 42 of 48 resolve to the clock. S01 is pre-roll and S45–S48 come after the audio ends, so they have no time; S39 isn't sung.
+- **Why:** The inherited checkpoint C3: a low-res preview with captions and beat flashes; the human checks sync by ear.
+- **Status:** **C2 and C3 are ready for review.** The agent stops here.

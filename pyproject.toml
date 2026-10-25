@@ -8,8 +8,29 @@ dependencies = [
     "scipy",
     "pillow",
     "opencv-python-headless",
+    "torch==2.8.*",
+    "torchvision==0.23.*",
+    "segment-anything==1.0",
+    "torchaudio==2.8.*",
+    "librosa",
+    "soundfile",
+    "mido",
+    "faster-whisper",
+    "beat-this",
 ]
 
 [tool.uv]
 package = false
 environments = ["sys_platform == 'linux'"]  # renders run on Linux boxes only
+
+# CPU PyTorch on the GTX 970 draft box (sm_52 is not in current CUDA builds); switch to cu128 on the RTX 5090 box.
+[tool.uv.sources]
+torch = { index = "pytorch-cpu" }
+torchvision = { index = "pytorch-cpu" }
+torchaudio = { index = "pytorch-cpu" }
+beat-this = { git = "https://github.com/CPJKU/beat_this.git", rev = "b95c8ab0c58c2d9fcfd40508ae8dffbc05ac4f5c" }  # as in Not Yet (approved there)
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true

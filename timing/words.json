@@ -1,0 +1,3280 @@
+{
+ "aligner": "torchaudio MMS_FA",
+ "torchaudio": "2.8.0+cpu",
+ "lines": [
+  {
+   "id": "L01",
+   "section": "Intro",
+   "stem": "Vocals",
+   "singer": "the Founder, spoken",
+   "text": "Right now, somewhere, a job is changing.",
+   "start": 2.8,
+   "end": 7.61,
+   "words": [
+    {
+     "w": "Right",
+     "start": 2.8,
+     "end": 2.99,
+     "score": 0.947
+    },
+    {
+     "w": "now,",
+     "start": 3.02,
+     "end": 3.27,
+     "score": 0.964
+    },
+    {
+     "w": "somewhere,",
+     "start": 5.32,
+     "end": 5.77,
+     "score": 0.996
+    },
+    {
+     "w": "a",
+     "start": 6.527,
+     "end": 6.547,
+     "score": 0.997
+    },
+    {
+     "w": "job",
+     "start": 6.62,
+     "end": 6.91,
+     "score": 1.0
+    },
+    {
+     "w": "is",
+     "start": 6.96,
+     "end": 7.05,
+     "score": 0.998
+    },
+    {
+     "w": "changing.",
+     "start": 7.12,
+     "end": 7.61,
+     "score": 0.97
+    }
+   ]
+  },
+  {
+   "id": "L02",
+   "section": "Intro",
+   "stem": "Vocals",
+   "singer": "the Founder, spoken",
+   "text": "Maybe yours.",
+   "start": 9.73,
+   "end": 10.48,
+   "words": [
+    {
+     "w": "Maybe",
+     "start": 9.73,
+     "end": 9.96,
+     "score": 0.991
+    },
+    {
+     "w": "yours.",
+     "start": 10.03,
+     "end": 10.48,
+     "score": 0.926
+    }
+   ]
+  },
+  {
+   "id": "L03",
+   "section": "Intro",
+   "stem": "Vocals",
+   "singer": "the Founder, spoken",
+   "text": "We can't promise to fix that.",
+   "start": 12.33,
+   "end": 13.8,
+   "words": [
+    {
+     "w": "We",
+     "start": 12.33,
+     "end": 12.42,
+     "score": 0.996
+    },
+    {
+     "w": "can't",
+     "start": 12.45,
+     "end": 12.7,
+     "score": 0.99
+    },
+    {
+     "w": "promise",
+     "start": 12.73,
+     "end": 13.1,
+     "score": 0.984
+    },
+    {
+     "w": "to",
+     "start": 13.133,
+     "end": 13.194,
+     "score": 0.998
+    },
+    {
+     "w": "fix",
+     "start": 13.27,
+     "end": 13.46,
+     "score": 1.0
+    },
+    {
+     "w": "that.",
+     "start": 13.57,
+     "end": 13.8,
+     "score": 0.979
+    }
+   ]
+  },
+  {
+   "id": "L04",
+   "section": "Intro",
+   "stem": "Vocals",
+   "singer": "the Founder, spoken",
+   "text": "But we can promise a percentage.",
+   "start": 15.91,
+   "end": 18.32,
+   "words": [
+    {
+     "w": "But",
+     "start": 15.91,
+     "end": 16.02,
+     "score": 0.999
+    },
+    {
+     "w": "we",
+     "start": 16.05,
+     "end": 16.14,
+     "score": 0.998
+    },
+    {
+     "w": "can",
+     "start": 16.17,
+     "end": 16.3,
+     "score": 1.0
+    },
+    {
+     "w": "promise",
+     "start": 16.35,
+     "end": 16.86,
+     "score": 0.993
+    },
+    {
+     "w": "a",
+     "start": 17.518,
+     "end": 17.538,
+     "score": 0.998
+    },
+    {
+     "w": "percentage.",
+     "start": 17.61,
+     "end": 18.32,
+     "score": 0.952
+    }
+   ]
+  },
+  {
+   "id": "L05",
+   "section": "Verse 1",
+   "stem": "Vocals",
+   "singer": "the Founder",
+   "text": "We built a thing that thinks so fast",
+   "start": 20.58,
+   "end": 23.77,
+   "words": [
+    {
+     "w": "We",
+     "start": 20.58,
+     "end": 20.67,
+     "score": 0.998
+    },
+    {
+     "w": "built",
+     "start": 20.78,
+     "end": 21.05,
+     "score": 0.784
+    },
+    {
+     "w": "a",
+     "start": 21.101,
+     "end": 21.121,
+     "score": 0.99
+    },
+    {
+     "w": "thing",
+     "start": 21.24,
+     "end": 21.85,
+     "score": 0.96
+    },
+    {
+     "w": "that",
+     "start": 22.04,
+     "end": 22.19,
+     "score": 0.068
+    },
+    {
+     "w": "thinks",
+     "start": 22.26,
+     "end": 22.59,
+     "score": 0.812
+    },
+    {
+     "w": "so",
+     "start": 22.68,
+     "end": 22.83,
+     "score": 0.996
+    },
+    {
+     "w": "fast",
+     "start": 23.12,
+     "end": 23.77,
+     "score": 0.997
+    }
+   ]
+  },
+  {
+   "id": "L06",
+   "section": "Verse 1",
+   "stem": "Vocals",
+   "singer": "the Founder",
+   "text": "it's rewriting what we do,",
+   "start": 23.84,
+   "end": 25.25,
+   "words": [
+    {
+     "w": "it's",
+     "start": 23.84,
+     "end": 23.95,
+     "score": 0.497
+    },
+    {
+     "w": "rewriting",
+     "start": 24.02,
+     "end": 24.63,
+     "score": 0.75
+    },
+    {
+     "w": "what",
+     "start": 24.68,
+     "end": 24.83,
+     "score": 0.994
+    },
+    {
+     "w": "we",
+     "start": 24.9,
+     "end": 25.01,
+     "score": 0.994
+    },
+    {
+     "w": "do,",
+     "start": 25.1,
+     "end": 25.25,
+     "score": 0.997
+    }
+   ]
+  },
+  {
+   "id": "L07",
+   "section": "Verse 1",
+   "stem": "Vocals",
+   "singer": "the Founder",
+   "text": "and some of what it's changing",
+   "start": 27.44,
+   "end": 29.11,
+   "words": [
+    {
+     "w": "and",
+     "start": 27.44,
+     "end": 27.57,
+     "score": 0.904
+    },
+    {
+     "w": "some",
+     "start": 27.68,
+     "end": 27.89,
+     "score": 0.998
+    },
+    {
+     "w": "of",
+     "start": 27.92,
+     "end": 28.01,
+     "score": 0.985
+    },
+    {
+     "w": "what",
+     "start": 28.02,
+     "end": 28.17,
+     "score": 0.882
+    },
+    {
+     "w": "it's",
+     "start": 28.2,
+     "end": 28.33,
+     "score": 0.868
+    },
+    {
+     "w": "changing",
+     "start": 28.44,
+     "end": 29.11,
+     "score": 0.842
+    }
+   ]
+  },
+  {
+   "id": "L08",
+   "section": "Verse 1",
+   "stem": "Vocals",
+   "singer": "the Founder",
+   "text": "is the work that pays for you.",
+   "start": 29.92,
+   "end": 32.07,
+   "words": [
+    {
+     "w": "is",
+     "start": 29.92,
+     "end": 30.03,
+     "score": 0.995
+    },
+    {
+     "w": "the",
+     "start": 30.06,
+     "end": 30.17,
+     "score": 0.993
+    },
+    {
+     "w": "work",
+     "start": 30.28,
+     "end": 30.57,
+     "score": 0.999
+    },
+    {
+     "w": "that",
+     "start": 30.68,
+     "end": 30.83,
+     "score": 0.977
+    },
+    {
+     "w": "pays",
+     "start": 30.9,
+     "end": 31.53,
+     "score": 0.954
+    },
+    {
+     "w": "for",
+     "start": 31.62,
+     "end": 31.77,
+     "score": 0.936
+    },
+    {
+     "w": "you.",
+     "start": 31.84,
+     "end": 32.07,
+     "score": 0.954
+    }
+   ]
+  },
+  {
+   "id": "L09",
+   "section": "Verse 1",
+   "stem": "Vocals",
+   "singer": "the Founder",
+   "text": "So we gathered here this morning",
+   "start": 34.17,
+   "end": 36.08,
+   "words": [
+    {
+     "w": "So",
+     "start": 34.17,
+     "end": 34.28,
+     "score": 0.998
+    },
+    {
+     "w": "we",
+     "start": 34.37,
+     "end": 34.46,
+     "score": 0.997
+    },
+    {
+     "w": "gathered",
+     "start": 34.61,
+     "end": 34.98,
+     "score": 0.841
+    },
+    {
+     "w": "here",
+     "start": 35.05,
+     "end": 35.26,
+     "score": 0.822
+    },
+    {
+     "w": "this",
+     "start": 35.27,
+     "end": 35.46,
+     "score": 0.929
+    },
+    {
+     "w": "morning",
+     "start": 35.57,
+     "end": 36.08,
+     "score": 0.577
+    }
+   ]
+  },
+  {
+   "id": "L10",
+   "section": "Verse 1",
+   "stem": "Vocals",
+   "singer": "the Founder",
+   "text": "in a studio we own,",
+   "start": 36.89,
+   "end": 39.32,
+   "words": [
+    {
+     "w": "in",
+     "start": 36.89,
+     "end": 36.98,
+     "score": 0.986
+    },
+    {
+     "w": "a",
+     "start": 37.013,
+     "end": 37.033,
+     "score": 0.975
+    },
+    {
+     "w": "studio",
+     "start": 37.15,
+     "end": 37.98,
+     "score": 0.729
+    },
+    {
+     "w": "we",
+     "start": 38.25,
+     "end": 38.38,
+     "score": 0.954
+    },
+    {
+     "w": "own,",
+     "start": 38.57,
+     "end": 39.32,
+     "score": 0.649
+    }
+   ]
+  },
+  {
+   "id": "L11",
+   "section": "Verse 1",
+   "stem": "Vocals",
+   "singer": "the Founder",
+   "text": "to give away a part of us",
+   "start": 40.49,
+   "end": 42.94,
+   "words": [
+    {
+     "w": "to",
+     "start": 40.49,
+     "end": 40.6,
+     "score": 0.995
+    },
+    {
+     "w": "give",
+     "start": 40.71,
+     "end": 40.96,
+     "score": 0.988
+    },
+    {
+     "w": "away",
+     "start": 40.99,
+     "end": 41.62,
+     "score": 0.938
+    },
+    {
+     "w": "a",
+     "start": 41.837,
+     "end": 41.857,
+     "score": 0.966
+    },
+    {
+     "w": "part",
+     "start": 41.99,
+     "end": 42.46,
+     "score": 0.957
+    },
+    {
+     "w": "of",
+     "start": 42.53,
+     "end": 42.64,
+     "score": 0.995
+    },
+    {
+     "w": "us",
+     "start": 42.69,
+     "end": 42.94,
+     "score": 0.998
+    }
+   ]
+  },
+  {
+   "id": "L12",
+   "section": "Verse 1",
+   "stem": "Vocals",
+   "singer": "the Founder",
+   "text": "to a fund we keep at home.",
+   "start": 43.71,
+   "end": 46.07,
+   "words": [
+    {
+     "w": "to",
+     "start": 43.71,
+     "end": 43.82,
+     "score": 0.994
+    },
+    {
+     "w": "a",
+     "start": 43.938,
+     "end": 43.958,
+     "score": 0.98
+    },
+    {
+     "w": "fund",
+     "start": 44.15,
+     "end": 44.58,
+     "score": 0.851
+    },
+    {
+     "w": "we",
+     "start": 44.63,
+     "end": 44.72,
+     "score": 0.993
+    },
+    {
+     "w": "keep",
+     "start": 44.83,
+     "end": 45.12,
+     "score": 0.998
+    },
+    {
+     "w": "at",
+     "start": 45.25,
+     "end": 45.48,
+     "score": 0.989
+    },
+    {
+     "w": "home.",
+     "start": 45.55,
+     "end": 46.07,
+     "score": 0.694
+    }
+   ]
+  },
+  {
+   "id": "L13",
+   "section": "Pre-Chorus",
+   "stem": "Vocals",
+   "singer": "the Lawyer",
+   "text": "It's not a charity, per se,",
+   "start": 46.88,
+   "end": 48.21,
+   "words": [
+    {
+     "w": "It's",
+     "start": 46.88,
+     "end": 47.03,
+     "score": 0.991
+    },
+    {
+     "w": "not",
+     "start": 47.06,
+     "end": 47.21,
+     "score": 0.989
+    },
+    {
+     "w": "a",
+     "start": 47.242,
+     "end": 47.262,
+     "score": 0.989
+    },
+    {
+     "w": "charity,",
+     "start": 47.36,
+     "end": 47.77,
+     "score": 0.652
+    },
+    {
+     "w": "per",
+     "start": 47.86,
+     "end": 48.01,
+     "score": 0.93
+    },
+    {
+     "w": "se,",
+     "start": 48.08,
+     "end": 48.21,
+     "score": 0.47
+    }
+   ]
+  },
+  {
+   "id": "L14",
+   "section": "Pre-Chorus",
+   "stem": "Vocals",
+   "singer": "the Lawyer",
+   "text": "it's an LLC, wholly owned,",
+   "start": 49.62,
+   "end": 51.69,
+   "words": [
+    {
+     "w": "it's",
+     "start": 49.62,
+     "end": 49.75,
+     "score": 0.962
+    },
+    {
+     "w": "an",
+     "start": 49.76,
+     "end": 49.85,
+     "score": 0.996
+    },
+    {
+     "w": "LLC,",
+     "start": 50.04,
+     "end": 50.45,
+     "score": 0.982
+    },
+    {
+     "w": "wholly",
+     "start": 50.8,
+     "end": 51.11,
+     "score": 0.74
+    },
+    {
+     "w": "owned,",
+     "start": 51.26,
+     "end": 51.69,
+     "score": 0.942
+    }
+   ]
+  },
+  {
+   "id": "L15",
+   "section": "Pre-Chorus",
+   "stem": "Vocals",
+   "singer": "the Lawyer",
+   "text": "flexible, adjustable,",
+   "start": 52.75,
+   "end": 54.34,
+   "words": [
+    {
+     "w": "flexible,",
+     "start": 52.75,
+     "end": 53.4,
+     "score": 0.99
+    },
+    {
+     "w": "adjustable,",
+     "start": 53.59,
+     "end": 54.34,
+     "score": 0.932
+    }
+   ]
+  },
+  {
+   "id": "L16",
+   "section": "Pre-Chorus",
+   "stem": "Vocals",
+   "singer": "the Lawyer",
+   "text": "the details will be shown...",
+   "start": 55.09,
+   "end": 57.52,
+   "words": [
+    {
+     "w": "the",
+     "start": 55.09,
+     "end": 55.18,
+     "score": 0.994
+    },
+    {
+     "w": "details",
+     "start": 55.25,
+     "end": 56.1,
+     "score": 0.992
+    },
+    {
+     "w": "will",
+     "start": 56.77,
+     "end": 56.94,
+     "score": 0.987
+    },
+    {
+     "w": "be",
+     "start": 56.95,
+     "end": 57.04,
+     "score": 0.998
+    },
+    {
+     "w": "shown...",
+     "start": 57.15,
+     "end": 57.52,
+     "score": 0.967
+    }
+   ]
+  },
+  {
+   "id": "L17",
+   "section": "Pre-Chorus tag",
+   "stem": "Backing Vocals",
+   "singer": "choir",
+   "text": "In the coming months!",
+   "start": 58.14,
+   "end": 59.82,
+   "words": [
+    {
+     "w": "In",
+     "start": 58.14,
+     "end": 58.45,
+     "score": 0.605
+    },
+    {
+     "w": "the",
+     "start": 58.48,
+     "end": 58.59,
+     "score": 0.013
+    },
+    {
+     "w": "coming",
+     "start": 58.7,
+     "end": 59.32,
+     "score": 0.153
+    },
+    {
+     "w": "months!",
+     "start": 59.35,
+     "end": 59.82,
+     "score": 0.233
+    }
+   ]
+  },
+  {
+   "id": "L18",
+   "section": "Chorus",
+   "stem": "Backing Vocals",
+   "singer": "choir",
+   "text": "Share the shares, share the shares,",
+   "start": 60.61,
+   "end": 64.05,
+   "words": [
+    {
+     "w": "Share",
+     "start": 60.61,
+     "end": 61.01,
+     "score": 0.304
+    },
+    {
+     "w": "the",
+     "start": 61.1,
+     "end": 61.19,
+     "score": 0.014
+    },
+    {
+     "w": "shares,",
+     "start": 61.32,
+     "end": 62.31,
+     "score": 0.241
+    },
+    {
+     "w": "share",
+     "start": 62.42,
+     "end": 62.79,
+     "score": 0.229
+    },
+    {
+     "w": "the",
+     "start": 62.86,
+     "end": 62.95,
+     "score": 0.004
+    },
+    {
+     "w": "shares,",
+     "start": 63.1,
+     "end": 64.05,
+     "score": 0.276
+    }
+   ]
+  },
+  {
+   "id": "L19",
+   "section": "Chorus",
+   "stem": "Backing Vocals",
+   "singer": "choir",
+   "text": "five in every hundred, we'll be there.",
+   "start": 64.16,
+   "end": 66.91,
+   "words": [
+    {
+     "w": "five",
+     "start": 64.16,
+     "end": 64.49,
+     "score": 0.079
+    },
+    {
+     "w": "in",
+     "start": 64.52,
+     "end": 64.67,
+     "score": 0.418
+    },
+    {
+     "w": "every",
+     "start": 64.72,
+     "end": 64.97,
+     "score": 0.35
+    },
+    {
+     "w": "hundred,",
+     "start": 65.08,
+     "end": 65.73,
+     "score": 0.301
+    },
+    {
+     "w": "we'll",
+     "start": 65.76,
+     "end": 66.07,
+     "score": 0.392
+    },
+    {
+     "w": "be",
+     "start": 66.18,
+     "end": 66.29,
+     "score": 0.55
+    },
+    {
+     "w": "there.",
+     "start": 66.58,
+     "end": 66.91,
+     "score": 0.181
+    }
+   ]
+  },
+  {
+   "id": "L20",
+   "section": "Chorus",
+   "stem": "Backing Vocals",
+   "singer": "choir",
+   "text": "And if we grow by half again,",
+   "start": 66.92,
+   "end": 70.57,
+   "words": [
+    {
+     "w": "And",
+     "start": 66.92,
+     "end": 67.01,
+     "score": 0.054
+    },
+    {
+     "w": "if",
+     "start": 67.944,
+     "end": 67.984,
+     "score": 0.003
+    },
+    {
+     "w": "we",
+     "start": 67.98,
+     "end": 68.11,
+     "score": 0.452
+    },
+    {
+     "w": "grow",
+     "start": 68.32,
+     "end": 68.75,
+     "score": 0.459
+    },
+    {
+     "w": "by",
+     "start": 68.98,
+     "end": 69.11,
+     "score": 0.354
+    },
+    {
+     "w": "half",
+     "start": 69.44,
+     "end": 69.89,
+     "score": 0.573
+    },
+    {
+     "w": "again,",
+     "start": 69.96,
+     "end": 70.57,
+     "score": 0.129
+    }
+   ]
+  },
+  {
+   "id": "L21",
+   "section": "Chorus",
+   "stem": "Backing Vocals",
+   "singer": "choir",
+   "text": "two more at our discretion then.",
+   "start": 71.16,
+   "end": 74.63,
+   "words": [
+    {
+     "w": "two",
+     "start": 71.16,
+     "end": 71.33,
+     "score": 0.004
+    },
+    {
+     "w": "more",
+     "start": 72.42,
+     "end": 72.59,
+     "score": 0.104
+    },
+    {
+     "w": "at",
+     "start": 72.68,
+     "end": 72.77,
+     "score": 0.017
+    },
+    {
+     "w": "our",
+     "start": 72.84,
+     "end": 73.23,
+     "score": 0.178
+    },
+    {
+     "w": "discretion",
+     "start": 73.36,
+     "end": 74.17,
+     "score": 0.591
+    },
+    {
+     "w": "then.",
+     "start": 74.24,
+     "end": 74.63,
+     "score": 0.421
+    }
+   ]
+  },
+  {
+   "id": "L22",
+   "section": "Chorus",
+   "stem": "Backing Vocals",
+   "singer": "choir",
+   "text": "The more we grow, the more we give,",
+   "start": 74.628,
+   "end": 77.45,
+   "words": [
+    {
+     "w": "The",
+     "start": 74.628,
+     "end": 74.688,
+     "score": 0.001
+    },
+    {
+     "w": "more",
+     "start": 74.94,
+     "end": 75.03,
+     "score": 0.001
+    },
+    {
+     "w": "we",
+     "start": 75.028,
+     "end": 75.068,
+     "score": 0.004
+    },
+    {
+     "w": "grow,",
+     "start": 75.3,
+     "end": 76.21,
+     "score": 0.002
+    },
+    {
+     "w": "the",
+     "start": 76.22,
+     "end": 76.33,
+     "score": 0.123
+    },
+    {
+     "w": "more",
+     "start": 76.42,
+     "end": 76.89,
+     "score": 0.32
+    },
+    {
+     "w": "we",
+     "start": 76.88,
+     "end": 76.99,
+     "score": 0.349
+    },
+    {
+     "w": "give,",
+     "start": 77.12,
+     "end": 77.45,
+     "score": 0.281
+    }
+   ]
+  },
+  {
+   "id": "L23",
+   "section": "Chorus",
+   "stem": "Backing Vocals",
+   "singer": "choir",
+   "text": "so help us grow, so we can give.",
+   "start": 77.469,
+   "end": 81.34,
+   "words": [
+    {
+     "w": "so",
+     "start": 77.469,
+     "end": 77.509,
+     "score": 0.001
+    },
+    {
+     "w": "help",
+     "start": 77.5,
+     "end": 77.69,
+     "score": 0.037
+    },
+    {
+     "w": "us",
+     "start": 77.74,
+     "end": 77.93,
+     "score": 0.026
+    },
+    {
+     "w": "grow,",
+     "start": 77.92,
+     "end": 78.03,
+     "score": 0.0
+    },
+    {
+     "w": "so",
+     "start": 79.48,
+     "end": 79.62,
+     "score": 0.69
+    },
+    {
+     "w": "we",
+     "start": 79.79,
+     "end": 79.91,
+     "score": 0.387
+    },
+    {
+     "w": "can",
+     "start": 80.15,
+     "end": 80.66,
+     "score": 0.643
+    },
+    {
+     "w": "give.",
+     "start": 80.81,
+     "end": 81.34,
+     "score": 0.101
+    }
+   ]
+  },
+  {
+   "id": "L24",
+   "section": "Chorus",
+   "stem": "Backing Vocals",
+   "singer": "choir",
+   "text": "The more we grow, the more we give,",
+   "start": 85.01,
+   "end": 90.38,
+   "words": [
+    {
+     "w": "The",
+     "start": 85.01,
+     "end": 85.12,
+     "score": 0.048
+    },
+    {
+     "w": "more",
+     "start": 85.23,
+     "end": 85.48,
+     "score": 0.114
+    },
+    {
+     "w": "we",
+     "start": 85.51,
+     "end": 85.64,
+     "score": 0.089
+    },
+    {
+     "w": "grow,",
+     "start": 85.75,
+     "end": 86.78,
+     "score": 0.006
+    },
+    {
+     "w": "the",
+     "start": 86.774,
+     "end": 86.834,
+     "score": 0.042
+    },
+    {
+     "w": "more",
+     "start": 86.99,
+     "end": 87.36,
+     "score": 0.119
+    },
+    {
+     "w": "we",
+     "start": 87.43,
+     "end": 87.56,
+     "score": 0.105
+    },
+    {
+     "w": "give,",
+     "start": 87.71,
+     "end": 90.38,
+     "score": 0.081
+    }
+   ]
+  },
+  {
+   "id": "L25",
+   "section": "Chorus",
+   "stem": "Backing Vocals",
+   "singer": "choir",
+   "text": "so help us grow, so we can give.",
+   "start": 90.49,
+   "end": 96.72,
+   "words": [
+    {
+     "w": "so",
+     "start": 90.49,
+     "end": 90.62,
+     "score": 0.25
+    },
+    {
+     "w": "help",
+     "start": 90.79,
+     "end": 91.02,
+     "score": 0.042
+    },
+    {
+     "w": "us",
+     "start": 91.09,
+     "end": 91.22,
+     "score": 0.004
+    },
+    {
+     "w": "grow,",
+     "start": 91.39,
+     "end": 91.72,
+     "score": 0.158
+    },
+    {
+     "w": "so",
+     "start": 94.43,
+     "end": 94.6,
+     "score": 0.538
+    },
+    {
+     "w": "we",
+     "start": 94.97,
+     "end": 95.1,
+     "score": 0.382
+    },
+    {
+     "w": "can",
+     "start": 95.75,
+     "end": 96.08,
+     "score": 0.558
+    },
+    {
+     "w": "give.",
+     "start": 96.23,
+     "end": 96.72,
+     "score": 0.157
+    }
+   ]
+  },
+  {
+   "id": "L26",
+   "section": "Verse 2",
+   "stem": "Vocals",
+   "singer": "the Board",
+   "text": "Now you might ask who holds the purse,",
+   "start": 99.49,
+   "end": 102.89,
+   "words": [
+    {
+     "w": "Now",
+     "start": 99.49,
+     "end": 100.01,
+     "score": 0.996
+    },
+    {
+     "w": "you",
+     "start": 100.14,
+     "end": 100.31,
+     "score": 0.939
+    },
+    {
+     "w": "might",
+     "start": 100.36,
+     "end": 100.65,
+     "score": 0.707
+    },
+    {
+     "w": "ask",
+     "start": 100.82,
+     "end": 101.17,
+     "score": 0.987
+    },
+    {
+     "w": "who",
+     "start": 101.22,
+     "end": 101.33,
+     "score": 0.956
+    },
+    {
+     "w": "holds",
+     "start": 101.46,
+     "end": 102.07,
+     "score": 0.908
+    },
+    {
+     "w": "the",
+     "start": 102.1,
+     "end": 102.21,
+     "score": 0.955
+    },
+    {
+     "w": "purse,",
+     "start": 102.3,
+     "end": 102.89,
+     "score": 0.468
+    }
+   ]
+  },
+  {
+   "id": "L27",
+   "section": "Verse 2",
+   "stem": "Vocals",
+   "singer": "the Board",
+   "text": "who signs and who decides",
+   "start": 103.38,
+   "end": 106.01,
+   "words": [
+    {
+     "w": "who",
+     "start": 103.38,
+     "end": 103.47,
+     "score": 0.945
+    },
+    {
+     "w": "signs",
+     "start": 103.62,
+     "end": 104.37,
+     "score": 0.692
+    },
+    {
+     "w": "and",
+     "start": 104.4,
+     "end": 104.51,
+     "score": 0.881
+    },
+    {
+     "w": "who",
+     "start": 104.52,
+     "end": 104.63,
+     "score": 0.99
+    },
+    {
+     "w": "decides",
+     "start": 104.72,
+     "end": 106.01,
+     "score": 0.859
+    }
+   ]
+  },
+  {
+   "id": "L28",
+   "section": "Verse 2",
+   "stem": "Vocals",
+   "singer": "the Board",
+   "text": "which cause is worthy, which is not,",
+   "start": 106.66,
+   "end": 109.53,
+   "words": [
+    {
+     "w": "which",
+     "start": 106.66,
+     "end": 106.83,
+     "score": 0.998
+    },
+    {
+     "w": "cause",
+     "start": 106.88,
+     "end": 107.61,
+     "score": 0.91
+    },
+    {
+     "w": "is",
+     "start": 107.64,
+     "end": 107.75,
+     "score": 0.936
+    },
+    {
+     "w": "worthy,",
+     "start": 107.82,
+     "end": 108.35,
+     "score": 0.959
+    },
+    {
+     "w": "which",
+     "start": 108.84,
+     "end": 109.01,
+     "score": 0.985
+    },
+    {
+     "w": "is",
+     "start": 109.04,
+     "end": 109.13,
+     "score": 0.994
+    },
+    {
+     "w": "not,",
+     "start": 109.2,
+     "end": 109.53,
+     "score": 0.999
+    }
+   ]
+  },
+  {
+   "id": "L29",
+   "section": "Verse 2",
+   "stem": "Vocals",
+   "singer": "the Board",
+   "text": "and who sits on which side.",
+   "start": 110.04,
+   "end": 112.94,
+   "words": [
+    {
+     "w": "and",
+     "start": 110.04,
+     "end": 110.15,
+     "score": 0.96
+    },
+    {
+     "w": "who",
+     "start": 110.18,
+     "end": 110.29,
+     "score": 0.952
+    },
+    {
+     "w": "sits",
+     "start": 110.6,
+     "end": 111.05,
+     "score": 0.978
+    },
+    {
+     "w": "on",
+     "start": 111.14,
+     "end": 111.35,
+     "score": 0.898
+    },
+    {
+     "w": "which",
+     "start": 111.48,
+     "end": 111.75,
+     "score": 0.88
+    },
+    {
+     "w": "side.",
+     "start": 111.9,
+     "end": 112.94,
+     "score": 0.703
+    }
+   ]
+  },
+  {
+   "id": "L30",
+   "section": "Verse 2",
+   "stem": "Vocals",
+   "singer": "the Board",
+   "text": "Each milestone's measured from a line",
+   "start": 113.55,
+   "end": 116.64,
+   "words": [
+    {
+     "w": "Each",
+     "start": 113.55,
+     "end": 113.76,
+     "score": 0.931
+    },
+    {
+     "w": "milestone's",
+     "start": 113.89,
+     "end": 114.94,
+     "score": 0.679
+    },
+    {
+     "w": "measured",
+     "start": 115.07,
+     "end": 115.46,
+     "score": 0.784
+    },
+    {
+     "w": "from",
+     "start": 115.49,
+     "end": 115.68,
+     "score": 0.997
+    },
+    {
+     "w": "a",
+     "start": 115.732,
+     "end": 115.752,
+     "score": 0.981
+    },
+    {
+     "w": "line",
+     "start": 115.85,
+     "end": 116.64,
+     "score": 0.897
+    }
+   ]
+  },
+  {
+   "id": "L31",
+   "section": "Verse 2",
+   "stem": "Vocals",
+   "singer": "the Board",
+   "text": "we haven't drawn just yet,",
+   "start": 116.97,
+   "end": 119.34,
+   "words": [
+    {
+     "w": "we",
+     "start": 116.97,
+     "end": 117.08,
+     "score": 0.996
+    },
+    {
+     "w": "haven't",
+     "start": 117.19,
+     "end": 117.52,
+     "score": 0.929
+    },
+    {
+     "w": "drawn",
+     "start": 117.57,
+     "end": 118.3,
+     "score": 0.651
+    },
+    {
+     "w": "just",
+     "start": 118.47,
+     "end": 118.76,
+     "score": 0.995
+    },
+    {
+     "w": "yet,",
+     "start": 118.93,
+     "end": 119.34,
+     "score": 0.997
+    }
+   ]
+  },
+  {
+   "id": "L32",
+   "section": "Verse 2",
+   "stem": "Vocals",
+   "singer": "the Board",
+   "text": "but trust us, it's a generous line,",
+   "start": 120.87,
+   "end": 123.92,
+   "words": [
+    {
+     "w": "but",
+     "start": 120.87,
+     "end": 121.0,
+     "score": 0.998
+    },
+    {
+     "w": "trust",
+     "start": 121.05,
+     "end": 121.38,
+     "score": 0.981
+    },
+    {
+     "w": "us,",
+     "start": 121.43,
+     "end": 121.62,
+     "score": 0.991
+    },
+    {
+     "w": "it's",
+     "start": 122.39,
+     "end": 122.54,
+     "score": 0.967
+    },
+    {
+     "w": "a",
+     "start": 122.577,
+     "end": 122.597,
+     "score": 0.993
+    },
+    {
+     "w": "generous",
+     "start": 122.71,
+     "end": 123.2,
+     "score": 0.972
+    },
+    {
+     "w": "line,",
+     "start": 123.33,
+     "end": 123.92,
+     "score": 0.923
+    }
+   ]
+  },
+  {
+   "id": "L33",
+   "section": "Verse 2",
+   "stem": "Vocals",
+   "singer": "the Board",
+   "text": "the best one you can get.",
+   "start": 124.39,
+   "end": 126.64,
+   "words": [
+    {
+     "w": "the",
+     "start": 124.39,
+     "end": 124.5,
+     "score": 0.992
+    },
+    {
+     "w": "best",
+     "start": 124.59,
+     "end": 124.88,
+     "score": 0.998
+    },
+    {
+     "w": "one",
+     "start": 125.03,
+     "end": 125.32,
+     "score": 0.989
+    },
+    {
+     "w": "you",
+     "start": 125.45,
+     "end": 125.6,
+     "score": 0.936
+    },
+    {
+     "w": "can",
+     "start": 125.67,
+     "end": 125.98,
+     "score": 0.974
+    },
+    {
+     "w": "get.",
+     "start": 126.13,
+     "end": 126.64,
+     "score": 0.998
+    }
+   ]
+  },
+  {
+   "id": "L34",
+   "section": "Pre-Chorus 2",
+   "stem": "Vocals",
+   "singer": "the Lawyer",
+   "text": "Not for lobbying, not for campaigns,",
+   "start": 127.42,
+   "end": 130.42,
+   "words": [
+    {
+     "w": "Not",
+     "start": 127.42,
+     "end": 127.59,
+     "score": 0.942
+    },
+    {
+     "w": "for",
+     "start": 127.64,
+     "end": 127.77,
+     "score": 0.7
+    },
+    {
+     "w": "lobbying,",
+     "start": 127.84,
+     "end": 128.37,
+     "score": 0.625
+    },
+    {
+     "w": "not",
+     "start": 129.14,
+     "end": 129.29,
+     "score": 0.99
+    },
+    {
+     "w": "for",
+     "start": 129.31,
+     "end": 129.41,
+     "score": 0.71
+    },
+    {
+     "w": "campaigns,",
+     "start": 129.46,
+     "end": 130.42,
+     "score": 0.864
+    }
+   ]
+  },
+  {
+   "id": "L35",
+   "section": "Pre-Chorus 2",
+   "stem": "Vocals",
+   "singer": "the Lawyer",
+   "text": "not for politics, we swear...",
+   "start": 130.89,
+   "end": 132.62,
+   "words": [
+    {
+     "w": "not",
+     "start": 130.89,
+     "end": 131.06,
+     "score": 0.982
+    },
+    {
+     "w": "for",
+     "start": 131.09,
+     "end": 131.22,
+     "score": 0.673
+    },
+    {
+     "w": "politics,",
+     "start": 131.33,
+     "end": 131.92,
+     "score": 0.963
+    },
+    {
+     "w": "we",
+     "start": 131.99,
+     "end": 132.08,
+     "score": 0.988
+    },
+    {
+     "w": "swear...",
+     "start": 132.21,
+     "end": 132.62,
+     "score": 0.739
+    }
+   ]
+  },
+  {
+   "id": "L36",
+   "section": "Pre-Chorus 2 tag",
+   "stem": "Backing Vocals",
+   "singer": "choir",
+   "text": "Through this fund!",
+   "start": 132.34,
+   "end": 133.74,
+   "words": [
+    {
+     "w": "Through",
+     "start": 132.34,
+     "end": 133.24,
+     "score": 0.021
+    },
+    {
+     "w": "this",
+     "start": 133.27,
+     "end": 133.52,
+     "score": 0.061
+    },
+    {
+     "w": "fund!",
+     "start": 133.61,
+     "end": 133.74,
+     "score": 0.024
+    }
+   ]
+  },
+  {
+   "id": "L37",
+   "section": "Chorus 2",
+   "stem": "Backing Vocals",
+   "singer": "choir",
+   "text": "Share the shares, share the shares, share the shares, share the shares,",
+   "start": 133.28,
+   "end": 143.39,
+   "words": [
+    {
+     "w": "Share",
+     "start": 133.28,
+     "end": 133.45,
+     "score": 0.202
+    },
+    {
+     "w": "the",
+     "start": 134.14,
+     "end": 134.29,
+     "score": 0.234
+    },
+    {
+     "w": "shares,",
+     "start": 134.46,
+     "end": 136.15,
+     "score": 0.217
+    },
+    {
+     "w": "share",
+     "start": 139.36,
+     "end": 139.87,
+     "score": 0.066
+    },
+    {
+     "w": "the",
+     "start": 139.864,
+     "end": 139.924,
+     "score": 0.003
+    },
+    {
+     "w": "shares,",
+     "start": 140.04,
+     "end": 140.95,
+     "score": 0.072
+    },
+    {
+     "w": "share",
+     "start": 141.12,
+     "end": 141.63,
+     "score": 0.113
+    },
+    {
+     "w": "the",
+     "start": 141.626,
+     "end": 141.686,
+     "score": 0.007
+    },
+    {
+     "w": "shares,",
+     "start": 141.8,
+     "end": 142.61,
+     "score": 0.164
+    },
+    {
+     "w": "share",
+     "start": 142.66,
+     "end": 143.05,
+     "score": 0.025
+    },
+    {
+     "w": "the",
+     "start": 143.14,
+     "end": 143.27,
+     "score": 0.035
+    },
+    {
+     "w": "shares,",
+     "start": 143.26,
+     "end": 143.39,
+     "score": 0.004
+    }
+   ]
+  },
+  {
+   "id": "L38",
+   "section": "Chorus 2",
+   "stem": "Backing Vocals",
+   "singer": "choir",
+   "text": "five in every hundred, we'll be there.",
+   "start": 143.38,
+   "end": 146.27,
+   "words": [
+    {
+     "w": "five",
+     "start": 143.38,
+     "end": 143.47,
+     "score": 0.028
+    },
+    {
+     "w": "in",
+     "start": 143.547,
+     "end": 143.587,
+     "score": 0.042
+    },
+    {
+     "w": "every",
+     "start": 143.58,
+     "end": 143.69,
+     "score": 0.008
+    },
+    {
+     "w": "hundred,",
+     "start": 143.82,
+     "end": 144.41,
+     "score": 0.046
+    },
+    {
+     "w": "we'll",
+     "start": 144.46,
+     "end": 144.79,
+     "score": 0.271
+    },
+    {
+     "w": "be",
+     "start": 144.88,
+     "end": 145.01,
+     "score": 0.336
+    },
+    {
+     "w": "there.",
+     "start": 145.3,
+     "end": 146.27,
+     "score": 0.133
+    }
+   ]
+  },
+  {
+   "id": "L39",
+   "section": "Chorus 2",
+   "stem": "Backing Vocals",
+   "singer": "choir",
+   "text": "And if we grow by half again,",
+   "start": 146.26,
+   "end": 149.34,
+   "words": [
+    {
+     "w": "And",
+     "start": 146.26,
+     "end": 146.45,
+     "score": 0.035
+    },
+    {
+     "w": "if",
+     "start": 146.48,
+     "end": 146.61,
+     "score": 0.022
+    },
+    {
+     "w": "we",
+     "start": 146.66,
+     "end": 146.77,
+     "score": 0.019
+    },
+    {
+     "w": "grow",
+     "start": 147.02,
+     "end": 147.54,
+     "score": 0.007
+    },
+    {
+     "w": "by",
+     "start": 147.69,
+     "end": 148.02,
+     "score": 0.018
+    },
+    {
+     "w": "half",
+     "start": 148.21,
+     "end": 148.62,
+     "score": 0.006
+    },
+    {
+     "w": "again,",
+     "start": 148.66,
+     "end": 149.34,
+     "score": 0.012
+    }
+   ]
+  },
+  {
+   "id": "L40",
+   "section": "Chorus 2",
+   "stem": "Backing Vocals",
+   "singer": "choir",
+   "text": "two more at our discretion then.",
+   "start": 149.87,
+   "end": 153.32,
+   "words": [
+    {
+     "w": "two",
+     "start": 149.87,
+     "end": 150.04,
+     "score": 0.005
+    },
+    {
+     "w": "more",
+     "start": 150.31,
+     "end": 151.0,
+     "score": 0.006
+    },
+    {
+     "w": "at",
+     "start": 151.27,
+     "end": 151.44,
+     "score": 0.301
+    },
+    {
+     "w": "our",
+     "start": 151.53,
+     "end": 151.92,
+     "score": 0.074
+    },
+    {
+     "w": "discretion",
+     "start": 152.07,
+     "end": 152.9,
+     "score": 0.44
+    },
+    {
+     "w": "then.",
+     "start": 152.95,
+     "end": 153.32,
+     "score": 0.308
+    }
+   ]
+  },
+  {
+   "id": "L41",
+   "section": "Chorus 2",
+   "stem": "Backing Vocals",
+   "singer": "choir",
+   "text": "The more we grow, the more we give,",
+   "start": 153.31,
+   "end": 156.56,
+   "words": [
+    {
+     "w": "The",
+     "start": 153.31,
+     "end": 153.6,
+     "score": 0.013
+    },
+    {
+     "w": "more",
+     "start": 153.61,
+     "end": 153.72,
+     "score": 0.003
+    },
+    {
+     "w": "we",
+     "start": 153.714,
+     "end": 153.774,
+     "score": 0.004
+    },
+    {
+     "w": "grow,",
+     "start": 154.03,
+     "end": 154.3,
+     "score": 0.002
+    },
+    {
+     "w": "the",
+     "start": 154.91,
+     "end": 155.02,
+     "score": 0.305
+    },
+    {
+     "w": "more",
+     "start": 155.11,
+     "end": 155.52,
+     "score": 0.322
+    },
+    {
+     "w": "we",
+     "start": 155.57,
+     "end": 155.7,
+     "score": 0.422
+    },
+    {
+     "w": "give,",
+     "start": 155.81,
+     "end": 156.56,
+     "score": 0.247
+    }
+   ]
+  },
+  {
+   "id": "L42",
+   "section": "Chorus 2",
+   "stem": "Backing Vocals",
+   "singer": "choir",
+   "text": "so help us grow, so we can give.",
+   "start": 156.59,
+   "end": 163.19,
+   "words": [
+    {
+     "w": "so",
+     "start": 156.59,
+     "end": 156.76,
+     "score": 0.253
+    },
+    {
+     "w": "help",
+     "start": 156.85,
+     "end": 157.16,
+     "score": 0.261
+    },
+    {
+     "w": "us",
+     "start": 157.23,
+     "end": 157.54,
+     "score": 0.097
+    },
+    {
+     "w": "grow,",
+     "start": 157.59,
+     "end": 157.7,
+     "score": 0.026
+    },
+    {
+     "w": "so",
+     "start": 158.15,
+     "end": 158.3,
+     "score": 0.844
+    },
+    {
+     "w": "we",
+     "start": 158.47,
+     "end": 158.62,
+     "score": 0.408
+    },
+    {
+     "w": "can",
+     "start": 158.83,
+     "end": 159.34,
+     "score": 0.85
+    },
+    {
+     "w": "give.",
+     "start": 159.47,
+     "end": 163.19,
+     "score": 0.09
+    }
+   ]
+  },
+  {
+   "id": "L43",
+   "section": "Verse 3",
+   "stem": "Vocals",
+   "singer": "the Worker (generated; the human's live take replaces it)",
+   "text": "They call me a specific population;",
+   "start": 164.14,
+   "end": 167.39,
+   "words": [
+    {
+     "w": "They",
+     "start": 164.14,
+     "end": 164.27,
+     "score": 0.996
+    },
+    {
+     "w": "call",
+     "start": 164.3,
+     "end": 164.55,
+     "score": 0.999
+    },
+    {
+     "w": "me",
+     "start": 164.6,
+     "end": 164.69,
+     "score": 0.999
+    },
+    {
+     "w": "a",
+     "start": 166.002,
+     "end": 166.022,
+     "score": 0.98
+    },
+    {
+     "w": "specific",
+     "start": 166.08,
+     "end": 166.59,
+     "score": 0.974
+    },
+    {
+     "w": "population;",
+     "start": 166.66,
+     "end": 167.39,
+     "score": 0.999
+    }
+   ]
+  },
+  {
+   "id": "L44",
+   "section": "Verse 3",
+   "stem": "Vocals",
+   "singer": "the Worker (generated; the human's live take replaces it)",
+   "text": "there's a study on my case,",
+   "start": 168.51,
+   "end": 169.99,
+   "words": [
+    {
+     "w": "there's",
+     "start": 168.51,
+     "end": 168.67,
+     "score": 0.893
+    },
+    {
+     "w": "a",
+     "start": 168.684,
+     "end": 168.704,
+     "score": 0.995
+    },
+    {
+     "w": "study",
+     "start": 168.82,
+     "end": 169.13,
+     "score": 0.96
+    },
+    {
+     "w": "on",
+     "start": 169.2,
+     "end": 169.31,
+     "score": 0.539
+    },
+    {
+     "w": "my",
+     "start": 169.34,
+     "end": 169.51,
+     "score": 0.999
+    },
+    {
+     "w": "case,",
+     "start": 169.56,
+     "end": 169.99,
+     "score": 0.996
+    }
+   ]
+  },
+  {
+   "id": "L45",
+   "section": "Verse 3",
+   "stem": "Vocals",
+   "singer": "the Worker (generated; the human's live take replaces it)",
+   "text": "two hundred million spent to learn",
+   "start": 171.58,
+   "end": 173.41,
+   "words": [
+    {
+     "w": "two",
+     "start": 171.58,
+     "end": 171.75,
+     "score": 0.783
+    },
+    {
+     "w": "hundred",
+     "start": 171.8,
+     "end": 172.09,
+     "score": 0.362
+    },
+    {
+     "w": "million",
+     "start": 172.14,
+     "end": 172.51,
+     "score": 0.985
+    },
+    {
+     "w": "spent",
+     "start": 172.64,
+     "end": 172.89,
+     "score": 0.996
+    },
+    {
+     "w": "to",
+     "start": 172.92,
+     "end": 173.01,
+     "score": 0.997
+    },
+    {
+     "w": "learn",
+     "start": 173.08,
+     "end": 173.41,
+     "score": 0.977
+    }
+   ]
+  },
+  {
+   "id": "L46",
+   "section": "Verse 3",
+   "stem": "Vocals",
+   "singer": "the Worker (generated; the human's live take replaces it)",
+   "text": "what happens to my place.",
+   "start": 175.18,
+   "end": 176.69,
+   "words": [
+    {
+     "w": "what",
+     "start": 175.18,
+     "end": 175.33,
+     "score": 0.96
+    },
+    {
+     "w": "happens",
+     "start": 175.36,
+     "end": 175.83,
+     "score": 0.999
+    },
+    {
+     "w": "to",
+     "start": 175.929,
+     "end": 175.989,
+     "score": 0.998
+    },
+    {
+     "w": "my",
+     "start": 176.04,
+     "end": 176.21,
+     "score": 0.912
+    },
+    {
+     "w": "place.",
+     "start": 176.26,
+     "end": 176.69,
+     "score": 0.972
+    }
+   ]
+  },
+  {
+   "id": "L47",
+   "section": "Verse 3",
+   "stem": "Vocals",
+   "singer": "the Worker (generated; the human's live take replaces it)",
+   "text": "I don't need a giant cardboard check",
+   "start": 178.491,
+   "end": 180.32,
+   "words": [
+    {
+     "w": "I",
+     "start": 178.491,
+     "end": 178.511,
+     "score": 0.999
+    },
+    {
+     "w": "don't",
+     "start": 178.53,
+     "end": 178.66,
+     "score": 0.736
+    },
+    {
+     "w": "need",
+     "start": 178.67,
+     "end": 178.82,
+     "score": 0.998
+    },
+    {
+     "w": "a",
+     "start": 178.851,
+     "end": 178.871,
+     "score": 0.995
+    },
+    {
+     "w": "giant",
+     "start": 178.97,
+     "end": 179.32,
+     "score": 0.605
+    },
+    {
+     "w": "cardboard",
+     "start": 179.39,
+     "end": 179.96,
+     "score": 0.977
+    },
+    {
+     "w": "check",
+     "start": 180.05,
+     "end": 180.32,
+     "score": 0.99
+    }
+   ]
+  },
+  {
+   "id": "L48",
+   "section": "Verse 3",
+   "stem": "Vocals",
+   "singer": "the Worker (generated; the human's live take replaces it)",
+   "text": "with the number \"TBA.\"",
+   "start": 181.73,
+   "end": 183.3,
+   "words": [
+    {
+     "w": "with",
+     "start": 181.73,
+     "end": 181.88,
+     "score": 0.994
+    },
+    {
+     "w": "the",
+     "start": 181.89,
+     "end": 181.98,
+     "score": 0.983
+    },
+    {
+     "w": "number",
+     "start": 182.03,
+     "end": 182.34,
+     "score": 0.999
+    },
+    {
+     "w": "\"TBA.\"",
+     "start": 182.81,
+     "end": 183.3,
+     "score": 0.998
+    }
+   ]
+  },
+  {
+   "id": "L49",
+   "section": "Verse 3",
+   "stem": "Vocals",
+   "singer": "the Worker (generated; the human's live take replaces it)",
+   "text": "I'd just like to know who's choosing,",
+   "start": 185.435,
+   "end": 187.08,
+   "words": [
+    {
+     "w": "I'd",
+     "start": 185.435,
+     "end": 185.476,
+     "score": 0.5
+    },
+    {
+     "w": "just",
+     "start": 185.51,
+     "end": 185.7,
+     "score": 0.835
+    },
+    {
+     "w": "like",
+     "start": 185.75,
+     "end": 185.92,
+     "score": 0.999
+    },
+    {
+     "w": "to",
+     "start": 185.936,
+     "end": 185.996,
+     "score": 0.998
+    },
+    {
+     "w": "know",
+     "start": 186.03,
+     "end": 186.2,
+     "score": 0.975
+    },
+    {
+     "w": "who's",
+     "start": 186.25,
+     "end": 186.48,
+     "score": 0.995
+    },
+    {
+     "w": "choosing,",
+     "start": 186.57,
+     "end": 187.08,
+     "score": 0.847
+    }
+   ]
+  },
+  {
+   "id": "L50",
+   "section": "Verse 3",
+   "stem": "Vocals",
+   "singer": "the Worker (generated; the human's live take replaces it)",
+   "text": "and whether I get a say.",
+   "start": 188.91,
+   "end": 191.23,
+   "words": [
+    {
+     "w": "and",
+     "start": 188.91,
+     "end": 189.04,
+     "score": 0.806
+    },
+    {
+     "w": "whether",
+     "start": 189.07,
+     "end": 189.3,
+     "score": 0.974
+    },
+    {
+     "w": "I",
+     "start": 189.598,
+     "end": 189.618,
+     "score": 0.99
+    },
+    {
+     "w": "get",
+     "start": 190.63,
+     "end": 190.78,
+     "score": 0.999
+    },
+    {
+     "w": "a",
+     "start": 190.819,
+     "end": 190.839,
+     "score": 0.802
+    },
+    {
+     "w": "say.",
+     "start": 190.97,
+     "end": 191.23,
+     "score": 0.986
+    }
+   ]
+  },
+  {
+   "id": "L51",
+   "section": "Bridge",
+   "stem": "Vocals",
+   "singer": "the Founder",
+   "text": "And it's real, it isn't nothing:",
+   "start": 192.68,
+   "end": 194.99,
+   "words": [
+    {
+     "w": "And",
+     "start": 192.68,
+     "end": 192.77,
+     "score": 0.933
+    },
+    {
+     "w": "it's",
+     "start": 192.78,
+     "end": 192.91,
+     "score": 0.993
+    },
+    {
+     "w": "real,",
+     "start": 192.98,
+     "end": 193.31,
+     "score": 0.999
+    },
+    {
+     "w": "it",
+     "start": 194.282,
+     "end": 194.342,
+     "score": 0.995
+    },
+    {
+     "w": "isn't",
+     "start": 194.38,
+     "end": 194.59,
+     "score": 0.872
+    },
+    {
+     "w": "nothing:",
+     "start": 194.64,
+     "end": 194.99,
+     "score": 0.975
+    }
+   ]
+  },
+  {
+   "id": "L52",
+   "section": "Bridge",
+   "stem": "Vocals",
+   "singer": "the Founder",
+   "text": "a fifth of us, all told,",
+   "start": 196.384,
+   "end": 198.43,
+   "words": [
+    {
+     "w": "a",
+     "start": 196.384,
+     "end": 196.404,
+     "score": 0.988
+    },
+    {
+     "w": "fifth",
+     "start": 196.54,
+     "end": 196.77,
+     "score": 0.786
+    },
+    {
+     "w": "of",
+     "start": 196.824,
+     "end": 196.884,
+     "score": 0.998
+    },
+    {
+     "w": "us,",
+     "start": 196.94,
+     "end": 197.13,
+     "score": 0.998
+    },
+    {
+     "w": "all",
+     "start": 197.72,
+     "end": 197.89,
+     "score": 0.975
+    },
+    {
+     "w": "told,",
+     "start": 197.98,
+     "end": 198.43,
+     "score": 0.967
+    }
+   ]
+  },
+  {
+   "id": "L53",
+   "section": "Bridge",
+   "stem": "Vocals",
+   "singer": "the Founder",
+   "text": "set aside for something bigger",
+   "start": 199.46,
+   "end": 201.31,
+   "words": [
+    {
+     "w": "set",
+     "start": 199.46,
+     "end": 199.61,
+     "score": 0.997
+    },
+    {
+     "w": "aside",
+     "start": 199.64,
+     "end": 200.25,
+     "score": 0.868
+    },
+    {
+     "w": "for",
+     "start": 200.28,
+     "end": 200.41,
+     "score": 0.855
+    },
+    {
+     "w": "something",
+     "start": 200.48,
+     "end": 200.85,
+     "score": 0.953
+    },
+    {
+     "w": "bigger",
+     "start": 201.04,
+     "end": 201.31,
+     "score": 0.999
+    }
+   ]
+  },
+  {
+   "id": "L54",
+   "section": "Bridge",
+   "stem": "Vocals",
+   "singer": "the Founder",
+   "text": "than the ones who bought and sold.",
+   "start": 202.34,
+   "end": 205.34,
+   "words": [
+    {
+     "w": "than",
+     "start": 202.34,
+     "end": 202.47,
+     "score": 0.966
+    },
+    {
+     "w": "the",
+     "start": 202.48,
+     "end": 202.57,
+     "score": 0.983
+    },
+    {
+     "w": "ones",
+     "start": 202.72,
+     "end": 203.12,
+     "score": 0.996
+    },
+    {
+     "w": "who",
+     "start": 204.09,
+     "end": 204.2,
+     "score": 0.997
+    },
+    {
+     "w": "bought",
+     "start": 204.33,
+     "end": 204.6,
+     "score": 0.931
+    },
+    {
+     "w": "and",
+     "start": 204.63,
+     "end": 204.78,
+     "score": 0.544
+    },
+    {
+     "w": "sold.",
+     "start": 204.87,
+     "end": 205.34,
+     "score": 0.987
+    }
+   ]
+  },
+  {
+   "id": "L55",
+   "section": "Bridge",
+   "stem": "Vocals",
+   "singer": "the Founder",
+   "text": "If a promise holds while holding's cheap,",
+   "start": 206.81,
+   "end": 209.0,
+   "words": [
+    {
+     "w": "If",
+     "start": 206.81,
+     "end": 206.9,
+     "score": 0.999
+    },
+    {
+     "w": "a",
+     "start": 206.933,
+     "end": 206.953,
+     "score": 0.828
+    },
+    {
+     "w": "promise",
+     "start": 207.01,
+     "end": 207.48,
+     "score": 0.982
+    },
+    {
+     "w": "holds",
+     "start": 207.51,
+     "end": 207.92,
+     "score": 0.958
+    },
+    {
+     "w": "while",
+     "start": 207.95,
+     "end": 208.18,
+     "score": 0.764
+    },
+    {
+     "w": "holding's",
+     "start": 208.23,
+     "end": 208.62,
+     "score": 0.993
+    },
+    {
+     "w": "cheap,",
+     "start": 208.71,
+     "end": 209.0,
+     "score": 0.653
+    }
+   ]
+  },
+  {
+   "id": "L56",
+   "section": "Bridge",
+   "stem": "Vocals",
+   "singer": "the Founder",
+   "text": "then watch us when it's not.",
+   "start": 210.45,
+   "end": 212.58,
+   "words": [
+    {
+     "w": "then",
+     "start": 210.45,
+     "end": 210.62,
+     "score": 0.984
+    },
+    {
+     "w": "watch",
+     "start": 210.71,
+     "end": 211.02,
+     "score": 0.94
+    },
+    {
+     "w": "us",
+     "start": 211.07,
+     "end": 211.24,
+     "score": 0.998
+    },
+    {
+     "w": "when",
+     "start": 211.87,
+     "end": 212.02,
+     "score": 0.987
+    },
+    {
+     "w": "it's",
+     "start": 212.05,
+     "end": 212.2,
+     "score": 0.989
+    },
+    {
+     "w": "not.",
+     "start": 212.29,
+     "end": 212.58,
+     "score": 0.998
+    }
+   ]
+  },
+  {
+   "id": "L57",
+   "section": "Bridge",
+   "stem": "Vocals",
+   "singer": "the Founder",
+   "text": "When it's not!",
+   "start": 212.95,
+   "end": 214.94,
+   "words": [
+    {
+     "w": "When",
+     "start": 212.95,
+     "end": 214.32,
+     "score": 0.001
+    },
+    {
+     "w": "it's",
+     "start": 214.33,
+     "end": 214.42,
+     "score": 0.0
+    },
+    {
+     "w": "not!",
+     "start": 214.49,
+     "end": 214.94,
+     "score": 0.001
+    }
+   ]
+  },
+  {
+   "id": "L58",
+   "section": "Final Chorus",
+   "stem": "Vocals",
+   "singer": "everyone",
+   "text": "Share the shares,",
+   "start": 216.48,
+   "end": 222.25,
+   "words": [
+    {
+     "w": "Share",
+     "start": 216.48,
+     "end": 217.09,
+     "score": 0.037
+    },
+    {
+     "w": "the",
+     "start": 217.2,
+     "end": 217.51,
+     "score": 0.258
+    },
+    {
+     "w": "shares,",
+     "start": 220.48,
+     "end": 222.25,
+     "score": 0.299
+    }
+   ]
+  },
+  {
+   "id": "L59",
+   "section": "Final Chorus",
+   "stem": "Vocals",
+   "singer": "everyone",
+   "text": "five in every hundred, we'll be there.",
+   "start": 223.88,
+   "end": 226.87,
+   "words": [
+    {
+     "w": "five",
+     "start": 223.88,
+     "end": 224.37,
+     "score": 0.132
+    },
+    {
+     "w": "in",
+     "start": 224.42,
+     "end": 224.55,
+     "score": 0.605
+    },
+    {
+     "w": "every",
+     "start": 224.64,
+     "end": 224.89,
+     "score": 0.773
+    },
+    {
+     "w": "hundred,",
+     "start": 224.98,
+     "end": 225.59,
+     "score": 0.922
+    },
+    {
+     "w": "we'll",
+     "start": 225.66,
+     "end": 226.01,
+     "score": 0.667
+    },
+    {
+     "w": "be",
+     "start": 226.08,
+     "end": 226.21,
+     "score": 0.974
+    },
+    {
+     "w": "there.",
+     "start": 226.5,
+     "end": 226.87,
+     "score": 0.307
+    }
+   ]
+  },
+  {
+   "id": "L60",
+   "section": "Final Chorus",
+   "stem": "Vocals",
+   "singer": "everyone",
+   "text": "And if we grow by half again,",
+   "start": 227.48,
+   "end": 230.66,
+   "words": [
+    {
+     "w": "And",
+     "start": 227.48,
+     "end": 227.65,
+     "score": 0.731
+    },
+    {
+     "w": "if",
+     "start": 227.68,
+     "end": 227.79,
+     "score": 0.983
+    },
+    {
+     "w": "we",
+     "start": 227.86,
+     "end": 227.97,
+     "score": 0.964
+    },
+    {
+     "w": "grow",
+     "start": 228.22,
+     "end": 228.73,
+     "score": 0.876
+    },
+    {
+     "w": "by",
+     "start": 228.92,
+     "end": 229.21,
+     "score": 0.649
+    },
+    {
+     "w": "half",
+     "start": 229.38,
+     "end": 229.79,
+     "score": 0.761
+    },
+    {
+     "w": "again,",
+     "start": 229.88,
+     "end": 230.66,
+     "score": 0.925
+    }
+   ]
+  },
+  {
+   "id": "L61",
+   "section": "Final Chorus",
+   "stem": "Vocals",
+   "singer": "everyone",
+   "text": "two more at our discretion then.",
+   "start": 231.11,
+   "end": 234.36,
+   "words": [
+    {
+     "w": "two",
+     "start": 231.11,
+     "end": 231.44,
+     "score": 0.515
+    },
+    {
+     "w": "more",
+     "start": 231.55,
+     "end": 231.98,
+     "score": 0.437
+    },
+    {
+     "w": "at",
+     "start": 231.97,
+     "end": 232.72,
+     "score": 0.008
+    },
+    {
+     "w": "our",
+     "start": 232.79,
+     "end": 233.2,
+     "score": 0.049
+    },
+    {
+     "w": "discretion",
+     "start": 233.31,
+     "end": 234.12,
+     "score": 0.164
+    },
+    {
+     "w": "then.",
+     "start": 234.21,
+     "end": 234.36,
+     "score": 0.004
+    }
+   ]
+  },
+  {
+   "id": "L62",
+   "section": "Final Chorus",
+   "stem": "Vocals",
+   "singer": "everyone",
+   "text": "The more we grow, the more we give,",
+   "start": 234.45,
+   "end": 238.52,
+   "words": [
+    {
+     "w": "The",
+     "start": 234.45,
+     "end": 234.54,
+     "score": 0.028
+    },
+    {
+     "w": "more",
+     "start": 234.65,
+     "end": 235.84,
+     "score": 0.349
+    },
+    {
+     "w": "we",
+     "start": 235.83,
+     "end": 235.94,
+     "score": 0.868
+    },
+    {
+     "w": "grow,",
+     "start": 236.09,
+     "end": 236.48,
+     "score": 0.799
+    },
+    {
+     "w": "the",
+     "start": 237.55,
+     "end": 237.64,
+     "score": 0.017
+    },
+    {
+     "w": "more",
+     "start": 237.69,
+     "end": 237.9,
+     "score": 0.466
+    },
+    {
+     "w": "we",
+     "start": 237.93,
+     "end": 238.02,
+     "score": 0.93
+    },
+    {
+     "w": "give,",
+     "start": 238.09,
+     "end": 238.52,
+     "score": 0.6
+    }
+   ]
+  },
+  {
+   "id": "L63",
+   "section": "Final Chorus",
+   "stem": "Vocals",
+   "singer": "everyone",
+   "text": "do I get a say?",
+   "start": 239.655,
+   "end": 240.54,
+   "words": [
+    {
+     "w": "do",
+     "start": 239.655,
+     "end": 239.715,
+     "score": 0.978
+    },
+    {
+     "w": "I",
+     "start": 239.855,
+     "end": 239.875,
+     "score": 0.973
+    },
+    {
+     "w": "get",
+     "start": 239.89,
+     "end": 240.04,
+     "score": 0.968
+    },
+    {
+     "w": "a",
+     "start": 240.056,
+     "end": 240.076,
+     "score": 0.728
+    },
+    {
+     "w": "say?",
+     "start": 240.17,
+     "end": 240.54,
+     "score": 0.598
+    }
+   ]
+  },
+  {
+   "id": "L64",
+   "section": "Final Chorus",
+   "stem": "Vocals",
+   "singer": "everyone",
+   "text": "So help us grow, so we can give.",
+   "start": 241.47,
+   "end": 247.26,
+   "words": [
+    {
+     "w": "So",
+     "start": 241.47,
+     "end": 241.58,
+     "score": 0.979
+    },
+    {
+     "w": "help",
+     "start": 241.71,
+     "end": 241.98,
+     "score": 0.978
+    },
+    {
+     "w": "us",
+     "start": 242.07,
+     "end": 242.28,
+     "score": 0.917
+    },
+    {
+     "w": "grow,",
+     "start": 242.37,
+     "end": 242.74,
+     "score": 0.238
+    },
+    {
+     "w": "so",
+     "start": 243.87,
+     "end": 244.04,
+     "score": 0.917
+    },
+    {
+     "w": "we",
+     "start": 244.25,
+     "end": 244.56,
+     "score": 0.379
+    },
+    {
+     "w": "can",
+     "start": 245.17,
+     "end": 245.58,
+     "score": 0.337
+    },
+    {
+     "w": "give.",
+     "start": 245.59,
+     "end": 247.26,
+     "score": 0.043
+    }
+   ]
+  },
+  {
+   "id": "L65",
+   "section": "Outro",
+   "stem": "Vocals",
+   "singer": "choir, fading",
+   "text": "The more we grow, the more we give,",
+   "start": 248.59,
+   "end": 252.23,
+   "words": [
+    {
+     "w": "The",
+     "start": 248.59,
+     "end": 248.69,
+     "score": 0.036
+    },
+    {
+     "w": "more",
+     "start": 248.8,
+     "end": 249.19,
+     "score": 0.411
+    },
+    {
+     "w": "we",
+     "start": 249.18,
+     "end": 249.29,
+     "score": 0.106
+    },
+    {
+     "w": "grow,",
+     "start": 249.84,
+     "end": 249.95,
+     "score": 0.001
+    },
+    {
+     "w": "the",
+     "start": 249.963,
+     "end": 250.023,
+     "score": 0.226
+    },
+    {
+     "w": "more",
+     "start": 250.04,
+     "end": 250.47,
+     "score": 0.087
+    },
+    {
+     "w": "we",
+     "start": 250.46,
+     "end": 250.77,
+     "score": 0.001
+    },
+    {
+     "w": "give,",
+     "start": 250.76,
+     "end": 252.23,
+     "score": 0.001
+    }
+   ]
+  },
+  {
+   "id": "L66",
+   "section": "Outro",
+   "stem": "Vocals",
+   "singer": "choir, fading",
+   "text": "the more we grow, the more we give,",
+   "start": 252.286,
+   "end": 254.71,
+   "words": [
+    {
+     "w": "the",
+     "start": 252.286,
+     "end": 252.346,
+     "score": 0.021
+    },
+    {
+     "w": "more",
+     "start": 252.46,
+     "end": 252.83,
+     "score": 0.375
+    },
+    {
+     "w": "we",
+     "start": 252.94,
+     "end": 253.09,
+     "score": 0.577
+    },
+    {
+     "w": "grow,",
+     "start": 253.22,
+     "end": 253.63,
+     "score": 0.497
+    },
+    {
+     "w": "the",
+     "start": 253.62,
+     "end": 253.81,
+     "score": 0.002
+    },
+    {
+     "w": "more",
+     "start": 253.82,
+     "end": 253.91,
+     "score": 0.003
+    },
+    {
+     "w": "we",
+     "start": 253.9,
+     "end": 254.55,
+     "score": 0.004
+    },
+    {
+     "w": "give,",
+     "start": 254.6,
+     "end": 254.71,
+     "score": 0.002
+    }
+   ]
+  },
+  {
+   "id": "L67",
+   "section": "Outro",
+   "stem": "Vocals",
+   "singer": "choir, fading",
+   "text": "the more we grow...",
+   "start": 257.73,
+   "end": 260.96,
+   "words": [
+    {
+     "w": "the",
+     "start": 257.73,
+     "end": 257.84,
+     "score": 0.062
+    },
+    {
+     "w": "more",
+     "start": 257.93,
+     "end": 258.8,
+     "score": 0.355
+    },
+    {
+     "w": "we",
+     "start": 259.57,
+     "end": 259.7,
+     "score": 0.472
+    },
+    {
+     "w": "grow...",
+     "start": 260.25,
+     "end": 260.96,
+     "score": 0.446
+    }
+   ]
+  },
+  {
+   "id": "L68",
+   "section": "Tag",
+   "stem": "Vocals",
+   "singer": "the Founder, spoken over the fade",
+   "text": "Phone lines open at the IPO.",
+   "start": 266.0,
+   "end": 269.25,
+   "words": [
+    {
+     "w": "Phone",
+     "start": 266.0,
+     "end": 266.27,
+     "score": 0.236
+    },
+    {
+     "w": "lines",
+     "start": 266.26,
+     "end": 266.59,
+     "score": 0.712
+    },
+    {
+     "w": "open",
+     "start": 266.66,
+     "end": 266.93,
+     "score": 0.92
+    },
+    {
+     "w": "at",
+     "start": 268.46,
+     "end": 268.57,
+     "score": 0.35
+    },
+    {
+     "w": "the",
+     "start": 268.58,
+     "end": 268.69,
+     "score": 0.364
+    },
+    {
+     "w": "IPO.",
+     "start": 268.9,
+     "end": 269.25,
+     "score": 0.394
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,84 @@
+# As-sung draft (C3): the submitted lyrics re-cut to what the first pass hears (timing/first_pass_*.json).
+# Singer notes removed; sung parentheticals kept as words. Each section: [name | stem | singer]. For the ear check.
+[Intro | Vocals | the Founder, spoken]
+Right now, somewhere, a job is changing.
+Maybe yours.
+We can't promise to fix that.
+But we can promise a percentage.
+[Verse 1 | Vocals | the Founder]
+We built a thing that thinks so fast
+it's rewriting what we do,
+and some of what it's changing
+is the work that pays for you.
+So we gathered here this morning
+in a studio we own,
+to give away a part of us
+to a fund we keep at home.
+[Pre-Chorus | Vocals | the Lawyer]
+It's not a charity, per se,
+it's an LLC, wholly owned,
+flexible, adjustable,
+the details will be shown...
+[Pre-Chorus tag | Backing Vocals | choir]
+In the coming months!
+[Chorus | Backing Vocals | choir]
+Share the shares, share the shares,
+five in every hundred, we'll be there.
+And if we grow by half again,
+two more at our discretion then.
+The more we grow, the more we give,
+so help us grow, so we can give.
+The more we grow, the more we give,
+so help us grow, so we can give.
+[Verse 2 | Vocals | the Board]
+Now you might ask who holds the purse,
+who signs and who decides
+which cause is worthy, which is not,
+and who sits on which side.
+Each milestone's measured from a line
+we haven't drawn just yet,
+but trust us, it's a generous line,
+the best one you can get.
+[Pre-Chorus 2 | Vocals | the Lawyer]
+Not for lobbying, not for campaigns,
+not for politics, we swear...
+[Pre-Chorus 2 tag | Backing Vocals | choir]
+Through this fund!
+[Chorus 2 | Backing Vocals | choir]
+Share the shares, share the shares, share the shares, share the shares,
+five in every hundred, we'll be there.
+And if we grow by half again,
+two more at our discretion then.
+The more we grow, the more we give,
+so help us grow, so we can give.
+[Verse 3 | Vocals | the Worker (generated; the human's live take replaces it)]
+They call me a specific population;
+there's a study on my case,
+two hundred million spent to learn
+what happens to my place.
+I don't need a giant cardboard check
+with the number "TBA."
+I'd just like to know who's choosing,
+and whether I get a say.
+[Bridge | Vocals | the Founder]
+And it's real, it isn't nothing:
+a fifth of us, all told,
+set aside for something bigger
+than the ones who bought and sold.
+If a promise holds while holding's cheap,
+then watch us when it's not.
+When it's not!
+[Final Chorus | Vocals | everyone]
+Share the shares,
+five in every hundred, we'll be there.
+And if we grow by half again,
+two more at our discretion then.
+The more we grow, the more we give,
+do I get a say?
+So help us grow, so we can give.
+[Outro | Vocals | choir, fading]
+The more we grow, the more we give,
+the more we grow, the more we give,
+the more we grow...
+[Tag | Vocals | the Founder, spoken over the fade]
+Phone lines open at the IPO.

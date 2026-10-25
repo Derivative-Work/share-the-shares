@@ -1,4 +1,4 @@
-<!-- Exported by the agent from https://claude.ai/artifact/9kd8kySs1GK8P5ExFjM6Wu at doc rev 28, 2026-10-25 (scripts/doc_to_md.py). The live doc is the source of truth; re-export if it changes. -->
+<!-- Exported by the agent from https://claude.ai/artifact/9kd8kySs1GK8P5ExFjM6Wu at doc rev 30, 2026-10-25 (scripts/doc_to_md.py). The live doc is the source of truth; re-export if it changes. -->
 
 # Share the Shares
 
@@ -192,6 +192,7 @@ This follows the certificate scenes above. Cues are lyric lines, not timestamps;
 
 | ID | Cue | Picture | Source |
 | --- | --- | --- | --- |
+| S36 | The key change, just before verse 2 (where Suno put it) | The certificate re-inks brighter, with gold creeping into the green | R |
 | S18 | "Now you might ask who holds the purse" | *Prudence* weighs coins on her scales, which never settle | R |
 | S19 | "who signs and who decides" | The signature lines: President, Secretary, and a blank one labeled Recipient. A quill hovers over it | R |
 | S20 | "Each milestone's measured from a line" | *Prudence* rules a baseline across the page with a pen | R |
@@ -230,7 +231,6 @@ This follows the certificate scenes above. Cues are lyric lines, not timestamps;
 
 | ID | Cue | Picture | Source |
 | --- | --- | --- | --- |
-| S36 | The key change | The certificate re-inks brighter, with gold creeping into the green | R |
 | S37 | "Share the shares, share the shares" | *Prudence* clips the coupons along the bottom, one by one, into her ledger | R |
 | S38 | "at our discretion!" | Close on *Prudence*, scissors raised | R |
 | S39 | "baseline to be announced!" | *Mercury* pops up out of the fine print | R |

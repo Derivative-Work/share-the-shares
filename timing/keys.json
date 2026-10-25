@@ -1,0 +1,2235 @@
+{
+ "method": "chroma_cqt 4 s windows, KK profiles, 9-window majority; best single split, refined at 0.5 s and snapped to a beat",
+ "windows": [
+  {
+   "t": 0.0,
+   "key": "A major",
+   "r": 0.898,
+   "second": "E major"
+  },
+  {
+   "t": 1.0,
+   "key": "E major",
+   "r": 0.861,
+   "second": "A major"
+  },
+  {
+   "t": 2.0,
+   "key": "A major",
+   "r": 0.849,
+   "second": "E major"
+  },
+  {
+   "t": 3.0,
+   "key": "E major",
+   "r": 0.874,
+   "second": "A major"
+  },
+  {
+   "t": 4.0,
+   "key": "E major",
+   "r": 0.806,
+   "second": "A major"
+  },
+  {
+   "t": 5.0,
+   "key": "F# minor",
+   "r": 0.876,
+   "second": "A major"
+  },
+  {
+   "t": 6.0,
+   "key": "F# minor",
+   "r": 0.843,
+   "second": "A major"
+  },
+  {
+   "t": 7.0,
+   "key": "F# minor",
+   "r": 0.76,
+   "second": "D major"
+  },
+  {
+   "t": 8.0,
+   "key": "D major",
+   "r": 0.766,
+   "second": "F# minor"
+  },
+  {
+   "t": 9.0,
+   "key": "F# minor",
+   "r": 0.785,
+   "second": "D major"
+  },
+  {
+   "t": 10.0,
+   "key": "A major",
+   "r": 0.799,
+   "second": "D major"
+  },
+  {
+   "t": 11.0,
+   "key": "A major",
+   "r": 0.755,
+   "second": "E major"
+  },
+  {
+   "t": 12.0,
+   "key": "E major",
+   "r": 0.829,
+   "second": "A major"
+  },
+  {
+   "t": 13.0,
+   "key": "E major",
+   "r": 0.839,
+   "second": "E minor"
+  },
+  {
+   "t": 14.0,
+   "key": "E major",
+   "r": 0.851,
+   "second": "E minor"
+  },
+  {
+   "t": 15.0,
+   "key": "E major",
+   "r": 0.82,
+   "second": "E minor"
+  },
+  {
+   "t": 16.0,
+   "key": "E major",
+   "r": 0.813,
+   "second": "E minor"
+  },
+  {
+   "t": 17.0,
+   "key": "A major",
+   "r": 0.821,
+   "second": "E major"
+  },
+  {
+   "t": 18.0,
+   "key": "A major",
+   "r": 0.907,
+   "second": "A minor"
+  },
+  {
+   "t": 19.0,
+   "key": "A major",
+   "r": 0.871,
+   "second": "A minor"
+  },
+  {
+   "t": 20.0,
+   "key": "A major",
+   "r": 0.752,
+   "second": "A minor"
+  },
+  {
+   "t": 21.0,
+   "key": "A major",
+   "r": 0.592,
+   "second": "A minor"
+  },
+  {
+   "t": 22.0,
+   "key": "Ab minor",
+   "r": 0.601,
+   "second": "E major"
+  },
+  {
+   "t": 23.0,
+   "key": "Ab minor",
+   "r": 0.74,
+   "second": "Ab major"
+  },
+  {
+   "t": 24.0,
+   "key": "Ab minor",
+   "r": 0.7,
+   "second": "Ab major"
+  },
+  {
+   "t": 25.0,
+   "key": "F# minor",
+   "r": 0.563,
+   "second": "F# major"
+  },
+  {
+   "t": 26.0,
+   "key": "F# minor",
+   "r": 0.761,
+   "second": "F# major"
+  },
+  {
+   "t": 27.0,
+   "key": "F# minor",
+   "r": 0.82,
+   "second": "F# major"
+  },
+  {
+   "t": 28.0,
+   "key": "F# minor",
+   "r": 0.778,
+   "second": "D major"
+  },
+  {
+   "t": 29.0,
+   "key": "D major",
+   "r": 0.82,
+   "second": "F# minor"
+  },
+  {
+   "t": 30.0,
+   "key": "D major",
+   "r": 0.876,
+   "second": "D minor"
+  },
+  {
+   "t": 31.0,
+   "key": "D major",
+   "r": 0.865,
+   "second": "A major"
+  },
+  {
+   "t": 32.0,
+   "key": "A major",
+   "r": 0.868,
+   "second": "D major"
+  },
+  {
+   "t": 33.0,
+   "key": "A major",
+   "r": 0.848,
+   "second": "A minor"
+  },
+  {
+   "t": 34.0,
+   "key": "A major",
+   "r": 0.741,
+   "second": "A minor"
+  },
+  {
+   "t": 35.0,
+   "key": "A major",
+   "r": 0.571,
+   "second": "A minor"
+  },
+  {
+   "t": 36.0,
+   "key": "Ab minor",
+   "r": 0.633,
+   "second": "Ab major"
+  },
+  {
+   "t": 37.0,
+   "key": "Ab minor",
+   "r": 0.796,
+   "second": "Ab major"
+  },
+  {
+   "t": 38.0,
+   "key": "Ab minor",
+   "r": 0.876,
+   "second": "E major"
+  },
+  {
+   "t": 39.0,
+   "key": "Ab minor",
+   "r": 0.768,
+   "second": "B major"
+  },
+  {
+   "t": 40.0,
+   "key": "B major",
+   "r": 0.785,
+   "second": "B minor"
+  },
+  {
+   "t": 41.0,
+   "key": "B minor",
+   "r": 0.864,
+   "second": "B major"
+  },
+  {
+   "t": 42.0,
+   "key": "B minor",
+   "r": 0.811,
+   "second": "D major"
+  },
+  {
+   "t": 43.0,
+   "key": "D major",
+   "r": 0.63,
+   "second": "A major"
+  },
+  {
+   "t": 44.0,
+   "key": "D major",
+   "r": 0.567,
+   "second": "A major"
+  },
+  {
+   "t": 45.0,
+   "key": "A major",
+   "r": 0.616,
+   "second": "E major"
+  },
+  {
+   "t": 46.0,
+   "key": "F# minor",
+   "r": 0.649,
+   "second": "E major"
+  },
+  {
+   "t": 47.0,
+   "key": "F# minor",
+   "r": 0.868,
+   "second": "F# major"
+  },
+  {
+   "t": 48.0,
+   "key": "F# minor",
+   "r": 0.899,
+   "second": "F# major"
+  },
+  {
+   "t": 49.0,
+   "key": "C# minor",
+   "r": 0.796,
+   "second": "F# minor"
+  },
+  {
+   "t": 50.0,
+   "key": "C# minor",
+   "r": 0.938,
+   "second": "E major"
+  },
+  {
+   "t": 51.0,
+   "key": "C# minor",
+   "r": 0.922,
+   "second": "E major"
+  },
+  {
+   "t": 52.0,
+   "key": "C# minor",
+   "r": 0.76,
+   "second": "E major"
+  },
+  {
+   "t": 53.0,
+   "key": "D major",
+   "r": 0.703,
+   "second": "A major"
+  },
+  {
+   "t": 54.0,
+   "key": "D major",
+   "r": 0.833,
+   "second": "D minor"
+  },
+  {
+   "t": 55.0,
+   "key": "D major",
+   "r": 0.819,
+   "second": "D minor"
+  },
+  {
+   "t": 56.0,
+   "key": "A major",
+   "r": 0.671,
+   "second": "D major"
+  },
+  {
+   "t": 57.0,
+   "key": "E minor",
+   "r": 0.7,
+   "second": "E major"
+  },
+  {
+   "t": 58.0,
+   "key": "E major",
+   "r": 0.738,
+   "second": "E minor"
+  },
+  {
+   "t": 59.0,
+   "key": "E major",
+   "r": 0.754,
+   "second": "A major"
+  },
+  {
+   "t": 60.0,
+   "key": "A major",
+   "r": 0.851,
+   "second": "E major"
+  },
+  {
+   "t": 61.0,
+   "key": "A major",
+   "r": 0.837,
+   "second": "C# minor"
+  },
+  {
+   "t": 62.0,
+   "key": "A major",
+   "r": 0.805,
+   "second": "C# minor"
+  },
+  {
+   "t": 63.0,
+   "key": "A major",
+   "r": 0.563,
+   "second": "C# minor"
+  },
+  {
+   "t": 64.0,
+   "key": "A major",
+   "r": 0.56,
+   "second": "D major"
+  },
+  {
+   "t": 65.0,
+   "key": "D major",
+   "r": 0.671,
+   "second": "D minor"
+  },
+  {
+   "t": 66.0,
+   "key": "A major",
+   "r": 0.543,
+   "second": "C# minor"
+  },
+  {
+   "t": 67.0,
+   "key": "C# minor",
+   "r": 0.779,
+   "second": "A major"
+  },
+  {
+   "t": 68.0,
+   "key": "F# minor",
+   "r": 0.698,
+   "second": "F# major"
+  },
+  {
+   "t": 69.0,
+   "key": "F# major",
+   "r": 0.712,
+   "second": "B major"
+  },
+  {
+   "t": 70.0,
+   "key": "B minor",
+   "r": 0.794,
+   "second": "B major"
+  },
+  {
+   "t": 71.0,
+   "key": "B major",
+   "r": 0.752,
+   "second": "B minor"
+  },
+  {
+   "t": 72.0,
+   "key": "E major",
+   "r": 0.801,
+   "second": "B major"
+  },
+  {
+   "t": 73.0,
+   "key": "E major",
+   "r": 0.813,
+   "second": "A major"
+  },
+  {
+   "t": 74.0,
+   "key": "A major",
+   "r": 0.847,
+   "second": "E major"
+  },
+  {
+   "t": 75.0,
+   "key": "A major",
+   "r": 0.826,
+   "second": "C# minor"
+  },
+  {
+   "t": 76.0,
+   "key": "A major",
+   "r": 0.852,
+   "second": "C# minor"
+  },
+  {
+   "t": 77.0,
+   "key": "A major",
+   "r": 0.658,
+   "second": "C# minor"
+  },
+  {
+   "t": 78.0,
+   "key": "D minor",
+   "r": 0.687,
+   "second": "D major"
+  },
+  {
+   "t": 79.0,
+   "key": "D minor",
+   "r": 0.849,
+   "second": "F major"
+  },
+  {
+   "t": 80.0,
+   "key": "F major",
+   "r": 0.716,
+   "second": "D minor"
+  },
+  {
+   "t": 81.0,
+   "key": "F major",
+   "r": 0.688,
+   "second": "F minor"
+  },
+  {
+   "t": 82.0,
+   "key": "F major",
+   "r": 0.593,
+   "second": "D minor"
+  },
+  {
+   "t": 83.0,
+   "key": "A minor",
+   "r": 0.63,
+   "second": "A major"
+  },
+  {
+   "t": 84.0,
+   "key": "A major",
+   "r": 0.768,
+   "second": "A minor"
+  },
+  {
+   "t": 85.0,
+   "key": "E major",
+   "r": 0.789,
+   "second": "A major"
+  },
+  {
+   "t": 86.0,
+   "key": "E major",
+   "r": 0.821,
+   "second": "A major"
+  },
+  {
+   "t": 87.0,
+   "key": "E major",
+   "r": 0.789,
+   "second": "C# minor"
+  },
+  {
+   "t": 88.0,
+   "key": "E major",
+   "r": 0.697,
+   "second": "C# minor"
+  },
+  {
+   "t": 89.0,
+   "key": "F# minor",
+   "r": 0.772,
+   "second": "A major"
+  },
+  {
+   "t": 90.0,
+   "key": "F# minor",
+   "r": 0.832,
+   "second": "D major"
+  },
+  {
+   "t": 91.0,
+   "key": "D major",
+   "r": 0.895,
+   "second": "A major"
+  },
+  {
+   "t": 92.0,
+   "key": "D major",
+   "r": 0.832,
+   "second": "A major"
+  },
+  {
+   "t": 93.0,
+   "key": "A major",
+   "r": 0.818,
+   "second": "E major"
+  },
+  {
+   "t": 94.0,
+   "key": "A major",
+   "r": 0.857,
+   "second": "E major"
+  },
+  {
+   "t": 95.0,
+   "key": "A major",
+   "r": 0.757,
+   "second": "E major"
+  },
+  {
+   "t": 96.0,
+   "key": "A minor",
+   "r": 0.72,
+   "second": "A major"
+  },
+  {
+   "t": 97.0,
+   "key": "F major",
+   "r": 0.686,
+   "second": "D minor"
+  },
+  {
+   "t": 98.0,
+   "key": "Bb major",
+   "r": 0.831,
+   "second": "F major"
+  },
+  {
+   "t": 99.0,
+   "key": "Bb major",
+   "r": 0.866,
+   "second": "Bb minor"
+  },
+  {
+   "t": 100.0,
+   "key": "Bb major",
+   "r": 0.766,
+   "second": "Bb minor"
+  },
+  {
+   "t": 101.0,
+   "key": "Bb major",
+   "r": 0.64,
+   "second": "Bb minor"
+  },
+  {
+   "t": 102.0,
+   "key": "A minor",
+   "r": 0.469,
+   "second": "F major"
+  },
+  {
+   "t": 103.0,
+   "key": "A minor",
+   "r": 0.686,
+   "second": "A major"
+  },
+  {
+   "t": 104.0,
+   "key": "A minor",
+   "r": 0.714,
+   "second": "A major"
+  },
+  {
+   "t": 105.0,
+   "key": "A minor",
+   "r": 0.546,
+   "second": "D major"
+  },
+  {
+   "t": 106.0,
+   "key": "G major",
+   "r": 0.671,
+   "second": "G minor"
+  },
+  {
+   "t": 107.0,
+   "key": "G minor",
+   "r": 0.769,
+   "second": "G major"
+  },
+  {
+   "t": 108.0,
+   "key": "G minor",
+   "r": 0.794,
+   "second": "G major"
+  },
+  {
+   "t": 109.0,
+   "key": "Eb major",
+   "r": 0.701,
+   "second": "G minor"
+  },
+  {
+   "t": 110.0,
+   "key": "Eb major",
+   "r": 0.656,
+   "second": "Bb major"
+  },
+  {
+   "t": 111.0,
+   "key": "Bb major",
+   "r": 0.814,
+   "second": "Eb major"
+  },
+  {
+   "t": 112.0,
+   "key": "Bb major",
+   "r": 0.876,
+   "second": "F major"
+  },
+  {
+   "t": 113.0,
+   "key": "Bb major",
+   "r": 0.843,
+   "second": "Bb minor"
+  },
+  {
+   "t": 114.0,
+   "key": "Bb major",
+   "r": 0.763,
+   "second": "Bb minor"
+  },
+  {
+   "t": 115.0,
+   "key": "Bb major",
+   "r": 0.617,
+   "second": "Bb minor"
+  },
+  {
+   "t": 116.0,
+   "key": "A minor",
+   "r": 0.51,
+   "second": "F major"
+  },
+  {
+   "t": 117.0,
+   "key": "A minor",
+   "r": 0.735,
+   "second": "A major"
+  },
+  {
+   "t": 118.0,
+   "key": "A minor",
+   "r": 0.754,
+   "second": "A major"
+  },
+  {
+   "t": 119.0,
+   "key": "A minor",
+   "r": 0.557,
+   "second": "D minor"
+  },
+  {
+   "t": 120.0,
+   "key": "G minor",
+   "r": 0.696,
+   "second": "G major"
+  },
+  {
+   "t": 121.0,
+   "key": "G minor",
+   "r": 0.748,
+   "second": "G major"
+  },
+  {
+   "t": 122.0,
+   "key": "G minor",
+   "r": 0.743,
+   "second": "Eb major"
+  },
+  {
+   "t": 123.0,
+   "key": "Eb major",
+   "r": 0.688,
+   "second": "G minor"
+  },
+  {
+   "t": 124.0,
+   "key": "Eb major",
+   "r": 0.571,
+   "second": "Bb major"
+  },
+  {
+   "t": 125.0,
+   "key": "Bb major",
+   "r": 0.614,
+   "second": "Eb major"
+  },
+  {
+   "t": 126.0,
+   "key": "G minor",
+   "r": 0.66,
+   "second": "Bb major"
+  },
+  {
+   "t": 127.0,
+   "key": "G minor",
+   "r": 0.801,
+   "second": "G major"
+  },
+  {
+   "t": 128.0,
+   "key": "G minor",
+   "r": 0.861,
+   "second": "G major"
+  },
+  {
+   "t": 129.0,
+   "key": "G minor",
+   "r": 0.838,
+   "second": "G major"
+  },
+  {
+   "t": 130.0,
+   "key": "D minor",
+   "r": 0.775,
+   "second": "D major"
+  },
+  {
+   "t": 131.0,
+   "key": "D minor",
+   "r": 0.84,
+   "second": "D major"
+  },
+  {
+   "t": 132.0,
+   "key": "D minor",
+   "r": 0.778,
+   "second": "D major"
+  },
+  {
+   "t": 133.0,
+   "key": "D minor",
+   "r": 0.549,
+   "second": "Bb major"
+  },
+  {
+   "t": 134.0,
+   "key": "Eb major",
+   "r": 0.603,
+   "second": "Bb major"
+  },
+  {
+   "t": 135.0,
+   "key": "Eb major",
+   "r": 0.693,
+   "second": "Bb major"
+  },
+  {
+   "t": 136.0,
+   "key": "Bb major",
+   "r": 0.567,
+   "second": "Eb major"
+  },
+  {
+   "t": 137.0,
+   "key": "Bb major",
+   "r": 0.684,
+   "second": "F major"
+  },
+  {
+   "t": 138.0,
+   "key": "Bb major",
+   "r": 0.841,
+   "second": "F major"
+  },
+  {
+   "t": 139.0,
+   "key": "Bb major",
+   "r": 0.889,
+   "second": "F major"
+  },
+  {
+   "t": 140.0,
+   "key": "Bb major",
+   "r": 0.816,
+   "second": "D minor"
+  },
+  {
+   "t": 141.0,
+   "key": "Bb major",
+   "r": 0.755,
+   "second": "D minor"
+  },
+  {
+   "t": 142.0,
+   "key": "Bb major",
+   "r": 0.551,
+   "second": "D minor"
+  },
+  {
+   "t": 143.0,
+   "key": "Eb major",
+   "r": 0.61,
+   "second": "Bb major"
+  },
+  {
+   "t": 144.0,
+   "key": "Eb major",
+   "r": 0.643,
+   "second": "Eb minor"
+  },
+  {
+   "t": 145.0,
+   "key": "D minor",
+   "r": 0.629,
+   "second": "Bb major"
+  },
+  {
+   "t": 146.0,
+   "key": "D minor",
+   "r": 0.731,
+   "second": "G minor"
+  },
+  {
+   "t": 147.0,
+   "key": "G minor",
+   "r": 0.71,
+   "second": "G major"
+  },
+  {
+   "t": 148.0,
+   "key": "G minor",
+   "r": 0.791,
+   "second": "G major"
+  },
+  {
+   "t": 149.0,
+   "key": "G minor",
+   "r": 0.716,
+   "second": "Eb major"
+  },
+  {
+   "t": 150.0,
+   "key": "Eb major",
+   "r": 0.643,
+   "second": "Bb major"
+  },
+  {
+   "t": 151.0,
+   "key": "Bb major",
+   "r": 0.77,
+   "second": "Eb major"
+  },
+  {
+   "t": 152.0,
+   "key": "Bb major",
+   "r": 0.93,
+   "second": "F major"
+  },
+  {
+   "t": 153.0,
+   "key": "Bb major",
+   "r": 0.832,
+   "second": "D minor"
+  },
+  {
+   "t": 154.0,
+   "key": "D minor",
+   "r": 0.746,
+   "second": "Bb major"
+  },
+  {
+   "t": 155.0,
+   "key": "Bb major",
+   "r": 0.631,
+   "second": "D minor"
+  },
+  {
+   "t": 156.0,
+   "key": "Eb minor",
+   "r": 0.411,
+   "second": "D minor"
+  },
+  {
+   "t": 157.0,
+   "key": "Eb minor",
+   "r": 0.739,
+   "second": "Eb major"
+  },
+  {
+   "t": 158.0,
+   "key": "Eb minor",
+   "r": 0.769,
+   "second": "F# major"
+  },
+  {
+   "t": 159.0,
+   "key": "F# major",
+   "r": 0.683,
+   "second": "F# minor"
+  },
+  {
+   "t": 160.0,
+   "key": "F# major",
+   "r": 0.695,
+   "second": "F# minor"
+  },
+  {
+   "t": 161.0,
+   "key": "F# major",
+   "r": 0.681,
+   "second": "F# minor"
+  },
+  {
+   "t": 162.0,
+   "key": "F# major",
+   "r": 0.6,
+   "second": "Bb minor"
+  },
+  {
+   "t": 163.0,
+   "key": "Bb minor",
+   "r": 0.688,
+   "second": "Bb major"
+  },
+  {
+   "t": 164.0,
+   "key": "Bb major",
+   "r": 0.799,
+   "second": "Bb minor"
+  },
+  {
+   "t": 165.0,
+   "key": "Bb major",
+   "r": 0.834,
+   "second": "F major"
+  },
+  {
+   "t": 166.0,
+   "key": "F major",
+   "r": 0.889,
+   "second": "Bb major"
+  },
+  {
+   "t": 167.0,
+   "key": "F major",
+   "r": 0.902,
+   "second": "A minor"
+  },
+  {
+   "t": 168.0,
+   "key": "F major",
+   "r": 0.832,
+   "second": "A minor"
+  },
+  {
+   "t": 169.0,
+   "key": "F major",
+   "r": 0.832,
+   "second": "A minor"
+  },
+  {
+   "t": 170.0,
+   "key": "D minor",
+   "r": 0.665,
+   "second": "G minor"
+  },
+  {
+   "t": 171.0,
+   "key": "D minor",
+   "r": 0.727,
+   "second": "G minor"
+  },
+  {
+   "t": 172.0,
+   "key": "G minor",
+   "r": 0.727,
+   "second": "D minor"
+  },
+  {
+   "t": 173.0,
+   "key": "Bb major",
+   "r": 0.695,
+   "second": "G minor"
+  },
+  {
+   "t": 174.0,
+   "key": "Bb major",
+   "r": 0.784,
+   "second": "F major"
+  },
+  {
+   "t": 175.0,
+   "key": "Bb major",
+   "r": 0.73,
+   "second": "Eb major"
+  },
+  {
+   "t": 176.0,
+   "key": "Bb major",
+   "r": 0.871,
+   "second": "F major"
+  },
+  {
+   "t": 177.0,
+   "key": "F major",
+   "r": 0.852,
+   "second": "Bb major"
+  },
+  {
+   "t": 178.0,
+   "key": "Bb major",
+   "r": 0.848,
+   "second": "F major"
+  },
+  {
+   "t": 179.0,
+   "key": "Bb major",
+   "r": 0.844,
+   "second": "D minor"
+  },
+  {
+   "t": 180.0,
+   "key": "F major",
+   "r": 0.86,
+   "second": "D minor"
+  },
+  {
+   "t": 181.0,
+   "key": "F major",
+   "r": 0.944,
+   "second": "D minor"
+  },
+  {
+   "t": 182.0,
+   "key": "F major",
+   "r": 0.897,
+   "second": "A minor"
+  },
+  {
+   "t": 183.0,
+   "key": "F major",
+   "r": 0.925,
+   "second": "A minor"
+  },
+  {
+   "t": 184.0,
+   "key": "F major",
+   "r": 0.859,
+   "second": "D minor"
+  },
+  {
+   "t": 185.0,
+   "key": "G minor",
+   "r": 0.875,
+   "second": "G major"
+  },
+  {
+   "t": 186.0,
+   "key": "G minor",
+   "r": 0.942,
+   "second": "G major"
+  },
+  {
+   "t": 187.0,
+   "key": "G minor",
+   "r": 0.947,
+   "second": "Eb major"
+  },
+  {
+   "t": 188.0,
+   "key": "G minor",
+   "r": 0.891,
+   "second": "Eb major"
+  },
+  {
+   "t": 189.0,
+   "key": "Bb major",
+   "r": 0.821,
+   "second": "Eb major"
+  },
+  {
+   "t": 190.0,
+   "key": "Bb major",
+   "r": 0.8,
+   "second": "G minor"
+  },
+  {
+   "t": 191.0,
+   "key": "G minor",
+   "r": 0.792,
+   "second": "Bb major"
+  },
+  {
+   "t": 192.0,
+   "key": "G minor",
+   "r": 0.889,
+   "second": "G major"
+  },
+  {
+   "t": 193.0,
+   "key": "G minor",
+   "r": 0.911,
+   "second": "G major"
+  },
+  {
+   "t": 194.0,
+   "key": "G minor",
+   "r": 0.805,
+   "second": "D minor"
+  },
+  {
+   "t": 195.0,
+   "key": "D minor",
+   "r": 0.909,
+   "second": "D major"
+  },
+  {
+   "t": 196.0,
+   "key": "D minor",
+   "r": 0.956,
+   "second": "F major"
+  },
+  {
+   "t": 197.0,
+   "key": "D minor",
+   "r": 0.9,
+   "second": "F major"
+  },
+  {
+   "t": 198.0,
+   "key": "D minor",
+   "r": 0.707,
+   "second": "Bb major"
+  },
+  {
+   "t": 199.0,
+   "key": "Eb major",
+   "r": 0.763,
+   "second": "G minor"
+  },
+  {
+   "t": 200.0,
+   "key": "Eb major",
+   "r": 0.863,
+   "second": "G minor"
+  },
+  {
+   "t": 201.0,
+   "key": "Eb major",
+   "r": 0.855,
+   "second": "G minor"
+  },
+  {
+   "t": 202.0,
+   "key": "Bb major",
+   "r": 0.898,
+   "second": "G minor"
+  },
+  {
+   "t": 203.0,
+   "key": "Bb major",
+   "r": 0.752,
+   "second": "F major"
+  },
+  {
+   "t": 204.0,
+   "key": "F major",
+   "r": 0.762,
+   "second": "D minor"
+  },
+  {
+   "t": 205.0,
+   "key": "D minor",
+   "r": 0.713,
+   "second": "F major"
+  },
+  {
+   "t": 206.0,
+   "key": "G minor",
+   "r": 0.775,
+   "second": "G major"
+  },
+  {
+   "t": 207.0,
+   "key": "G minor",
+   "r": 0.829,
+   "second": "G major"
+  },
+  {
+   "t": 208.0,
+   "key": "G minor",
+   "r": 0.734,
+   "second": "G major"
+  },
+  {
+   "t": 209.0,
+   "key": "D minor",
+   "r": 0.746,
+   "second": "D major"
+  },
+  {
+   "t": 210.0,
+   "key": "D minor",
+   "r": 0.841,
+   "second": "D major"
+  },
+  {
+   "t": 211.0,
+   "key": "D minor",
+   "r": 0.823,
+   "second": "D major"
+  },
+  {
+   "t": 212.0,
+   "key": "D minor",
+   "r": 0.682,
+   "second": "Bb major"
+  },
+  {
+   "t": 213.0,
+   "key": "Eb major",
+   "r": 0.62,
+   "second": "Eb minor"
+  },
+  {
+   "t": 214.0,
+   "key": "Eb major",
+   "r": 0.748,
+   "second": "Eb minor"
+  },
+  {
+   "t": 215.0,
+   "key": "Eb major",
+   "r": 0.716,
+   "second": "Eb minor"
+  },
+  {
+   "t": 216.0,
+   "key": "Bb major",
+   "r": 0.471,
+   "second": "F minor"
+  },
+  {
+   "t": 217.0,
+   "key": "F major",
+   "r": 0.648,
+   "second": "F minor"
+  },
+  {
+   "t": 218.0,
+   "key": "F major",
+   "r": 0.754,
+   "second": "F minor"
+  },
+  {
+   "t": 219.0,
+   "key": "F major",
+   "r": 0.778,
+   "second": "Bb major"
+  },
+  {
+   "t": 220.0,
+   "key": "F major",
+   "r": 0.778,
+   "second": "Bb major"
+  },
+  {
+   "t": 221.0,
+   "key": "Bb major",
+   "r": 0.871,
+   "second": "F major"
+  },
+  {
+   "t": 222.0,
+   "key": "Bb major",
+   "r": 0.878,
+   "second": "F major"
+  },
+  {
+   "t": 223.0,
+   "key": "Bb major",
+   "r": 0.806,
+   "second": "F major"
+  },
+  {
+   "t": 224.0,
+   "key": "F major",
+   "r": 0.763,
+   "second": "Bb major"
+  },
+  {
+   "t": 225.0,
+   "key": "F major",
+   "r": 0.829,
+   "second": "D minor"
+  },
+  {
+   "t": 226.0,
+   "key": "D minor",
+   "r": 0.848,
+   "second": "F major"
+  },
+  {
+   "t": 227.0,
+   "key": "D minor",
+   "r": 0.933,
+   "second": "F major"
+  },
+  {
+   "t": 228.0,
+   "key": "D minor",
+   "r": 0.919,
+   "second": "D major"
+  },
+  {
+   "t": 229.0,
+   "key": "D minor",
+   "r": 0.8,
+   "second": "D major"
+  },
+  {
+   "t": 230.0,
+   "key": "G minor",
+   "r": 0.675,
+   "second": "D minor"
+  },
+  {
+   "t": 231.0,
+   "key": "Bb major",
+   "r": 0.652,
+   "second": "D minor"
+  },
+  {
+   "t": 232.0,
+   "key": "Bb major",
+   "r": 0.715,
+   "second": "F major"
+  },
+  {
+   "t": 233.0,
+   "key": "Bb major",
+   "r": 0.854,
+   "second": "F major"
+  },
+  {
+   "t": 234.0,
+   "key": "Bb major",
+   "r": 0.864,
+   "second": "F major"
+  },
+  {
+   "t": 235.0,
+   "key": "Bb major",
+   "r": 0.81,
+   "second": "D minor"
+  },
+  {
+   "t": 236.0,
+   "key": "Bb major",
+   "r": 0.754,
+   "second": "G minor"
+  },
+  {
+   "t": 237.0,
+   "key": "G minor",
+   "r": 0.535,
+   "second": "Bb major"
+  },
+  {
+   "t": 238.0,
+   "key": "Eb minor",
+   "r": 0.675,
+   "second": "Eb major"
+  },
+  {
+   "t": 239.0,
+   "key": "Eb minor",
+   "r": 0.836,
+   "second": "Eb major"
+  },
+  {
+   "t": 240.0,
+   "key": "Eb minor",
+   "r": 0.848,
+   "second": "Eb major"
+  },
+  {
+   "t": 241.0,
+   "key": "Eb minor",
+   "r": 0.745,
+   "second": "Eb major"
+  },
+  {
+   "t": 242.0,
+   "key": "Bb major",
+   "r": 0.661,
+   "second": "Eb major"
+  },
+  {
+   "t": 243.0,
+   "key": "Bb major",
+   "r": 0.659,
+   "second": "G minor"
+  },
+  {
+   "t": 244.0,
+   "key": "F major",
+   "r": 0.676,
+   "second": "G minor"
+  },
+  {
+   "t": 245.0,
+   "key": "G minor",
+   "r": 0.628,
+   "second": "Bb major"
+  },
+  {
+   "t": 246.0,
+   "key": "G minor",
+   "r": 0.685,
+   "second": "Eb major"
+  },
+  {
+   "t": 247.0,
+   "key": "Bb major",
+   "r": 0.849,
+   "second": "Eb major"
+  },
+  {
+   "t": 248.0,
+   "key": "Bb major",
+   "r": 0.923,
+   "second": "Eb major"
+  },
+  {
+   "t": 249.0,
+   "key": "Bb major",
+   "r": 0.925,
+   "second": "D minor"
+  },
+  {
+   "t": 250.0,
+   "key": "Bb major",
+   "r": 0.851,
+   "second": "D minor"
+  },
+  {
+   "t": 251.0,
+   "key": "Bb major",
+   "r": 0.699,
+   "second": "G minor"
+  },
+  {
+   "t": 252.0,
+   "key": "Eb major",
+   "r": 0.67,
+   "second": "Bb major"
+  },
+  {
+   "t": 253.0,
+   "key": "Eb minor",
+   "r": 0.841,
+   "second": "Eb major"
+  },
+  {
+   "t": 254.0,
+   "key": "Eb minor",
+   "r": 0.759,
+   "second": "F# major"
+  },
+  {
+   "t": 255.0,
+   "key": "F# major",
+   "r": 0.63,
+   "second": "Eb minor"
+  },
+  {
+   "t": 256.0,
+   "key": "F# major",
+   "r": 0.573,
+   "second": "Eb minor"
+  },
+  {
+   "t": 257.0,
+   "key": "Bb major",
+   "r": 0.625,
+   "second": "Bb minor"
+  },
+  {
+   "t": 258.0,
+   "key": "Bb major",
+   "r": 0.806,
+   "second": "G minor"
+  },
+  {
+   "t": 259.0,
+   "key": "Bb major",
+   "r": 0.948,
+   "second": "G minor"
+  },
+  {
+   "t": 260.0,
+   "key": "Bb major",
+   "r": 0.956,
+   "second": "F major"
+  },
+  {
+   "t": 261.0,
+   "key": "Bb major",
+   "r": 0.919,
+   "second": "D minor"
+  },
+  {
+   "t": 262.0,
+   "key": "Bb major",
+   "r": 0.898,
+   "second": "D minor"
+  },
+  {
+   "t": 263.0,
+   "key": "Bb major",
+   "r": 0.891,
+   "second": "D minor"
+  },
+  {
+   "t": 264.0,
+   "key": "Bb major",
+   "r": 0.732,
+   "second": "Eb minor"
+  },
+  {
+   "t": 265.0,
+   "key": "Eb minor",
+   "r": 0.78,
+   "second": "Eb major"
+  },
+  {
+   "t": 266.0,
+   "key": "Eb minor",
+   "r": 0.834,
+   "second": "Eb major"
+  },
+  {
+   "t": 267.0,
+   "key": "Bb major",
+   "r": 0.751,
+   "second": "Eb minor"
+  },
+  {
+   "t": 268.0,
+   "key": "Bb major",
+   "r": 0.855,
+   "second": "F major"
+  },
+  {
+   "t": 269.0,
+   "key": "Bb major",
+   "r": 0.908,
+   "second": "F major"
+  },
+  {
+   "t": 270.0,
+   "key": "Bb major",
+   "r": 0.829,
+   "second": "D minor"
+  },
+  {
+   "t": 271.0,
+   "key": "D minor",
+   "r": 0.66,
+   "second": "Bb major"
+  },
+  {
+   "t": 272.0,
+   "key": "D minor",
+   "r": 0.682,
+   "second": "Bb major"
+  },
+  {
+   "t": 273.0,
+   "key": "Bb major",
+   "r": 0.821,
+   "second": "D minor"
+  },
+  {
+   "t": 274.0,
+   "key": "Bb major",
+   "r": 0.839,
+   "second": "D minor"
+  },
+  {
+   "t": 275.0,
+   "key": "Bb major",
+   "r": 0.872,
+   "second": "Bb minor"
+  },
+  {
+   "t": 276.0,
+   "key": "Bb major",
+   "r": 0.835,
+   "second": "G minor"
+  },
+  {
+   "t": 277.0,
+   "key": "Bb major",
+   "r": 0.794,
+   "second": "G minor"
+  },
+  {
+   "t": 278.0,
+   "key": "Bb major",
+   "r": 0.786,
+   "second": "G minor"
+  },
+  {
+   "t": 279.0,
+   "key": "Bb major",
+   "r": 0.791,
+   "second": "Bb minor"
+  }
+ ],
+ "smoothed": [
+  "E major",
+  "E major",
+  "E major",
+  "E major",
+  "E major",
+  "F# minor",
+  "F# minor",
+  "F# minor",
+  "F# minor",
+  "F# minor",
+  "F# minor",
+  "E major",
+  "E major",
+  "E major",
+  "E major",
+  "E major",
+  "E major",
+  "A major",
+  "A major",
+  "A major",
+  "A major",
+  "A major",
+  "A major",
+  "A major",
+  "F# minor",
+  "F# minor",
+  "F# minor",
+  "F# minor",
+  "F# minor",
+  "F# minor",
+  "D major",
+  "A major",
+  "A major",
+  "A major",
+  "A major",
+  "A major",
+  "A major",
+  "Ab minor",
+  "Ab minor",
+  "Ab minor",
+  "Ab minor",
+  "Ab minor",
+  "D major",
+  "D major",
+  "F# minor",
+  "F# minor",
+  "F# minor",
+  "C# minor",
+  "C# minor",
+  "C# minor",
+  "C# minor",
+  "C# minor",
+  "C# minor",
+  "C# minor",
+  "D major",
+  "D major",
+  "D major",
+  "D major",
+  "A major",
+  "A major",
+  "A major",
+  "A major",
+  "A major",
+  "A major",
+  "A major",
+  "A major",
+  "A major",
+  "A major",
+  "A major",
+  "E major",
+  "E major",
+  "E major",
+  "A major",
+  "A major",
+  "A major",
+  "A major",
+  "A major",
+  "A major",
+  "A major",
+  "A major",
+  "A major",
+  "F major",
+  "F major",
+  "E major",
+  "E major",
+  "E major",
+  "E major",
+  "E major",
+  "E major",
+  "E major",
+  "E major",
+  "A major",
+  "A major",
+  "A major",
+  "A major",
+  "A major",
+  "A major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "A minor",
+  "A minor",
+  "A minor",
+  "A minor",
+  "A minor",
+  "A minor",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "A minor",
+  "A minor",
+  "A minor",
+  "A minor",
+  "A minor",
+  "G minor",
+  "G minor",
+  "G minor",
+  "G minor",
+  "G minor",
+  "G minor",
+  "G minor",
+  "G minor",
+  "G minor",
+  "D minor",
+  "D minor",
+  "D minor",
+  "D minor",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "G minor",
+  "G minor",
+  "G minor",
+  "G minor",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "F# major",
+  "F# major",
+  "F# major",
+  "F# major",
+  "F# major",
+  "F# major",
+  "F# major",
+  "F# major",
+  "F major",
+  "F major",
+  "F major",
+  "F major",
+  "F major",
+  "F major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "F major",
+  "F major",
+  "F major",
+  "F major",
+  "F major",
+  "F major",
+  "G minor",
+  "G minor",
+  "G minor",
+  "G minor",
+  "G minor",
+  "G minor",
+  "G minor",
+  "G minor",
+  "G minor",
+  "G minor",
+  "G minor",
+  "D minor",
+  "D minor",
+  "D minor",
+  "D minor",
+  "D minor",
+  "D minor",
+  "Eb major",
+  "Eb major",
+  "G minor",
+  "G minor",
+  "G minor",
+  "D minor",
+  "D minor",
+  "D minor",
+  "D minor",
+  "D minor",
+  "D minor",
+  "D minor",
+  "D minor",
+  "F major",
+  "F major",
+  "F major",
+  "F major",
+  "Bb major",
+  "F major",
+  "F major",
+  "F major",
+  "F major",
+  "Bb major",
+  "D minor",
+  "D minor",
+  "D minor",
+  "D minor",
+  "D minor",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Eb minor",
+  "Eb minor",
+  "Eb minor",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major",
+  "Bb major"
+ ],
+ "changes": [
+  {
+   "t": 7.0,
+   "from": "E major",
+   "to": "F# minor",
+   "held_before_s": 5.0
+  },
+  {
+   "t": 13.0,
+   "from": "F# minor",
+   "to": "E major",
+   "held_before_s": 6.0
+  },
+  {
+   "t": 19.0,
+   "from": "E major",
+   "to": "A major",
+   "held_before_s": 6.0
+  },
+  {
+   "t": 26.0,
+   "from": "A major",
+   "to": "F# minor",
+   "held_before_s": 7.0
+  },
+  {
+   "t": 32.0,
+   "from": "F# minor",
+   "to": "D major",
+   "held_before_s": 6.0
+  },
+  {
+   "t": 33.0,
+   "from": "D major",
+   "to": "A major",
+   "held_before_s": 1.0
+  },
+  {
+   "t": 39.0,
+   "from": "A major",
+   "to": "Ab minor",
+   "held_before_s": 6.0
+  },
+  {
+   "t": 44.0,
+   "from": "Ab minor",
+   "to": "D major",
+   "held_before_s": 5.0
+  },
+  {
+   "t": 46.0,
+   "from": "D major",
+   "to": "F# minor",
+   "held_before_s": 2.0
+  },
+  {
+   "t": 49.0,
+   "from": "F# minor",
+   "to": "C# minor",
+   "held_before_s": 3.0
+  },
+  {
+   "t": 56.0,
+   "from": "C# minor",
+   "to": "D major",
+   "held_before_s": 7.0
+  },
+  {
+   "t": 60.0,
+   "from": "D major",
+   "to": "A major",
+   "held_before_s": 4.0
+  },
+  {
+   "t": 71.0,
+   "from": "A major",
+   "to": "E major",
+   "held_before_s": 11.0
+  },
+  {
+   "t": 74.0,
+   "from": "E major",
+   "to": "A major",
+   "held_before_s": 3.0
+  },
+  {
+   "t": 83.0,
+   "from": "A major",
+   "to": "F major",
+   "held_before_s": 9.0
+  },
+  {
+   "t": 85.0,
+   "from": "F major",
+   "to": "E major",
+   "held_before_s": 2.0
+  },
+  {
+   "t": 93.0,
+   "from": "E major",
+   "to": "A major",
+   "held_before_s": 8.0
+  },
+  {
+   "t": 99.0,
+   "from": "A major",
+   "to": "Bb major",
+   "held_before_s": 6.0
+  },
+  {
+   "t": 105.0,
+   "from": "Bb major",
+   "to": "A minor",
+   "held_before_s": 6.0
+  },
+  {
+   "t": 111.0,
+   "from": "A minor",
+   "to": "Bb major",
+   "held_before_s": 6.0
+  },
+  {
+   "t": 119.0,
+   "from": "Bb major",
+   "to": "A minor",
+   "held_before_s": 8.0
+  },
+  {
+   "t": 124.0,
+   "from": "A minor",
+   "to": "G minor",
+   "held_before_s": 5.0
+  },
+  {
+   "t": 133.0,
+   "from": "G minor",
+   "to": "D minor",
+   "held_before_s": 9.0
+  },
+  {
+   "t": 137.0,
+   "from": "D minor",
+   "to": "Bb major",
+   "held_before_s": 4.0
+  },
+  {
+   "t": 147.0,
+   "from": "Bb major",
+   "to": "G minor",
+   "held_before_s": 10.0
+  },
+  {
+   "t": 151.0,
+   "from": "G minor",
+   "to": "Bb major",
+   "held_before_s": 4.0
+  },
+  {
+   "t": 159.0,
+   "from": "Bb major",
+   "to": "F# major",
+   "held_before_s": 8.0
+  },
+  {
+   "t": 167.0,
+   "from": "F# major",
+   "to": "F major",
+   "held_before_s": 8.0
+  },
+  {
+   "t": 173.0,
+   "from": "F major",
+   "to": "Bb major",
+   "held_before_s": 6.0
+  },
+  {
+   "t": 181.0,
+   "from": "Bb major",
+   "to": "F major",
+   "held_before_s": 8.0
+  },
+  {
+   "t": 187.0,
+   "from": "F major",
+   "to": "G minor",
+   "held_before_s": 6.0
+  },
+  {
+   "t": 198.0,
+   "from": "G minor",
+   "to": "D minor",
+   "held_before_s": 11.0
+  },
+  {
+   "t": 204.0,
+   "from": "D minor",
+   "to": "Eb major",
+   "held_before_s": 6.0
+  },
+  {
+   "t": 206.0,
+   "from": "Eb major",
+   "to": "G minor",
+   "held_before_s": 2.0
+  },
+  {
+   "t": 209.0,
+   "from": "G minor",
+   "to": "D minor",
+   "held_before_s": 3.0
+  },
+  {
+   "t": 217.0,
+   "from": "D minor",
+   "to": "F major",
+   "held_before_s": 8.0
+  },
+  {
+   "t": 221.0,
+   "from": "F major",
+   "to": "Bb major",
+   "held_before_s": 4.0
+  },
+  {
+   "t": 222.0,
+   "from": "Bb major",
+   "to": "F major",
+   "held_before_s": 1.0
+  },
+  {
+   "t": 226.0,
+   "from": "F major",
+   "to": "Bb major",
+   "held_before_s": 4.0
+  },
+  {
+   "t": 227.0,
+   "from": "Bb major",
+   "to": "D minor",
+   "held_before_s": 1.0
+  },
+  {
+   "t": 232.0,
+   "from": "D minor",
+   "to": "Bb major",
+   "held_before_s": 5.0
+  },
+  {
+   "t": 242.0,
+   "from": "Bb major",
+   "to": "Eb minor",
+   "held_before_s": 10.0
+  },
+  {
+   "t": 245.0,
+   "from": "Eb minor",
+   "to": "Bb major",
+   "held_before_s": 3.0
+  }
+ ],
+ "key_change": {
+  "t": 99.0,
+  "before": "A major",
+  "after": "Bb major",
+  "semitones": 1,
+  "t_fine": 98.5,
+  "beat": 98.44
+ }
+}

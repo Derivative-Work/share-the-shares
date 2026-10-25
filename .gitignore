@@ -37,3 +37,9 @@ assets/engravings/source/
 reference/certificates/*.jpg
 # Ink pieces and certificate prints regenerate from scripts/ink_extract.py and scripts/certificate.py.
 assets/engravings/ink/
+# Frame sequences of any name (frames_<view>/, frames_cast_<view>/): never archived, regenerate from the logged commands.
+**/frames_*/
+# Superseded renders (hashed in the manifest; frame sequences are skipped by scripts/manifest.sh).
+archive/renders/
+# Puppet layers regenerate from the committed masks (scripts/puppet_build.py).
+assets/puppets/*/layers/
