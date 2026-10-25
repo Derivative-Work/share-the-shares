@@ -15,23 +15,50 @@
    "parent": "background",
    "z": 1,
    "pivot": [
-    752,
-    1233
+    765,
+    1223
+   ],
+   "cutout": true
+  },
+  "body_top": {
+   "parent": "body",
+   "z": 3,
+   "pivot": [
+    960,
+    320
+   ],
+   "cutout": true
+  },
+  "body_left": {
+   "parent": "body",
+   "z": 3,
+   "pivot": [
+    180,
+    890
+   ],
+   "cutout": true
+  },
+  "body_center": {
+   "parent": "body",
+   "z": 3,
+   "pivot": [
+    690,
+    1170
    ],
    "cutout": true
   },
   "head_top": {
-   "parent": "body",
-   "z": 3,
+   "parent": "body_top",
+   "z": 5,
    "pivot": [
     720,
-    330
+    320
    ],
    "cutout": true
   },
   "head_left": {
-   "parent": "body",
-   "z": 3,
+   "parent": "body_left",
+   "z": 5,
    "pivot": [
     330,
     520
@@ -39,8 +66,8 @@
    "cutout": true
   },
   "head_center": {
-   "parent": "body",
-   "z": 3,
+   "parent": "body_center",
+   "z": 5,
    "pivot": [
     735,
     705
@@ -48,11 +75,11 @@
    "cutout": true
   },
   "arm_left": {
-   "parent": "body",
-   "z": 4,
+   "parent": "body_left",
+   "z": 6,
    "pivot": [
     300,
-    620
+    600
    ],
    "cutout": true
   }

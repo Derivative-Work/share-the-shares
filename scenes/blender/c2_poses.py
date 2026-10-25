@@ -1,7 +1,7 @@
 """C2 pose test: each puppet at rest and in three extreme poses, as stills, so the cuts can be judged at full swing.
 
 What to judge: the hinge edges stay clean; what a moved part uncovers reads as engraving; the paper reads as cut
-paper. Angles are the largest each shot plausibly needs, larger than the cast test's (which was too small to see).
+paper. Angles are the largest each shot plausibly needs, larger than the cast test's (which was too small to see).\nSince the re-cut (every moving part traced by hand), the hinges are new: Progress's arm bends at the elbow, Mercury\nhas a third leg layer, and each cherub sways on its own body while the scrollwork stays put.
 Usage: blender -b --factory-startup --python scenes/blender/c2_poses.py -- <certificate dir> <out dir> <width> <height> <samples>
 """
 import json
@@ -24,21 +24,21 @@ layout = json.loads((cert / "layout.json").read_text())["boxes"]
 # pose name -> {layer: degrees about its hinge}; positive = counter-clockwise on the page
 POSES = {
     "progress": [("rest", {}),
-                 ("torch raised", {"arm": -32}),
-                 ("head turned, jaw open", {"head": 14, "jaw": -18}),
-                 ("arm out, body leaning", {"arm": 28, "body": 6})],
+                 ("torch raised", {"arm": 22}),
+                 ("head turned, jaw open", {"head": 14, "jaw": -14}),
+                 ("forearm in, body leaning", {"arm": -18, "body": 6})],
     "prudence": [("rest", {}),
                  ("scales up", {"scales_arm": 24}),
-                 ("scales down, head tilted", {"scales_arm": -22, "head": -12}),
-                 ("sword arm out, jaw open", {"sword_arm": -20, "jaw": -18})],
+                 ("scales down, head tilted", {"scales_arm": -14, "head": -12}),
+                 ("sword arm out, jaw open", {"sword_arm": -20, "jaw": -8})],
     "mercury": [("rest", {}),
-                ("stride, wing up", {"leg_back": 30, "leg_front": -30, "wing": 25}),
-                ("stride the other way, wing down", {"leg_back": -28, "leg_front": 28, "wing": -20}),
+                ("stride, wing up", {"leg_back": 30, "leg_front": -30, "leg_bent": -25, "wing": 25}),
+                ("stride the other way, wing down", {"leg_back": -28, "leg_front": 28, "leg_bent": 25, "wing": -20}),
                 ("caduceus raised, head up", {"arm": 22, "head": 14})],
     "cherubs": [("rest", {}),
                 ("heads turned left", {"head_top": 20, "head_left": 20, "head_center": 20}),
                 ("heads turned right", {"head_top": -20, "head_left": -20, "head_center": -20}),
-                ("swaying, arm lifted", {"body": 8, "arm_left": -40})],
+                ("swaying, arm lifted", {"body_top": 6, "body_left": -8, "body_center": 8, "arm_left": -40})],
 }
 
 scene = S.setup(w, h, samples, 1)

@@ -225,3 +225,33 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
 - **Outputs:** `assets/puppets/*/layers/` rebuilt; `renders/c2/poses/`, `renders/c2/c2_poses.jpg`. The line-screen pose sheet is archived as `archive/renders/c2/*line-screen-fill*`.
 - **Result:** what a swing uncovers continues Durand's own stipple, ruling and drapery hatching. The C2 cast clips (`renders/c2/cast_*.mp4`) still show the old fill and are superseded for review by the pose sheet.
 - **Remaining:** under Prudence's raised scales arm, the 24 px cells show as faint blocky seams in the diamond hatching at full size; they're not visible at the pose sheet's scale. That's the largest uncovered area in the cast.
+
+## 2026-10-25T17:05:37-04 — C2: every moving part re-cut by hand; the cherubs get bodies
+
+- **Why:** the human rejected the pose sheet: bits of every pose stayed behind (human interventions, same time). C3 is approved.
+- **Diagnosis:** the old cuts. SAM, prompted with boxes and points, followed the hatching, not the limbs, and every part was clipped to SAM's figure outline. So:
+  - Progress's arm polygon sat on her sleeve, beside the forearm, and missed the fist. The spear strip ran up to 27 px off the shaft.
+  - Prudence's scales-arm polygon sat on the drapery to the left of the arm. Her sword cut missed half the cross-guard.
+  - Mercury's figure outline stopped at his fist, so the caduceus was never cut. His bent leg had no layer.
+  - The cherubs swayed as one piece with the cartouche, and their heads lost cheeks, a nose and a hand to the body.
+- **What:**
+  1. Every moving part is now a hand cut, traced over the ink on a coordinate grid (agent-authored polygons and strips in `config/puppets.json`, same as the earlier prompts). The exceptions are Prudence's head and Mercury's head, wing and two legs, which SAM cut whole. The spear and sword blade were re-measured from ink-row profiles.
+  2. `scripts/segment.py`: a hand cut is no longer clipped to SAM's figure; it extends it. A new `tight` polygon keeps only the engraved strokes inside it (connected strokes of 300 px or more), so the caduceus's snakes move without the sky between them.
+  3. New hinges:
+     - Progress's forearm, fist and spear bend at the elbow; her head takes the white plume left of the spear.
+     - Both jaws are now the chin below the mouth line, not the lower face.
+     - Mercury has a third leg (`leg_bent`).
+     - Each cherub has its own body (`body_top`, `body_left`, `body_center`) carrying its head (and the left cherub's arm). The frame and scrollwork stay put. The top cherub's body takes its cross-hatched legs.
+  4. `scripts/puppet_build.py`:
+     - SAM's slivers along a traced cut (a limb's outline stroke, the edge of a spear) are handed to the part they touch, or to the static background if they touch none, instead of staying on the body as thin paper strips.
+     - Fill cells the synthesis can't reach are dropped from a cutout's mask (the background's fill shows), not painted as a flat grey tint.
+  5. `scenes/blender/c2_poses.py`: poses updated for the new hinges.
+- **Commands:** `.venv/bin/python -I scripts/segment.py`; `.venv/bin/python -I scripts/puppet_build.py` (6 min); `blender -b --factory-startup --python scenes/blender/c2_poses.py -- renders/c1/certificate_v04 renders/c2/poses 1280 720 32`; `.venv/bin/python -I scripts/c2_pose_sheet.py renders/c2/poses renders/c2/c2_poses.jpg`
+- **Iterations:**
+  1. The first re-cut left one edge of the sword blade on the body: its shaded right edge lies outside a 34 px strip. It was re-measured, and the strip is now 46 px, offset right.
+  2. A paper box appeared where the spear tip had covered the border, and grey blots where the fill had nothing to copy. The sliver hand-off and the unreached-cell drop fixed both.
+- **Checks:** a cut map (each part tinted over the ink) for each figure before the build, then each pose at full size.
+- **Outputs:** `assets/puppets/*/masks/`, `preview.jpg`, `puppet.json` and `layers/` rebuilt. The SAM cuts are archived in `archive/puppets/<figure>/sam-cuts/`, the rejected pose renders in `archive/renders/c2/poses_sam-cuts/` and `archive/renders/c2/c2_poses_sam-cuts.jpg`. New: `renders/c2/poses/`, `renders/c2/c2_poses.jpg`.
+- **Remaining:**
+  - The fill is still blocky where a swing uncovers a large area across two textures: under Prudence's raised scales arm (sky lines copied into the drapery) and in her sword's path.
+  - A few ragged fill edges where the left cherub sways.

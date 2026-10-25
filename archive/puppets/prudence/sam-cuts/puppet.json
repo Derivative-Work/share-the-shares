@@ -1,0 +1,60 @@
+{
+ "piece": "prudence",
+ "size": [
+  1410,
+  1656
+ ],
+ "layers": {
+  "background": {
+   "parent": null,
+   "z": 0,
+   "pivot": null,
+   "cutout": false
+  },
+  "body": {
+   "parent": "background",
+   "z": 1,
+   "pivot": [
+    491,
+    1571
+   ],
+   "cutout": true
+  },
+  "sword_arm": {
+   "parent": "body",
+   "z": 4,
+   "pivot": [
+    90,
+    620
+   ],
+   "cutout": true
+  },
+  "scales_arm": {
+   "parent": "body",
+   "z": 4,
+   "pivot": [
+    510,
+    600
+   ],
+   "cutout": true
+  },
+  "head": {
+   "parent": "body",
+   "z": 3,
+   "pivot": [
+    380,
+    420
+   ],
+   "cutout": true
+  },
+  "jaw": {
+   "parent": "head",
+   "z": 5,
+   "pivot": [
+    340,
+    340
+   ],
+   "cutout": true
+  }
+ }
+}

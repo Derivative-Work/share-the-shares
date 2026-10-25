@@ -15,8 +15,8 @@
    "parent": "background",
    "z": 1,
    "pivot": [
-    639,
-    907
+    616,
+    866
    ],
    "cutout": true
   },
@@ -24,8 +24,8 @@
    "parent": "body",
    "z": 4,
    "pivot": [
-    880,
-    390
+    870,
+    420
    ],
    "cutout": true
   },
@@ -62,6 +62,15 @@
    "pivot": [
     540,
     570
+   ],
+   "cutout": true
+  },
+  "leg_bent": {
+   "parent": "body",
+   "z": 3,
+   "pivot": [
+    730,
+    560
    ],
    "cutout": true
   }

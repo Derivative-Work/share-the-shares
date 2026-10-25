@@ -1,0 +1,69 @@
+{
+ "piece": "mercury",
+ "size": [
+  1520,
+  956
+ ],
+ "layers": {
+  "background": {
+   "parent": null,
+   "z": 0,
+   "pivot": null,
+   "cutout": false
+  },
+  "body": {
+   "parent": "background",
+   "z": 1,
+   "pivot": [
+    639,
+    907
+   ],
+   "cutout": true
+  },
+  "arm": {
+   "parent": "body",
+   "z": 4,
+   "pivot": [
+    880,
+    390
+   ],
+   "cutout": true
+  },
+  "head": {
+   "parent": "body",
+   "z": 3,
+   "pivot": [
+    800,
+    320
+   ],
+   "cutout": true
+  },
+  "wing": {
+   "parent": "body",
+   "z": 1,
+   "pivot": [
+    640,
+    260
+   ],
+   "cutout": true
+  },
+  "leg_back": {
+   "parent": "body",
+   "z": 1,
+   "pivot": [
+    470,
+    560
+   ],
+   "cutout": true
+  },
+  "leg_front": {
+   "parent": "body",
+   "z": 3,
+   "pivot": [
+    540,
+    570
+   ],
+   "cutout": true
+  }
+ }
+}

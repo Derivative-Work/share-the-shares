@@ -1,0 +1,51 @@
+{
+ "piece": "progress",
+ "size": [
+  2583,
+  1797
+ ],
+ "layers": {
+  "background": {
+   "parent": null,
+   "z": 0,
+   "pivot": null,
+   "cutout": false
+  },
+  "body": {
+   "parent": "background",
+   "z": 1,
+   "pivot": [
+    1212,
+    1582
+   ],
+   "cutout": true
+  },
+  "arm": {
+   "parent": "body",
+   "z": 4,
+   "pivot": [
+    1070,
+    640
+   ],
+   "cutout": true
+  },
+  "head": {
+   "parent": "body",
+   "z": 3,
+   "pivot": [
+    1180,
+    600
+   ],
+   "cutout": true
+  },
+  "jaw": {
+   "parent": "head",
+   "z": 5,
+   "pivot": [
+    1140,
+    505
+   ],
+   "cutout": true
+  }
+ }
+}

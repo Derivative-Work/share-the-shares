@@ -1,7 +1,7 @@
 """Cut each figure, then its parts, from its ink piece with Segment Anything (ViT-B), from config/puppets.json.
 
 The prompts (box + positive/negative points) are the agent's, logged in config; SAM traces the outlines. A part's
-mask is clipped to its figure's. Writes assets/puppets/<figure>/masks/{figure,<part>}.png and preview.jpg (the
+mask is clipped to its figure's; a hand cut ('cut') is the agent's trace and extends the figure instead. Writes assets/puppets/<figure>/masks/{figure,<part>}.png and preview.jpg (the
 cut outlines over the ink). The SAM weights live in models/ (sha256 ec2df627…, md5 01ec64…).
 Usage: segment.py [figure ...]  (default: all)
 """
@@ -31,13 +31,22 @@ def cut(pred, spec, clip=None):
     return m, float(scores.max())
 
 
-def cut_by_hand(shape, spec, clip):
-    m = np.zeros(shape, np.uint8)
+def cut_by_hand(ink, spec):
+    """The union of the cut's polygons and strips, plus its 'tight' polygons, which keep only the engraved lines
+    inside them (connected strokes of 300 px or more, dilated 4 px), not the sky between (the caduceus's snakes)."""
+    m = np.zeros(ink.shape, np.uint8)
     for poly in spec.get("polys", []):
         cv2.fillPoly(m, [np.array(poly, np.int32)], 1)
     for x0, y0, x1, y1, wd in spec.get("strips", []):
         cv2.line(m, (x0, y0), (x1, y1), 1, wd)
-    return m.astype(bool) & clip
+    for poly in spec.get("tight", []):
+        region = np.zeros(ink.shape, np.uint8)
+        cv2.fillPoly(region, [np.array(poly, np.int32)], 1)
+        lines = cv2.morphologyEx(((ink > 90) & (region > 0)).astype(np.uint8), cv2.MORPH_CLOSE, np.ones((5, 5), np.uint8))
+        n, lab, stats, _ = cv2.connectedComponentsWithStats(lines, connectivity=8)
+        keep = np.isin(lab, [i for i in range(1, n) if stats[i, cv2.CC_STAT_AREA] >= 300])
+        m |= cv2.dilate(keep.astype(np.uint8), np.ones((9, 9), np.uint8)) & region
+    return m.astype(bool)
 
 
 def main(names):
@@ -52,13 +61,17 @@ def main(names):
         out = ROOT / "assets/puppets" / name / "masks"
         out.mkdir(parents=True, exist_ok=True)
         fig, s = cut(pred, f["figure"])
+        # a hand cut is traced, not clipped to SAM's outline (which loses what sticks out, such as the caduceus)
+        for p in f["parts"].values():
+            if "cut" in p:
+                fig |= cut_by_hand(ink, p["cut"])
         cv2.imwrite(str(out / "figure.png"), fig.astype(np.uint8) * 255)
         report = {"figure": round(s, 3)}
         prev = cv2.cvtColor(255 - ink, cv2.COLOR_GRAY2BGR)
         cv2.drawContours(prev, cv2.findContours(fig.astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)[0], -1, (60, 60, 60), 4)
         for i, (pn, p) in enumerate(f["parts"].items()):
             if "cut" in p:
-                m, s = cut_by_hand(fig.shape, p["cut"], fig), 1.0
+                m, s = cut_by_hand(ink, p["cut"]), 1.0
             else:
                 m, s = cut(pred, p, clip=fig)
             cv2.imwrite(str(out / f"{pn}.png"), m.astype(np.uint8) * 255)

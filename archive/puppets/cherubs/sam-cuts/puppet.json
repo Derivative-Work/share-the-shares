@@ -1,0 +1,60 @@
+{
+ "piece": "cherubs",
+ "size": [
+  1381,
+  1317
+ ],
+ "layers": {
+  "background": {
+   "parent": null,
+   "z": 0,
+   "pivot": null,
+   "cutout": false
+  },
+  "body": {
+   "parent": "background",
+   "z": 1,
+   "pivot": [
+    752,
+    1233
+   ],
+   "cutout": true
+  },
+  "head_top": {
+   "parent": "body",
+   "z": 3,
+   "pivot": [
+    720,
+    330
+   ],
+   "cutout": true
+  },
+  "head_left": {
+   "parent": "body",
+   "z": 3,
+   "pivot": [
+    330,
+    520
+   ],
+   "cutout": true
+  },
+  "head_center": {
+   "parent": "body",
+   "z": 3,
+   "pivot": [
+    735,
+    705
+   ],
+   "cutout": true
+  },
+  "arm_left": {
+   "parent": "body",
+   "z": 4,
+   "pivot": [
+    300,
+    620
+   ],
+   "cutout": true
+  }
+ }
+}

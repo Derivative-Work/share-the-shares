@@ -15,7 +15,7 @@
    "parent": "background",
    "z": 1,
    "pivot": [
-    1212,
+    1221,
     1582
    ],
    "cutout": true
@@ -24,8 +24,8 @@
    "parent": "body",
    "z": 4,
    "pivot": [
-    1070,
-    640
+    920,
+    835
    ],
    "cutout": true
   },
@@ -42,8 +42,8 @@
    "parent": "head",
    "z": 5,
    "pivot": [
-    1140,
-    505
+    1110,
+    500
    ],
    "cutout": true
   }

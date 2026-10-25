@@ -51,3 +51,8 @@ Every human action: timestamp, what, why, and which production rule allows it. R
 
 - **What:** The human: "Yes fix the fill patches". The agent replaced the generated line-screen fill with texture synthesis from the surrounding engraving.
 - **Rule:** R1. The human said it in words and the agent made the change.
+
+## 2026-10-25T17:05:37-04 — C3 approved; the poses leave pieces behind — R1
+
+- **What:** The human: "the clicks are correct, but none of the poses are working quite right -- there's bits and pieces of all of them that need to be moved but haven't". C3 (the beat grid, the key change at 98.44 s, the live-verse cut and return) is approved. The C2 pose sheet is rejected: parts of every figure stay put when the limb they belong to moves.
+- **Rule:** R1 (approve; reject with the reason). The agent re-cut the puppets; the human named no fix.

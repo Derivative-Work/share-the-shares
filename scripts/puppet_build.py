@@ -116,15 +116,14 @@ def synth(ink, hole, valid, seed):
             todo.discard((y, x))
         todo = {c for c in todo if (~known[c[0]:c[0] + CELL, c[1]:c[1] + CELL] & hole[c[0]:c[0] + CELL, c[1]:c[1] + CELL]).any()}
     rest = hole & ~known
-    if rest.any():  # cells no source could reach: the local mean tone, as a flat tint (rare; logged by the caller)
-        out[rest] = local_tone(ink, valid)[rest]
-    return np.where(hole, out, ink)
+    if rest.any():  # cells no source could reach: the local mean tone, as a flat tint (the background only; a
+        out[rest] = local_tone(ink, valid)[rest]  # cutout drops them from its mask instead: see build)
+    return np.where(hole, out, ink), rest
 
 
 def fill(ink, hole, valid, seed, horizontal=False):
-    """Texture synthesis from the surrounding engraving (synth)."""
-    out = synth(ink, hole, valid, seed)
-    return out
+    """Texture synthesis from the surrounding engraving (synth): the filled ink and the cells it couldn't reach."""
+    return synth(ink, hole, valid, seed)
 
 
 def line_screen(shape, tone, theta, seed):
@@ -153,11 +152,24 @@ def build(name):
         m = (cv2.imread(str(d / f"masks/{pn}.png"), cv2.IMREAD_GRAYSCALE) > 0) & ~taken
         own[pn] = m
         taken |= m
-    own["body"] = fig & ~taken
+    # SAM's slivers along the traced cuts (a limb's outline stroke, a spear's edge) would stay behind on the body as
+    # thin paper strips: each goes to the part it touches most, or, touching none, to the background's static print
+    rest = (fig & ~taken).astype(np.uint8)
+    own["body"] = cv2.morphologyEx(rest, cv2.MORPH_OPEN, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (15, 15))) > 0
+    n, lab, st, _ = cv2.connectedComponentsWithStats(((rest > 0) & ~own["body"]).astype(np.uint8), connectivity=8)
+    grown = {pn: cv2.dilate(m.astype(np.uint8), np.ones((5, 5), np.uint8)) > 0 for pn, m in own.items() if pn != "body"}
+    for i in range(1, n):
+        x, y, w, h = st[i, :4]
+        sl = lab[y:y + h, x:x + w] == i
+        touch = {pn: int((g[y:y + h, x:x + w] & sl).sum()) for pn, g in grown.items()}
+        best = max(touch, key=touch.get) if touch else None
+        if best and touch[best] > 0:
+            own[best][y:y + h, x:x + w] |= sl
+    fig = own["body"] | np.any([own[pn] for pn in parts], axis=0)
     seed = 41
     layers = {}
     # background: the vignette minus the figure, the figure's area filled
-    bg = np.where(fig, fill(ink, fig, ~fig, seed), ink)
+    bg = np.where(fig, fill(ink, fig, ~fig, seed)[0], ink)
     layers["background"] = (bg, np.ones_like(fig))
     # body and parts: each one's own pixels, plus filled holes where a layer in front of it was cut out
     covers = {"body": [pn for pn in parts if parts[pn]["parent"] == "figure"]}
@@ -175,7 +187,9 @@ def build(name):
         layer = ink * own[ln]
         if holes.any():
             seed += 100
-            layer = np.where(holes, fill(ink, holes, own[ln], seed), layer)
+            filled, unreached = fill(ink, holes, own[ln], seed)
+            layer = np.where(holes, filled, layer)
+            mask &= ~unreached  # no flat tint on a cutout: what lies under the cell (the background's fill) shows
         layers[ln] = (layer, mask)
     out = d / "layers"
     out.mkdir(parents=True, exist_ok=True)
