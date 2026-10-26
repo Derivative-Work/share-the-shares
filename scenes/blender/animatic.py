@@ -295,7 +295,7 @@ def prop_box(prop, cx, cy, w=None, h=None):
     return [cx - w / 2, cy - h / 2, cx + w / 2, cy + h / 2]
 
 
-def prop_card(name, box, prop, lift, cutout=True, mask=None, dx=0.0):
+def prop_card(name, box, prop, lift, cutout=True, mask=None, dx=0.0, green_ink="ink_green"):
     """An engraved prop: printed on the sheet (cutout False: ink only), or a paper cutout floating over it (its
     silhouette from scripts/props.py, or `mask`: 'full' for a whole sheet of paper); a second plate prints in green."""
     ob = plane(name, box, lift, None, dx)
@@ -303,7 +303,7 @@ def prop_card(name, box, prop, lift, cutout=True, mask=None, dx=0.0):
     mk = (PROPS / ("full_mask.png" if mask == "full" else (mask or f"{prop}_mask.png"))) if cutout else ink
     green = PROPS / f"{prop}_green.png"
     ob.data.materials.append(P.layer_material(name, ink, mk, tuple(S.image(ink, True).size), cutout,
-                                              green if cutout and green.exists() else None))
+                                              green if cutout and green.exists() else None, green_ink))
     return ob
 
 
@@ -640,7 +640,8 @@ attach(scroll, "mercury", "arm", (1120, 560))
 show(scroll, T["S23"], T["S24"])
 
 # S24: the certificate flips to its back: the transfer form, and a second document face down underneath
-back = prop_card("S24.back", [0, 0, S.PW, S.PH], "transfer_form", 0.0006, mask="full", dx=BACK_DX)
+back = prop_card("S24.back", [0, 0, S.PW, S.PH], "transfer_form", 0.0006, mask="full", dx=BACK_DX,
+                 green_ink="ink_gold")  # the same sheet: after S36 its lathe work is gold on both sides
 under = prop_card("S24.under", [260, 180, S.PW + 260, S.PH + 180], "face_down", 0.0002, mask="full", dx=BACK_DX)
 for o in (back, under):
     show(o, T["S24"], T["S25"])

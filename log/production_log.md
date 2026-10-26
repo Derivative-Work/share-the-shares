@@ -565,3 +565,15 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   The first section 1 cut and its sheet are archived in `archive/renders/c5/cuts/` (`…_v1_with-S01_static-S08`).
 - **Checked:** stills at 0.0 s (S02's push), and at 37.0, 40.3 and 43.6 s (S08, from the whole door to the plaque).
 - **Status:** **C5 sections 1 (revised) and 2 are ready for review.**
+
+## 2026-10-26T14:41:00-04:00 — C5 section 3 rendered; S24's back re-inked gold; section 4 rendering
+
+- **Render:** section 3 (98.44–139.36 s), 983 frames, no errors. A first cut (`renders/c5/cuts/c5_3_keychange_verse2_prechorus2.mp4`) and its sheet were checked by the agent before sending.
+- **Found on the sheet:** in S24 the certificate's back (the transfer form) still printed its lathe work in green, though S36 has re-inked the sheet gold. Both sides are one sheet.
+- **Fix:**
+  - `lib/puppet.py` `layer_material` takes the second plate's ink by palette name, and `prop_card` passes it on;
+  - the back prints its lathe work in `ink_gold`.
+
+  The ledger keeps its green ruling: it is Prudence's book, not the certificate.
+- **Queued** (`renders/c5/logs/queue_s24_s5.sh`, after section 4): S24's frames (133.26–139.36 s), then section 5 (196.38–220.5 s). Section 3 will be re-cut and sent once S24 is re-rendered.
+- **Started:** section 4 (139.36–196.38 s; log `renders/c5/logs/section4.log`).

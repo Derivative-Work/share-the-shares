@@ -93,9 +93,9 @@ def curl_group():
     return g
 
 
-def layer_material(name, ink_path, mask_path, size_px, cutout, green_path=None):
-    """`green_path`: a second plate, printed in the green ink over the sepia (cutouts only: the C5 props' ruling and
-    lathe work)."""
+def layer_material(name, ink_path, mask_path, size_px, cutout, green_path=None, green_ink="ink_green"):
+    """`green_path`: a second plate, printed over the sepia in `green_ink` (a palette name: the green, or the gold of
+    S36's re-ink) (cutouts only: the C5 props' ruling and lathe work)."""
     m = bpy.data.materials.new(name)
     # Cutouts: dithered (their alpha is the cut, nearly binary, so the dither only touches edges; dithered surfaces
     # write depth and stack correctly). Print-only layers: blended (smooth partial ink); Eevee draws only the
@@ -134,7 +134,7 @@ def layer_material(name, ink_path, mask_path, size_px, cutout, green_path=None):
             gmix.data_type, gmix.blend_type = "RGBA", "MULTIPLY"
             l.new(gtex.outputs["Color"], gmix.inputs["Factor"])
             l.new(base, gmix.inputs["A"])
-            gmix.inputs["B"].default_value = srgb(LOOK["palette"]["ink_green"])
+            gmix.inputs["B"].default_value = srgb(LOOK["palette"][green_ink])
             base = gmix.outputs["Result"]
         l.new(base, bsdf.inputs["Base Color"])
         mask = n.new("ShaderNodeTexImage")
