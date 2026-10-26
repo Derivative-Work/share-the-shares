@@ -66,3 +66,10 @@ Every human action: timestamp, what, why, and which production rule allows it. R
 
 - **What:** The human: "good enough, let's keep going for now. raise the hammer, and keep the stars-and-stripes shield". C2 (the puppets, as on the pose sheet) is approved, with the remaining patchwork fill under Prudence's widest swings accepted for now. The two open questions from C1 are answered: the laborer is engraved with his hammer raised (S07, S29), and Progress keeps her stars-and-stripes shield.
 - **Rule:** R1 (approve; choose between options the agent offered).
+
+## 2026-10-25T20:30:16-04 — C4: the sync isn't right; are the cut-out mouths intended? — R2 (sync) and R1 (a question)
+
+- **What:** The human: "the sync is not quite right, and are the cutout (as opposed to natural) mouth movements intentional".
+- **Rule:**
+  - R2 for the sync report. The agent diagnosed and fixed it (production log, same time).
+  - R1 for the question. The agent answered that the hinged jaw is the brief's ("hinged paper-puppet limbs and jaws on twos"), and offered replacement mouths as an alternative. The human hasn't chosen yet.

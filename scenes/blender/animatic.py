@@ -8,9 +8,12 @@ the brief gives their words, and as grey labelled cards where it doesn't (quill,
 Nothing is keyed by hand: every frame is a function of song time, from timing/timing_map.json (beats, words, shot
 anchors) and config/c4_shots.json (the agent's framing per shot). The puppets move on twos (their pose is sampled at
 the even frame below); the camera, a document camera, moves smoothly and cuts between shots.
-  - Jaws open on each word of the figure's own sections (the Founder: Progress; the Board: Prudence; the Lawyer:
-    Mercury, who has no jaw cut and nods instead; the choir: the cherubs, who nod; "everyone": all of them).
-  - The cherubs sway on the beat through every chorus (one side per beat), and fade out with the outro.
+  - Mouths follow the voice: inside the figure's own lines (the Founder: Progress; the Board: Prudence; the Lawyer:
+    Mercury, who has no jaw cut and nods instead; the choir: the cherubs, who nod; "everyone": all of them), the jaw
+    opens with the stem's loudness against its local peaks and dips (C3's envelopes), so it opens on each syllable
+    and shuts in each dip, a frame ahead of the sound, in three positions (shut, half, open).
+  - The cherubs sway on the beat through every chorus (at the extreme on each beat, one side then the other), and
+    fade out with the outro; Mercury's feet reach on the beats.
   - Shot actions are in ACTIONS below, each tied to its shot's anchor.
 
 Modes:
@@ -118,18 +121,50 @@ def section_of(t):
 
 FIG_SINGERS = {"progress": ("the Founder",), "prudence": ("the Board",), "mercury": ("the Lawyer",),
                "cherubs": ("choir",)}
-WORDS = {}
-for fig, who in FIG_SINGERS.items():
-    ws = [(w["start"], w["end"]) for ln in TM["lines"] for w in ln["words"]
-          if ln["singer"].startswith(who) or ln["singer"] == "everyone"]
-    WORDS[fig] = sorted(ws)
+# C3's per-frame loudness envelopes (scripts/stem_envelopes.py): the soloists on the lead stem, the choir on backing
+import numpy as np  # noqa: E402
+
+ENV = {"Vocals": np.load(ROOT / "timing/envelopes/vocals.npy"),
+       "Backing Vocals": np.load(ROOT / "timing/envelopes/backing.npy")}
+LEAD_F = 1         # the jaw leads the sound by a frame
+GATE_PRE = 0.17    # a word's mouth may open this early (the aligner's word starts can come a few frames late)
+JAW_STEPS = 2      # shut, half, open: a cut-paper jaw pops between positions
+
+
+def _jaws():
+    """Per figure, the jaw opening (0..1) for every video frame: inside the figure's own words (gated), the stem's
+    loudness against its local peaks and dips (+-5 frames), so each syllable opens it and each dip closes it."""
+    n = len(ENV["Vocals"])
+    out = {}
+    for fig, who in FIG_SINGERS.items():
+        jaw = np.zeros(n)
+        for ln in TM["lines"]:
+            if not (ln["singer"].startswith(who) or ln["singer"] == "everyone"):
+                continue
+            stem = "Backing Vocals" if fig == "cherubs" and ln["singer"] == "everyone" else ln["stem"]
+            e = ENV[stem]
+            frames = set()
+            for w in ln["words"]:  # gated per word: the reverb between words must not hold the mouth open
+                frames.update(range(max(0, int((w["start"] - GATE_PRE) * FPS)), min(n - 1, int(w["end"] * FPS) + 2)))
+            for f in sorted(frames):
+                g = min(n - 1, f + LEAD_F)
+                win = e[max(0, g - 5):g + 6]
+                lo, hi = float(win.min()), float(win.max())
+                if e[g] < 0.25:
+                    continue
+                rel = (e[g] - lo) / (hi - lo + 0.05)
+                jaw[f] = max(jaw[f], round((0.35 + 0.65 * rel) * JAW_STEPS) / JAW_STEPS)
+        out[fig] = jaw
+    return out
+
+
+JAW = _jaws()
 
 
 def mouth(fig, t):
-    """1 while the figure sings a word (closing for 60 ms at each word's end), else 0."""
-    ws = WORDS[fig]
-    i = bisect.bisect_right(ws, (t, 1e9)) - 1
-    return 1.0 if i >= 0 and ws[i][0] <= t < ws[i][1] - 0.06 else 0.0
+    """The figure's jaw opening (0, 0.5 or 1) at song time t."""
+    f = int(round(t * FPS))
+    return float(JAW[fig][f]) if 0 <= f < len(JAW[fig]) else 0.0
 
 
 def chorus(t):
@@ -625,7 +660,7 @@ def prudence_pose(t):
 def mercury_pose(t):
     out = {"wing": 4 * math.sin(2 * math.pi * 0.5 * t), "head": 5 * mouth("mercury", t)}
     if within(t, T["S10"], T["S11"]):
-        ph = 2 * math.pi * 2 * beat_pos(t)  # two strides a beat
+        ph = 2 * math.pi * 2 * beat_pos(t) + math.pi / 2  # two strides a beat, a foot at full reach on each
         out.update({"leg_back": 28 * math.sin(ph), "leg_front": -28 * math.sin(ph), "leg_bent": 20 * math.sin(ph),
                     "wing": 15 * math.sin(2 * ph), "arm": 6 * math.sin(ph)})
     if within(t, T["S23"], T["S24"]):
@@ -643,7 +678,7 @@ def cherub_pose(t, mirror):
     if within(t, T["S35"], SPAN["S35"][1]):
         sway = 12.0
     b = beat_pos(t)
-    sw = sway * math.sin(math.pi * b)
+    sw = sway * math.cos(math.pi * b)  # at the extreme on each beat, one side then the other
     out.update({"body_top": sw * 0.6, "body_left": -sw, "body_center": sw})
     nod = 4 * mouth("cherubs", t)
     look = 0.0

@@ -327,3 +327,22 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   - the placeholder lengths;
   - the print files for the live shoot (the back's transfer form still to draw).
 - **Status:** **C4 is ready for review.**
+
+## 2026-10-25T20:30:16-04:00 — C4: the sync fix (mouths on the voice, the sway on the beat), and a sync test
+
+- **Why:** the human: "the sync is not quite right" (human interventions, same time).
+- **Diagnosis:**
+  1. Mouths: each jaw opened for whole words and closed only at a word's end. 37% of the gaps between words are under 60 ms, so fast lines read as a mouth hanging open. C3's vocal envelopes, made for mouths, were never used.
+  2. The cherubs' sway (`sin` of the beat phase) crossed centre on each beat and peaked between beats, which reads as late. Mercury's stride had the same fault.
+  3. Word timings, checked by cross-correlating the aligned word starts with each vocal stem's onset envelope:
+     - per section, they sit 15–90 ms ahead of the attacks;
+     - per line, 10 lines were flagged at 120–385 ms late.
+
+     Spectrograms showed that measure is unreliable: it locks onto the loud part of a word, not its start. Only L09's first words ("So we") are late, by about 150 ms, which the new 170 ms early gate covers.
+
+     A first fix that moved lines by that measure (`snap_words.py`) was wrong and is archived unused in `archive/timing/snap_rejected/`. The C3 alignment stands.
+- **What:** `scenes/blender/animatic.py`:
+  - Jaws are now driven by C3's envelopes, gated to the figure's own words (from 170 ms before each word to just after it). Within the gate, the stem's loudness against its local peaks and dips (±5 frames) sets the opening, one frame ahead of the sound, in three positions (shut, half, open). That gives about 4 jaw changes a second, close to syllable rate, and the jaw shuts in pauses.
+  - The sway and the stride now use `cos` of the beat phase, so the extreme lands on the beat.
+- **New:** `scripts/c4_sync_test.py`; `renders/c4/c4_sync_test_v1.mp4` (20.3 s: S03–S04, S10, S13, S18 excerpts at 24 fps with the mix).
+- **Next:** re-render the whole animatic once the human has checked the test clip.
