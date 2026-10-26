@@ -553,3 +553,15 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   - Code: `timing_map.py` gives a retired row no time; `config/c4_shots.json` sets S01 `before_s` to 0; `render_graphics.py`, `animatic_assemble.py` and `c5_section_sheet.py` skip S01 without a pre-roll; S01 dropped from both graphics job lists.
 - **S08:** it held one framing (PLAQUE) for 6.8 s. It is now a slow push from the whole door (DOOR, sheet px 2880–3300 × 520–1020) into the plaque (PLAQUE_TIGHT, 2990–3190 × 625–735).
 - **Queued** (`renders/c5/logs/queue_s08_s3.sh`, after section 2): S08's frames (36.89–43.71 s), then section 3 (98.44–139.36 s).
+
+## 2026-10-26T13:53:52-04:00 — C5 section 1 re-cut (no S01, S08 pushing); section 2 cut; section 3 rendering
+
+- **Renders:** section 2 (46.88–98.44 s), 1,238 frames, no errors; S08 re-rendered with its push, 165 frames (36.89–43.71 s), no errors. Section 3 (98.44–139.36 s) is rendering (log `renders/c5/logs/section3.log`).
+- **Cuts:**
+  - `renders/c5/cuts/c5_1_intro_verse1.mp4` (46.9 s, S02–S09; the film opens on S02 at song time 0);
+  - `renders/c5/cuts/c5_2_prechorus_chorus1.mp4` (51.6 s, S10–S17b);
+  - contact sheets in `renders/c5/sheets/`.
+
+  The first section 1 cut and its sheet are archived in `archive/renders/c5/cuts/` (`…_v1_with-S01_static-S08`).
+- **Checked:** stills at 0.0 s (S02's push), and at 37.0, 40.3 and 43.6 s (S08, from the whole door to the plaque).
+- **Status:** **C5 sections 1 (revised) and 2 are ready for review.**
