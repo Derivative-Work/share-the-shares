@@ -73,3 +73,8 @@ Every human action: timestamp, what, why, and which production rule allows it. R
 - **Rule:**
   - R2 for the sync report. The agent diagnosed and fixed it (production log, same time).
   - R1 for the question. The agent answered that the hinged jaw is the brief's ("hinged paper-puppet limbs and jaws on twos"), and offered replacement mouths as an alternative. The human hasn't chosen yet.
+
+## 2026-10-25T21:24:26-04 — The sync test approved; the hinged jaws kept — R1
+
+- **What:** The human: "the sync is correct, and the mouths now make sense with the sync in place". The sync fix is approved, and the hinged cut-out jaws (the brief's) stay. No replacement mouths.
+- **Rule:** R1.
