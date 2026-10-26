@@ -359,3 +359,5 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   - the shares figures keep changing through S17b, and again in S25c;
   - S39: Mercury dips below a line of fine print and pops up out of it, growing from almost nothing with an overshoot, then raises the caduceus. An earlier test that slid him 300 px down showed him over the laborer's vignette, and was replaced.
 - **Render:** `renders/c4/frames_v2` (full, `--step 2`) and `renders/c4/anchors_v2`, assembled to `renders/c4/c4_animatic.mp4`. The v1 cut is archived as `archive/renders/c4/c4_animatic_v1_word-gated-jaws.mp4`.
+- **Result (v2):** 2,920 frames in 43 min, with no errors. `renders/c4/c4_animatic.mp4` is 313.4 s. `renders/c4/c4_anchor_sheet_v2.jpg` shows the six new shots in place. The v1 anchor sheet is archived as `archive/renders/c4/c4_anchor_sheet_v1.jpg`.
+- **Status:** **C4 v2 is ready for review.**
