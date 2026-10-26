@@ -754,7 +754,9 @@ lid.data.materials.append(M["wood"])
 lid_lab = prop_card("S44.drawer_front", [0, 0, S.PW, S.PH], "drawer_front", 0.0, cutout=False, dx=FLAT)
 show(lid, T["S44"], end)
 show(lid_lab, T["S44"], end)
-SHUT = (TM["sections"][-1]["end"] - 1.6, TM["sections"][-1]["end"] + 0.4)
+# the drawer shuts once Progress has said the whole line (the human, C5: so "Phone lines open at the IPO." is seen
+# with the mouth moving), over 2 s
+SHUT = (TM["sections"][-1]["end"] + 0.25, TM["sections"][-1]["end"] + 2.25)
 
 
 def move_lid(t):

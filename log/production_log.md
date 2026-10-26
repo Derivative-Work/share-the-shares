@@ -662,3 +662,10 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   - the fact card, announcement and credits in `renders/c5/graphics` (their spans moved);
   - section 6 (`renders/c5/cuts/c5_6_finalchorus_outro_close.mp4`, 107.8 s); the previous cut is archived as `…_v4_chorus-cut-short`.
 - **Checked:** the cut's last 6 s match the cover from 106.72 s, so the video ends at 112.72 s of the cover.
+
+## 2026-10-26T19:31:22-04:00 — S44: the drawer shuts after "Phone lines open at the IPO."
+
+- **Why:** the human's note (human interventions, same time).
+- **Change (`scenes/blender/animatic.py` `SHUT`):** the drawer front slid over Progress from 267.65 s, during "at the IPO" (the line runs 266.00–269.25 s). It now shuts from 0.25 s after the line ends, over 2 s (269.50–271.50 s).
+- **Re-rendered:** S44's frames 267.6–271.75 s (101, no errors); section 6 re-cut (the previous cut is archived as `…_v5_drawer-early`).
+- **Checked:** at 268.6 and 269.1 s Progress is in full view, saying the line; at 271.6 s the drawer is shut on WHOLLY OWNED.

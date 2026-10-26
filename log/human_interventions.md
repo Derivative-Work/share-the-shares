@@ -164,3 +164,8 @@ Every human action: timestamp, what, why, and which production rule allows it. R
 
 - **What:** The human: "make the "terms" page sit longer with the human edits -- just enough that the muzak is allowed to finish the chorus by the very end (roughly 1:50)".
 - **Rule:** R1.
+
+## 2026-10-26T19:31:22-04:00 — S44: the drawer shuts after the whole line — R1
+
+- **What:** The human: "time the cut to the "wholly owned" a bit later so that the whole "phone lines open at the IPO" can be seen with the mouth moving".
+- **Rule:** R1.
