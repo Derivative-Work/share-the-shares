@@ -386,3 +386,10 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   - S48 now runs 11 s.
 - **The 5%:** each corner's face is now a round green counter covering the centre and inner rosette (r 180 px of 210). The "5" is as large as the printed one (205 px) with a smaller "%" beside it, where the first version had a square card with "5%" at 150 px. A first test had the type 0.05 mm above the face, and it flickered into it; it is now 0.5 mm above.
 - **Outputs:** `renders/c4/frames_v3`, `renders/c4/anchors_v3`, `renders/c4/c4_anchor_sheet_v3.jpg`, `renders/c4/c4_animatic.mp4`. v2 is archived in `archive/renders/c4/`.
+- **Result (v3):** 2,920 frames in 41 min, with no errors. `renders/c4/c4_animatic.mp4` is 318.4 s (S48 now runs 11 s). Checked on stills:
+  - S24 holds the transfer form through the choir's "Through this fund!" and Mercury's echo, with the captions in step;
+  - the four corners read "5%" in the wide shots;
+  - the graphics land in their places.
+
+  The S30 slate's text no longer repeats the post-filter tab.
+- **Status:** **C4 v3 is ready for review.**
