@@ -121,3 +121,8 @@ Every human action: timestamp, what, why, and which production rule allows it. R
 
 - **What:** The human: "Check them for clipped text, such as in the calendar".
 - **Rule:** R1 (a rejection, with the fault named). The agent found and fixed every case.
+
+## 2026-10-26T10:14:51-04:00 — C5 prop sheet v2: approved — R1
+
+- **What:** The human: "These look great, keep going".
+- **Rule:** R1.
