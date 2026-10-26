@@ -1015,59 +1015,59 @@
   {
    "id": "L23",
    "section": "Chorus",
-   "stem": "Backing Vocals",
+   "stem": "Vocals",
    "singer": "choir",
    "text": "so help us grow, so we can give.",
-   "start": 77.469,
-   "end": 81.34,
+   "start": 77.96,
+   "end": 82.48,
    "words": [
     {
      "w": "so",
-     "start": 77.469,
-     "end": 77.509,
-     "score": 0.001
+     "start": 77.96,
+     "end": 78.07,
+     "score": 0.635
     },
     {
      "w": "help",
-     "start": 77.5,
-     "end": 77.69,
-     "score": 0.037
+     "start": 78.18,
+     "end": 78.47,
+     "score": 0.328
     },
     {
      "w": "us",
-     "start": 77.74,
-     "end": 77.93,
-     "score": 0.026
+     "start": 78.5,
+     "end": 78.81,
+     "score": 0.479
     },
     {
      "w": "grow,",
-     "start": 77.92,
-     "end": 78.03,
-     "score": 0.0
+     "start": 78.86,
+     "end": 79.09,
+     "score": 0.054
     },
     {
      "w": "so",
-     "start": 79.48,
-     "end": 79.62,
-     "score": 0.69
+     "start": 79.166,
+     "end": 79.226,
+     "score": 0.154
     },
     {
      "w": "we",
-     "start": 79.79,
+     "start": 79.42,
      "end": 79.91,
-     "score": 0.387
+     "score": 0.022
     },
     {
      "w": "can",
      "start": 80.15,
-     "end": 80.66,
-     "score": 0.643
+     "end": 80.7,
+     "score": 0.377
     },
     {
      "w": "give.",
-     "start": 80.81,
-     "end": 81.34,
-     "score": 0.101
+     "start": 80.83,
+     "end": 82.48,
+     "score": 0.36
     }
    ]
   },
@@ -1078,7 +1078,7 @@
    "singer": "choir",
    "text": "The more we grow, the more we give,",
    "start": 85.01,
-   "end": 90.38,
+   "end": 88.36,
    "words": [
     {
      "w": "The",
@@ -1125,8 +1125,8 @@
     {
      "w": "give,",
      "start": 87.71,
-     "end": 90.38,
-     "score": 0.081
+     "end": 88.36,
+     "score": 0.065
     }
    ]
   },
@@ -1135,62 +1135,97 @@
    "section": "Chorus",
    "stem": "Backing Vocals",
    "singer": "choir",
-   "text": "so help us grow, so we can give.",
-   "start": 90.49,
-   "end": 96.72,
+   "text": "the more we give,",
+   "start": 90.27,
+   "end": 91.52,
    "words": [
     {
-     "w": "so",
+     "w": "the",
+     "start": 90.27,
+     "end": 90.38,
+     "score": 0.075
+    },
+    {
+     "w": "more",
      "start": 90.49,
-     "end": 90.62,
-     "score": 0.25
-    },
-    {
-     "w": "help",
-     "start": 90.79,
-     "end": 91.02,
-     "score": 0.042
-    },
-    {
-     "w": "us",
-     "start": 91.09,
-     "end": 91.22,
-     "score": 0.004
-    },
-    {
-     "w": "grow,",
-     "start": 91.39,
-     "end": 91.72,
-     "score": 0.158
-    },
-    {
-     "w": "so",
-     "start": 94.43,
-     "end": 94.6,
-     "score": 0.538
+     "end": 90.92,
+     "score": 0.291
     },
     {
      "w": "we",
-     "start": 94.97,
-     "end": 95.1,
-     "score": 0.382
+     "start": 90.99,
+     "end": 91.12,
+     "score": 0.098
     },
     {
-     "w": "can",
-     "start": 95.75,
-     "end": 96.08,
-     "score": 0.558
-    },
-    {
-     "w": "give.",
-     "start": 96.23,
-     "end": 96.72,
-     "score": 0.157
+     "w": "give,",
+     "start": 91.21,
+     "end": 91.52,
+     "score": 0.039
     }
    ]
   },
   {
    "id": "L26",
+   "section": "Chorus",
+   "stem": "Vocals",
+   "singer": "choir",
+   "text": "so help us grow, so we can give.",
+   "start": 92.0,
+   "end": 98.39,
+   "words": [
+    {
+     "w": "so",
+     "start": 92.0,
+     "end": 92.13,
+     "score": 0.983
+    },
+    {
+     "w": "help",
+     "start": 92.24,
+     "end": 92.51,
+     "score": 0.847
+    },
+    {
+     "w": "us",
+     "start": 92.62,
+     "end": 92.81,
+     "score": 0.89
+    },
+    {
+     "w": "grow,",
+     "start": 92.9,
+     "end": 93.23,
+     "score": 0.364
+    },
+    {
+     "w": "so",
+     "start": 94.42,
+     "end": 94.65,
+     "score": 0.509
+    },
+    {
+     "w": "we",
+     "start": 94.95,
+     "end": 95.1,
+     "score": 0.419
+    },
+    {
+     "w": "can",
+     "start": 95.77,
+     "end": 96.16,
+     "score": 0.031
+    },
+    {
+     "w": "give.",
+     "start": 96.15,
+     "end": 98.39,
+     "score": 0.005
+    }
+   ]
+  },
+  {
+   "id": "L27",
    "section": "Verse 2",
    "stem": "Vocals",
    "singer": "the Board",
@@ -1249,7 +1284,7 @@
    ]
   },
   {
-   "id": "L27",
+   "id": "L28",
    "section": "Verse 2",
    "stem": "Vocals",
    "singer": "the Board",
@@ -1290,7 +1325,7 @@
    ]
   },
   {
-   "id": "L28",
+   "id": "L29",
    "section": "Verse 2",
    "stem": "Vocals",
    "singer": "the Board",
@@ -1343,7 +1378,7 @@
    ]
   },
   {
-   "id": "L29",
+   "id": "L30",
    "section": "Verse 2",
    "stem": "Vocals",
    "singer": "the Board",
@@ -1390,7 +1425,7 @@
    ]
   },
   {
-   "id": "L30",
+   "id": "L31",
    "section": "Verse 2",
    "stem": "Vocals",
    "singer": "the Board",
@@ -1437,7 +1472,7 @@
    ]
   },
   {
-   "id": "L31",
+   "id": "L32",
    "section": "Verse 2",
    "stem": "Vocals",
    "singer": "the Board",
@@ -1478,7 +1513,7 @@
    ]
   },
   {
-   "id": "L32",
+   "id": "L33",
    "section": "Verse 2",
    "stem": "Vocals",
    "singer": "the Board",
@@ -1531,7 +1566,7 @@
    ]
   },
   {
-   "id": "L33",
+   "id": "L34",
    "section": "Verse 2",
    "stem": "Vocals",
    "singer": "the Board",
@@ -1578,7 +1613,7 @@
    ]
   },
   {
-   "id": "L34",
+   "id": "L35",
    "section": "Pre-Chorus 2",
    "stem": "Vocals",
    "singer": "the Lawyer",
@@ -1625,7 +1660,7 @@
    ]
   },
   {
-   "id": "L35",
+   "id": "L36",
    "section": "Pre-Chorus 2",
    "stem": "Vocals",
    "singer": "the Lawyer",
@@ -1666,7 +1701,7 @@
    ]
   },
   {
-   "id": "L36",
+   "id": "L37",
    "section": "Pre-Chorus 2 tag",
    "stem": "Backing Vocals",
    "singer": "choir",
@@ -1695,7 +1730,7 @@
    ]
   },
   {
-   "id": "L37",
+   "id": "L38",
    "section": "Pre-Chorus 2 echo",
    "stem": "Vocals",
    "singer": "the Lawyer",
@@ -1724,13 +1759,13 @@
    ]
   },
   {
-   "id": "L38",
+   "id": "L39",
    "section": "Chorus 2",
    "stem": "Backing Vocals",
    "singer": "choir",
-   "text": "Share the shares, share the shares, share the shares,",
+   "text": "Share the shares, share the shares,",
    "start": 139.36,
-   "end": 143.37,
+   "end": 142.61,
    "words": [
     {
      "w": "Share",
@@ -1767,53 +1802,35 @@
      "start": 141.8,
      "end": 142.61,
      "score": 0.157
-    },
-    {
-     "w": "share",
-     "start": 142.7,
-     "end": 143.05,
-     "score": 0.045
-    },
-    {
-     "w": "the",
-     "start": 143.04,
-     "end": 143.15,
-     "score": 0.003
-    },
-    {
-     "w": "shares,",
-     "start": 143.14,
-     "end": 143.37,
-     "score": 0.022
     }
    ]
   },
   {
-   "id": "L39",
+   "id": "L40",
    "section": "Chorus 2",
    "stem": "Backing Vocals",
    "singer": "choir",
    "text": "five in every hundred, we'll be there.",
-   "start": 143.36,
+   "start": 142.7,
    "end": 146.27,
    "words": [
     {
      "w": "five",
-     "start": 143.36,
-     "end": 143.47,
-     "score": 0.03
+     "start": 142.7,
+     "end": 143.27,
+     "score": 0.039
     },
     {
      "w": "in",
-     "start": 143.544,
-     "end": 143.584,
-     "score": 0.024
+     "start": 143.304,
+     "end": 143.364,
+     "score": 0.026
     },
     {
      "w": "every",
-     "start": 143.58,
+     "start": 143.38,
      "end": 143.69,
-     "score": 0.007
+     "score": 0.031
     },
     {
      "w": "hundred,",
@@ -1842,7 +1859,7 @@
    ]
   },
   {
-   "id": "L40",
+   "id": "L41",
    "section": "Chorus 2",
    "stem": "Backing Vocals",
    "singer": "choir",
@@ -1895,7 +1912,7 @@
    ]
   },
   {
-   "id": "L41",
+   "id": "L42",
    "section": "Chorus 2",
    "stem": "Backing Vocals",
    "singer": "choir",
@@ -1942,7 +1959,7 @@
    ]
   },
   {
-   "id": "L42",
+   "id": "L43",
    "section": "Chorus 2",
    "stem": "Backing Vocals",
    "singer": "choir",
@@ -2001,7 +2018,7 @@
    ]
   },
   {
-   "id": "L43",
+   "id": "L44",
    "section": "Chorus 2",
    "stem": "Backing Vocals",
    "singer": "choir",
@@ -2060,7 +2077,7 @@
    ]
   },
   {
-   "id": "L44",
+   "id": "L45",
    "section": "Verse 3",
    "stem": "Vocals",
    "singer": "the Worker (generated; the human's live take replaces it)",
@@ -2107,7 +2124,7 @@
    ]
   },
   {
-   "id": "L45",
+   "id": "L46",
    "section": "Verse 3",
    "stem": "Vocals",
    "singer": "the Worker (generated; the human's live take replaces it)",
@@ -2154,7 +2171,7 @@
    ]
   },
   {
-   "id": "L46",
+   "id": "L47",
    "section": "Verse 3",
    "stem": "Vocals",
    "singer": "the Worker (generated; the human's live take replaces it)",
@@ -2201,7 +2218,7 @@
    ]
   },
   {
-   "id": "L47",
+   "id": "L48",
    "section": "Verse 3",
    "stem": "Vocals",
    "singer": "the Worker (generated; the human's live take replaces it)",
@@ -2242,7 +2259,7 @@
    ]
   },
   {
-   "id": "L48",
+   "id": "L49",
    "section": "Verse 3",
    "stem": "Vocals",
    "singer": "the Worker (generated; the human's live take replaces it)",
@@ -2295,7 +2312,7 @@
    ]
   },
   {
-   "id": "L49",
+   "id": "L50",
    "section": "Verse 3",
    "stem": "Vocals",
    "singer": "the Worker (generated; the human's live take replaces it)",
@@ -2330,7 +2347,7 @@
    ]
   },
   {
-   "id": "L50",
+   "id": "L51",
    "section": "Verse 3",
    "stem": "Vocals",
    "singer": "the Worker (generated; the human's live take replaces it)",
@@ -2383,7 +2400,7 @@
    ]
   },
   {
-   "id": "L51",
+   "id": "L52",
    "section": "Verse 3",
    "stem": "Vocals",
    "singer": "the Worker (generated; the human's live take replaces it)",
@@ -2430,54 +2447,54 @@
    ]
   },
   {
-   "id": "L52",
+   "id": "L53",
    "section": "Bridge",
    "stem": "Vocals",
    "singer": "the Founder",
    "text": "And it's real, it isn't nothing:",
    "start": 192.68,
-   "end": 194.99,
+   "end": 195.01,
    "words": [
     {
      "w": "And",
      "start": 192.68,
      "end": 192.77,
-     "score": 0.933
+     "score": 0.934
     },
     {
      "w": "it's",
      "start": 192.78,
      "end": 192.91,
-     "score": 0.993
+     "score": 0.994
     },
     {
      "w": "real,",
      "start": 192.98,
      "end": 193.31,
-     "score": 0.999
+     "score": 1.0
     },
     {
      "w": "it",
      "start": 194.282,
      "end": 194.342,
-     "score": 0.995
+     "score": 0.996
     },
     {
      "w": "isn't",
      "start": 194.38,
      "end": 194.59,
-     "score": 0.872
+     "score": 0.861
     },
     {
      "w": "nothing:",
      "start": 194.64,
-     "end": 194.99,
-     "score": 0.975
+     "end": 195.01,
+     "score": 0.941
     }
    ]
   },
   {
-   "id": "L53",
+   "id": "L54",
    "section": "Bridge",
    "stem": "Vocals",
    "singer": "the Founder",
@@ -2489,7 +2506,7 @@
      "w": "a",
      "start": 196.384,
      "end": 196.404,
-     "score": 0.988
+     "score": 0.989
     },
     {
      "w": "fifth",
@@ -2499,8 +2516,8 @@
     },
     {
      "w": "of",
-     "start": 196.824,
-     "end": 196.884,
+     "start": 196.825,
+     "end": 196.885,
      "score": 0.998
     },
     {
@@ -2513,18 +2530,18 @@
      "w": "all",
      "start": 197.72,
      "end": 197.89,
-     "score": 0.975
+     "score": 0.979
     },
     {
      "w": "told,",
      "start": 197.98,
      "end": 198.43,
-     "score": 0.967
+     "score": 0.984
     }
    ]
   },
   {
-   "id": "L54",
+   "id": "L55",
    "section": "Bridge",
    "stem": "Vocals",
    "singer": "the Founder",
@@ -2542,19 +2559,19 @@
      "w": "aside",
      "start": 199.64,
      "end": 200.25,
-     "score": 0.868
+     "score": 0.86
     },
     {
      "w": "for",
-     "start": 200.28,
+     "start": 200.3,
      "end": 200.41,
-     "score": 0.855
+     "score": 0.88
     },
     {
      "w": "something",
      "start": 200.48,
      "end": 200.85,
-     "score": 0.953
+     "score": 0.952
     },
     {
      "w": "bigger",
@@ -2565,60 +2582,60 @@
    ]
   },
   {
-   "id": "L55",
+   "id": "L56",
    "section": "Bridge",
    "stem": "Vocals",
    "singer": "the Founder",
    "text": "than the ones who bought and sold.",
    "start": 202.34,
-   "end": 205.34,
+   "end": 205.36,
    "words": [
     {
      "w": "than",
      "start": 202.34,
      "end": 202.47,
-     "score": 0.966
+     "score": 0.967
     },
     {
      "w": "the",
-     "start": 202.48,
+     "start": 202.49,
      "end": 202.57,
-     "score": 0.983
+     "score": 0.984
     },
     {
      "w": "ones",
      "start": 202.72,
      "end": 203.12,
-     "score": 0.996
+     "score": 0.997
     },
     {
      "w": "who",
      "start": 204.09,
      "end": 204.2,
-     "score": 0.997
+     "score": 0.995
     },
     {
      "w": "bought",
      "start": 204.33,
      "end": 204.6,
-     "score": 0.931
+     "score": 0.917
     },
     {
      "w": "and",
      "start": 204.63,
      "end": 204.78,
-     "score": 0.544
+     "score": 0.535
     },
     {
      "w": "sold.",
      "start": 204.87,
-     "end": 205.34,
-     "score": 0.987
+     "end": 205.36,
+     "score": 0.988
     }
    ]
   },
   {
-   "id": "L56",
+   "id": "L57",
    "section": "Bridge",
    "stem": "Vocals",
    "singer": "the Founder",
@@ -2634,15 +2651,15 @@
     },
     {
      "w": "a",
-     "start": 206.933,
-     "end": 206.953,
-     "score": 0.828
+     "start": 206.935,
+     "end": 206.955,
+     "score": 0.819
     },
     {
      "w": "promise",
-     "start": 207.01,
+     "start": 207.03,
      "end": 207.48,
-     "score": 0.982
+     "score": 0.957
     },
     {
      "w": "holds",
@@ -2654,66 +2671,19 @@
      "w": "while",
      "start": 207.95,
      "end": 208.18,
-     "score": 0.764
+     "score": 0.752
     },
     {
      "w": "holding's",
      "start": 208.23,
      "end": 208.62,
-     "score": 0.993
+     "score": 0.992
     },
     {
      "w": "cheap,",
      "start": 208.71,
      "end": 209.0,
-     "score": 0.653
-    }
-   ]
-  },
-  {
-   "id": "L57",
-   "section": "Bridge",
-   "stem": "Vocals",
-   "singer": "the Founder",
-   "text": "then watch us when it's not.",
-   "start": 210.45,
-   "end": 212.58,
-   "words": [
-    {
-     "w": "then",
-     "start": 210.45,
-     "end": 210.62,
-     "score": 0.984
-    },
-    {
-     "w": "watch",
-     "start": 210.71,
-     "end": 211.02,
-     "score": 0.94
-    },
-    {
-     "w": "us",
-     "start": 211.07,
-     "end": 211.24,
-     "score": 0.998
-    },
-    {
-     "w": "when",
-     "start": 211.87,
-     "end": 212.02,
-     "score": 0.987
-    },
-    {
-     "w": "it's",
-     "start": 212.05,
-     "end": 212.2,
-     "score": 0.989
-    },
-    {
-     "w": "not.",
-     "start": 212.29,
-     "end": 212.58,
-     "score": 0.998
+     "score": 0.634
     }
    ]
   },
@@ -2722,61 +2692,184 @@
    "section": "Bridge",
    "stem": "Vocals",
    "singer": "the Founder",
-   "text": "When it's not!",
-   "start": 212.95,
-   "end": 214.94,
+   "text": "then watch us when it's not.",
+   "start": 210.45,
+   "end": 212.53,
    "words": [
     {
-     "w": "When",
-     "start": 212.95,
-     "end": 214.32,
-     "score": 0.001
+     "w": "then",
+     "start": 210.45,
+     "end": 210.62,
+     "score": 0.981
+    },
+    {
+     "w": "watch",
+     "start": 210.71,
+     "end": 211.02,
+     "score": 0.949
+    },
+    {
+     "w": "us",
+     "start": 211.07,
+     "end": 211.24,
+     "score": 0.997
+    },
+    {
+     "w": "when",
+     "start": 211.87,
+     "end": 212.02,
+     "score": 0.98
     },
     {
      "w": "it's",
-     "start": 214.33,
-     "end": 214.42,
-     "score": 0.0
+     "start": 212.05,
+     "end": 212.2,
+     "score": 0.985
     },
     {
-     "w": "not!",
-     "start": 214.49,
-     "end": 214.94,
-     "score": 0.001
+     "w": "not.",
+     "start": 212.27,
+     "end": 212.53,
+     "score": 0.985
     }
    ]
   },
   {
    "id": "L59",
-   "section": "Final Chorus",
+   "section": "Bridge tag",
    "stem": "Vocals",
-   "singer": "everyone",
-   "text": "Share the shares,",
-   "start": 216.48,
-   "end": 222.25,
+   "singer": "the Founder",
+   "text": "When it's not!",
+   "start": 212.53,
+   "end": 214.24,
    "words": [
     {
-     "w": "Share",
-     "start": 216.48,
-     "end": 217.09,
-     "score": 0.037
+     "w": "When",
+     "start": 212.53,
+     "end": 212.83,
+     "score": 0.065
     },
     {
-     "w": "the",
-     "start": 217.2,
-     "end": 217.51,
-     "score": 0.258
+     "w": "it's",
+     "start": 212.84,
+     "end": 213.7,
+     "score": 0.095
     },
     {
-     "w": "shares,",
-     "start": 220.48,
-     "end": 222.25,
-     "score": 0.299
+     "w": "not!",
+     "start": 213.83,
+     "end": 214.24,
+     "score": 0.061
     }
    ]
   },
   {
    "id": "L60",
+   "section": "Bridge tag",
+   "stem": "Vocals",
+   "singer": "the Founder",
+   "text": "When it's not!",
+   "start": 214.86,
+   "end": 215.86,
+   "words": [
+    {
+     "w": "When",
+     "start": 214.86,
+     "end": 215.23,
+     "score": 0.078
+    },
+    {
+     "w": "it's",
+     "start": 215.24,
+     "end": 215.48,
+     "score": 0.178
+    },
+    {
+     "w": "not!",
+     "start": 215.47,
+     "end": 215.86,
+     "score": 0.037
+    }
+   ]
+  },
+  {
+   "id": "L61",
+   "section": "Bridge tag",
+   "stem": "Vocals",
+   "singer": "the Founder",
+   "text": "When it's not!",
+   "start": 216.49,
+   "end": 218.3,
+   "words": [
+    {
+     "w": "When",
+     "start": 216.49,
+     "end": 217.0,
+     "score": 0.175
+    },
+    {
+     "w": "it's",
+     "start": 217.07,
+     "end": 217.26,
+     "score": 0.089
+    },
+    {
+     "w": "not!",
+     "start": 217.39,
+     "end": 218.3,
+     "score": 0.131
+    }
+   ]
+  },
+  {
+   "id": "L62",
+   "section": "Final Chorus open",
+   "stem": "Backing Vocals",
+   "singer": "everyone",
+   "text": "Share the shares, share the shares,",
+   "start": 220.5,
+   "end": 223.75,
+   "words": [
+    {
+     "w": "Share",
+     "start": 220.5,
+     "end": 220.89,
+     "score": 0.115
+    },
+    {
+     "w": "the",
+     "start": 221.0,
+     "end": 221.09,
+     "score": 0.032
+    },
+    {
+     "w": "shares,",
+     "start": 221.2,
+     "end": 222.15,
+     "score": 0.106
+    },
+    {
+     "w": "share",
+     "start": 222.3,
+     "end": 222.85,
+     "score": 0.108
+    },
+    {
+     "w": "the",
+     "start": 222.96,
+     "end": 223.13,
+     "score": 0.146
+    },
+    {
+     "w": "shares,",
+     "start": 223.52,
+     "end": 223.75,
+     "score": 0.019
+    }
+   ]
+  },
+  {
+   "id": "L63",
    "section": "Final Chorus",
    "stem": "Vocals",
    "singer": "everyone",
@@ -2788,202 +2881,43 @@
      "w": "five",
      "start": 223.88,
      "end": 224.37,
-     "score": 0.132
+     "score": 0.078
     },
     {
      "w": "in",
      "start": 224.42,
      "end": 224.55,
-     "score": 0.605
+     "score": 0.641
     },
     {
      "w": "every",
      "start": 224.64,
      "end": 224.89,
-     "score": 0.773
+     "score": 0.778
     },
     {
      "w": "hundred,",
      "start": 224.98,
      "end": 225.59,
-     "score": 0.922
+     "score": 0.934
     },
     {
      "w": "we'll",
      "start": 225.66,
-     "end": 226.01,
-     "score": 0.667
+     "end": 225.99,
+     "score": 0.643
     },
     {
      "w": "be",
      "start": 226.08,
      "end": 226.21,
-     "score": 0.974
+     "score": 0.972
     },
     {
      "w": "there.",
      "start": 226.5,
      "end": 226.87,
-     "score": 0.307
-    }
-   ]
-  },
-  {
-   "id": "L61",
-   "section": "Final Chorus",
-   "stem": "Vocals",
-   "singer": "everyone",
-   "text": "And if we grow by half again,",
-   "start": 227.48,
-   "end": 230.66,
-   "words": [
-    {
-     "w": "And",
-     "start": 227.48,
-     "end": 227.65,
-     "score": 0.731
-    },
-    {
-     "w": "if",
-     "start": 227.68,
-     "end": 227.79,
-     "score": 0.983
-    },
-    {
-     "w": "we",
-     "start": 227.86,
-     "end": 227.97,
-     "score": 0.964
-    },
-    {
-     "w": "grow",
-     "start": 228.22,
-     "end": 228.73,
-     "score": 0.876
-    },
-    {
-     "w": "by",
-     "start": 228.92,
-     "end": 229.21,
-     "score": 0.649
-    },
-    {
-     "w": "half",
-     "start": 229.38,
-     "end": 229.79,
-     "score": 0.761
-    },
-    {
-     "w": "again,",
-     "start": 229.88,
-     "end": 230.66,
-     "score": 0.925
-    }
-   ]
-  },
-  {
-   "id": "L62",
-   "section": "Final Chorus",
-   "stem": "Vocals",
-   "singer": "everyone",
-   "text": "two more at our discretion then.",
-   "start": 231.11,
-   "end": 234.36,
-   "words": [
-    {
-     "w": "two",
-     "start": 231.11,
-     "end": 231.44,
-     "score": 0.515
-    },
-    {
-     "w": "more",
-     "start": 231.55,
-     "end": 231.98,
-     "score": 0.437
-    },
-    {
-     "w": "at",
-     "start": 231.97,
-     "end": 232.72,
-     "score": 0.008
-    },
-    {
-     "w": "our",
-     "start": 232.79,
-     "end": 233.2,
-     "score": 0.049
-    },
-    {
-     "w": "discretion",
-     "start": 233.31,
-     "end": 234.12,
-     "score": 0.164
-    },
-    {
-     "w": "then.",
-     "start": 234.21,
-     "end": 234.36,
-     "score": 0.004
-    }
-   ]
-  },
-  {
-   "id": "L63",
-   "section": "Final Chorus",
-   "stem": "Vocals",
-   "singer": "everyone",
-   "text": "The more we grow, the more we give,",
-   "start": 234.45,
-   "end": 238.52,
-   "words": [
-    {
-     "w": "The",
-     "start": 234.45,
-     "end": 234.54,
-     "score": 0.028
-    },
-    {
-     "w": "more",
-     "start": 234.65,
-     "end": 235.84,
-     "score": 0.349
-    },
-    {
-     "w": "we",
-     "start": 235.83,
-     "end": 235.94,
-     "score": 0.868
-    },
-    {
-     "w": "grow,",
-     "start": 236.09,
-     "end": 236.48,
-     "score": 0.799
-    },
-    {
-     "w": "the",
-     "start": 237.55,
-     "end": 237.64,
-     "score": 0.017
-    },
-    {
-     "w": "more",
-     "start": 237.69,
-     "end": 237.9,
-     "score": 0.466
-    },
-    {
-     "w": "we",
-     "start": 237.93,
-     "end": 238.02,
-     "score": 0.93
-    },
-    {
-     "w": "give,",
-     "start": 238.09,
-     "end": 238.52,
-     "score": 0.6
+     "score": 0.286
     }
    ]
   },
@@ -2992,44 +2926,203 @@
    "section": "Final Chorus",
    "stem": "Vocals",
    "singer": "everyone",
+   "text": "And if we grow by half again,",
+   "start": 227.48,
+   "end": 230.65,
+   "words": [
+    {
+     "w": "And",
+     "start": 227.48,
+     "end": 227.65,
+     "score": 0.693
+    },
+    {
+     "w": "if",
+     "start": 227.68,
+     "end": 227.79,
+     "score": 0.987
+    },
+    {
+     "w": "we",
+     "start": 227.86,
+     "end": 227.97,
+     "score": 0.954
+    },
+    {
+     "w": "grow",
+     "start": 228.22,
+     "end": 228.73,
+     "score": 0.914
+    },
+    {
+     "w": "by",
+     "start": 228.92,
+     "end": 229.23,
+     "score": 0.663
+    },
+    {
+     "w": "half",
+     "start": 229.38,
+     "end": 229.79,
+     "score": 0.764
+    },
+    {
+     "w": "again,",
+     "start": 229.88,
+     "end": 230.65,
+     "score": 0.941
+    }
+   ]
+  },
+  {
+   "id": "L65",
+   "section": "Final Chorus",
+   "stem": "Vocals",
+   "singer": "everyone",
+   "text": "two more at our discretion then.",
+   "start": 231.1,
+   "end": 234.35,
+   "words": [
+    {
+     "w": "two",
+     "start": 231.1,
+     "end": 231.43,
+     "score": 0.565
+    },
+    {
+     "w": "more",
+     "start": 231.54,
+     "end": 232.65,
+     "score": 0.453
+    },
+    {
+     "w": "at",
+     "start": 232.668,
+     "end": 232.708,
+     "score": 0.009
+    },
+    {
+     "w": "our",
+     "start": 232.78,
+     "end": 233.19,
+     "score": 0.022
+    },
+    {
+     "w": "discretion",
+     "start": 233.3,
+     "end": 234.11,
+     "score": 0.208
+    },
+    {
+     "w": "then.",
+     "start": 234.2,
+     "end": 234.35,
+     "score": 0.003
+    }
+   ]
+  },
+  {
+   "id": "L66",
+   "section": "Final Chorus",
+   "stem": "Vocals",
+   "singer": "everyone",
+   "text": "The more we grow, the more we give,",
+   "start": 234.44,
+   "end": 238.52,
+   "words": [
+    {
+     "w": "The",
+     "start": 234.44,
+     "end": 234.53,
+     "score": 0.014
+    },
+    {
+     "w": "more",
+     "start": 234.64,
+     "end": 235.84,
+     "score": 0.375
+    },
+    {
+     "w": "we",
+     "start": 235.83,
+     "end": 235.94,
+     "score": 0.879
+    },
+    {
+     "w": "grow,",
+     "start": 236.09,
+     "end": 236.46,
+     "score": 0.803
+    },
+    {
+     "w": "the",
+     "start": 237.55,
+     "end": 237.64,
+     "score": 0.009
+    },
+    {
+     "w": "more",
+     "start": 237.69,
+     "end": 237.9,
+     "score": 0.47
+    },
+    {
+     "w": "we",
+     "start": 237.93,
+     "end": 238.02,
+     "score": 0.922
+    },
+    {
+     "w": "give,",
+     "start": 238.09,
+     "end": 238.52,
+     "score": 0.547
+    }
+   ]
+  },
+  {
+   "id": "L67",
+   "section": "Final Chorus",
+   "stem": "Vocals",
+   "singer": "everyone",
    "text": "do I get a say?",
-   "start": 239.655,
+   "start": 239.654,
    "end": 240.54,
    "words": [
     {
      "w": "do",
-     "start": 239.655,
-     "end": 239.715,
-     "score": 0.978
+     "start": 239.654,
+     "end": 239.714,
+     "score": 0.979
     },
     {
      "w": "I",
-     "start": 239.855,
-     "end": 239.875,
+     "start": 239.854,
+     "end": 239.874,
      "score": 0.973
     },
     {
      "w": "get",
      "start": 239.89,
      "end": 240.04,
-     "score": 0.968
+     "score": 0.969
     },
     {
      "w": "a",
-     "start": 240.056,
-     "end": 240.076,
-     "score": 0.728
+     "start": 240.054,
+     "end": 240.074,
+     "score": 0.81
     },
     {
      "w": "say?",
      "start": 240.17,
      "end": 240.54,
-     "score": 0.598
+     "score": 0.609
     }
    ]
   },
   {
-   "id": "L65",
+   "id": "L68",
    "section": "Final Chorus",
    "stem": "Vocals",
    "singer": "everyone",
@@ -3041,54 +3134,54 @@
      "w": "So",
      "start": 241.47,
      "end": 241.58,
-     "score": 0.979
+     "score": 0.984
     },
     {
      "w": "help",
      "start": 241.71,
      "end": 241.98,
-     "score": 0.978
+     "score": 0.986
     },
     {
      "w": "us",
      "start": 242.07,
      "end": 242.28,
-     "score": 0.917
+     "score": 0.926
     },
     {
      "w": "grow,",
      "start": 242.37,
-     "end": 242.74,
-     "score": 0.238
+     "end": 242.72,
+     "score": 0.345
     },
     {
      "w": "so",
      "start": 243.87,
      "end": 244.04,
-     "score": 0.917
+     "score": 0.939
     },
     {
      "w": "we",
      "start": 244.25,
      "end": 244.56,
-     "score": 0.379
+     "score": 0.34
     },
     {
      "w": "can",
      "start": 245.17,
-     "end": 245.58,
-     "score": 0.337
+     "end": 245.56,
+     "score": 0.315
     },
     {
      "w": "give.",
      "start": 245.59,
      "end": 247.26,
-     "score": 0.043
+     "score": 0.052
     }
    ]
   },
   {
-   "id": "L66",
+   "id": "L69",
    "section": "Outro",
    "stem": "Vocals",
    "singer": "choir, fading",
@@ -3147,7 +3240,7 @@
    ]
   },
   {
-   "id": "L67",
+   "id": "L70",
    "section": "Outro",
    "stem": "Vocals",
    "singer": "choir, fading",
@@ -3206,7 +3299,7 @@
    ]
   },
   {
-   "id": "L68",
+   "id": "L71",
    "section": "Outro",
    "stem": "Vocals",
    "singer": "choir, fading",
@@ -3241,7 +3334,7 @@
    ]
   },
   {
-   "id": "L69",
+   "id": "L72",
    "section": "Tag",
    "stem": "Vocals",
    "singer": "the Founder, spoken over the fade",

@@ -393,3 +393,28 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
 
   The S30 slate's text no longer repeats the post-filter tab.
 - **Status:** **C4 v3 is ready for review.**
+
+## 2026-10-26T07:33:32-04:00 — C4 v4: the animatic's audio offset, and Suno's repeats re-aligned
+
+- **Why:** the human's C4 v3 review (human interventions, same time).
+- **The start: the audio ran 1.5 s early (v1–v3).** Measured by cross-correlating the animatic's decoded audio with the Suno mix:
+  - it sat 2.47 s after the picture where the pre-roll is 4.00 s, and the gap grew to 2.82 s by 260 s;
+  - the AAC stream had broken packet timestamps: one 1.6 s packet at 4.03 s (the pre-roll's end) and pairs of 1-sample packets through the song. Players that follow the timestamps were right, and players that just play the samples ran the audio about 1.5 s early, so the captions and mouths read late against it;
+  - the same audio chain encoded on its own measures exactly 4.000 s throughout. The cause was encoding the delayed audio in the same ffmpeg graph as the slow video and captions;
+  - fixed in `scripts/animatic_assemble.py`: the audio is encoded on its own (`adelay`, `apad`, AAC), then muxed in with `-c:a copy`.
+
+  The intro's own alignment checks out against the vocal stem's energy ("Right" at 2.80 s, where the voice starts at 2.77 s).
+- **Suno's repeats, found by re-transcribing both vocal stems in overlapping 14 s windows (faster-whisper medium.en), then 6 s windows of the stems and the mix for 208–226 s and 244–264 s, with onsets and a spectrogram:**
+  - Chorus 1's repeat: the choir sings "the more we give" twice (86.6 and 90.3 s), and the lead's "so help us grow" comes only at 91.8 s. A new line; S17b moves 90.49 → 92.00 s.
+  - "So help us grow" (both in chorus 1): the choir holds "the more we give" under the lead, and on the choir stem the line was squeezed 0.5–1 s early. Those two lines are now aligned on the lead stem in their own windows (`ON_STEM`). S17 moves 77.47 → 77.96 s.
+  - Chorus 2 has two "share the shares" after the tag, not three: the v3 count was wrong. "Five" is at 142.7 s, and S25b moves 143.36 → 142.70 s. S25a (the second) stays at 141.12 s.
+  - The bridge's "When it's not!" is sung three times (212.5, 214.9, 216.5 s; the last "not" held to 220.3 s), and the final chorus opens with two "share the shares" (220.5, 222.3 s). The as-sung draft had one of each, while the brief's cues (S35, S37) already had the repeats. New sections: `Bridge tag`, with one window per line (as one window, its lines came out up to 2 s late), and `Final Chorus open` on the choir stem, where the lead's is a blur. S35 moves 212.95 → 212.53 s, S37 216.48 → 220.50 s, and S38 231.97 → 232.67 s.
+  - The outro matches the lyrics: the lead sings "grow" where the choir sings "give", and the captions follow the choir.
+  - Known: the aligner ends the held last "not!" at 218.3 s, so the Founder's jaw shuts 2 s before the note ends. A C5 item.
+- **Code:** `scripts/align_words.py` takes per-group windows (line count, start, end) and `ON_STEM` lines; `lyrics/as_sung_draft.txt`; `timing/words.json` and `timing/timing_map.json` rebuilt (72 lines, 53 shots, none unresolved).
+- **Render:** `renders/c4/frames_v4` is a copy of v3, with the frames re-rendered for every shot whose span moved and every re-aligned line (74.6–99.0, 139.0–147.0, 210.0–236.0 s; `--step 2`). The graphics layer's timings are unchanged. The v3 cut is archived as `archive/renders/c4/c4_animatic_v3_audio-early.mp4`.
+- **Outputs:** `renders/c4/frames_v4`, `renders/c4/anchors_v4`, `renders/c4/c4_anchor_sheet_v4.jpg` (the v3 sheet archived), and `renders/c4/c4_animatic.mp4`.
+- **Result (v4):** 704 frames re-rendered, with no errors. The cut is 318.4 s, assembled from 2,920 frames.
+  - The audio is clean AAC (fixed-size packets), and its delay measures 4.000 s at 3, 8, 30, 100, 200, 260 and 280 s.
+  - Checked on stills: the captions are on the right lines at 3.0, 78.6, 92.6, 143.0, 213.0, 215.2, 221.0 and 222.6 s.
+- **Status:** **C4 v4 is ready for review.**

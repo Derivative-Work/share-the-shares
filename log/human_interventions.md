@@ -99,3 +99,8 @@ Every human action: timestamp, what, why, and which production rule allows it. R
   - "create and fill in the graphics in the placeholders";
   - "the 5% in the corners is hard to read".
 - **Rule:** R2 for S24 (a sync error, information from listening). R1 for the graphics and the 5% (changes asked for in words). The post-filter question was withdrawn: no change, and the master's post-filter stays the human's step on the 5090 box (R4).
+
+## 2026-10-26T07:33:32-04:00 — C4 v3 review: the lyric timing at the start, and Suno's other repeats — R2
+
+- **What:** The human: "Check the lyrics timing, particularly at the beginning, again. There's also at least one other spot where Suno repeated lyrics".
+- **Rule:** R2: a sync error, information from listening. The agent found the causes and made the fixes.

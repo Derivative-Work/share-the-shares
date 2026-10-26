@@ -132,12 +132,17 @@ def main():
             im.save(seq / f"{k:06d}.png")
         sub = td / "c4.ass"
         sub.write_text(ass(w, h))
+        # the audio is encoded on its own and muxed in as is: encoded in the same graph as the slow video, the
+        # delayed audio came out with broken packet timestamps (a 1.6 s packet at the pre-roll's end), which
+        # players that ignore timestamps played ~1.5 s early (v1-v3)
         ms = int(round(PRE * 1000))
+        aud = td / "audio.m4a"
+        subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", TM["audio"], "-af", f"adelay={ms}|{ms},apad",
+                        "-t", f"{total:.3f}", "-c:a", "aac", "-b:a", "160k", str(aud)], check=True)
         cmd = ["ffmpeg", "-v", "error", "-y", "-framerate", f"{FPS / step}", "-i", str(seq / "%06d.png"),
-               "-i", TM["audio"], "-filter_complex",
-               f"[0:v]ass={sub}:fontsdir=assets/fonts[v];[1:a]adelay={ms}|{ms},apad[a]",
-               "-map", "[v]", "-map", "[a]", "-t", f"{total:.3f}", "-c:v", "libx264", "-preset", "veryfast", "-crf", "22",
-               "-pix_fmt", "yuv420p", "-r", f"{FPS}", "-c:a", "aac", "-b:a", "160k", out]
+               "-i", str(aud), "-filter_complex", f"[0:v]ass={sub}:fontsdir=assets/fonts[v]",
+               "-map", "[v]", "-map", "1:a", "-t", f"{total:.3f}", "-c:v", "libx264", "-preset", "veryfast", "-crf", "22",
+               "-pix_fmt", "yuv420p", "-r", f"{FPS}", "-c:a", "copy", out]
         subprocess.run(cmd, check=True)
     print(out, f"{total:.1f} s, {len(pngs)} rendered frames")
 
