@@ -132,7 +132,7 @@ Every human action: timestamp, what, why, and which production rule allows it. R
 - **What:** The human: "My only notes on this: I don't think S01 (the Suno screen grab) fits for this at all. S08 is sitting still for too long."
 - **Rule:** R1 (a rejection of S01, and a change asked for in words for S08). This also ends the planned R4 step of capturing the real Suno screen.
 
-## 2026-10-26T18:10:00-04:00 — C5 approved; the human's red-pen hedges on the fact card; credits — R1, EXCEPTION
+## 2026-10-26T18:04:04-04:00 — C5 approved; the human's red-pen hedges on the fact card; credits — R1, EXCEPTION
 
 - **What:** The human: "Video is fine." Then:
   - more hedging on the end card (S47), "via a red pen in a handwritten font":
