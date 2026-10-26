@@ -52,7 +52,8 @@ def ev(layer, a, b, style, txt):
 
 
 def ass(w, h, captions="full"):
-    L = ["[Script Info]", "ScriptType: v4.00+", f"PlayResX: {w}", f"PlayResY: {h}", "",
+    # the styles are sized for the 640x360 animatic; libass scales them to the frame (the C5 cuts are 1080p)
+    L = ["[Script Info]", "ScriptType: v4.00+", "PlayResX: 640", "PlayResY: 360", "",
          "[V4+ Styles]",
          "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, "
          "Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, "

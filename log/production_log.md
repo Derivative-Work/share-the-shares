@@ -535,3 +535,11 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
 - **Started:**
   - section 1 (0–46.88 s) into `renders/c5/frames` (log `renders/c5/logs/section1.log`);
   - the graphics layer at 1920×1080 and 24 fps into `renders/c5/graphics`.
+
+## 2026-10-26T12:26:25-04:00 — C5 section 1 cut (S01–S09); section 2 started
+
+- **Render:** section 1, 0–46.88 s: 1,126 frames at 1920×1080 and 16 samples in 1 h 34 min (5.0 s/frame on average), no errors. The graphics layer at 1080p (15 jobs) also finished.
+- **Cut:** `renders/c5/cuts/c5_1_intro_verse1.mp4`: 50.9 s (S01's 4 s pre-roll and S02–S09), 1920×1080, shot IDs only. Contact sheet `renders/c5/sheets/c5_1_intro_verse1.jpg` (`scripts/c5_section_sheet.py`, new: one still per shot, 0.5 s in).
+- **Fix:** the caption styles were sized for the 360p animatic, so at 1080p the shot ID was a third of its size. `scripts/animatic_assemble.py` now sets the subtitle play resolution to 640×360, and libass scales the styles to the frame. The first cut was re-made, not kept.
+- **Started:** section 2 (46.88–98.44 s) into `renders/c5/frames` (log `renders/c5/logs/section2.log`).
+- **Status:** **C5 section 1 is ready for review.**
