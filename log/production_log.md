@@ -468,3 +468,33 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
 - **Checked by eye at full size:** the calendar pages, the cabinet, the seal and coin legends (set on a circle, which `fit()` doesn't cover; nothing collides), the eraser, the thermometer, the transfer form, the scroll, the ledger, the door plaque, the studio's SILENCE plaque and the stamp, plus every caption on the sheet.
 - **Outputs:** `renders/c5/c5_props_v2.jpg`; v1 archived as `archive/renders/c5/c5_props_v1_clipped-type.jpg`.
 - **Status:** **the C5 prop sheet v2 is ready for review.**
+
+## 2026-10-26T10:26:07-04:00 — C5: the engraved props in the shots
+
+- **Why:** the human approved prop sheet v2 ("These look great, keep going"; human interventions).
+- **Scene (`scenes/blender/animatic.py`):** every grey card is replaced.
+  - New helpers:
+    - `prop_card`: a print on the sheet, or a paper cutout with the prop's silhouette, with an optional green plate;
+    - `emboss_card`: a blind emboss from a height map;
+    - `prop_box`: the prop's own aspect.
+  - `scenes/blender/lib/puppet.py` `layer_material` takes a second (green) plate.
+- **Per shot:**
+  - **S06:** the studio, as one print with the two microphones composed into it, either side of Progress. Overlapping prints would hide each other in Eevee, which draws only the frontmost blended surface. S09's tiny certificates now appear from S09, not S06: from S06 they covered the left microphone.
+  - **S08:** the door, its WHOLLY OWNED plaque composed in and centred in the PLAQUE framing (the door moved 71 px down).
+  - **S12:** the calendar is printed in the margin, and its ten pages are paper cutouts that flip up over the binding in turn.
+  - **S15, S18, S19:** the stamp, the coins on Prudence's scales, and the quill are cutouts.
+  - **S20:** the quill rules the baseline, its nib on the line.
+  - **S21, S23:** the eraser, and Mercury's scroll on his arm.
+  - **S24:** the certificate's back is the transfer form, the face-down document under it.
+  - **S32–S33:** the thermometer is a paper card over the stub, covering the stub's own fields; the column of spirit (sepia) rises; the BASELINE: TBA ribbon appears at S33 + 1 s.
+  - **S34:** the seal's die carries the seal; after the hit it lifts away (0.8–1.6 s) and leaves the blind-embossed impression.
+  - **S37–S38:** the ledger (green ruling) and the scissors.
+  - **S44:** the sliding lid is the drawer front. Its WHOLLY OWNED label holder is ruled fresh: the patent's holder, cropped, didn't line up with the re-set label. The label is placed where the closing frame sees the lid, which rides 6 cm above the sheet (measured on a render).
+- **Props (`scripts/props.py`):**
+  - silhouette masks for the cutouts;
+  - `COMPOSE`: overlapping prints are composed into one texture, each piece knocked out of what's behind it;
+  - the thermometer redrawn at the stub's size and split into glass, ribbon and column (geometry in `thermometer_geom.json`);
+  - `drawer_front` added;
+  - the arch's ink floor raised, to clear the scan's grain.
+- **Checked:** 720p stills of every prop shot (`renders/c5/props_check_v1`–`v3`).
+- **Next:** S36's gold re-ink, the cherubs' arms, then the C5 renders section by section.

@@ -512,54 +512,64 @@ TICKS = ["+50%", "+100%", "+150%", "+200%", "+250%"]
 
 @generated
 def thermometer_scale(p):
-    """The stub's thermometer: a glass tube shaded as a cylinder, rising from a rounded foot to a hatched bulb at the
-    top on a ribbon reading BASELINE: TBA, the column of spirit rising beside a scale in +50% steps."""
-    W, H = 900, 2400
-    img = canvas(W, H)
-    cx, tw = 380, 120                        # the tube's centre and width
-    top, foot = 520, H - 120                 # the tube runs from under the bulb to its rounded foot
+    """The stub's thermometer, sized to the stub (560 x 2400 px of sheet): a glass tube shaded as a cylinder, rising
+    from a rounded foot to a hatched bulb at the top, its scale in +50% steps; the ribbon across the bulb reads
+    BASELINE: TBA. Written as the glass (tube, bulb, scale), the ribbon and the column of spirit, so the scene can
+    raise the column and show the ribbon on its own cue, plus all three together for the sheet."""
+    W, H = 560, 2400
+    glass, ribbon, column = canvas(W, H), canvas(W, H), canvas(W, H)
+    cx, tw = TH_GEOM["cx"], TH_GEOM["tw"]
+    top, foot = TH_GEOM["top"], TH_GEOM["foot"]
     tube = np.zeros((H, W), np.uint8)
     cv2.rectangle(tube, (cx - tw // 2, top), (cx + tw // 2, foot), 1, -1)
     cv2.circle(tube, (cx, foot), tw // 2, 1, -1)
     tube = tube.astype(bool)
-    xx = np.mgrid[0:H, 0:W][1]
+    yy, xx = np.mgrid[0:H, 0:W]
     edge = np.abs(xx - cx) / (tw / 2)         # 0 at the axis, 1 at the glass's edge
-    hatch(img, tube & (edge > 0.62) & (xx < cx), 90, 7, 2)   # the glass's shaded flanks; the axis stays clear
-    hatch(img, tube & (edge > 0.5) & (xx > cx), 90, 6, 2)
-    hatch(img, tube & (edge > 0.8) & (xx > cx), 90, 3, 2)
-    cv2.rectangle(img, (cx - tw // 2, top), (cx + tw // 2, foot), 255, 6, AA)
-    cv2.ellipse(img, (cx, foot), (tw // 2, tw // 2), 0, 0, 180, 255, 6, AA)
-    # the column of spirit: solid ink from the foot to the +100% mark
-    y0, y1 = top + 260, foot - 120          # the scale's top (+250%) and bottom (+50%) marks
-    marks = [int(y1 - (y1 - y0) * i / (len(TICKS) - 1)) for i in range(len(TICKS))]
-    img[marks[1]:foot, cx - 16:cx + 16] = 255
-    cv2.circle(img, (cx, foot), 34, 255, -1, AA)
-    # the scale: long ticks on the marks, short between, the labels set right of the tube
+    hatch(glass, tube & (edge > 0.62) & (xx < cx), 90, 7, 2)   # the glass's shaded flanks; the axis stays clear
+    hatch(glass, tube & (edge > 0.5) & (xx > cx), 90, 6, 2)
+    hatch(glass, tube & (edge > 0.8) & (xx > cx), 90, 3, 2)
+    cv2.rectangle(glass, (cx - tw // 2, top), (cx + tw // 2, foot), 255, 6, AA)
+    cv2.ellipse(glass, (cx, foot), (tw // 2, tw // 2), 0, 0, 180, 255, 6, AA)
+    marks = TH_GEOM["marks"]
     for i, y in enumerate(marks):
-        cv2.line(img, (cx + tw // 2 + 8, y), (cx + tw // 2 + 70, y), 255, 6, AA)
-        fit(img, (cx + tw // 2 + 84, y - 70, W - 16, y + 70), TICKS[i], "small_caps", 120, align="l", margin=0.04)
+        cv2.line(glass, (cx + tw // 2 + 6, y), (cx + tw // 2 + 54, y), 255, 6, AA)
+        fit(glass, (cx + tw // 2 + 62, y - 56, W - 12, y + 56), TICKS[i], "small_caps", 110, align="l", margin=0.04)
         if i:
             for k in range(1, 5):
                 yk = int(y + (marks[i - 1] - y) * k / 5)
-                cv2.line(img, (cx + tw // 2 + 8, yk), (cx + tw // 2 + 36, yk), 255, 3, AA)
-    # the bulb at the top, shaded as a sphere lit from the upper left
-    by, r = 330, 190
+                cv2.line(glass, (cx + tw // 2 + 6, yk), (cx + tw // 2 + 28, yk), 255, 3, AA)
+    by, r = TH_GEOM["bulb_y"], TH_GEOM["bulb_r"]
     ball = np.zeros((H, W), np.uint8)
     cv2.circle(ball, (cx, by), r, 1, -1)
     ball = ball.astype(bool)
-    yy = np.mgrid[0:H, 0:W][0]
-    lit = np.hypot(xx - (cx - 70), yy - (by - 70)) / (r * 1.5)
+    lit = np.hypot(xx - (cx - r * 0.37), yy - (by - r * 0.37)) / (r * 1.5)
     for lo, ang, pitch in ((0.45, 30, 9), (0.7, -30, 8), (0.9, 90, 6)):
-        hatch(img, ball & (lit > lo), ang, pitch, 2)
-    cv2.circle(img, (cx, by), r, 255, 7, AA)
-    cv2.line(img, (cx - tw // 2, top), (cx - tw // 2, by + int(r * 0.93)), 255, 6, AA)
-    cv2.line(img, (cx + tw // 2, top), (cx + tw // 2, by + int(r * 0.93)), 255, 6, AA)
-    # the ribbon across the bulb: BASELINE: TBA
-    rb = [(40, by - 70), (W - 40, by - 70), (W - 110, by), (W - 40, by + 70), (40, by + 70), (110, by)]
-    img[poly_mask(img.shape, rb)] = 0
-    outline(img, rb, 6)
-    fit(img, (120, by - 58, W - 120, by + 58), "BASELINE: TBA", "small_caps", 84, spacing=6)
-    return {"thermometer_full": img}
+        hatch(glass, ball & (lit > lo), ang, pitch, 2)
+    cv2.circle(glass, (cx, by), r, 255, 7, AA)
+    for sx in (-1, 1):
+        cv2.line(glass, (cx + sx * tw // 2, top), (cx + sx * tw // 2, by + int(r * 0.93)), 255, 6, AA)
+    # the column of spirit, full height (the scene scales it from the foot)
+    column[top + 40:foot, cx - TH_GEOM["col_w"] // 2:cx + TH_GEOM["col_w"] // 2] = 255
+    cv2.circle(column, (cx, foot), 30, 255, -1, AA)
+    # the ribbon across the bulb
+    rb = [(14, by - 62), (W - 14, by - 62), (W - 64, by), (W - 14, by + 62), (14, by + 62), (64, by)]
+    m = poly_mask(ribbon.shape, rb)
+    outline(ribbon, rb, 6)
+    fit(ribbon, (70, by - 52, W - 70, by + 52), "BASELINE: TBA", "small_caps", 84, spacing=4)
+    full = np.maximum(glass, column)
+    full[m] = 0
+    np.maximum(full, ribbon, out=full)
+    g2 = glass.copy()
+    g2[m] = 0
+    rib = ribbon.copy()
+    return {"thermometer_glass": g2, "thermometer_ribbon": rib, "thermometer_column": column, "thermometer_full": full,
+            "thermometer_ribbon_mask": (m * 255).astype(np.uint8)}
+
+
+# the thermometer's geometry in its own pixels, shared with the scene (config written beside the ink)
+TH_GEOM = {"cx": 170, "tw": 100, "top": 470, "foot": 2280, "bulb_y": 290, "bulb_r": 150, "col_w": 30,
+           "marks": [int(2160 - (2160 - 760) * i / 4) for i in range(5)]}
 
 
 @generated
@@ -582,6 +592,41 @@ def seal(p):
     fit(img, (c - 86, c + 70, c + 86, c + 118), "MMXXVI", "small_caps", 38, spacing=6)
     emboss = cv2.GaussianBlur(cv2.dilate(img, np.ones((5, 5), np.uint8)), (0, 0), 3)
     return {"seal": img, "seal_emboss": emboss}
+
+
+@generated
+def drawer_front(p):
+    """S44's drawer front, at the sheet's size (the lid that slides over the certificate): a WHOLLY OWNED label holder
+    ruled like the filing cabinet patent's, on a panel ruled in the same manner, with a cup pull."""
+    W, H = int(C.W), int(C.H)
+    img = canvas(W, H)
+    for off, wd in ((30, 14), (70, 4), (110, 4)):
+        cv2.rectangle(img, (off, off), (W - off, H - off), 255, wd, AA)
+    m = np.zeros((H, W), bool)
+    m[H - 110:H - 70, 110:W - 110] = True
+    hatch(img, m, 0, 8, 3)  # the shadow under the panel's lip
+    # the label holder, ruled as the cabinet patent draws its holders (a heavy outer frame, a fine inner one, rounded).
+    # Placed where S44's closing frame sees the lid: the lid rides 6 cm above the sheet, nearer the camera, so the
+    # PROGRESS_TIGHT framing covers only about sheet px 2170-2780 x 593-939 of it (measured on a render)
+    hx0, hy0, hx1, hy1 = 2475 - 240, 715 - 85, 2475 + 240, 715 + 85
+    rr = 18
+    for (x0, y0, x1, y1), wd in (((hx0, hy0, hx1, hy1), 10), ((hx0 + 20, hy0 + 20, hx1 - 20, hy1 - 20), 3)):
+        pts = C.rounded_rect_path(x0, y0, x1, y1, rr, 1200)[0]
+        C.poly(img, pts, wd)
+    m = np.zeros((H, W), bool)
+    m[hy1 + 5:hy1 + 18, hx0 + 14:hx1 + 14] = True
+    hatch(img, m, 0, 5, 2)  # its shadow
+    fit(img, (hx0 + 30, hy0 + 30, hx1 - 30, hy1 - 30), "WHOLLY OWNED", "small_caps", 120, spacing=2)
+    # the cup pull, under the label
+    px, py, pw, ph = 2475, 868, 220, 80
+    cv2.ellipse(img, (px, py), (pw // 2, ph // 2), 0, 0, 180, 255, 8, AA)
+    cv2.line(img, (px - pw // 2, py), (px + pw // 2, py), 255, 8, AA)
+    cup = np.zeros((H, W), np.uint8)
+    cv2.ellipse(cup, (px, py), (pw // 2 - 14, ph // 2 - 14), 0, 0, 180, 1, -1)
+    hatch(img, cup.astype(bool), 0, 7, 2)
+    for sx in (-1, 1):
+        cv2.circle(img, (px + sx * (pw // 2 + 26), py), 9, 255, 3, AA)
+    return {"drawer_front": img}
 
 
 @generated
@@ -621,6 +666,34 @@ def ledger(p):
     return {"ledger": k, "ledger_green": g}
 
 
+# prints composed for the scene: base -> [(piece, centre x, centre y, width), fractions of the base]
+COMPOSE = {"studio": [("mic", 0.135, 0.69, 0.095), ("mic", 0.865, 0.69, 0.095)],  # either side of Progress
+           "door": [("door_plaque", 0.5, 0.272, 0.5)]}
+
+# ---- cutout masks -------------------------------------------------------------------------------------------------
+
+# the pieces that are paper cutouts in the scene (they float over the page): each gets <name>_mask.png, its paper
+CUTOUTS = ["stamp", "coins", "quill", "eraser", "scroll", "ledger", "scissors", "seal"] + \
+    [f"calendar_page_{i}" for i in range(10)]
+
+
+def silhouette(ink, margin=0.012):
+    """The paper a piece is cut from: its ink closed over (so hatching and open line work read as one shape), the
+    holes filled, and a narrow paper margin round it, as the puppets are cut."""
+    h, w = ink.shape
+    k = max(3, int(min(h, w) * 0.04)) | 1
+    m = cv2.morphologyEx((ink > 60).astype(np.uint8) * 255, cv2.MORPH_CLOSE, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (k, k)))
+    ff = cv2.copyMakeBorder(m, 1, 1, 1, 1, cv2.BORDER_CONSTANT, value=0)
+    fill = ff.copy()
+    cv2.floodFill(fill, np.zeros((h + 4, w + 4), np.uint8), (0, 0), 255)
+    m = m | cv2.bitwise_not(fill)[1:-1, 1:-1]
+    d = max(1, int(min(h, w) * margin)) | 1
+    m = cv2.dilate(m, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (d, d)))
+    return cv2.GaussianBlur(m, (3, 3), 0)
+
+
+# ---- main ----------------------------------------------------------------------------------------------------------
+
 def main(names):
     OUT.mkdir(parents=True, exist_ok=True)
     for name in names or CFG:
@@ -630,6 +703,27 @@ def main(names):
         for k, img in maps.items():
             cv2.imwrite(str(OUT / f"{k}.png"), img)
             print(f"{k}: {img.shape[1]} x {img.shape[0]}, mean ink {img.mean() / 255:.3f}")
+    # prints that overlap in the scene are composed into one texture (Eevee draws only the frontmost of overlapping
+    # blended surfaces): <name>_print.png
+    for base, parts in COMPOSE.items():
+        if names and base not in names and not any(n == q for n in names for q, *_ in parts):
+            continue
+        img = load_prop(base).copy()
+        h, w = img.shape
+        for q, fx, fy, fw in parts:
+            piece = scaled(load_prop(q), int(w * fw))
+            x, y = int(w * fx - piece.shape[1] / 2), int(h * fy - piece.shape[0] / 2)
+            sub = img[y:y + piece.shape[0], x:x + piece.shape[1]]
+            sub[silhouette(piece) > 128] = 0  # knocked out of what's behind it, as a printed vignette is
+            np.maximum(sub, piece, out=sub)
+        cv2.imwrite(str(OUT / f"{base}_print.png"), img)
+        print(f"{base}_print: {w} x {h} ({', '.join(q for q, *_ in parts)} composed in)")
+    for k in CUTOUTS:
+        f = OUT / f"{k}.png"
+        if f.exists() and (not names or any(k == n or k.startswith(n.rstrip("s") + "_") for n in names)):
+            cv2.imwrite(str(OUT / f"{k}_mask.png"), silhouette(cv2.imread(str(f), cv2.IMREAD_GRAYSCALE)))
+    (OUT / "thermometer_geom.json").write_text(json.dumps(TH_GEOM) + "\n")
+    cv2.imwrite(str(OUT / "full_mask.png"), np.full((8, 8), 255, np.uint8))  # a whole sheet of paper
     bad = [f for f in FITS if not f[4]]
     shrunk = [f for f in FITS if f[4] and f[3] < f[2]]
     print(f"type: {len(FITS)} lines set, {len(shrunk)} shrunk to fit, {len(bad)} that don't fit")

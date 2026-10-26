@@ -283,6 +283,53 @@ def tex_card(name, box, img, uv=(0, 0, 1, 1), lift=0.0003, dx=0.0):
     return ob
 
 
+PROPS = ROOT / "assets/engravings/ink/props"  # the C5 props (scripts/props.py)
+FLAT = 1e-6  # a dx that leaves a card unbent (no page curl), for cards that ride on moving props
+
+
+def prop_box(prop, cx, cy, w=None, h=None):
+    """The sheet-pixel box for a prop at its own aspect, centred on (cx, cy), `w` or `h` wide/high."""
+    iw, ih = S.image(PROPS / f"{prop}.png", True).size
+    w = w if w is not None else h * iw / ih
+    h = h if h is not None else w * ih / iw
+    return [cx - w / 2, cy - h / 2, cx + w / 2, cy + h / 2]
+
+
+def prop_card(name, box, prop, lift, cutout=True, mask=None, dx=0.0):
+    """An engraved prop: printed on the sheet (cutout False: ink only), or a paper cutout floating over it (its
+    silhouette from scripts/props.py, or `mask`: 'full' for a whole sheet of paper); a second plate prints in green."""
+    ob = plane(name, box, lift, None, dx)
+    ink = PROPS / f"{prop}.png"
+    mk = (PROPS / ("full_mask.png" if mask == "full" else (mask or f"{prop}_mask.png"))) if cutout else ink
+    green = PROPS / f"{prop}_green.png"
+    ob.data.materials.append(P.layer_material(name, ink, mk, tuple(S.image(ink, True).size), cutout,
+                                              green if cutout and green.exists() else None))
+    return ob
+
+
+def emboss_card(name, box, height, mask, lift):
+    """A blind emboss: paper raised in relief from a height map, no ink (the seal's impression)."""
+    ob = plane(name, box, lift, None)
+    m = bpy.data.materials.new(name)
+    m.surface_render_method = "DITHERED"
+    n, l = m.node_tree.nodes, m.node_tree.links
+    b = n["Principled BSDF"]
+    b.inputs["Base Color"].default_value = S.srgb(S.LOOK["palette"]["paper"])
+    b.inputs["Roughness"].default_value = 0.82
+    hx = n.new("ShaderNodeTexImage")
+    hx.image = S.image(PROPS / f"{height}.png", True)
+    bump = n.new("ShaderNodeBump")
+    bump.inputs["Strength"].default_value = 0.9
+    bump.inputs["Distance"].default_value = 0.0004
+    l.new(hx.outputs["Color"], bump.inputs["Height"])
+    l.new(bump.outputs["Normal"], b.inputs["Normal"])
+    mx = n.new("ShaderNodeTexImage")
+    mx.image = S.image(PROPS / f"{mask}.png", True)
+    l.new(mx.outputs["Color"], b.inputs["Alpha"])
+    ob.data.materials.append(m)
+    return ob
+
+
 def parent_keep(child, parent):
     bpy.context.view_layer.update()
     mw = child.matrix_world.copy()
@@ -349,20 +396,18 @@ attach(pct, "progress", "arm", (1093, 40))
 MOVES.append(lambda t: setattr(pct, "scale", [max(1e-4, ramp(t, T["S05"] + 0.4, T["S05"] + 1.6))] * 3))
 show(pct, T["S05"], T["S10"])
 
-# S06-S09: the vignette behind Progress becomes an engraved recording studio (C5 engraves it; here, labelled cards)
-for nm, cx in (("mic_l", 1960), ("mic_r", 2880)):
-    show(card_at(f"S06.{nm}", cx, 620, 120, 300, "MIC", 0.00026), T["S06"], T["S10"])
-show(grey_card("S06.studio", [1760, 230, 1960, 430], "STUDIO", 0.00026), T["S06"], T["S10"])
-show(grey_card("S08.door", [2990, 500, 3190, 900], "", 0.00026), T["S06"], T["S10"])
-show(text("S08.door_label", "DOOR", "small_caps", 30, (3090, 820), 0.0003, M["label"]), T["S06"], T["S10"])
-show(plane("S08.plaque", [3000, 640, 3180, 700], 0.0003, M["paper"]), T["S06"], T["S10"])
-show(text("S08.plaque_text", "WHOLLY OWNED", "small_caps", 26, (3090, 670), 0.00037, M["sepia"]), T["S06"], T["S10"])
+# S06-S09: the vignette behind Progress becomes an engraved recording studio, a microphone either side of her (one
+# print: overlapping prints would hide each other); right of it, the studio door, its WHOLLY OWNED plaque centred in
+# S08's PLAQUE framing
+show(prop_card("S06.studio", prop_box("studio_print", 2475, 700, w=1020), "studio_print", 0.00026, cutout=False),
+     T["S06"], T["S10"])
+show(prop_card("S08.door", [2990, 571, 3190, 971], "door_print", 0.00026, cutout=False), T["S06"], T["S10"])
 # S09: a tiny certificate drawn inside the first, and a tinier one inside that (the same print, smaller)
 tx0, ty0, tx1, ty1 = BOXES["TINY"]
-show(tex_card("S09.tiny", BOXES["TINY"], sheet_img, lift=0.00028), T["S06"], T["S10"])
+show(tex_card("S09.tiny", BOXES["TINY"], sheet_img, lift=0.00028), T["S09"], T["S10"])  # from its own shot: before it, it would hide the left microphone
 fx0, fy0 = tx0 + (tx1 - tx0) * tx0 / S.PW, ty0 + (ty1 - ty0) * ty0 / S.PH
 fw = (tx1 - tx0) * (tx1 - tx0) / S.PW
-show(tex_card("S09.tinier", [fx0, fy0, fx0 + fw, fy0 + fw * S.PH / S.PW], sheet_img, lift=0.00031), T["S06"], T["S10"])
+show(tex_card("S09.tinier", [fx0, fy0, fx0 + fw, fy0 + fw * S.PH / S.PW], sheet_img, lift=0.00031), T["S09"], T["S10"])
 
 # S10: the fine print scrolls under Mercury's feet like a ticker
 tick = text("S10.ticker", "FINE PRINT · SUBJECT TO CHANGE · NOT A CHARITY, PER SE · TERMS APPLY · FINE PRINT · " * 2,
@@ -380,13 +425,23 @@ MOVES.append(lambda t: setattr(llc, "scale", [max(1e-4, ramp(t, T["S11"] + 1.0, 
 show(llc, T["S11"], T["S12"])
 
 # S12: an engraved calendar in the margin flips pages and never lands
-cal = grey_card("S12.calendar", [3830, 1120, 4130, 1420], "", 0.0012)
+cal = prop_card("S12.calendar", prop_box("calendar", 3980, 1270, w=300), "calendar", 0.0004, cutout=False)
 show(cal, T["S12"], T["S13"])
-MONTHS = ["NOV", "DEC", "JAN", "Q1", "Q2", "SOON", "H2", "TBD", "NEXT", "SOON"]
+MONTHS = ["NOV", "DEC", "JAN", "Q1", "Q2", "SOON", "H2", "TBD", "NEXT", "SOON"]  # the pages (scripts/props.py)
+PAGE_W, PAGE_H, PAGE_AT = 110, 136, (3925, 1262)
 for i, mname in enumerate(MONTHS):
     a = T["S12"] + i * (SPAN["S12"][1] - T["S12"]) / len(MONTHS)
-    show(text(f"S12.month{i}", mname, "display", 90, (3980, 1270), 0.00125, M["label"]), a,
-         a + (SPAN["S12"][1] - T["S12"]) / len(MONTHS))
+    b = a + (SPAN["S12"][1] - T["S12"]) / len(MONTHS)
+    pg = prop_card(f"S12.page{i}", [PAGE_AT[0] - PAGE_W / 2, PAGE_AT[1] - PAGE_H / 2, PAGE_AT[0] + PAGE_W / 2,
+                                    PAGE_AT[1] + PAGE_H / 2], f"calendar_page_{i}", 0.0013 - 0.00002 * i)
+    home = pg.location.copy()
+
+    def flip(t, pg=pg, home=home, a=a, b=b):
+        u = ramp(t, b - 0.18, b)  # the page flips up over its binding, and the next lands under it
+        pg.scale.y = max(1e-4, 1 - u)
+        pg.location = home + Vector((0, px_len(PAGE_H) * u / 2, 0.002 * math.sin(math.pi * u)))
+    MOVES.append(flip)
+    show(pg, a, b)
 
 # S14: the corner denominations flip from 5 to 5% (and stay)
 for i in range(4):
@@ -407,7 +462,7 @@ for i in range(4):
     show(disc, a, end)
 
 # S15: a "+2%" stamp hovers over the page and is pulled back unstamped
-stamp = grey_card("S15.stamp", [3150, 1750, 3450, 1950], "+2%", 0.03)
+stamp = prop_card("S15.stamp", prop_box("stamp", 3300, 1850, h=224), "stamp", 0.03)
 s15a, s15b = SPAN["S15"]
 st_loc = stamp.location.copy()
 MOVES.append(lambda t: setattr(stamp, "location", st_loc + Vector((0.03 * ramp(t, s15b - 1.0, s15b), 0,
@@ -428,12 +483,12 @@ def shares_fig(t):
 
 
 # S18-S19: Prudence weighs coins on her scales, which never settle (the coins ride on her hand)
-coins = grey_card("S18.coins", [0, 0, 120, 70], "COINS", 0.0016)
+coins = prop_card("S18.coins", prop_box("coins", 60, 48, w=120), "coins", 0.0016)
 attach(coins, "prudence", "scales_arm", (905, 1160))
 show(coins, T["S18"], T["S20"])
 
 # S19: a quill hovers over the blank Recipient line
-q = grey_card("S19.quill", [3300, 2180, 3420, 2390], "QUILL", 0.012)
+q = prop_card("S19.quill", prop_box("quill", 3360, 2285, h=210), "quill", 0.012)
 q_loc = q.location.copy()
 MOVES.append(lambda t: setattr(q, "location", q_loc + Vector((0.002 * math.sin(2.1 * t), 0, 0.002 * math.sin(3.3 * t)))))
 show(q, T["S19"], T["S20"])
@@ -442,8 +497,9 @@ show(q, T["S19"], T["S20"])
 LINE_Y, LINE_X0, LINE_X1 = 2255, 1150, 3560
 line = plane("S20.baseline", [LINE_X0, LINE_Y - 5, LINE_X1, LINE_Y + 5], 0.0005, M["sepia"])
 line_full = line.matrix_world.copy()
-pen = grey_card("S20.pen", [0, 0, 70, 260], "PEN", 0.006)
-eraser = grey_card("S21.eraser", [0, 0, 170, 110], "ERASER", 0.004)
+pen = prop_card("S20.pen", prop_box("quill", 0, 0, h=260), "quill", 0.006)  # the quill rules it
+PEN_W = prop_box("quill", 0, 0, h=260)[2] * 2
+eraser = prop_card("S21.eraser", prop_box("eraser", 0, 0, w=180), "eraser", 0.004)
 s20a, s20b = SPAN["S20"]
 s21a, s21b = SPAN["S21"]
 s22a, s22b = SPAN["S22"]
@@ -465,7 +521,7 @@ def move_line(t):
     w = max(1.0, hi - lo) / (LINE_X1 - LINE_X0)
     line.scale.x = w if drawn > 0 and hi - lo > 1 else 1e-4
     line.location = pxyz((lo + hi) / 2, LINE_Y, 0.0005)
-    pen.location = pxyz(xa, LINE_Y - 130, 0.006)
+    pen.location = pxyz(xa - (0.92 - 0.5) * PEN_W, LINE_Y - (0.97 - 0.5) * 260, 0.006)  # its nib (at 0.92, 0.97) on the line
     eraser.location = pxyz(xb, LINE_Y, 0.004)
 
 
@@ -487,32 +543,22 @@ for i in range(24):
     show(d, s22a + 0.2 + 1.6 * i / 24, s22b)
 
 # S23: Mercury reads from an unrolled scroll (it rides on his arm)
-scroll = grey_card("S23.scroll", [0, 0, 130, 170], "SCROLL", 0.0018)
+scroll = prop_card("S23.scroll", prop_box("scroll", 65, 94, w=130), "scroll", 0.0018)
 attach(scroll, "mercury", "arm", (1120, 560))
 show(scroll, T["S23"], T["S24"])
 
 # S24: the certificate flips to its back: the transfer form, and a second document face down underneath
-back = plane("S24.back", [0, 0, S.PW, S.PH], 0.0006, M["paper"], dx=BACK_DX)
-under = plane("S24.under", [260, 180, S.PW + 260, S.PH + 180], 0.0002, mat("c4.under", (0.80, 0.78, 0.72)), dx=BACK_DX)
-FORM = ["For Value Received, ________________ hereby sell, assign and transfer unto",
-        "________________________________________________________________",
-        "Shares represented by the within Certificate, and do hereby irrevocably",
-        "constitute and appoint ________________ Attorney to transfer the said Shares",
-        "on the books of the within named Company with full power of substitution."]
-show(text("S24.form_title", "TRANSFER FORM", "small_caps", 150, (S.PW / 2, 600), 0.00065, M["sepia"], dx=BACK_DX),
-     T["S24"], T["S25"])
-for i, s in enumerate(FORM):
-    show(text(f"S24.form{i}", s, "body_italic", 70, (S.PW / 2, 1050 + 170 * i), 0.00065, M["sepia"], dx=BACK_DX),
-         T["S24"], T["S25"])
-show(grey_card("S24.under_label", [S.PW - 500, S.PH - 90, S.PW + 240, S.PH + 150], "FACE DOWN", 0.0003), T["S24"],
-     T["S25"])
+back = prop_card("S24.back", [0, 0, S.PW, S.PH], "transfer_form", 0.0006, mask="full", dx=BACK_DX)
+under = prop_card("S24.under", [260, 180, S.PW + 260, S.PH + 180], "face_down", 0.0002, mask="full", dx=BACK_DX)
 for o in (back, under):
     show(o, T["S24"], T["S25"])
 
 # S32-S33: the stub becomes a thermometer, its perforations marked in +50% steps; the bulb reads BASELINE: TBA
-TH_X, TH_Y0, TH_Y1 = 280, 2700, 560
-merc = plane("S32.mercury", [TH_X - 28, TH_Y1, TH_X + 28, TH_Y0], 0.0005, M["red"])
-tube = plane("S32.tube", [TH_X - 40, TH_Y1 - 20, TH_X + 40, TH_Y0 + 20], 0.00045, M["paper"])
+TH_BOX = [0, 280, 560, 2680]  # the stub's thermometer (scripts/props.py): 560 x 2400 px, drawn at 1 px per sheet px
+TH = json.loads((PROPS / "thermometer_geom.json").read_text())
+TH_X, TH_Y0, TH_Y1 = TH["cx"], TH_BOX[1] + TH["foot"], TH_BOX[1] + TH["top"] + 40
+merc = plane("S32.mercury", [TH_X - TH["col_w"] / 2, TH_Y1, TH_X + TH["col_w"] / 2, TH_Y0], 0.0005, M["sepia"])
+glass = prop_card("S32.glass", TH_BOX, "thermometer_glass", 0.00045, mask="full")  # a paper card over the stub's fields
 s32a, s33b = T["S32"], SPAN["S33"][1]
 
 
@@ -525,14 +571,8 @@ def move_merc(t):
 
 MOVES.append(move_merc)
 show(merc, s32a, end)
-show(tube, s32a, end)
-for k, y in enumerate(range(TH_Y0 - 300, TH_Y1, -300)):
-    u = (TH_Y0 - y) / (TH_Y0 - TH_Y1)
-    show(text(f"S32.step{k}", "+50%", "small_caps", 48, (TH_X + 60, y), 0.0005, M["sepia"], align="LEFT"),
-         s32a + 0.3 + u * (s33b - 1.8 - s32a), end)
-bulb = plane("S33.bulb", [80, 260, 480, 520], 0.0005, M["red"])
-show(bulb, T["S33"], end)
-show(text("S33.bulb_text", "BASELINE: TBA", "small_caps", 46, (TH_X, 390), 0.00055, M["paper"]), T["S33"] + 1.0, end)
+show(glass, s32a, end)
+show(prop_card("S33.ribbon", TH_BOX, "thermometer_ribbon", 0.0006, mask="thermometer_ribbon_mask.png"), T["S33"] + 1.0, end)
 
 # S34: the corporate seal stamps down and embosses the page (and stays)
 bpy.ops.mesh.primitive_cylinder_add(radius=px_len(170), depth=0.003, vertices=64)
@@ -541,16 +581,26 @@ seal.name = "S34.seal"
 seal.data.materials.append(M["seal"])
 seal_down = sheet_xyz(1650, 2100, 0.0016)
 seal.location = seal_down
-seal_lab = text("S34.seal_text", "CORPORATE SEAL", "small_caps", 34, (1650, 2100), 0.0034, M["sepia"])
-parent_keep(seal_lab, seal)
+seal_face = prop_card("S34.seal_face", [1480, 1930, 1820, 2270], "seal", 0.0016 + 0.0015 + 0.00005, dx=FLAT)
+parent_keep(seal_face, seal)
 SEAL_HIT = beat_t(T["S34"] + 0.2, 0)
-MOVES.append(lambda t: setattr(seal, "location", seal_down + Vector((0, 0, 0.06 * (1 - ramp(t, SEAL_HIT - 0.35, SEAL_HIT))))))
-show(seal, T["S34"], end)
+SEAL_UP = (SEAL_HIT + 0.8, SEAL_HIT + 1.6)  # it lifts away, leaving the impression
+
+
+def move_seal(t):
+    z = 0.06 * (1 - ramp(t, SEAL_HIT - 0.35, SEAL_HIT)) + 0.08 * ramp(t, *SEAL_UP)
+    seal.location = seal_down + Vector((0, 0, z))
+
+
+MOVES.append(move_seal)
+show(seal, T["S34"], SEAL_UP[1])
+show(seal_face, T["S34"], SEAL_UP[1])
+show(emboss_card("S34.emboss", [1480, 1930, 1820, 2270], "seal_emboss", "seal_mask", 0.00012), SEAL_HIT, end)
 
 # S37: Prudence clips the coupons one by one; each flutters into her ledger (on the desk, right of the sheet)
-ledger = grey_card("S37.ledger", [4480, 2500, 4980, 2900], "LEDGER", 0.004)
+ledger = prop_card("S37.ledger", prop_box("ledger", 4730, 2700, w=500), "ledger", 0.004)
 show(ledger, T["S37"], SPAN["S38"][1])
-scis = grey_card("S37.scissors", [0, 0, 160, 220], "SCISSORS", 0.008)
+scis = prop_card("S37.scissors", prop_box("scissors", 0, 0, h=228), "scissors", 0.008)
 CLIP = [beat_t(T["S37"] + 0.4, 2 * i) for i in range(7)]
 coupons = []
 for i in range(7):
@@ -580,7 +630,7 @@ def move_coupons(t):
 MOVES.append(move_coupons)
 show(scis, T["S37"], T["S38"])
 # S38: close on Prudence, scissors raised (in her sword hand)
-scis2 = grey_card("S38.scissors", [0, 0, 80, 120], "SCISSORS", 0.0018)
+scis2 = prop_card("S38.scissors", prop_box("scissors", 21, 60, h=120), "scissors", 0.0018)
 attach(scis2, "prudence", "sword_arm", (300, 540))
 show(scis2, T["S38"], SPAN["S38"][1])
 
@@ -608,7 +658,7 @@ lid = bpy.context.object
 lid.name = "S44.lid"
 lid.scale = (S.SW + 0.06, S.SH + 0.06, 0.008)
 lid.data.materials.append(M["wood"])
-lid_lab = text("S44.lid_label", "WHOLLY OWNED", "small_caps", 260, (S.PW / 2, S.PH / 2), 0.0, M["label"])
+lid_lab = prop_card("S44.drawer_front", [0, 0, S.PW, S.PH], "drawer_front", 0.0, cutout=False, dx=FLAT)
 show(lid, T["S44"], end)
 show(lid_lab, T["S44"], end)
 SHUT = (TM["sections"][-1]["end"] - 1.6, TM["sections"][-1]["end"] + 0.4)

@@ -37,7 +37,7 @@
     0.68
    ],
    "levels": [
-    0.08,
+    0.15,
     0.62
    ],
    "despeckle": 0,
@@ -621,6 +621,13 @@
     "S37"
    ],
    "role": "Prudence's ledger, open, its columns ruled for clipped coupons"
+  },
+  "drawer_front": {
+   "kind": "generated",
+   "shots": [
+    "S44"
+   ],
+   "role": "the drawer front that slides over the certificate: the cabinet's WHOLLY OWNED label holder, enlarged, with a cup pull"
   }
  }
 }
