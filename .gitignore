@@ -43,3 +43,4 @@ assets/engravings/ink/
 archive/renders/
 # Puppet layers regenerate from the committed masks (scripts/puppet_build.py).
 assets/puppets/*/layers/
+renders/c4/graphics/

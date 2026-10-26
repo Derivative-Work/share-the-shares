@@ -392,9 +392,16 @@ for i, mname in enumerate(MONTHS):
 for i in range(4):
     x0, y0, x1, y1 = LAYOUT[f"counter_{i}"]
     cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
-    disc = plane(f"S14.disc{i}", [cx - 120, cy - 120, cx + 120, cy + 120], 0.0004, M["green"])
-    lab = text(f"S14.pct{i}", "5%", "display", 150, (cx, cy + 6), 0.00045, M["paper"])
-    parent_keep(lab, disc)
+    # a round green face over the counter's centre and inner rosette (r 180 px of its 210), the 5 as large as the printed
+    # one and the % beside it, smaller, so "5%" reads in the wide shots (human, C4: "the 5% in the corners is hard to read")
+    bpy.ops.mesh.primitive_cylinder_add(radius=px_len(180), depth=0.0002, vertices=96, location=sheet_xyz(cx, cy, 0.0008))
+    disc = bpy.context.object
+    disc.name = f"S14.disc{i}"
+    disc.data.materials.append(M["green"])
+    five = text(f"S14.five{i}", "5", "display", 205, (cx - 40, cy + 12), 0.0013, M["paper"])
+    pc = text(f"S14.pct{i}", "%", "display", 118, (cx + 68, cy - 22), 0.0013, M["paper"])
+    for o in (five, pc):
+        parent_keep(o, disc)
     a = T["S14"] + 0.25 + 0.18 * i
     MOVES.append(lambda t, d=disc, a=a: setattr(d, "scale", (max(1e-4, ramp(t, a, a + 0.2)), 1, 1)))  # the flip
     show(disc, a, end)

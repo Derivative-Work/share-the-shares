@@ -32,8 +32,12 @@ WINDOWS = {  # section: (start s, end s), from the first pass
     "Chorus": (60.0, 98.9),
     "Verse 2": (98.9, 126.8),
     "Pre-Chorus 2": (126.0, 132.9),
-    "Pre-Chorus 2 tag": (131.8, 134.0),
-    "Chorus 2": (133.2, 163.2),
+    # C4 correction (spectrogram + a re-transcription of 131-141 s): Suno sings the choir's "Through this fund!" first
+    # (132.3 s, "fund" held to ~137 s), then the lead's "through this fund" (134.5 s, a melisma to ~138.5 s); chorus 2
+    # starts at 139.4 s with three "share the shares", not four from 133.3 s
+    "Pre-Chorus 2 tag": (131.9, 137.6),
+    "Pre-Chorus 2 echo": (134.2, 139.1),
+    "Chorus 2": (139.0, 163.2),
     "Verse 3": (163.2, 191.9),
     "Bridge": (191.9, 215.0),
     "Final Chorus": (214.5, 247.3),

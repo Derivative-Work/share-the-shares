@@ -1,4 +1,5 @@
 {
-  "_doc": "Every random process reads its seed here (inherited rule). Main video seed 41.",
-  "paper_grain": 41
+ "_doc": "Every random process reads its seed here (inherited rule). Main video seed 41.",
+ "paper_grain": 41,
+ "graphics": 41
 }

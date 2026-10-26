@@ -1,4 +1,4 @@
-<!-- Exported by the agent from https://claude.ai/artifact/9kd8kySs1GK8P5ExFjM6Wu at doc rev 31, 2026-10-25 (scripts/doc_to_md.py). The live doc is the source of truth; re-export if it changes. -->
+<!-- Exported by the agent from https://claude.ai/artifact/9kd8kySs1GK8P5ExFjM6Wu at doc rev 32, 2026-10-25 (scripts/doc_to_md.py). The live doc is the source of truth; re-export if it changes. -->
 
 # Share the Shares
 
@@ -208,7 +208,7 @@ This follows the certificate scenes above. Cues are lyric lines, not timestamps;
 | ID | Cue | Picture | Source |
 | --- | --- | --- | --- |
 | S25 | "Share the shares" | The choir sways; the LIVE bug blinks | R, G |
-| S25a | The third "share the shares" | Insert: close on the cherubs singing | R |
+| S25a | The second "share the shares" | Insert: close on the cherubs singing | R |
 | S25b | "five in every hundred" | Insert: the corner denominations, already 5% (as S14) | R |
 | S25c | "And if we grow by half again" | Insert: the "Number of shares" box, figures changing (as S16) | R, G |
 | S26 | "we'll give two more (at our discretion) then" | Pull back: the certificate is a real sheet of paper in your hands, still animated, with your guitar leaning beside you | L |

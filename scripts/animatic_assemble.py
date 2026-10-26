@@ -3,10 +3,12 @@ that aren't rendered (live, screen, graphics), the Suno mix, and burned-in revie
 certificate's fonts):
   - each lyric line, its words lighting as sung (karaoke timing from the aligned words);
   - the shot ID top right;
-  - the graphics layer (G) as review stand-ins: the SHARE THE SHARES title on S02, the LIVE bug on rendered chorus
-    shots (S13, S25 blinking; brief: never on the live shots), S36's re-ink note;
-  - a card for each live (L), screen (S) and graphics-only shot (config/c4_shots.json placeholders), with S01 before
-    the music and S45-S48 after it (their lengths are placeholders until the live footage and the fact card exist).
+  - S36's and S06's notes for C5.
+The graphics layer (overlays/graphics.html, rendered by scripts/render_graphics.py) is composited per frame: the
+S02 title, the LIVE bug (S13; blinking on S25-S25c; brief: never on the live shots) and S30's "Post-filter: no
+change" tab over the picture, and full-frame cards for S01 (a stand-in for the screen capture), the live slates, the
+S47 fact card and S48 (the real announcement page, then the Derived from credits). S01 comes before the music and
+S45-S48 after it (their lengths are placeholders until the live footage exists).
 
 Timeline: S01's pre-roll, then the song from 0 s, then the post-roll. The audio is delayed by the pre-roll.
 Frames may be every k'th frame (blender --step k): they play at fps / k, so timing is exact and motion is coarser.
@@ -68,34 +70,26 @@ def ass(w, h):
         L.append(ev(0, a, b, "Cap", "".join(parts)))
     for sid, (a, b) in SPAN.items():
         L.append(ev(1, a + PRE, b + PRE, "Id", sid))
-    # placeholder cards
-    L.append(ev(2, 0, PRE, "Card", PH["S01"]["text"]))
+    # the shot IDs of the pre- and post-roll (their pictures are the graphics layer's cards)
     L.append(ev(1, 0, PRE, "Id", "S01"))
-    for sid in ("S26", "S29", "S30", "S31", "S40"):
-        a, b = SPAN[sid]
-        L.append(ev(2, a + PRE, b + PRE, "Card", PH[sid]["text"]))
     t = PRE + DUR
     for sid in POST_IDS:
-        L.append(ev(2, t, t + PH[sid]["after_s"], "Card", PH[sid]["text"]))
         L.append(ev(1, t, t + PH[sid]["after_s"], "Id", sid))
         t += PH[sid]["after_s"]
-    # the graphics layer, as review stand-ins (built in Remotion at C5)
-    a, b = SPAN["S02"]
-    L.append(ev(3, a + 0.6 + PRE, SPAN["S03"][0] + 1.2 + PRE, "Title", "{\\fad(900,500)}SHARE THE SHARES"))
-    for sid, blink in (("S13", False), ("S25", True)):
-        a, b = SPAN[sid]
-        if blink:
-            k = a
-            while k < b:
-                L.append(ev(3, k + PRE, min(b, k + 0.5) + PRE, "Bug", "● LIVE"))
-                k += 1.0
-        else:
-            L.append(ev(3, a + PRE, b + PRE, "Bug", "● LIVE"))
     a, b = SPAN["S36"]
     L.append(ev(3, a + PRE, b + 2.5 + PRE, "Note", "S36 (C5): the certificate re-inks brighter, gold creeping into the green"))
     a, b = SPAN["S06"]
     L.append(ev(3, a + PRE, a + 4 + PRE, "Note", "C5 engraves the studio, mics and door; grey cards stand in for them here"))
     return "\n".join(L) + "\n"
+
+
+def graphics(w, h):
+    """The graphics layer (scripts/render_graphics.py): per job, its frames and video-time span."""
+    G = Path("renders/c4/graphics")
+    meta = json.loads((G / "jobs.json").read_text())
+    if tuple(meta["size"]) != (w, h):
+        raise SystemExit(f"graphics are {meta['size']}, frames are {w}x{h}: re-run render_graphics.py")
+    return G, meta
 
 
 def main():
@@ -104,16 +98,38 @@ def main():
     w, h = Image.open(next(iter(pngs.values()))).size
     total = PRE + DUR + POST
     n_out = int(total * FPS / step) + 1
+    G, meta = graphics(w, h)
+    gfps = meta["fps"]
+    cache = {}
+
+    def gframe(job, tt):
+        k = 0 if job["still"] else min(job["frames"] - 1, max(0, int(round((tt - job["start"]) * gfps))))
+        key = (job["name"], k)
+        if key not in cache:
+            cache.clear() if len(cache) > 64 else None
+            cache[key] = Image.open(G / job["name"] / f"{k:05d}.png").convert("RGBA")
+        return cache[key]
+
     with tempfile.TemporaryDirectory() as td:
         td = Path(td)
-        black = td / "black.png"
-        Image.new("RGB", (w, h), (12, 10, 8)).save(black)
         seq = td / "seq"
         seq.mkdir()
+        black = Image.new("RGB", (w, h), (12, 10, 8))
         for k in range(n_out):
-            f = round(k * step - PRE * FPS)  # the song frame shown at output frame k
-            src = pngs.get(f, black)
-            os.symlink(src.resolve(), seq / f"{k:06d}.png")
+            tt = k * step / FPS - PRE  # song time shown at output frame k
+            f = round(tt * FPS)
+            active = [j for j in meta["jobs"] if j["start"] <= tt < j["start"] + j["dur"]]
+            full = [j for j in active if j["full"]]
+            if f in pngs and not full and not active:
+                os.symlink(pngs[f].resolve(), seq / f"{k:06d}.png")
+                continue
+            im = (Image.open(pngs[f]).convert("RGB") if f in pngs else black.copy()) if not full else \
+                gframe(full[0], tt).convert("RGB")
+            for j in active:
+                if not j["full"]:
+                    g = gframe(j, tt)
+                    im.paste(g, (0, 0), g)
+            im.save(seq / f"{k:06d}.png")
         sub = td / "c4.ass"
         sub.write_text(ass(w, h))
         ms = int(round(PRE * 1000))

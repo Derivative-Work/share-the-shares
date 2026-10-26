@@ -90,3 +90,12 @@ Every human action: timestamp, what, why, and which production rule allows it. R
   - New rows S17a and S17b (chorus 1's repeat), and S25a, S25b and S25c (chorus 2). Inserts take a letter suffix.
   - S39's cue becomes "The more we grow, the more we give", the line after "at our discretion", with a note that Suno didn't sing "baseline to be announced!". The final chorus sings "at our discretion" once, and S38 holds it.
 - **Rule:** R1. The human chose, and the agent made the changes.
+
+## 2026-10-25T22:40:03-04 — C4 v2 review: S24's repeat, the post-filter, the placeholder graphics, the 5% — R1, R2
+
+- **What:** The human:
+  - "S24: 'through this fund' is repeated in the song, which seems to be messing up the following line (it recovers afterwards though)";
+  - "has this been run through the postfilter yet?", then "oh whoops never mind about the postfilter then";
+  - "create and fill in the graphics in the placeholders";
+  - "the 5% in the corners is hard to read".
+- **Rule:** R2 for S24 (a sync error, information from listening). R1 for the graphics and the 5% (changes asked for in words). The post-filter question was withdrawn: no change, and the master's post-filter stays the human's step on the 5090 box (R4).

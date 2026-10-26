@@ -1,0 +1,177 @@
+<!doctype html>
+<!-- The graphics layer (brief source key G, and the stand-ins for S and L): one page, one layer per graphic, laid out
+on a 1920x1080 stage and scaled to the viewport. window.renderFrame(t) draws the layer at its local time t (seconds
+from the layer's start), from t alone. Rendered by scripts/render_frames.mjs; composited by
+scripts/animatic_assemble.py.
+Query: ?layer=title|bug|postfilter|s01|slate|fact|announce|credits [&blink=1] [&id=S29&text=...] [&dur=seconds] -->
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@font-face { font-family: 'Abril'; src: url('../assets/fonts/AbrilFatface-Regular.ttf'); }
+@font-face { font-family: 'Fell'; src: url('../assets/fonts/IMFeENrm28P.ttf'); }
+@font-face { font-family: 'FellIt'; src: url('../assets/fonts/IMFeENit28P.ttf'); }
+@font-face { font-family: 'FellSC'; src: url('../assets/fonts/IMFeENsc28P.ttf'); }
+:root { --paper: #EEE5CC; --shadow: #D9CBA6; --green: #2F5E4C; --sepia: #3E2C1E; --gold: #A8843A; --desk: #2B211A; }
+html, body { margin: 0; background: transparent; overflow: hidden; }
+#stage { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 0 0; }
+.layer { position: absolute; inset: 0; display: none; }
+.full { background: var(--desk); }
+/* engraved type: ink cut into fine horizontal lines, the way a banknote's lettering is ruled */
+.ruled { color: transparent; background: repeating-linear-gradient(0deg, var(--sepia) 0 3px, rgba(62,44,30,.55) 3px 5px);
+         -webkit-background-clip: text; background-clip: text; }
+/* title */
+#title { display: none; }
+#title .wrap { position: absolute; left: 0; right: 0; top: 400px; text-align: center; }
+#title h1 { margin: 0; font: 118px/1 'Abril'; letter-spacing: 16px; padding-left: 16px; }
+#title .rule { height: 0; border-top: 3px solid var(--sepia); border-bottom: 1px solid var(--sepia); padding-top: 5px; margin: 18px auto; width: 0; }
+#title .plate { position: absolute; left: 150px; right: 150px; top: 365px; height: 290px; background: rgba(238,229,204,.82);
+                box-shadow: 0 0 60px 30px rgba(238,229,204,.82); }
+/* LIVE bug, telethon style */
+#bug .box { position: absolute; left: 70px; top: 60px; padding: 10px 26px 12px 22px; background: #B3241B; border: 3px solid #F4EBD3;
+            border-radius: 10px; color: #F4EBD3; font: 46px/1 'FellSC'; letter-spacing: 4px; box-shadow: 0 4px 16px rgba(0,0,0,.35); }
+#bug .dot { display: inline-block; width: 22px; height: 22px; border-radius: 50%; background: #F4EBD3; margin-right: 14px; vertical-align: 4px; }
+#bug .tel { position: absolute; left: 70px; top: 136px; padding: 6px 16px; background: rgba(244,235,211,.92); color: var(--sepia);
+            font: 30px/1 'FellSC'; letter-spacing: 3px; border-radius: 6px; }
+/* S30 overlay */
+#postfilter .tab { position: absolute; left: 90px; bottom: 90px; padding: 16px 30px; background: rgba(238,229,204,.94); color: var(--sepia);
+                   border: 2px solid var(--green); font: 44px/1 'FellIt'; box-shadow: 0 4px 18px rgba(0,0,0,.3); }
+/* slates (live placeholders) */
+#slate .card { position: absolute; left: 260px; right: 260px; top: 250px; bottom: 250px; background: var(--paper); border: 10px double var(--green);
+               padding: 50px 70px; box-sizing: border-box; color: var(--sepia); }
+#slate .id { font: 40px/1 'FellSC'; letter-spacing: 8px; color: var(--green); }
+#slate .what { font: 54px/1.3 'Fell'; margin-top: 30px; }
+#slate .note { position: absolute; bottom: 40px; left: 70px; right: 70px; font: 30px/1.3 'FellIt'; color: #7a6650; }
+/* S01 stand-in screen */
+#s01 { background: #15130f; color: #e9e2cf; font-family: 'Fell'; }
+#s01 .col { position: absolute; top: 110px; bottom: 120px; padding: 30px; box-sizing: border-box; border: 1px solid #4a4236; background: #1d1a15; overflow: hidden; }
+#s01 h2 { margin: 0 0 18px; font: 30px/1 'FellSC'; letter-spacing: 5px; color: var(--gold); }
+#s01 .mono { font: 25px/1.45 monospace; white-space: pre-wrap; color: #d8d0bb; }
+#s01 .take { font: 26px/1.5 monospace; color: #d8d0bb; }
+#s01 .take b { color: #fff; }
+#s01 .foot { position: absolute; left: 60px; right: 60px; bottom: 40px; font: 26px/1 'FellIt'; color: #8d8270; }
+/* fact card */
+#fact { background: var(--paper); color: var(--sepia); }
+#fact .frame { position: absolute; inset: 40px; border: 14px double var(--green); }
+#fact .frame2 { position: absolute; inset: 70px; border: 2px solid var(--green); }
+#fact h2 { position: absolute; top: 105px; left: 0; right: 0; text-align: center; margin: 0; font: 74px/1 'Abril'; letter-spacing: 10px; }
+#fact ul { position: absolute; top: 215px; left: 160px; right: 160px; margin: 0; padding: 0; list-style: none; }
+#fact li { font: 35px/1.28 'Fell'; margin: 0 0 15px; padding-left: 42px; position: relative; }
+#fact li::before { content: '❧'; position: absolute; left: 0; color: var(--green); }
+#fact li.sat { font-family: 'FellIt'; }
+#fact .src { position: absolute; bottom: 92px; left: 160px; right: 160px; font: 24px/1.3 'FellIt'; color: #6d5a45; text-align: center; }
+/* announcement page */
+#announce { background: #f5f3ee; }
+#announce img { position: absolute; left: 0; top: 0; width: 1920px; }
+/* credits */
+#credits { background: #0d0b09; color: var(--paper); text-align: center; }
+#credits h2 { position: absolute; top: 140px; left: 0; right: 0; margin: 0; font: 64px/1 'Abril'; letter-spacing: 12px; color: var(--paper); }
+#credits ul { position: absolute; top: 260px; left: 220px; right: 220px; list-style: none; margin: 0; padding: 0; }
+#credits li { font: 33px/1.3 'Fell'; margin: 0 0 18px; }
+#credits li span { font-family: 'FellSC'; letter-spacing: 3px; color: var(--gold); }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="layer" id="title"><div class="plate"></div><div class="wrap"><div class="rule"></div><h1 class="ruled">SHARE THE SHARES</h1><div class="rule"></div></div></div>
+  <div class="layer" id="bug"><div class="box"><span class="dot"></span>LIVE</div><div class="tel">PLEDGE LINE 555-0142</div></div>
+  <div class="layer" id="postfilter"><div class="tab">Post-filter: no change</div></div>
+  <div class="layer full" id="slate"><div class="card"><div class="id"></div><div class="what"></div>
+    <div class="note">Live footage: your shot goes here. Shoot it with the printed certificate (brief, "Live shots").</div></div></div>
+  <div class="layer" id="s01">
+    <div class="col" style="left:60px;width:700px"><h2>Style prompt</h2><div class="mono" id="s01style"></div></div>
+    <div class="col" style="left:800px;width:640px"><h2>Lyrics</h2><div style="position:absolute;top:80px;left:30px;right:30px;bottom:30px;overflow:hidden"><div class="mono" id="s01lyrics"></div></div></div>
+    <div class="col" style="left:1480px;width:380px"><h2>Takes</h2><div class="take" id="s01takes"></div></div>
+    <div class="foot">Stand-in for S01: the real generation screen is a screen capture from your account (R4).</div>
+  </div>
+  <div class="layer" id="fact"><div class="frame"></div><div class="frame2"></div><h2 class="ruled">THE TERMS</h2><ul id="factlist"></ul>
+    <div class="src">Sources: Anthropic's announcement (anthropic.com/news/public-benefit-fund) · TechCrunch · The National · ESG Today</div></div>
+  <div class="layer" id="announce"><img id="annimg" src="../assets/screens/announcement.png"></div>
+  <div class="layer" id="credits"><h2>DERIVED FROM</h2><ul id="credlist"></ul></div>
+</div>
+<script src="data/s01.js"></script>
+<script>
+const q = new URLSearchParams(location.search);
+const W = Number(q.get('w') || 1920), H = Number(q.get('h') || 1080);
+const LAYER = q.get('layer') || 'title';
+const DUR = Number(q.get('dur') || 6);
+document.getElementById('stage').style.transform = `scale(${W / 1920}, ${H / 1080})`;
+const el = document.getElementById(LAYER);
+el.style.display = 'block';
+const clamp01 = (x) => Math.min(1, Math.max(0, x));
+const ease = (x) => { x = clamp01(x); return x * x * (3 - 2 * x); };
+
+// the fact card's text: the brief's draft (section "Fact card and disclosure"); checked against the sources at C6
+const FACTS = [
+  "Announced October 18, 2026: Anthropic commits 5% of its shares to the Anthropic Public Benefit Fund.",
+  "The board may add 2% more for every 50% rise in Anthropic's value above a baseline not yet announced.",
+  "Set up as a wholly owned LLC, not a 501(c)(3), to allow different forms of giving.",
+  "5% goes to the fund. Anthropic says about 20% of its shares are committed to the public good in total, counting its other commitments. The fund's equity won't be used for lobbying or political giving.",
+  "Structure, governance and valuation milestones: to be announced.",
+  "Separately, Anthropic has given $40M to Public First Action. It says that money is limited to policy work and public education, not candidate spending.",
+];
+const SATIRE = "AI-generated satire. Lyrics drafted by Claude, a model made by Anthropic. Reviewed for bias by a model from another lab: Gemini 4 Argon, October 21, 2026.";
+const CREDITS = [
+  ["Engravings", "Asher B. Durand and Cyrus Durand, banknote vignettes and lathe work, ca. 1824–42. The Metropolitan Museum of Art, Open Access"],
+  ["Type", "Abril Fatface, IM Fell English, Pinyon Script (SIL Open Font License)"],
+  ["Music", "Suno V6, one take (c0702797)"],
+  ["Lyrics", "Claude; reviewed for bias by Gemini 4 Argon"],
+  ["Verse 3 and “do I get a say?”", "performed live, one take"],
+  ["Animation and edit", "Claude Code with Opus 5.5: paper puppets in Blender"],
+  ["Human interventions", q.get('interventions') || '—'],
+  ["Full production log", "link added at publish"],
+];
+if (LAYER === 'fact') {
+  const ul = document.getElementById('factlist');
+  for (const f of FACTS.concat([SATIRE])) { const li = document.createElement('li'); li.textContent = f; if (f === SATIRE) li.className = 'sat'; ul.appendChild(li); }
+}
+if (LAYER === 'credits') {
+  const ul = document.getElementById('credlist');
+  for (const [k, v] of CREDITS) { const li = document.createElement('li'); li.innerHTML = `<span>${k}</span>&ensp;${v}`; ul.appendChild(li); }
+}
+if (LAYER === 'slate') {
+  el.querySelector('.id').textContent = (q.get('id') || '') + ' · LIVE';
+  el.querySelector('.what').textContent = q.get('text') || '';
+}
+window.ready = (async () => {
+  if (LAYER === 's01') {
+    // overlays/data/s01.js (written by scripts/render_graphics.py from the logged prompt and lyrics)
+    document.getElementById('s01style').textContent = window.S01.style.trim();
+    document.getElementById('s01lyrics').textContent = window.S01.lyrics.trim();
+    document.getElementById('s01takes').innerHTML = '<b>Share the Shares</b><br>c0702797<br>4:43 · V6<br><br><i>(the one take)</i>';
+  }
+  if (LAYER === 'announce') await new Promise((ok) => { const i = document.getElementById('annimg'); if (i.complete) ok(); else i.onload = ok; });
+})();
+
+window.renderFrame = (t) => {
+  if (LAYER === 'title') {
+    // the capitals resolve as if being engraved, left to right, then hold; the plate keeps them legible over the push
+    const u = ease(t / 1.6);
+    el.querySelector('h1').style.clipPath = `inset(0 ${100 - 100 * u}% 0 0)`;
+    for (const r of el.querySelectorAll('.rule')) r.style.width = `${1500 * ease((t - 0.2) / 1.4)}px`;
+    el.style.opacity = String(clamp01(Math.min(t / 0.3, (DUR - t) / 0.5)));
+  } else if (LAYER === 'bug') {
+    const blink = q.get('blink') === '1';
+    el.querySelector('.box').style.opacity = blink ? (Math.floor(t * 2) % 2 === 0 ? '1' : '0.25') : '1';
+    el.style.opacity = String(clamp01(t / 0.25));
+  } else if (LAYER === 'postfilter') {
+    el.style.opacity = String(clamp01(Math.min((t - 1.0) / 0.5, (DUR - t) / 0.5)));
+  } else if (LAYER === 'fact') {
+    const lis = el.querySelectorAll('li');
+    lis.forEach((li, i) => { li.style.opacity = String(clamp01((t - 0.4 - i * 0.55) / 0.4)); });
+  } else if (LAYER === 'announce') {
+    // a slow scroll down the real page, like a screen recording
+    const img = document.getElementById('annimg');
+    const travel = Math.max(0, img.naturalHeight * (1920 / img.naturalWidth) - 1080);
+    img.style.top = `${-Math.min(travel, 700) * ease((t - 0.8) / Math.max(1, DUR - 1.6))}px`;
+  } else if (LAYER === 'credits') {
+    const lis = el.querySelectorAll('li');
+    lis.forEach((li, i) => { li.style.opacity = String(clamp01((t - 0.3 - i * 0.35) / 0.35)); });
+  } else if (LAYER === 's01') {
+    const lyr = document.getElementById('s01lyrics');
+    lyr.style.transform = `translateY(${-40 * t}px)`;
+  }
+};
+</script>
+</body>
+</html>

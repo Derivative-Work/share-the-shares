@@ -361,3 +361,28 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
 - **Render:** `renders/c4/frames_v2` (full, `--step 2`) and `renders/c4/anchors_v2`, assembled to `renders/c4/c4_animatic.mp4`. The v1 cut is archived as `archive/renders/c4/c4_animatic_v1_word-gated-jaws.mp4`.
 - **Result (v2):** 2,920 frames in 43 min, with no errors. `renders/c4/c4_animatic.mp4` is 313.4 s. `renders/c4/c4_anchor_sheet_v2.jpg` shows the six new shots in place. The v1 anchor sheet is archived as `archive/renders/c4/c4_anchor_sheet_v1.jpg`.
 - **Status:** **C4 v2 is ready for review.**
+
+## 2026-10-25T22:40:03-04:00 — C4 v3: S24's exchange re-aligned, the graphics layer, legible 5%
+
+- **Why:** the human's C4 v2 review (human interventions, same time).
+- **S24 ("through this fund"), found on spectrograms and a re-transcription of 131–141 s (faster-whisper medium.en):**
+  - Suno sings the exchange in the opposite order from the lyrics: the choir's "Through this fund!" first (from about 133.3 s, "fund" held to about 137 s), then the lead's echo "through this fund" (134.9 s, a melisma to about 138.5 s).
+  - Chorus 2 starts only at 139.4 s, with three "share the shares", not four.
+  - `lyrics/as_sung_draft.txt` had only the choir's line, and four "share the shares" from 133.3 s. So the alignment put chorus 2 on top of "this fund", and the captions, the mouths and S25 were wrong until "five in every hundred".
+  - Fixed: a new section `[Pre-Chorus 2 echo | Vocals | the Lawyer]`, chorus 2 with three "share the shares", and new windows in `scripts/align_words.py`. Re-aligned, and the timing map rebuilt.
+  - S24 now starts on the choir's "Through" (133.26 s) and holds through Mercury's echo; S25 starts at 139.36 s.
+- **S25a:** with three "share the shares", the third (142.7 s) left S25a 0.7 s. Its cue is now the second (141.12 s): brief rev 32, mirrored in `docs/brief.md`.
+- **The graphics layer (`overlays/graphics.html`):**
+  - Approach: following Ghost in the Machine's HTML overlays rendered with Puppeteer (`scripts/render_frames.mjs`, copied), not Remotion. `package.json` was already set up for it. `scripts/render_graphics.py` renders each layer for its shot, and `scripts/animatic_assemble.py` composites them per frame.
+  - Over the picture:
+    - the S02 title in ruled engraved capitals, resolving left to right on a paper plate;
+    - the LIVE bug, telethon style with the pledge line (steady on S13, blinking on S25–S25c);
+    - S30's "Post-filter: no change" tab.
+  - Full frames:
+    - S01, a stand-in screen built from the logged style prompt, lyrics and take. The real screen capture is the human's (R4).
+    - Styled slates for the live shots.
+    - S47, the fact card: the brief's draft text with "Gemini 4 Argon" filled in, appearing line by line. Checked against the sources at C6.
+    - S48, the real announcement page (`scripts/capture_page.mjs`: `assets/screens/announcement.png` with its text and fetch metadata), scrolling, then the "Derived from" credits. The brief doesn't define those credits; the agent followed Ghost's end card (sources, music take, lyrics and audit, the live verse, animation, the intervention count read from this log, the log link at publish).
+  - S48 now runs 11 s.
+- **The 5%:** each corner's face is now a round green counter covering the centre and inner rosette (r 180 px of 210). The "5" is as large as the printed one (205 px) with a smaller "%" beside it, where the first version had a square card with "5%" at 150 px. A first test had the type 0.05 mm above the face, and it flickered into it; it is now 0.5 mm above.
+- **Outputs:** `renders/c4/frames_v3`, `renders/c4/anchors_v3`, `renders/c4/c4_anchor_sheet_v3.jpg`, `renders/c4/c4_animatic.mp4`. v2 is archived in `archive/renders/c4/`.
