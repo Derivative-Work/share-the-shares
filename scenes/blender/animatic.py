@@ -370,6 +370,9 @@ tick = text("S10.ticker", "FINE PRINT · SUBJECT TO CHANGE · NOT A CHARITY, PER
 tick_x = tick.location.x
 MOVES.append(lambda t: setattr(tick.location, "x", tick_x - 0.02 * max(0.0, t - T["S10"])))
 show(tick, T["S10"], T["S11"])
+# S39: the line of fine print he pops up out of
+show(text("S39.fineprint", "BASELINE TO BE ANNOUNCED · SUBJECT TO THE BOARD'S DISCRETION · TERMS APPLY", "small_caps", 30,
+          (1140, 1820), 0.0009, M["sepia"]), T["S39"], SPAN["S39"][1])
 
 # S11: the guilloche, looked at closely, is the letters LLC repeated
 llc = text("S11.llc", "LLC LLC LLC LLC LLC", "small_caps", 22, (1240, 1358), 0.0006, M["green"])
@@ -407,14 +410,14 @@ show(stamp, s15a, s15b)
 # S16: the Number of Shares box fills with figures that keep changing (to the end of the chorus)
 FIGS = ["5,000,000", "5,000,250", "4,999,875", "5,001,000", "5,000,005", "4,998,500", "5,000,500", "5,000,000?"]
 bx0, by0, bx1, by1 = LAYOUT["shares_box"]
-s16_end = SPAN["S17"][1]
+FIG_WINDOWS = [(T["S16"], SPAN["S17b"][1]), SPAN["S25c"]]  # through chorus 1 (S16-S17b), and again in S25c
 for i, s in enumerate(FIGS):
     o = text(f"S16.fig{i}", s, "display", 52, ((bx0 + bx1) / 2, (by0 + by1) / 2), 0.0004, M["sepia"])
     VIS.append((o, None, i))  # resolved per frame: one figure per beat
 
 
 def shares_fig(t):
-    return int(beat_pos(t)) % len(FIGS) if T["S16"] <= t < s16_end else -1
+    return int(beat_pos(t)) % len(FIGS) if any(a <= t < b for a, b in FIG_WINDOWS) else -1
 
 
 # S18-S19: Prudence weighs coins on her scales, which never settle (the coins ride on her hand)
@@ -666,6 +669,15 @@ def mercury_pose(t):
     if within(t, T["S23"], T["S24"]):
         out["head"] = -8 + 3 * mouth("mercury", t)
         out["arm"] = -10
+    if within(t, T["S39"], SPAN["S39"][1]):
+        # S39: he pops up out of the fine print: from below the text line, with an overshoot, then a wave of the caduceus
+        u = (t - T["S39"]) / 0.45
+        rise = 1.0 if u >= 1 else (0.0 if u <= 0.15 else 1.15 * math.sin(math.pi / 2 * (u - 0.15) / 0.85))
+        if u > 1:
+            rise = 1.0 + 0.15 * math.exp(-4 * (u - 1)) * math.cos(6 * (u - 1))
+        out["_offset"] = (0.0, -px_len(90) * (1 - min(rise, 1.0)), 0.0)  # up out of the fine-print line at his feet
+        out["_scale"] = max(0.02, rise)
+        out["arm"] = 18 * ramp(t, T["S39"] + 0.6, T["S39"] + 1.0) * (1 + 0.3 * math.sin(9 * t))
     return out
 
 
@@ -713,11 +725,11 @@ def apply_pose(t):
             ob.rotation_euler.z = rot.z + sign * math.radians(pose.get(ln, 0.0))
             ob.location = loc
             ob.scale = sc
-        if "_lift" in pose:
+        if "_lift" in pose or "_offset" in pose:
             body = obs["body"]
             loc, _, sc = BASE[body.name]
-            body.location = loc + Vector((0, 0, pose["_lift"]))
-            body.scale = sc * pose["_scale"]
+            body.location = loc + Vector((0, 0, pose.get("_lift", 0.0))) + Vector(pose.get("_offset", (0, 0, 0)))
+            body.scale = sc * pose.get("_scale", 1.0)
 
 
 # ---- the camera -------------------------------------------------------------------------------------------------

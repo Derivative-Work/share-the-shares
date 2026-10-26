@@ -222,6 +222,24 @@
    198,
    3225,
    1242
+  ],
+  "CHERUBS_CLOSE": [
+   1090,
+   330,
+   1740,
+   950
+  ],
+  "CHERUBS_CLOSER": [
+   1180,
+   390,
+   1650,
+   840
+  ],
+  "MERCURY_POP": [
+   760,
+   1380,
+   1520,
+   2000
   ]
  },
  "shots": {
@@ -322,6 +340,18 @@
     "CHERUBS_BOTH"
    ]
   },
+  "S17a": {
+   "cam": [
+    "SHARES",
+    "SHARES"
+   ]
+  },
+  "S17b": {
+   "cam": [
+    "TOP_BAND",
+    "TOP_BAND"
+   ]
+  },
   "S36": {
    "cam": [
     "WIDE",
@@ -376,6 +406,24 @@
    "cam": [
     "TOP_BAND",
     "TOP_BAND"
+   ]
+  },
+  "S25a": {
+   "cam": [
+    "CHERUBS_CLOSE",
+    "CHERUBS_CLOSER"
+   ]
+  },
+  "S25b": {
+   "cam": [
+    "WIDE",
+    "WIDE"
+   ]
+  },
+  "S25c": {
+   "cam": [
+    "SHARES",
+    "SHARES"
    ]
   },
   "S27": {
@@ -449,6 +497,12 @@
    "cam": [
     "PROGRESS",
     "PROGRESS_TIGHT"
+   ]
+  },
+  "S39": {
+   "cam": [
+    "MERCURY_POP",
+    "MERCURY_POP"
    ]
   }
  },

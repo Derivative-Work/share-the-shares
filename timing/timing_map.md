@@ -44,6 +44,8 @@ The live verse: 163.90–192.68 s (S29-S30: the music cuts at the flip; the huma
 | S15 | "two more (at our discretion) then" | 71.16 | 1708 | L21 | lyric |
 | S16 | "The more we grow, the more we give" | 74.63 | 1791 | L22 | lyric |
 | S17 | "so help us grow, so we can give" | 77.47 | 1859 | L23 | lyric |
+| S17a | "The more we grow, the more we give" (the chorus repeat) | 85.01 | 2040 | L24 | lyric |
+| S17b | "so help us grow, so we can give" (the repeat) | 90.49 | 2172 | L25 | lyric |
 | S36 | The key change, just before verse 2 (where Suno put it) | 98.44 | 2363 |  | event |
 | S18 | "Now you might ask who holds the purse" | 99.49 | 2388 | L26 | lyric |
 | S19 | "who signs and who decides" | 103.38 | 2481 | L27 | lyric |
@@ -53,6 +55,9 @@ The live verse: 163.90–192.68 s (S29-S30: the music cuts at the flip; the huma
 | S23 | "Not for lobbying, not for campaigns" | 127.42 | 3058 | L34 | lyric |
 | S24 | "through this fund" | 132.34 | 3176 | L36 | lyric |
 | S25 | "Share the shares" | 133.28 | 3199 | L37 | lyric |
+| S25a | The third "share the shares" | 141.12 | 3387 | L37 | lyric (3 occurrence after the previous shot) |
+| S25b | "five in every hundred" | 143.38 | 3441 | L38 | lyric |
+| S25c | "And if we grow by half again" | 146.26 | 3510 | L39 | lyric |
 | S26 | "we'll give two more (at our discretion) then" | 149.87 | 3597 | L40 | lyric |
 | S27 | "so help us grow, so we can give" | 156.59 | 3758 | L42 | lyric |
 | S28 | Last chord of the chorus | 161.28 | 3871 |  | event |
@@ -65,7 +70,7 @@ The live verse: 163.90–192.68 s (S29-S30: the music cuts at the flip; the huma
 | S35 | "When it's not, when it's not" | 212.95 | 5111 | L57 | lyric |
 | S37 | "Share the shares, share the shares" | 216.48 | 5196 | L58 | lyric |
 | S38 | "at our discretion!" | 231.97 | 5567 | L61 | lyric |
-| S39 | "baseline to be announced!" |  |  |  | NOT FOUND in the as-sung lyrics |
+| S39 | "The more we grow, the more we give", the line after "at our discretion" (Suno didn't sing "baseline to be announced!") | 234.45 | 5627 | L62 | lyric |
 | S40 | "do I get a say?" | 239.66 | 5752 | L63 | lyric |
 | S41 | The next line | 240.54 | 5773 | L63 | end of the previous cue's line |
 | S42 | "so help us grow, so we can give" | 241.47 | 5795 | L64 | lyric |

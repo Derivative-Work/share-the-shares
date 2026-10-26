@@ -6,7 +6,8 @@ timing/timing_map.json and a readable timing/timing_map.md. Times are seconds of
 style spec's fps (config/look.json).
 
 Shot cues (brief: "Cues are lyric lines, not timestamps"): each shot's cue is resolved in reading order, searching
-forward from the previous shot. A quoted cue is matched to the first line after that point holding most of its
+forward from the previous shot. An ordinal cue (The third "share the shares") is the n'th time the phrase is sung
+after the previous shot, which places an insert inside a long line. A quoted cue is matched to the first line after that point holding most of its
 words, and the shot starts at the first matched word. Event cues ("First piano chord", "The key change...", "The
 downbeat after the chorus", "Last chord of the chorus", "The next line") are computed. The shots after the audio
 ends (S45-S48) and the pre-roll (S01) get no time. A cue that can't be found (an ad-lib Suno didn't sing) is listed
@@ -27,6 +28,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from song import STEM, TRACK  # noqa: E402
 
 FPS = json.loads(Path("config/look.json").read_text())["fps"]
+ORDINALS = {"first": 1, "second": 2, "third": 3, "fourth": 4}
+ORDINAL = re.compile(r"the (first|second|third|fourth) \"")
 
 
 def fr(t):
@@ -104,6 +107,21 @@ def main():
         elif low == "the next line" and prev_line is not None:
             # the moment the previous cue's line ends (in the brief, the line after the ad-lib)
             t, line_id, how = prev_line["end"], prev_line["id"], "end of the previous cue's line"
+        elif quoted and ORDINAL.match(low):
+            # "The third "share the shares"": the n'th time the phrase is sung after the previous shot, inside lines
+            n = ORDINALS[ORDINAL.match(low).group(1)]
+            want = norm(quoted[0])
+            flat = [(w, ln) for ln in lines for w in ln["words"] if w["start"] >= cursor - 0.01]
+            toks = [norm(w["w"]) for w, _ in flat]
+            hits = [i for i in range(len(flat) - len(want) + 1)
+                    if [t[0] if t else "" for t in toks[i:i + len(want)]] == want]
+            if len(hits) >= n:
+                w, ln = flat[hits[n - 1]]
+                prev_line = ln
+                t, line_id, how = w["start"], ln["id"], f"lyric ({n} occurrence after the previous shot)"
+            else:
+                unresolved.append(r["id"])
+                how = "NOT FOUND in the as-sung lyrics"
         elif quoted:
             want = norm(quoted[0].split(" through ")[0])
             best = None

@@ -78,3 +78,15 @@ Every human action: timestamp, what, why, and which production rule allows it. R
 
 - **What:** The human: "the sync is correct, and the mouths now make sense with the sync in place". The sync fix is approved, and the hinged cut-out jaws (the brief's) stay. No replacement mouths.
 - **Rule:** R1.
+
+## 2026-10-25T21:31:43-04 — C4: inserts in the long chorus holds; S39 moved — R1 (choosing between the options offered)
+
+- **What:** The human: "do both", to the agent's two questions:
+  - the long holds: add inserts returning to the S13–S16 images, or keep the holds;
+  - S39: retire it, or move it to the line after "at our discretion".
+
+  The agent read it as both changes. It did not read it as both options of the S39 question, since retiring S39 and moving it can't both happen.
+- **Brief edit (Claude Doc rev 30 → 31, made by the agent):**
+  - New rows S17a and S17b (chorus 1's repeat), and S25a, S25b and S25c (chorus 2). Inserts take a letter suffix.
+  - S39's cue becomes "The more we grow, the more we give", the line after "at our discretion", with a note that Suno didn't sing "baseline to be announced!". The final chorus sings "at our discretion" once, and S38 holds it.
+- **Rule:** R1. The human chose, and the agent made the changes.

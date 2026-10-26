@@ -1,4 +1,4 @@
-<!-- Exported by the agent from https://claude.ai/artifact/9kd8kySs1GK8P5ExFjM6Wu at doc rev 30, 2026-10-25 (scripts/doc_to_md.py). The live doc is the source of truth; re-export if it changes. -->
+<!-- Exported by the agent from https://claude.ai/artifact/9kd8kySs1GK8P5ExFjM6Wu at doc rev 31, 2026-10-25 (scripts/doc_to_md.py). The live doc is the source of truth; re-export if it changes. -->
 
 # Share the Shares
 
@@ -187,6 +187,8 @@ This follows the certificate scenes above. Cues are lyric lines, not timestamps;
 | S15 | "two more (at our discretion) then" | *Prudence* raises a finger; a "+2%" stamp hovers over the page and is pulled back unstamped | R |
 | S16 | "The more we grow, the more we give" | The "Number of shares" box fills with figures that keep changing | R, G |
 | S17 | "so help us grow, so we can give" | Every cherub points straight at camera, recruitment-poster style | R |
+| S17a | "The more we grow, the more we give" (the chorus repeat) | Insert: back to the "Number of shares" box, its figures still changing (as S16) | R, G |
+| S17b | "so help us grow, so we can give" (the repeat) | Insert: wide on the cherub choir swaying along the top border (as S13) | R |
 
 ### Verse 2 and pre-chorus 2
 
@@ -206,6 +208,9 @@ This follows the certificate scenes above. Cues are lyric lines, not timestamps;
 | ID | Cue | Picture | Source |
 | --- | --- | --- | --- |
 | S25 | "Share the shares" | The choir sways; the LIVE bug blinks | R, G |
+| S25a | The third "share the shares" | Insert: close on the cherubs singing | R |
+| S25b | "five in every hundred" | Insert: the corner denominations, already 5% (as S14) | R |
+| S25c | "And if we grow by half again" | Insert: the "Number of shares" box, figures changing (as S16) | R, G |
 | S26 | "we'll give two more (at our discretion) then" | Pull back: the certificate is a real sheet of paper in your hands, still animated, with your guitar leaning beside you | L |
 | S27 | "so help us grow, so we can give" | Back inside: the cherubs point at camera again | R |
 | S28 | Last chord of the chorus | Hold on the engraved laborer, the only figure that never moved | R |
@@ -233,7 +238,7 @@ This follows the certificate scenes above. Cues are lyric lines, not timestamps;
 | --- | --- | --- | --- |
 | S37 | "Share the shares, share the shares" | *Prudence* clips the coupons along the bottom, one by one, into her ledger | R |
 | S38 | "at our discretion!" | Close on *Prudence*, scissors raised | R |
-| S39 | "baseline to be announced!" | *Mercury* pops up out of the fine print | R |
+| S39 | "The more we grow, the more we give", the line after "at our discretion" (Suno didn't sing "baseline to be announced!") | *Mercury* pops up out of the fine print | R |
 | S40 | "do I get a say?" | Cut to you, saying it to the sheet in your hands | L |
 | S41 | The next line | Back inside: the cherubs keep swaying; nobody reacts | R |
 | S42 | "so help us grow, so we can give" | All the cherubs point at camera one last time | R |

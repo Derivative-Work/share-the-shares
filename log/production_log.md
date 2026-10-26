@@ -346,3 +346,16 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   - The sway and the stride now use `cos` of the beat phase, so the extreme lands on the beat.
 - **New:** `scripts/c4_sync_test.py`; `renders/c4/c4_sync_test_v1.mp4` (20.3 s: S03–S04, S10, S13, S18 excerpts at 24 fps with the mix).
 - **Next:** re-render the whole animatic once the human has checked the test clip.
+
+## 2026-10-25T21:31:43-04:00 — C4 v2: the chorus inserts, S39 placed, the sync fix, full re-render
+
+- **Why:** the human's "do both" (human interventions, same time), and the approved sync fix.
+- **Brief:** Claude Doc rev 31 (rows S17a, S17b, S25a, S25b, S25c; S39's cue). Re-exported to `docs/brief.md` with `scripts/doc_to_md.py`; the diff against rev 30 is exactly those six rows.
+- **Timing map:** `scripts/timing_map.py` now takes ordinal cues ('The third "share the shares"'): the n'th time the phrase is sung after the previous shot. That places an insert inside a long line.
+  - New anchors: S17a 85.01, S17b 90.49, S25a 141.12, S25b 143.38, S25c 146.26, S39 234.45. No other anchor moved.
+  - S25a was checked on a spectrogram. Chorus 2's first "shares" is held for 5 s under a lead melisma (134.5–139.3 s), so the third "share the shares" is at 141.1 s, as aligned.
+- **Animatic (`scenes/blender/animatic.py`, `config/c4_shots.json`):**
+  - framings for the six shots;
+  - the shares figures keep changing through S17b, and again in S25c;
+  - S39: Mercury dips below a line of fine print and pops up out of it, growing from almost nothing with an overshoot, then raises the caduceus. An earlier test that slid him 300 px down showed him over the laborer's vignette, and was replaced.
+- **Render:** `renders/c4/frames_v2` (full, `--step 2`) and `renders/c4/anchors_v2`, assembled to `renders/c4/c4_animatic.mp4`. The v1 cut is archived as `archive/renders/c4/c4_animatic_v1_word-gated-jaws.mp4`.
