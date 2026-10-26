@@ -617,3 +617,20 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   The first cuts are archived (`…_v1_grey-die`, `…_v1_straight-quotes`).
 - **Checked:** stills of S34's descent, S44's shut drawer, and the fact card in motion.
 - **Status:** **all six C5 sections are ready for review.**
+
+## 2026-10-26T18:11:53-04:00 — C5: the red pen on the fact card; credits; the log's home
+
+- **Why:** the human's notes after approving C5 (human interventions, 18:04:04; the fact card's annotations are an EXCEPTION, the human's text).
+- **S47, the fact card (`overlays/graphics.html`):** the human's hedges are drawn on in red pen, in a handwritten face (Caveat, SIL OFL, fetched from github.com/google/fonts; `assets/fonts/Caveat-Variable.ttf`, `OFL-caveat.txt`, hashes in `SHA256SUMS`).
+  - The marks are placed from the laid-out text: each marked phrase is a span, and the pen's notes and strokes are positioned from its box.
+  - After the card's lines are up (5.2 s), one mark lands every 1.05 s: "It's not required to." above the board's 2%; "to allow different forms of giving" struck through, "which legally allows non-charitable activities" written above it; "So they say." after the lobbying line; "to be announced" circled; "Lyrics drafted by Claude, a model made by Anthropic" underlined; "and by the human, October 26, 2026" after Gemini's review.
+  - Strokes draw on; notes write on left to right.
+  - The lines with a note above them get 52 px more room. A first version let the struck line's correction overlap the line above, and drew carets that read as checkmarks: both fixed before cutting.
+  - S47 now runs 15 s (from 7), so the marks can be read.
+- **Credits (S48):**
+  - "performed live by the human, one take";
+  - "Claude Code with Opus 5.5: paper puppets in Blender; the human, DaVinci Resolve" (kept together on one line);
+  - Type adds Caveat;
+  - "Full production log: github.com/Derivative-Work/share-the-shares", where the human will host the log.
+- **For C6:** the human's annotation "which legally allows non-charitable activities" joins the fact-card source check.
+- **Renders:** `renders/c5/graphics` fact, announce and credits (their start times moved with S47's length). Section 6 re-cut: `renders/c5/cuts/c5_6_finalchorus_outro_close.mp4` (the previous cut is archived as `…_v2_before-red-pen`). The finished card is in `renders/c5/sheets/s47_fact_card_red_pen.png`.

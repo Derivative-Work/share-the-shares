@@ -549,8 +549,9 @@
    "text": "S46 · LIVE: hold music (the chorus as muzak); hang up, fold the sheet into the guitar case"
   },
   "S47": {
-   "after_s": 7.0,
-   "text": "S47 · GRAPHICS: the fact card in engraved type (C5)"
+   "after_s": 15.0,
+   "text": "S47 · GRAPHICS: the fact card in engraved type (C5)",
+   "note": "C5: 15 s, so the red pen's seven marks (from 5.2 s, one every 1.05 s) have time to land and be read"
   },
   "S48": {
    "after_s": 11.0,

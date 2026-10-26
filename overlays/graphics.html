@@ -12,7 +12,8 @@ Query: ?layer=title|bug|postfilter|s01|slate|fact|announce|credits [&blink=1] [&
 @font-face { font-family: 'Fell'; src: url('../assets/fonts/IMFeENrm28P.ttf'); }
 @font-face { font-family: 'FellIt'; src: url('../assets/fonts/IMFeENit28P.ttf'); }
 @font-face { font-family: 'FellSC'; src: url('../assets/fonts/IMFeENsc28P.ttf'); }
-:root { --paper: #EEE5CC; --shadow: #D9CBA6; --green: #2F5E4C; --sepia: #3E2C1E; --gold: #A8843A; --desk: #2B211A; }
+@font-face { font-family: 'Pen'; src: url('../assets/fonts/Caveat-Variable.ttf'); font-weight: 400 700; }
+:root { --pen: #B3231B; --paper: #EEE5CC; --shadow: #D9CBA6; --green: #2F5E4C; --sepia: #3E2C1E; --gold: #A8843A; --desk: #2B211A; }
 html, body { margin: 0; background: transparent; overflow: hidden; }
 #stage { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 0 0; }
 .layer { position: absolute; inset: 0; display: none; }
@@ -55,8 +56,14 @@ html, body { margin: 0; background: transparent; overflow: hidden; }
 #fact .frame { position: absolute; inset: 40px; border: 14px double var(--green); }
 #fact .frame2 { position: absolute; inset: 70px; border: 2px solid var(--green); }
 #fact h2 { position: absolute; top: 105px; left: 0; right: 0; text-align: center; margin: 0; font: 74px/1 'Abril'; letter-spacing: 10px; }
-#fact ul { position: absolute; top: 215px; left: 160px; right: 160px; margin: 0; padding: 0; list-style: none; }
-#fact li { font: 35px/1.28 'Fell'; margin: 0 0 15px; padding-left: 42px; position: relative; }
+#fact ul { position: absolute; top: 205px; left: 160px; right: 160px; margin: 0; padding: 0; list-style: none; }
+#fact li { font: 35px/1.28 'Fell'; margin: 0 0 27px; padding-left: 42px; position: relative; }
+/* the red pen (the human's hedges, C5): marks and notes over the printed card, placed from the laid-out text */
+#pen { position: absolute; inset: 0; pointer-events: none; }
+#fact li.roomy { margin-top: 52px; }  /* a line with a note written above it: room for the pen between the lines */
+#pen svg { position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: visible; }
+#pen path { fill: none; stroke: var(--pen); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; opacity: .92; }
+#pen .note { position: absolute; white-space: nowrap; font: 600 40px/1 'Pen'; color: var(--pen); opacity: .92; transform-origin: 0 100%; }
 #fact li::before { content: '❧'; position: absolute; left: 0; color: var(--green); }
 #fact li.sat { font-family: 'FellIt'; }
 #fact .src { position: absolute; bottom: 92px; left: 160px; right: 160px; font: 24px/1.3 'FellIt'; color: #6d5a45; text-align: center; }
@@ -85,7 +92,8 @@ html, body { margin: 0; background: transparent; overflow: hidden; }
     <div class="foot">Stand-in for S01: the real generation screen is a screen capture from your account (R4).</div>
   </div>
   <div class="layer" id="fact"><div class="frame"></div><div class="frame2"></div><h2 class="ruled">THE TERMS</h2><ul id="factlist"></ul>
-    <div class="src">Sources: Anthropic's announcement (anthropic.com/news/public-benefit-fund) · TechCrunch · The National · ESG Today</div></div>
+    <div class="src">Sources: Anthropic's announcement (anthropic.com/news/public-benefit-fund) · TechCrunch · The National · ESG Today</div>
+    <div id="pen"><svg viewBox="0 0 1920 1080"></svg></div></div>
   <div class="layer" id="announce"><img id="annimg" src="../assets/screens/announcement.png"></div>
   <div class="layer" id="credits"><h2>DERIVED FROM</h2><ul id="credlist"></ul></div>
 </div>
@@ -113,17 +121,99 @@ const FACTS = [
 const SATIRE = "AI-generated satire. Lyrics drafted by Claude, a model made by Anthropic. Reviewed for bias by a model from another lab: Gemini 4 Argon, October 21, 2026.";
 const CREDITS = [
   ["Engravings", "Asher B. Durand and Cyrus Durand, banknote vignettes and lathe work, ca. 1824–42. The Metropolitan Museum of Art, Open Access"],
-  ["Type", "Abril Fatface, IM Fell English, Pinyon Script (SIL Open Font License)"],
+  ["Type", "Abril Fatface, IM Fell English, Pinyon Script, Caveat (SIL Open Font License)"],
   ["Music", "Suno V6, one take (c0702797)"],
   ["Lyrics", "Claude; reviewed for bias by Gemini 4 Argon"],
-  ["Verse 3 and “do I get a say?”", "performed live, one take"],
-  ["Animation and edit", "Claude Code with Opus 5.5: paper puppets in Blender"],
+  ["Verse 3 and “do I get a say?”", "performed live by the human, one take"],
+  ["Animation and edit", "Claude Code with Opus 5.5: paper puppets in Blender; the&nbsp;human,&nbsp;DaVinci&nbsp;Resolve"],
   ["Human interventions", q.get('interventions') || '—'],
-  ["Full production log", "link added at publish"],
+  ["Full production log", "github.com/Derivative-Work/share-the-shares"],
 ];
+// the red pen (the human, C5; human interventions 2026-10-26T18:04): marks on phrases of the card, in order
+const MARK = {  // fact index -> [phrase, span id]
+  1: [["The board may add", "m_may"]],
+  2: [["to allow different forms of giving", "m_allow"]],
+  3: [["The fund's equity won't be used for lobbying or political giving.", "m_lobby"]],
+  4: [["to be announced", "m_tba"]],
+  6: [["Lyrics drafted by Claude, a model made by Anthropic", "m_lyrics"], ["Gemini 4 Argon, October 21, 2026.", "m_review"]],
+};
+const PEN = [  // what the pen does, in order: kind, target span, note text
+  ["note_above", "m_may", "It’s not required to."],
+  ["strike", "m_allow"],
+  ["note_above", "m_allow", "which legally allows non-charitable activities"],
+  ["note_after", "m_lobby", "So they say."],
+  ["circle", "m_tba"],
+  ["underline", "m_lyrics"],
+  ["note_after_or_below", "m_review", "and by the human, October 26, 2026"],
+];
+const esc = (x) => x.replace(/&/g, '&amp;').replace(/</g, '&lt;');
 if (LAYER === 'fact') {
   const ul = document.getElementById('factlist');
-  for (const f of FACTS.concat([SATIRE])) { const li = document.createElement('li'); li.textContent = f; if (f === SATIRE) li.className = 'sat'; ul.appendChild(li); }
+  FACTS.concat([SATIRE]).forEach((f, i) => {
+    const li = document.createElement('li');
+    let html = esc(f);
+    for (const [phrase, id] of (MARK[i] || [])) html = html.replace(esc(phrase), `<span id="${id}">${esc(phrase)}</span>`);
+    li.innerHTML = html;
+    if (f === SATIRE) li.className = 'sat';
+    if (PEN.some(([kind, id]) => kind === 'note_above' && (MARK[i] || []).some(([, mid]) => mid === id))) li.classList.add('roomy');
+    ul.appendChild(li);
+  });
+}
+// lay out the pen's marks once the type is set: stage coordinates from each span's box
+function rectOf(id) {
+  const st = document.getElementById('stage').getBoundingClientRect(), k = st.width / 1920;
+  const rs = Array.from(document.getElementById(id).getClientRects());
+  return rs.map((r) => ({ x: (r.left - st.left) / k, y: (r.top - st.top) / k, w: r.width / k, h: r.height / k }));
+}
+const PENMARKS = [];
+function layoutPen() {
+  const pen = document.getElementById('pen'), svg = pen.querySelector('svg');
+  const right = 1920 - 160;
+  let seed = 7;
+  const jit = (a) => { seed = (seed * 9301 + 49297) % 233280; return (seed / 233280 - 0.5) * 2 * a; };  // a steady hand's wobble
+  for (const [kind, id, text] of PEN) {
+    const rs = rectOf(id), first = rs[0], last = rs[rs.length - 1];
+    const m = { kind };
+    if (kind === 'strike') {
+      const d = rs.map((r) => `M${r.x - 4},${r.y + r.h * 0.56 + jit(2)} C${r.x + r.w * 0.33},${r.y + r.h * 0.5 + jit(3)} ${r.x + r.w * 0.66},${r.y + r.h * 0.6 + jit(3)} ${r.x + r.w + 6},${r.y + r.h * 0.52 + jit(2)}`).join(' ');
+      m.path = mkPath(svg, d);
+    } else if (kind === 'underline') {
+      const d = rs.map((r) => `M${r.x - 2},${r.y + r.h * 0.96 + jit(2)} Q${r.x + r.w * 0.5},${r.y + r.h * 1.06 + jit(3)} ${r.x + r.w + 8},${r.y + r.h * 0.94 + jit(2)}`).join(' ');
+      m.path = mkPath(svg, d);
+    } else if (kind === 'circle') {
+      // an ellipse round the words, started at the left, overshooting where it closes, as a hand circles
+      const cx = first.x + first.w / 2 + 4, cy = first.y + first.h / 2, rx = first.w / 2 + 12, ry = first.h / 2 + 10;
+      const pts = [];
+      for (let a = 0; a <= 1.08; a += 0.02) {
+        const th = Math.PI + a * 2 * Math.PI, r = 1 + 0.05 * Math.sin(a * 9);
+        pts.push(`${(cx + rx * r * Math.cos(th)).toFixed(1)},${(cy + ry * r * Math.sin(th) - 6 * a).toFixed(1)}`);
+      }
+      m.path = mkPath(svg, 'M' + pts.join(' L'));
+    } else {
+      const n = document.createElement('div');
+      n.className = 'note';
+      n.textContent = text;
+      pen.appendChild(n);
+      const w = n.getBoundingClientRect().width / (document.getElementById('stage').getBoundingClientRect().width / 1920);
+      let x, y, rot = -2.5;
+      if (kind === 'note_above') { x = first.x + 6; y = first.y - 44; }
+      else { x = last.x + last.w + 18; y = last.y + 2; rot = -1.5; }
+      if (kind === 'note_after_or_below' && x + w > right) { x = right - w; y = last.y + last.h + 4; rot = -1; }
+      n.style.left = `${x}px`; n.style.top = `${y}px`; n.style.transform = `rotate(${rot}deg)`;
+      m.note = n;
+    }
+    PENMARKS.push(m);
+  }
+}
+function mkPath(svg, d) {
+  const p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  p.setAttribute('d', d);
+  svg.appendChild(p);
+  const L = p.getTotalLength();
+  p.style.strokeDasharray = `${L}`;
+  p.style.strokeDashoffset = `${L}`;
+  p.dataset.len = L;
+  return p;
 }
 if (LAYER === 'credits') {
   const ul = document.getElementById('credlist');
@@ -134,6 +224,7 @@ if (LAYER === 'slate') {
   el.querySelector('.what').textContent = q.get('text') || '';
 }
 window.ready = (async () => {
+  if (LAYER === 'fact') { await document.fonts.ready; layoutPen(); }
   if (LAYER === 's01') {
     // overlays/data/s01.js (written by scripts/render_graphics.py from the logged prompt and lyrics)
     document.getElementById('s01style').textContent = window.S01.style.trim();
@@ -159,6 +250,16 @@ window.renderFrame = (t) => {
   } else if (LAYER === 'fact') {
     const lis = el.querySelectorAll('li');
     lis.forEach((li, i) => { li.style.opacity = String(clamp01((t - 0.4 - i * 0.55) / 0.4)); });
+    // the red pen: from 5.2 s, one mark every 1.05 s, each drawn (a stroke) or written (a note) in ~0.8 s
+    PENMARKS.forEach((m, i) => {
+      const a = 5.2 + i * 1.05;
+      if (m.path) m.path.style.strokeDashoffset = String(m.path.dataset.len * (1 - ease((t - a) / (m.note ? 0.3 : 0.7))));
+      if (m.note) {
+        const u = clamp01((t - a - (m.path ? 0.2 : 0)) / 0.8);
+        m.note.style.clipPath = `inset(-20px ${100 - 100 * u}% -20px -20px)`;
+        m.note.style.visibility = u > 0 ? 'visible' : 'hidden';
+      }
+    });
   } else if (LAYER === 'announce') {
     // a slow scroll down the real page, like a screen recording
     const img = document.getElementById('annimg');
