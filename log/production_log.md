@@ -521,3 +521,17 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
 - **Known:** small synthesis artifacts where the arms hung (a dark mark at the centre cherub's hip); they don't show in the wide shots where the cherubs point.
 - **Commands:** `.venv/bin/python -I scripts/segment.py cherubs`; `… puppet_build.py cherubs` (2.5 min); `blender … c2_poses.py -- renders/c1/certificate_v05 renders/c5/cherub_poses 1280 720 16 cherubs` (`c2_poses.py` now takes optional figure names); stills at the three cues (`renders/c5/cherub_point_v1`).
 - **Outputs:** `assets/puppets/cherubs` (the one-armed C4 build is archived as `archive/puppets/cherubs_c4_one-arm`).
+
+## 2026-10-26T10:49:21-04:00 — C5 render benchmark; section 1 started (GTX 970)
+
+- **Benchmark** (1920×1080, 64 samples, frames 2–4 of a run after shader compile): S06 (studio) 24.0 s/frame, S13 (wide choir) 18.2, S24 (the back) 11.5, S37 (coupons) 8.8. The whole film at 64 samples would take about 28 h.
+  - At 16 samples S06 takes 6.35 s, and at 32 samples 12.2 s.
+  - 16 against 64 on the same frame: mean |diff| 0.61 of 255 (p99 7). The difference is the noise of the studio print's blended layer and the dither at cutout edges, invisible by eye at 1:1 and within the line boil the style asks for.
+- **Chosen:** `config/render_profiles.json` `c5`: 1920×1080, 16 samples, on the GTX 970. About 6.5 h for every rendered frame. The final 4K profile stays with the RTX 5090.
+- **Sections** (`config/c5_sections.json`): six review cuts on shot boundaries, rendered and sent one at a time.
+- **Tools:**
+  - `scripts/animatic_assemble.py` takes `--graphics DIR`, `--from/--to` (a section; the pre- and post-roll belong to the first and last) and `--captions ids` (shot IDs only, for the C5 cuts). Tested on 130–142 s of the v4 frames: song 133 s lands at 3.000 s into the cut.
+  - `scripts/render_graphics.py` takes an output directory.
+- **Started:**
+  - section 1 (0–46.88 s) into `renders/c5/frames` (log `renders/c5/logs/section1.log`);
+  - the graphics layer at 1920×1080 and 24 fps into `renders/c5/graphics`.

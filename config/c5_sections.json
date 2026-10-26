@@ -1,0 +1,47 @@
+{
+ "_doc": "C5 review sections (render and cut one at a time): song-time spans on shot boundaries (timing/timing_map.json). The first adds S01's pre-roll, the last the post-roll (S45-S48).",
+ "sections": [
+  {
+   "n": 1,
+   "name": "intro_verse1",
+   "shots": "S01-S09",
+   "from": "start",
+   "to": "S10"
+  },
+  {
+   "n": 2,
+   "name": "prechorus_chorus1",
+   "shots": "S10-S17b",
+   "from": "S10",
+   "to": "S36"
+  },
+  {
+   "n": 3,
+   "name": "keychange_verse2_prechorus2",
+   "shots": "S36, S18-S24",
+   "from": "S36",
+   "to": "S25"
+  },
+  {
+   "n": 4,
+   "name": "chorus2_verse3",
+   "shots": "S25-S31",
+   "from": "S25",
+   "to": "S32"
+  },
+  {
+   "n": 5,
+   "name": "bridge",
+   "shots": "S32-S35",
+   "from": "S32",
+   "to": "S37"
+  },
+  {
+   "n": 6,
+   "name": "finalchorus_outro_close",
+   "shots": "S37-S48",
+   "from": "S37",
+   "to": "end"
+  }
+ ]
+}

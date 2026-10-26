@@ -12,8 +12,14 @@ S45-S48 after it (their lengths are placeholders until the live footage exists).
 Timeline: S01's pre-roll, then the song from 0 s, then the post-roll. The audio is delayed by the pre-roll.
 Frames may be every k'th frame (blender --step k): they play at fps / k, so timing is exact and motion is coarser.
 
-Usage: .venv/bin/python -I scripts/animatic_assemble.py <frames dir> <step> <out.mp4>
+Usage: .venv/bin/python -I scripts/animatic_assemble.py <frames dir> <step> <out.mp4> [--graphics DIR]
+       [--from S] [--to S] [--captions full|ids]
+  --graphics: the graphics layer's renders (default renders/c4/graphics, the animatic's)
+  --from/--to: a section, in song seconds (C5's review cuts, config/c5_sections.json); the pre-roll belongs to a
+               section from 0, the post-roll to one running to the end
+  --captions: full (karaoke lyrics, shot IDs: the animatic) or ids (shot IDs only: C5's review cuts)
 """
+import argparse
 import json
 import os
 import subprocess
@@ -45,7 +51,7 @@ def ev(layer, a, b, style, txt):
     return f"Dialogue: {layer},{ts(a)},{ts(b)},{style},,0,0,0,,{txt}"
 
 
-def ass(w, h):
+def ass(w, h, captions="full"):
     L = ["[Script Info]", "ScriptType: v4.00+", f"PlayResX: {w}", f"PlayResY: {h}", "",
          "[V4+ Styles]",
          "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, "
@@ -59,7 +65,7 @@ def ass(w, h):
          "Style: Bug,IM FELL English SC,15,&H00FFFFFF,&H00FFFFFF,&H001616C8,&H001616C8,0,0,0,0,100,100,2,0,3,3,0,7,14,14,12,1",
          "Style: Note,IM FELL English,14,&H00CCE5EE,&H00CCE5EE,&H001E2C3E,&H64000000,0,1,0,0,100,100,0,0,1,1,0,1,12,12,10,1",
          "", "[Events]", "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text"]
-    for ln in TM["lines"]:
+    for ln in (TM["lines"] if captions == "full" else []):
         a, b = ln["start"] - 0.4 + PRE, ln["end"] + 0.6 + PRE
         parts, t = [], ln["start"] - 0.4
         for wd in ln["words"]:
@@ -78,9 +84,9 @@ def ass(w, h):
     return "\n".join(L) + "\n"
 
 
-def graphics(w, h):
+def graphics(w, h, G):
     """The graphics layer (scripts/render_graphics.py): per job, its frames and video-time span."""
-    G = Path("renders/c4/graphics")
+    G = Path(G)
     meta = json.loads((G / "jobs.json").read_text())
     if tuple(meta["size"]) != (w, h):
         raise SystemExit(f"graphics are {meta['size']}, frames are {w}x{h}: re-run render_graphics.py")
@@ -88,12 +94,24 @@ def graphics(w, h):
 
 
 def main():
-    frames, step, out = Path(sys.argv[1]), int(sys.argv[2]), sys.argv[3]
+    ap = argparse.ArgumentParser()
+    ap.add_argument("frames")
+    ap.add_argument("step", type=int)
+    ap.add_argument("out")
+    ap.add_argument("--graphics", default="renders/c4/graphics")
+    ap.add_argument("--from", dest="t0", type=float, default=None)
+    ap.add_argument("--to", dest="t1", type=float, default=None)
+    ap.add_argument("--captions", default="full", choices=["full", "ids"])
+    a = ap.parse_args()
+    frames, step, out = Path(a.frames), a.step, a.out
     pngs = {int(p.stem[2:]): p for p in frames.glob("f_*.png")}
     w, h = Image.open(next(iter(pngs.values()))).size
     total = PRE + DUR + POST
-    n_out = int(total * FPS / step) + 1
-    G, meta = graphics(w, h)
+    # the cut's span in video time: a section from 0 takes the pre-roll, one to the end the post-roll
+    v0 = 0.0 if not a.t0 else a.t0 + PRE
+    v1 = total if a.t1 is None or a.t1 >= DUR else a.t1 + PRE
+    k0, k1 = int(round(v0 * FPS / step)), int(round(v1 * FPS / step))
+    G, meta = graphics(w, h, a.graphics)
     gfps = meta["fps"]
     cache = {}
 
@@ -110,13 +128,13 @@ def main():
         seq = td / "seq"
         seq.mkdir()
         black = Image.new("RGB", (w, h), (12, 10, 8))
-        for k in range(n_out):
+        for k in range(k0, k1):
             tt = k * step / FPS - PRE  # song time shown at output frame k
             f = round(tt * FPS)
             active = [j for j in meta["jobs"] if j["start"] <= tt < j["start"] + j["dur"]]
             full = [j for j in active if j["full"]]
             if f in pngs and not full and not active:
-                os.symlink(pngs[f].resolve(), seq / f"{k:06d}.png")
+                os.symlink(pngs[f].resolve(), seq / f"{k - k0:06d}.png")
                 continue
             im = (Image.open(pngs[f]).convert("RGB") if f in pngs else black.copy()) if not full else \
                 gframe(full[0], tt).convert("RGB")
@@ -124,22 +142,37 @@ def main():
                 if not j["full"]:
                     g = gframe(j, tt)
                     im.paste(g, (0, 0), g)
-            im.save(seq / f"{k:06d}.png")
+            im.save(seq / f"{k - k0:06d}.png")
         sub = td / "c4.ass"
-        sub.write_text(ass(w, h))
+        # the captions, shifted to the cut's start (libass drops events that end before 0)
+        script = ass(w, h, a.captions)
+        if v0:
+            head, ev_ = script.split("[Events]\n", 1)
+            rows = []
+            for row in ev_.splitlines():
+                if row.startswith("Dialogue:"):
+                    f_ = row.split(",", 9)
+                    t_a, t_b = (sum(float(x) * m for x, m in zip(c.split(":"), (3600, 60, 1))) - v0 for c in f_[1:3])
+                    if t_b <= 0:
+                        continue
+                    f_[1], f_[2] = ts(max(t_a, 0)), ts(t_b)
+                    row = ",".join(f_)
+                rows.append(row)
+            script = head + "[Events]\n" + "\n".join(rows) + "\n"
+        sub.write_text(script)
         # the audio is encoded on its own and muxed in as is: encoded in the same graph as the slow video, the
         # delayed audio came out with broken packet timestamps (a 1.6 s packet at the pre-roll's end), which
         # players that ignore timestamps played ~1.5 s early (v1-v3)
         ms = int(round(PRE * 1000))
         aud = td / "audio.m4a"
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", TM["audio"], "-af", f"adelay={ms}|{ms},apad",
-                        "-t", f"{total:.3f}", "-c:a", "aac", "-b:a", "160k", str(aud)], check=True)
+                        "-ss", f"{v0:.3f}", "-t", f"{v1 - v0:.3f}", "-c:a", "aac", "-b:a", "160k", str(aud)], check=True)
         cmd = ["ffmpeg", "-v", "error", "-y", "-framerate", f"{FPS / step}", "-i", str(seq / "%06d.png"),
                "-i", str(aud), "-filter_complex", f"[0:v]ass={sub}:fontsdir=assets/fonts[v]",
-               "-map", "[v]", "-map", "1:a", "-t", f"{total:.3f}", "-c:v", "libx264", "-preset", "veryfast", "-crf", "22",
+               "-map", "[v]", "-map", "1:a", "-t", f"{v1 - v0:.3f}", "-c:v", "libx264", "-preset", "veryfast", "-crf", "22",
                "-pix_fmt", "yuv420p", "-r", f"{FPS}", "-c:a", "copy", out]
         subprocess.run(cmd, check=True)
-    print(out, f"{total:.1f} s, {len(pngs)} rendered frames")
+    print(out, f"{v1 - v0:.1f} s (video {v0:.2f}-{v1:.2f}), {len(pngs)} rendered frames on disk")
 
 
 if __name__ == "__main__":

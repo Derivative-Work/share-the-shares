@@ -7,7 +7,7 @@ song seconds, duration and frame count), which scripts/animatic_assemble.py comp
   "Post-filter: no change" tab;
   full frames: S01's stand-in screen, the live slates (S26, S29-S31, S40, S45, S46), the S47 fact card, S48's
   announcement page and the "Derived from" credits.
-Usage: .venv/bin/python -I scripts/render_graphics.py [width height step]
+Usage: .venv/bin/python -I scripts/render_graphics.py [width height step [out dir]]  (default 640 360 2, renders/c4/graphics)
 """
 import json
 import subprocess
@@ -19,7 +19,7 @@ TM = json.loads(Path("timing/timing_map.json").read_text())
 PLAN = json.loads(Path("config/c4_shots.json").read_text())
 FPS = TM["fps"]
 PH = PLAN["placeholders"]
-OUT = Path("renders/c4/graphics")
+OUT = Path(sys.argv[4]) if len(sys.argv) > 4 else Path("renders/c4/graphics")
 SHOTS = [s for s in TM["shots"] if s["t"] is not None]
 SPAN = {s["id"]: (s["t"], SHOTS[k + 1]["t"] if k + 1 < len(SHOTS) else TM["duration_s"]) for k, s in enumerate(SHOTS)}
 
