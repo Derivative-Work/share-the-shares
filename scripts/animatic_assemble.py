@@ -9,7 +9,8 @@ change" tab over the picture, and full-frame cards for S01 (a stand-in for the s
 S47 fact card and S48 (the real announcement page, then the Derived from credits). S01 comes before the music and
 S45-S48 after it (their lengths are placeholders until the live footage exists).
 
-Timeline: S01's pre-roll, then the song from 0 s, then the post-roll. The audio is delayed by the pre-roll.
+Timeline: S01's pre-roll (none since S01 was retired), then the song from 0 s, then the post-roll, whose sound is
+audio/postroll/postroll.wav (scripts/postroll_audio.py). The audio is delayed by the pre-roll.
 Frames may be every k'th frame (blender --step k): they play at fps / k, so timing is exact and motion is coarser.
 
 Usage: .venv/bin/python -I scripts/animatic_assemble.py <frames dir> <step> <out.mp4> [--graphics DIR]
@@ -167,7 +168,11 @@ def main():
         # players that ignore timestamps played ~1.5 s early (v1-v3)
         ms = int(round(PRE * 1000))
         aud = td / "audio.m4a"
-        subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", TM["audio"], "-af", f"adelay={ms}|{ms},apad",
+        # the post-roll's sound (scripts/postroll_audio.py: the dialling, the ring, the hold music) follows the song
+        post = Path("audio/postroll/postroll.wav")
+        srcs = ["-i", TM["audio"]] + (["-i", str(post)] if post.exists() else [])
+        chain = ("[0:a][1:a]concat=n=2:v=0:a=1," if post.exists() else "[0:a]") + f"adelay={ms}|{ms},apad[a]"
+        subprocess.run(["ffmpeg", "-v", "error", "-y", *srcs, "-filter_complex", chain, "-map", "[a]",
                         "-ss", f"{v0:.3f}", "-t", f"{v1 - v0:.3f}", "-c:a", "aac", "-b:a", "160k", str(aud)], check=True)
         cmd = ["ffmpeg", "-v", "error", "-y", "-framerate", f"{FPS / step}", "-i", str(seq / "%06d.png"),
                "-i", str(aud), "-filter_complex", f"[0:v]ass={sub}:fontsdir=assets/fonts[v]",

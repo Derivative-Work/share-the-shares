@@ -634,3 +634,20 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   - "Full production log: github.com/Derivative-Work/share-the-shares", where the human will host the log.
 - **For C6:** the human's annotation "which legally allows non-charitable activities" joins the fact-card source check.
 - **Renders:** `renders/c5/graphics` fact, announce and credits (their start times moved with S47's length). Section 6 re-cut: `renders/c5/cuts/c5_6_finalchorus_outro_close.mp4` (the previous cut is archived as `…_v2_before-red-pen`). The finished card is in `renders/c5/sheets/s47_fact_card_red_pen.png`.
+
+## 2026-10-26T18:30:31-04:00 — The post-roll's sound (dialling, ring, hold music); the note's arrow
+
+- **Why:** the human's notes (human interventions, same time).
+- **The muzak:** the human's Suno cover, lyrics removed, style "muzak" (R4; `log/prompts/suno/muzak.md`). Copied to `audio/muzak/`; both copies' SHA-256 match the sources.
+  - Its first chorus is at 72.82 s. The human said "roughly 1:10"; the agent matched the chroma of the song's first chorus (60.6 s) against the cover, best at 72.7–73.4 s for tempo ratios 1.0–1.12, and took the nearest beat.
+- **`scripts/postroll_audio.py`** (new; `config/postroll.json`) → `audio/postroll/postroll.wav`: 39.0 s, the length of S45–S48.
+  - The pledge line, 555-0142, dialled in standard DTMF (0.11 s tones, 0.07 s gaps) from 1.00 to 2.26 s.
+  - One short ring (US ringback, 440 + 480 Hz) for 1.2 s from 2.61 s.
+  - The muzak fades in from 3.60 s (from 71.42 s in the cover), so its chorus lands on the cut to S46, the hold music, at 5.00 s. It plays on under the terms and the credits at −3 dB and fades out over the last 2 s. Peak −7.0 dBFS.
+- **`scripts/animatic_assemble.py`:** the post-roll's sound follows the song (concat), where there was silence.
+- **Checked in the cut's audio:**
+  - the first "5" (770 + 1336 Hz) at +1.00 s and the "1" (697 + 1209 Hz) at +1.72 s;
+  - the ring at +2.7–3.7 s;
+  - the muzak at −18 dB RMS in S46 and −21 dB under the credits, down to −41 dB in the last 0.3 s.
+- **S47:** "It's not required to." moves up and to the right, above the middle of the board's line, and a hand-drawn arrow (a loose curve with a head) runs from it to "may add" after it is written.
+- **Outputs:** `renders/c5/graphics/fact`; section 6 re-cut (`renders/c5/cuts/c5_6_finalchorus_outro_close.mp4`; the silent post-roll cut is archived as `…_v3_silent-postroll`).

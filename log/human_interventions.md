@@ -149,3 +149,13 @@ Every human action: timestamp, what, why, and which production rule allows it. R
   - **EXCEPTION** for the fact card: the human wrote the annotations' text. Their claim "which legally allows non-charitable activities" joins the C6 fact-card source check.
   - The annotation "and by the human, October 26, 2026" records a bias review by the human, alongside Gemini's.
   - The credit "the human, DaVinci Resolve" records that the human does the final edit, a further EXCEPTION, logged as the edit happens.
+
+## 2026-10-26T18:24:39-04:00 — The hold music made in Suno; the fact card's arrow — R4, R1, EXCEPTION
+
+- **What:** The human:
+  - "put the "it's not required to" further to the right and add a handwritten-looking arrow pointing from it to the line it's referencing."
+  - "The musak is in ~/Downloads, made by using the "cover" feature in Suno, removing the lyrics, and replacing the style with just "muzak". The chorus starts at roughly 1:10: add dial tone corresponding to that number, one short "ring", then fade into the song but keep it playing for the rest of the video (including the terms and credits). Suno link: https://suno.com/s/XvG9otSmBT8EHh2h"
+- **Rule:**
+  - R4: the human ran Suno's cover feature (an interface the agent can't reach). The settings are logged in `log/prompts/suno/muzak.md`.
+  - R1: the instructions for the post-roll's sound, and for the note's placement.
+  - The arrow belongs to the human's annotation, the EXCEPTION logged at 18:04:04.

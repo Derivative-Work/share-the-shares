@@ -1,0 +1,24 @@
+{
+ "_doc": "The post-roll's sound (scripts/postroll_audio.py -> audio/postroll/postroll.wav), in seconds from the song's end, laid over S45-S48 (the human's notes, human interventions 2026-10-26): S45 dials the pledge line (DTMF, one tone per digit), one short ring (the US ringback, 440 + 480 Hz), then the muzak (the human's Suno cover, log/prompts/suno/muzak.md) fades in from just before its first chorus, which lands on the cut to S46 (hold music), and plays to the end, under the terms and the credits.",
+ "number": "5550142",
+ "dial": {
+  "start": 1.0,
+  "tone": 0.11,
+  "gap": 0.07,
+  "level_db": -14
+ },
+ "ring": {
+  "after_dial": 0.35,
+  "length": 1.2,
+  "level_db": -18
+ },
+ "muzak": {
+  "file": "audio/muzak/share-the-shares-musak.wav",
+  "chorus": 72.82,
+  "lands_at": "S46",
+  "fade_in": 1.4,
+  "fade_out": 2.0,
+  "level_db": -3,
+  "chorus_note": "the cover's first chorus: the human's 'roughly 1:10'; located by matching the song's first-chorus chroma (60.6 s) against the cover, best at 72.7-73.4 s for tempo ratios 1.0-1.12; 72.82 s is the beat nearest the match"
+ }
+}

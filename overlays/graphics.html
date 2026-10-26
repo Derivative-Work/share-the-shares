@@ -138,7 +138,7 @@ const MARK = {  // fact index -> [phrase, span id]
   6: [["Lyrics drafted by Claude, a model made by Anthropic", "m_lyrics"], ["Gemini 4 Argon, October 21, 2026.", "m_review"]],
 };
 const PEN = [  // what the pen does, in order: kind, target span, note text
-  ["note_above", "m_may", "It’s not required to."],
+  ["note_arrow", "m_may", "It’s not required to."],  // up and to the right, an arrow back down to "may add"
   ["strike", "m_allow"],
   ["note_above", "m_allow", "which legally allows non-charitable activities"],
   ["note_after", "m_lobby", "So they say."],
@@ -155,7 +155,7 @@ if (LAYER === 'fact') {
     for (const [phrase, id] of (MARK[i] || [])) html = html.replace(esc(phrase), `<span id="${id}">${esc(phrase)}</span>`);
     li.innerHTML = html;
     if (f === SATIRE) li.className = 'sat';
-    if (PEN.some(([kind, id]) => kind === 'note_above' && (MARK[i] || []).some(([, mid]) => mid === id))) li.classList.add('roomy');
+    if (PEN.some(([kind, id]) => (kind === 'note_above' || kind === 'note_arrow') && (MARK[i] || []).some(([, mid]) => mid === id))) li.classList.add('roomy');
     ul.appendChild(li);
   });
 }
@@ -197,10 +197,22 @@ function layoutPen() {
       const w = n.getBoundingClientRect().width / (document.getElementById('stage').getBoundingClientRect().width / 1920);
       let x, y, rot = -2.5;
       if (kind === 'note_above') { x = first.x + 6; y = first.y - 44; }
+      else if (kind === 'note_arrow') { x = first.x + first.w + 300; y = first.y - 48; rot = -3; }
       else { x = last.x + last.w + 18; y = last.y + 2; rot = -1.5; }
       if (kind === 'note_after_or_below' && x + w > right) { x = right - w; y = last.y + last.h + 4; rot = -1; }
       n.style.left = `${x}px`; n.style.top = `${y}px`; n.style.transform = `rotate(${rot}deg)`;
       m.note = n;
+      if (kind === 'note_arrow') {
+        // a hand-drawn arrow: from the note's left end, a loose curve down-left to the top of "may add", with a head
+        const sx = x - 10, sy = y + 26, ex = first.x + first.w * 0.62, ey = first.y + 4;
+        const c1x = sx - 90, c1y = sy - 6 + jit(4), c2x = ex + 60, c2y = ey - 30 + jit(4);
+        const tx = ex - c2x, ty = ey - c2y, tl = Math.hypot(tx, ty), ux = tx / tl, uy = ty / tl;
+        const hl = 16, sp = 0.5;
+        const h1 = [ex - hl * (ux * Math.cos(sp) - uy * Math.sin(sp)), ey - hl * (uy * Math.cos(sp) + ux * Math.sin(sp))];
+        const h2 = [ex - hl * (ux * Math.cos(-sp) - uy * Math.sin(-sp)), ey - hl * (uy * Math.cos(-sp) + ux * Math.sin(-sp))];
+        m.path = mkPath(svg, `M${sx},${sy} C${c1x},${c1y} ${c2x},${c2y} ${ex},${ey} M${h1[0]},${h1[1]} L${ex},${ey} L${h2[0]},${h2[1]}`);
+        m.pathAfter = true;  // written first, then the arrow drawn
+      }
     }
     PENMARKS.push(m);
   }
@@ -253,9 +265,12 @@ window.renderFrame = (t) => {
     // the red pen: from 5.2 s, one mark every 1.05 s, each drawn (a stroke) or written (a note) in ~0.8 s
     PENMARKS.forEach((m, i) => {
       const a = 5.2 + i * 1.05;
-      if (m.path) m.path.style.strokeDashoffset = String(m.path.dataset.len * (1 - ease((t - a) / (m.note ? 0.3 : 0.7))));
+      if (m.path) {
+        const pa = m.pathAfter ? a + 0.75 : a;
+        m.path.style.strokeDashoffset = String(m.path.dataset.len * (1 - ease((t - pa) / (m.pathAfter ? 0.45 : (m.note ? 0.3 : 0.7)))));
+      }
       if (m.note) {
-        const u = clamp01((t - a - (m.path ? 0.2 : 0)) / 0.8);
+        const u = clamp01((t - a - (m.path && !m.pathAfter ? 0.2 : 0)) / 0.8);
         m.note.style.clipPath = `inset(-20px ${100 - 100 * u}% -20px -20px)`;
         m.note.style.visibility = u > 0 ? 'visible' : 'hidden';
       }
