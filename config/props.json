@@ -1,0 +1,625 @@
+{
+ "_doc": "C5 props (scripts/props.py): the grey cards of the C4 animatic as engraved ink pieces. kind 'cut': a crop of a public-domain source (assets/engravings/sources.tsv). box = crop as fractions of the source image; erase = rectangles [x0, y0, x1, y1] or polygons [[x, y], ...] in fractions of the crop (reference numerals, lead lines, section lines, the patents' own text), cleared before trim; keep = a polygon outside which the crop is cleared (a part cut out of a larger drawing); trim = the final crop, in fractions of the first; despeckle = connected ink components smaller than this (px) are dropped (scan dust); flip = 'v' or 'h'; levels as in config/engravings.json, for the toned (non-bilevel) sources. kind 'generated': drawn by scripts/props.py in the certificate's type, guilloche and hatching. Every piece writes assets/engravings/ink/props/<name>.png (8-bit ink coverage: 255 = full ink) and, where it has one, <name>_green.png (the green plate).",
+ "props": {
+  "mic": {
+   "kind": "cut",
+   "shots": [
+    "S06"
+   ],
+   "ink": "sepia",
+   "source": "uspto_US1318874_microphone.png",
+   "box": [
+    0.27,
+    0.19,
+    0.5,
+    0.58
+   ],
+   "trim": [
+    0.0,
+    0.0,
+    1.0,
+    0.93
+   ],
+   "despeckle": 40,
+   "role": "an engraved studio microphone (the perforated sound head on its column), used twice, either side of Progress"
+  },
+  "studio_arch": {
+   "kind": "cut",
+   "shots": [
+    "S06"
+   ],
+   "ink": "sepia",
+   "source": "met_393924_arched_frame.jpg",
+   "box": [
+    0.26,
+    0.16,
+    0.8,
+    0.68
+   ],
+   "levels": [
+    0.08,
+    0.62
+   ],
+   "despeckle": 0,
+   "role": "the studio's arched crown (Durand's framing element), over the hatched studio wall"
+  },
+  "door": {
+   "kind": "cut",
+   "shots": [
+    "S08"
+   ],
+   "ink": "sepia",
+   "source": "uspto_US1183842_door.png",
+   "box": [
+    0.15,
+    0.22,
+    0.52,
+    0.74
+   ],
+   "despeckle": 30,
+   "erase": [
+    [
+     0.183,
+     0.048,
+     0.207,
+     0.1
+    ],
+    [
+     0.183,
+     0.225,
+     0.207,
+     0.275
+    ],
+    [
+     0.183,
+     0.395,
+     0.207,
+     0.45
+    ],
+    [
+     0.183,
+     0.565,
+     0.207,
+     0.62
+    ],
+    [
+     0.183,
+     0.74,
+     0.207,
+     0.795
+    ],
+    [
+     0.183,
+     0.915,
+     0.207,
+     0.955
+    ],
+    [
+     0.21,
+     0.05,
+     0.31,
+     0.085
+    ],
+    [
+     0.21,
+     0.925,
+     0.31,
+     0.957
+    ],
+    [
+     0.38,
+     0.14,
+     0.48,
+     0.19
+    ],
+    [
+     0.27,
+     0.48,
+     0.36,
+     0.53
+    ],
+    [
+     0.21,
+     0.29,
+     0.33,
+     0.39
+    ],
+    [
+     0.55,
+     0.0,
+     0.63,
+     0.046
+    ],
+    [
+     0.88,
+     0.293,
+     0.925,
+     0.318
+    ],
+    [
+     0.74,
+     0.568,
+     0.84,
+     0.607
+    ],
+    [
+     0.775,
+     0.603,
+     0.862,
+     0.632
+    ]
+   ],
+   "trim": [
+    0.02,
+    0.04,
+    0.975,
+    0.965
+   ],
+   "role": "the studio door; the WHOLLY OWNED plaque is set over its second panel"
+  },
+  "cabinet": {
+   "kind": "cut",
+   "shots": [
+    "S44"
+   ],
+   "ink": "sepia",
+   "source": "uspto_US979010_filing_cabinet.png",
+   "box": [
+    0.18,
+    0.19,
+    0.79,
+    0.4
+   ],
+   "despeckle": 30,
+   "erase": [
+    [
+     0.128,
+     0.285,
+     0.24,
+     0.355
+    ],
+    [
+     0.128,
+     0.43,
+     0.24,
+     0.495
+    ],
+    [
+     0.128,
+     0.57,
+     0.24,
+     0.635
+    ],
+    [
+     0.128,
+     0.71,
+     0.24,
+     0.775
+    ],
+    [
+     0.258,
+     0.165,
+     0.3,
+     0.215
+    ],
+    [
+     0.248,
+     0.33,
+     0.275,
+     0.45
+    ],
+    [
+     0.055,
+     0.37,
+     0.075,
+     0.41
+    ],
+    [
+     0.055,
+     0.66,
+     0.075,
+     0.72
+    ],
+    [
+     0.066,
+     0.54,
+     0.108,
+     0.7
+    ],
+    [
+     0.272,
+     0.545,
+     0.292,
+     0.69
+    ],
+    [
+     0.268,
+     0.7,
+     0.292,
+     0.79
+    ]
+   ],
+   "trim": [
+    0.055,
+    0.19,
+    0.297,
+    0.835
+   ],
+   "labels": [
+    [
+     0.128,
+     0.285,
+     0.24,
+     0.355,
+     "BASELINE"
+    ],
+    [
+     0.128,
+     0.43,
+     0.24,
+     0.495,
+     "GOVERNANCE"
+    ],
+    [
+     0.128,
+     0.57,
+     0.24,
+     0.635,
+     "MILESTONES"
+    ],
+    [
+     0.128,
+     0.71,
+     0.24,
+     0.775,
+     "WHOLLY OWNED"
+    ]
+   ],
+   "role": "the filing cabinet's bank of four drawers; the labels hold the brief's still-to-be-announced terms, and Progress leans out of the bottom one, WHOLLY OWNED"
+  },
+  "stamp": {
+   "kind": "cut",
+   "shots": [
+    "S15"
+   ],
+   "ink": "sepia",
+   "source": "uspto_US551026_hand_stamp.png",
+   "box": [
+    0.22,
+    0.19,
+    0.72,
+    0.5
+   ],
+   "despeckle": 30,
+   "erase": [
+    [
+     0.3,
+     0.0,
+     0.47,
+     0.083
+    ],
+    [
+     0.505,
+     0.4,
+     0.62,
+     0.48
+    ],
+    [
+     0.79,
+     0.62,
+     0.92,
+     0.71
+    ],
+    [
+     0.78,
+     0.76,
+     0.92,
+     0.815
+    ],
+    [
+     0.785,
+     0.83,
+     0.92,
+     0.885
+    ],
+    [
+     0.75,
+     0.88,
+     0.88,
+     0.96
+    ],
+    [
+     0.6,
+     0.86,
+     0.72,
+     0.98
+    ],
+    [
+     0.0,
+     0.83,
+     0.095,
+     0.885
+    ],
+    [
+     0.3,
+     0.625,
+     0.62,
+     0.745
+    ]
+   ],
+   "trim": [
+    0.04,
+    0.07,
+    0.81,
+    0.93
+   ],
+   "labels": [
+    [
+     0.3,
+     0.625,
+     0.62,
+     0.745,
+     "+2%"
+    ]
+   ],
+   "role": "the hand stamp that hovers over the page and is pulled back unstamped; its label reads +2%",
+   "label_frame": true
+  },
+  "calendar": {
+   "kind": "cut",
+   "shots": [
+    "S12"
+   ],
+   "ink": "sepia",
+   "source": "uspto_US1083913_desk_calendar.png",
+   "box": [
+    0.1,
+    0.22,
+    0.82,
+    0.54
+   ],
+   "despeckle": 30,
+   "erase": [
+    [
+     0.28,
+     0.07,
+     0.48,
+     0.19
+    ],
+    [
+     0.5,
+     0.17,
+     0.545,
+     0.275
+    ],
+    [
+     0.69,
+     0.235,
+     0.765,
+     0.335
+    ],
+    [
+     0.775,
+     0.215,
+     0.87,
+     0.315
+    ],
+    [
+     0.645,
+     0.395,
+     0.69,
+     0.445
+    ],
+    [
+     0.15,
+     0.72,
+     0.27,
+     0.86
+    ],
+    [
+     0.59,
+     0.75,
+     0.705,
+     0.93
+    ],
+    [
+     0.875,
+     0.66,
+     0.98,
+     0.84
+    ],
+    [
+     [
+      0.248,
+      0.468
+     ],
+     [
+      0.352,
+      0.39
+     ],
+     [
+      0.493,
+      0.613
+     ],
+     [
+      0.345,
+      0.69
+     ]
+    ],
+    [
+     [
+      0.215,
+      0.49
+     ],
+     [
+      0.25,
+      0.465
+     ],
+     [
+      0.31,
+      0.64
+     ],
+     [
+      0.275,
+      0.665
+     ]
+    ]
+   ],
+   "trim": [
+    0.08,
+    0.13,
+    1.0,
+    1.0
+   ],
+   "role": "the desk calendar in the margin; its pages (generated) flip and never land"
+  },
+  "quill": {
+   "kind": "cut",
+   "shots": [
+    "S19",
+    "S20"
+   ],
+   "ink": "sepia",
+   "source": "commons_PSF_quill.png",
+   "box": [
+    0.18,
+    0.19,
+    0.6,
+    0.8
+   ],
+   "despeckle": 20,
+   "keep": [
+    [
+     0.04,
+     0.02
+    ],
+    [
+     0.14,
+     0.0
+    ],
+    [
+     0.27,
+     0.27
+    ],
+    [
+     0.86,
+     0.89
+    ],
+    [
+     0.93,
+     0.97
+    ],
+    [
+     0.87,
+     0.99
+    ],
+    [
+     0.62,
+     0.8
+    ],
+    [
+     0.06,
+     0.2
+    ]
+   ],
+   "role": "the quill that hovers over the blank Recipient line, and rules the baseline (S20's pen)"
+  },
+  "scissors": {
+   "kind": "cut",
+   "shots": [
+    "S37",
+    "S38"
+   ],
+   "ink": "sepia",
+   "source": "commons_PSF_scissors.png",
+   "box": [
+    0.0,
+    0.0,
+    1.0,
+    1.0
+   ],
+   "despeckle": 10,
+   "role": "Prudence's coupon scissors"
+  },
+  "studio": {
+   "kind": "generated",
+   "shots": [
+    "S06"
+   ],
+   "role": "the recording studio behind Progress: the arched crown over a hatched wall and floor, with the two microphones"
+  },
+  "door_plaque": {
+   "kind": "generated",
+   "shots": [
+    "S08"
+   ],
+   "role": "the door's plaque, WHOLLY OWNED"
+  },
+  "calendar_pages": {
+   "kind": "generated",
+   "shots": [
+    "S12"
+   ],
+   "role": "the calendar's flipping pages: NOV, DEC, JAN, Q1, Q2, SOON, H2, TBD, NEXT, SOON"
+  },
+  "coins": {
+   "kind": "generated",
+   "shots": [
+    "S18"
+   ],
+   "role": "coins for Prudence's scales: a lathe-work face and a stack"
+  },
+  "eraser": {
+   "kind": "generated",
+   "shots": [
+    "S21"
+   ],
+   "role": "an India-rubber eraser, hatched in three tones"
+  },
+  "scroll": {
+   "kind": "generated",
+   "shots": [
+    "S23"
+   ],
+   "role": "Mercury's unrolled scroll: not for lobbying, not for campaigns, not for politics"
+  },
+  "transfer_form": {
+   "kind": "generated",
+   "shots": [
+    "S24",
+    "S30",
+    "L"
+   ],
+   "role": "the certificate's back: the printed assignment and transfer form (render and printed prop)"
+  },
+  "face_down": {
+   "kind": "generated",
+   "shots": [
+    "S24"
+   ],
+   "role": "the second document, face down: its print only shows through, reversed and unreadable"
+  },
+  "thermometer_scale": {
+   "kind": "generated",
+   "shots": [
+    "S32",
+    "S33"
+   ],
+   "role": "the stub's thermometer: a glass tube rising to a hatched bulb that reads BASELINE: TBA, its scale marked in +50% steps"
+  },
+  "seal": {
+   "kind": "generated",
+   "shots": [
+    "S34"
+   ],
+   "role": "the corporate seal's die and its embossed impression"
+  },
+  "ledger": {
+   "kind": "generated",
+   "shots": [
+    "S37"
+   ],
+   "role": "Prudence's ledger, open, its columns ruled for clipped coupons"
+  }
+ }
+}

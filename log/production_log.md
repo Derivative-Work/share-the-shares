@@ -418,3 +418,34 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   - The audio is clean AAC (fixed-size packets), and its delay measures 4.000 s at 3, 8, 30, 100, 200, 260 and 280 s.
   - Checked on stills: the captions are on the right lines at 3.0, 78.6, 92.6, 143.0, 213.0, 215.2, 221.0 and 222.6 s.
 - **Status:** **C4 v4 is ready for review.**
+
+## 2026-10-26T09:50:55-04:00 — C5 props: the prop sheet (v1)
+
+- **Why:** the plan the human approved (human interventions, 08:05): engraved props in place of the C4 grey cards, reviewed on one sheet before they go into the shots.
+- **Sources (logged in `assets/engravings/sources.tsv`; files in `assets/engravings/source/`):**
+  - US patent drawings, all published before 1931 (public domain), from the USPTO's full-text PDFs (`image-ppubs.uspto.gov/…/downloadPdf/<number>`, page 1's embedded 300 dpi scan via `pdfimages`). Found with Google Patents search (`patents.google.com/xhr/query`, US, published by 1930-12-31) until it started refusing requests (503).
+    - Used: 1,318,874 (microphone), 1,183,842 (door), 979,010 (filing cabinet), 551,026 (hand stamp) and 1,083,913 (desk calendar).
+    - Considered and not used, marked in the table: 1,005,339 (thermometer) and 44,459 (seal press).
+  - Met Open Access 393924: Durand's arched framing element, the studio's crown. It is the same banknote set as the figures; the agent listed the set's titles from the Met API (393922–393995).
+  - Wikimedia Commons, Pearson Scott Foresman's public-domain line art: Quill (PSF) and Scissors (PSF). The quill is cut out of a writer's hand.
+- **Code:**
+  - `config/props.json`: the cut props (crop, erase boxes and polygons for numerals and lead lines, trim, despeckle) and the generated ones;
+  - `scripts/props.py`: cuts, re-set labels and the generated props, drawn in the certificate's type, lathe work and a new line-hatching helper → `assets/engravings/ink/props/`;
+  - `scripts/c5_prop_sheet.py` → `renders/c5/c5_props_v1.jpg`.
+- **The props:**
+  - Cut from sources: the studio microphone, the arch, the door, the desk calendar, the hand stamp (its label reads +2%), the quill (it serves as S20's pen), the scissors, and the filing cabinet's four drawers. The cabinet's example names are erased and the labels re-set with the brief's still-to-be-announced terms: BASELINE, GOVERNANCE, MILESTONES and WHOLLY OWNED.
+  - Generated:
+    - the studio (the arch over a panelled wall and a boarded floor, with a SILENCE plaque);
+    - the door's WHOLLY OWNED plaque;
+    - ten calendar pages (the C4 animatic's months);
+    - coins (a face reading FIVE IN EVERY HUNDRED, and a stack);
+    - an India-rubber eraser;
+    - Mercury's scroll ("Not for lobbying, not for campaigns, not for politics, we swear.");
+    - the transfer form for the certificate's back, at the sheet's size, for the render and the printed prop;
+    - the face-down document, whose print only shows through, reversed and blurred;
+    - the thermometer (a bulb on a BASELINE: TBA ribbon, and a +50% scale);
+    - the corporate seal's die and its embossed impression;
+    - the ledger, its ruling in the green plate.
+- **Known:** a few leftover stubs from the erased numerals (the stamp's top, the calendar's margin, the cabinet's edges). The patent drawings are line art, with less tone than Durand's engravings.
+- **Not yet:** the props are not in the shots, which waits on the human's review of the sheet. S36's gold re-ink is not a prop and comes with C5's renders.
+- **Status:** **the C5 prop sheet is ready for review.**
