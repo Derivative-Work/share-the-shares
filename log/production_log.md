@@ -590,3 +590,11 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   Sheets in `renders/c5/sheets/`.
 - **Checked:** both sheets; S24 at 36.5 s into its cut shows the transfer form's border in gold.
 - **Status:** **C5 sections 3 and 4 are ready for review.** Section 5 (196.38–220.5 s) is rendering.
+
+## 2026-10-26T15:49:16-04:00 — C5 section 5 rendered; S34's die face fixed; section 6 rendering
+
+- **Render:** section 5 (196.38–220.5 s), 579 frames, no errors. A first cut (`renders/c5/cuts/c5_5_bridge.mp4`) was checked by the agent before sending.
+- **Found on the sheet:** in S34 the seal's die came down as a plain grey disc. Its engraved face sat only 0.05 mm above the die's top and was hidden by it.
+- **Fix:** the face now sits 0.4 mm above. Checked on a 720p still at 210.9 s: the die shows the seal (AMALGAMATED BENEFIT, LLC · CORPORATE SEAL, WHOLLY OWNED, MMXXVI) as it comes down.
+- **Queued** (`renders/c5/logs/queue_s34.sh`, after section 6): S34's frames, 210.45–213.5 s (the descent, the hit and the lift-off into S35). Section 5 will be re-cut and sent after.
+- **Started:** section 6 (220.5–283.44 s; log `renders/c5/logs/section6.log`).

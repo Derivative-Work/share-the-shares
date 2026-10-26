@@ -674,7 +674,7 @@ seal.name = "S34.seal"
 seal.data.materials.append(M["seal"])
 seal_down = sheet_xyz(1650, 2100, 0.0016)
 seal.location = seal_down
-seal_face = prop_card("S34.seal_face", [1480, 1930, 1820, 2270], "seal", 0.0016 + 0.0015 + 0.00005, dx=FLAT)
+seal_face = prop_card("S34.seal_face", [1480, 1930, 1820, 2270], "seal", 0.0016 + 0.0015 + 0.0004, dx=FLAT)  # clear of the die's top
 parent_keep(seal_face, seal)
 SEAL_HIT = beat_t(T["S34"] + 0.2, 0)
 SEAL_UP = (SEAL_HIT + 0.8, SEAL_HIT + 1.6)  # it lifts away, leaving the impression
