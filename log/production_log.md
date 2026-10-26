@@ -577,3 +577,16 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   The ledger keeps its green ruling: it is Prudence's book, not the certificate.
 - **Queued** (`renders/c5/logs/queue_s24_s5.sh`, after section 4): S24's frames (133.26–139.36 s), then section 5 (196.38–220.5 s). Section 3 will be re-cut and sent once S24 is re-rendered.
 - **Started:** section 4 (139.36–196.38 s; log `renders/c5/logs/section4.log`).
+
+## 2026-10-26T15:15:46-04:00 — C5 sections 3 and 4 cut; section 5 rendering
+
+- **Renders:**
+  - section 4 (139.36–196.38 s): 428 frames, no errors. Its live shots S26 and S29–S31 aren't rendered; they are slates until the human's footage.
+  - S24 re-rendered with the gold back: 147 frames, no errors.
+- **Cuts:**
+  - `renders/c5/cuts/c5_3_keychange_verse2_prechorus2.mp4` (40.9 s, S36 and S18–S24). The green-back first cut is archived as `archive/renders/c5/cuts/c5_3_keychange_verse2_prechorus2_v1_green-back.mp4`.
+  - `renders/c5/cuts/c5_4_chorus2_verse3.mp4` (57.0 s, S25–S31).
+
+  Sheets in `renders/c5/sheets/`.
+- **Checked:** both sheets; S24 at 36.5 s into its cut shows the transfer form's border in gold.
+- **Status:** **C5 sections 3 and 4 are ready for review.** Section 5 (196.38–220.5 s) is rendering.
