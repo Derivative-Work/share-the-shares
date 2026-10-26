@@ -30,7 +30,7 @@ The live verse: 163.90–192.68 s (S29-S30: the music cuts at the flip; the huma
 
 | ID | Cue | t (s) | Frame | Line | How |
 | --- | --- | --- | --- | --- | --- |
-| S01 | Before the music |  |  |  | pre-roll |
+| S01 | Before the music |  |  |  | retired |
 | S02 | First piano chord | 0.12 | 3 |  | event |
 | S03 | "Right now, somewhere, a job is changing." | 2.80 | 67 | L01 | lyric |
 | S04 | "Maybe yours." | 9.73 | 234 | L02 | lyric |

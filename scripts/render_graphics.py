@@ -38,7 +38,8 @@ def jobs():
     J.append(("bug_S25", "bug", SPAN["S25"][0], SPAN["S25c"][1] - SPAN["S25"][0], {"blink": "1"}))
     J.append(("postfilter", "postfilter", SPAN["S30"][0], SPAN["S30"][1] - SPAN["S30"][0], {}))
     pre = PH["S01"]["before_s"]
-    J.append(("S01", "s01", -pre, pre, {}))
+    if pre:  # S01 was retired at C5 (before_s 0): no card
+        J.append(("S01", "s01", -pre, pre, {}))
     for sid in ("S26", "S29", "S30", "S31", "S40"):
         a, b = SPAN[sid]
         text = PH[sid]["text"].split(": ", 1)[1]

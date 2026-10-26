@@ -126,3 +126,8 @@ Every human action: timestamp, what, why, and which production rule allows it. R
 
 - **What:** The human: "These look great, keep going".
 - **Rule:** R1.
+
+## 2026-10-26T13:16:18-04:00 — C5 section 1 review: S01 cut, S08 too still — R1
+
+- **What:** The human: "My only notes on this: I don't think S01 (the Suno screen grab) fits for this at all. S08 is sitting still for too long."
+- **Rule:** R1 (a rejection of S01, and a change asked for in words for S08). This also ends the planned R4 step of capturing the real Suno screen.

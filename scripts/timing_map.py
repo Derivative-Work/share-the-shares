@@ -100,7 +100,9 @@ def main():
         low = cue.lower()
         quoted = re.findall(r'"([^"]+)"', cue)
         ev = next((k for k in events if low.startswith(k)), None)
-        if r["id"] == "S01" or low in ("silence", "hold music", "after the hang-up", "last"):
+        if r["picture"].startswith("Retired"):
+            how = "retired"  # an ID that no longer appears (IDs never change: removals retire theirs)
+        elif r["id"] == "S01" or low in ("silence", "hold music", "after the hang-up", "last"):
             how = "outside the audio" if r["id"] != "S01" else "pre-roll"
         elif ev:
             t, how = events[ev], "event"

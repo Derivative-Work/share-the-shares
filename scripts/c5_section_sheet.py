@@ -24,7 +24,7 @@ def main(cut, t0, t1, out):
     spans = [(s["id"], s["t"], shots[k + 1]["t"] if k + 1 < len(shots) else DUR) for k, s in enumerate(shots)]
     v0 = 0.0 if not t0 else t0 + PRE  # the cut's video start, as the assembler sets it
     picks = []
-    if not t0:
+    if not t0 and PRE:
         picks.append(("S01", -PRE + min(2.0, PRE / 2)))
     picks += [(i, a + (0.5 if b - a >= 1 else (b - a) / 2)) for i, a, b in spans if t0 <= a < t1]
     if t1 >= DUR:

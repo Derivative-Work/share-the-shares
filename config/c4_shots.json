@@ -240,6 +240,18 @@
    1380,
    1520,
    2000
+  ],
+  "DOOR": [
+   2880,
+   520,
+   3300,
+   1020
+  ],
+  "PLAQUE_TIGHT": [
+   2990,
+   625,
+   3190,
+   735
   ]
  },
  "shots": {
@@ -281,9 +293,10 @@
   },
   "S08": {
    "cam": [
-    "PLAQUE",
-    "PLAQUE"
-   ]
+    "DOOR",
+    "PLAQUE_TIGHT"
+   ],
+   "note": "C5: a push from the whole door into its plaque (the human: \"S08 is sitting still for too long\")"
   },
   "S09": {
    "cam": [
@@ -508,8 +521,9 @@
  },
  "placeholders": {
   "S01": {
-   "before_s": 4.0,
-   "text": "S01 \u00b7 SCREEN: the real generation screen (style prompt, lyrics, take list)"
+   "before_s": 0.0,
+   "text": "S01 \u00b7 SCREEN: the real generation screen (style prompt, lyrics, take list)",
+   "retired": "C5: the human: \"I don't think S01 (the Suno screen grab) fits for this at all\" (brief rev 34)"
   },
   "S26": {
    "text": "S26 \u00b7 LIVE: pull back, the certificate is a real sheet in your hands, still animated; guitar beside you"

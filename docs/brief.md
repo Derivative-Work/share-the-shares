@@ -1,4 +1,4 @@
-<!-- Exported by the agent from https://claude.ai/artifact/9kd8kySs1GK8P5ExFjM6Wu at doc rev 32, 2026-10-25 (scripts/doc_to_md.py). The live doc is the source of truth; re-export if it changes. -->
+<!-- Exported by the agent from https://claude.ai/artifact/9kd8kySs1GK8P5ExFjM6Wu at doc rev 34, 2026-10-26 (scripts/doc_to_md.py). The live doc is the source of truth; re-export if it changes. -->
 
 # Share the Shares
 
@@ -132,7 +132,7 @@ The whole video takes place inside one engraved stock certificate, animated like
 
 **Scenes**
 
-1. **Opening bookend:** the real generation screen, then a slow push into a certificate on a desk. The title, SHARE THE SHARES, is set in engraved capitals.
+1. **Opening bookend:** a slow push into a certificate on a desk. The title, SHARE THE SHARES, is set in engraved capitals.
 2. **Intro:** *Progress* steps forward out of the vignette and speaks the opening lines. The cherubs in the corners turn their heads to watch.
 3. **Verse 1:** the vignette behind *Progress* is an engraved recording studio with engraved microphones. On "a fund we keep at home," the camera finds a tiny second certificate drawn inside the first one, with the same design.
 4. **Pre-chorus:** *Mercury* sprints along the border while the fine print scrolls under his feet like a ticker. The guilloche pattern, looked at closely, is the letters LLC repeated.
@@ -160,7 +160,7 @@ This follows the certificate scenes above. Cues are lyric lines, not timestamps;
 
 | ID | Cue | Picture | Source |
 | --- | --- | --- | --- |
-| S01 | Before the music | The real generation screen: the style prompt, lyrics and take list | S |
+| S01 | Before the music | Retired at C5 (it didn't fit the video). It was the real generation screen: the style prompt, lyrics and take list | S |
 | S02 | First piano chord | Slow push into a certificate lying on a desk. SHARE THE SHARES resolves in engraved capitals | R, G |
 | S03 | "Right now, somewhere, a job is changing." | *Progress* steps out of the top vignette, torch raised, and speaks to camera | R |
 | S04 | "Maybe yours." | The cherubs in the four corners turn their heads toward camera in unison | R |

@@ -543,3 +543,13 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
 - **Fix:** the caption styles were sized for the 360p animatic, so at 1080p the shot ID was a third of its size. `scripts/animatic_assemble.py` now sets the subtitle play resolution to 640×360, and libass scales the styles to the frame. The first cut was re-made, not kept.
 - **Started:** section 2 (46.88–98.44 s) into `renders/c5/frames` (log `renders/c5/logs/section2.log`).
 - **Status:** **C5 section 1 is ready for review.**
+
+## 2026-10-26T13:16:18-04:00 — S01 retired; S08 pushes in
+
+- **Why:** the human's section 1 review (human interventions, same time).
+- **S01 retired:**
+  - Brief edit (Claude Doc rev 32 → 34, made by the agent): the opening bookend no longer opens on the generation screen, and S01's row reads "Retired at C5 (it didn't fit the video)". IDs never change, so S01 is retired, not reused. Mirrored in `docs/brief.md`.
+  - The film now opens on S02's push into the certificate, at song time 0, with no pre-roll.
+  - Code: `timing_map.py` gives a retired row no time; `config/c4_shots.json` sets S01 `before_s` to 0; `render_graphics.py`, `animatic_assemble.py` and `c5_section_sheet.py` skip S01 without a pre-roll; S01 dropped from both graphics job lists.
+- **S08:** it held one framing (PLAQUE) for 6.8 s. It is now a slow push from the whole door (DOOR, sheet px 2880–3300 × 520–1020) into the plaque (PLAQUE_TIGHT, 2990–3190 × 625–735).
+- **Queued** (`renders/c5/logs/queue_s08_s3.sh`, after section 2): S08's frames (36.89–43.71 s), then section 3 (98.44–139.36 s).

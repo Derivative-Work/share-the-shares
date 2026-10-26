@@ -77,7 +77,8 @@ def ass(w, h, captions="full"):
     for sid, (a, b) in SPAN.items():
         L.append(ev(1, a + PRE, b + PRE, "Id", sid))
     # the shot IDs of the pre- and post-roll (their pictures are the graphics layer's cards)
-    L.append(ev(1, 0, PRE, "Id", "S01"))
+    if PRE:
+        L.append(ev(1, 0, PRE, "Id", "S01"))
     t = PRE + DUR
     for sid in POST_IDS:
         L.append(ev(1, t, t + PH[sid]["after_s"], "Id", sid))
