@@ -17,8 +17,10 @@
   "chorus": 72.82,
   "lands_at": "S46",
   "fade_in": 1.4,
-  "fade_out": 2.0,
+  "fade_out": 1.2,
   "level_db": -3,
-  "chorus_note": "the cover's first chorus: the human's 'roughly 1:10'; located by matching the song's first-chorus chroma (60.6 s) against the cover, best at 72.7-73.4 s for tempo ratios 1.0-1.12; 72.82 s is the beat nearest the match"
+  "chorus_note": "the cover's first chorus: the human's 'roughly 1:10'; located by matching the song's first-chorus chroma (60.6 s) against the cover, best at 72.7-73.4 s for tempo ratios 1.0-1.12; 72.82 s is the beat nearest the match",
+  "chorus_end": 112.71,
+  "chorus_end_note": "the end of the cover's first chorus (with its repeat): the human's 'roughly 1:50'; the song's chorus end (90-98.4 s) matches the cover at 103.1-103.6 s by chroma, so the chorus ends about 112 s; 112.71 s is the next beat"
  }
 }

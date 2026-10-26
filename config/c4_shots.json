@@ -549,9 +549,9 @@
    "text": "S46 · LIVE: hold music (the chorus as muzak); hang up, fold the sheet into the guitar case"
   },
   "S47": {
-   "after_s": 15.0,
+   "after_s": 20.89,
    "text": "S47 · GRAPHICS: the fact card in engraved type (C5)",
-   "note": "C5: 15 s, so the red pen's seven marks (from 5.2 s, one every 1.05 s) have time to land and be read"
+   "note": "C5: 20.89 s, so the muzak finishes its first chorus (config/postroll.json chorus_end) at the very end of the video, the red pen's marks held on the card (the human, 2026-10-26)"
   },
   "S48": {
    "after_s": 11.0,

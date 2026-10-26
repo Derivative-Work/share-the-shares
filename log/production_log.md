@@ -651,3 +651,14 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   - the muzak at −18 dB RMS in S46 and −21 dB under the credits, down to −41 dB in the last 0.3 s.
 - **S47:** "It's not required to." moves up and to the right, above the middle of the board's line, and a hand-drawn arrow (a loose curve with a head) runs from it to "may add" after it is written.
 - **Outputs:** `renders/c5/graphics/fact`; section 6 re-cut (`renders/c5/cuts/c5_6_finalchorus_outro_close.mp4`; the silent post-roll cut is archived as `…_v3_silent-postroll`).
+
+## 2026-10-26T18:47:22-04:00 — S47 holds 20.89 s, so the muzak's chorus ends with the video
+
+- **Why:** the human's note (human interventions, same time).
+- **The chorus's end:** the song's own chorus end (90–98.4 s) matches the cover at 103.1–103.6 s by chroma, so the cover's first chorus, with its repeat, ends about 112 s, near the human's "roughly 1:50". `config/postroll.json` `chorus_end` is 112.71 s, the next beat.
+- **S47** (`config/c4_shots.json`) is computed so the video ends there: post-roll 44.89 s, S47 20.89 s (from 15). The final fade is shortened to 1.2 s (from 2.0) so it doesn't swallow the chorus's last bar.
+- **Re-made:**
+  - `audio/postroll/postroll.wav` (44.89 s);
+  - the fact card, announcement and credits in `renders/c5/graphics` (their spans moved);
+  - section 6 (`renders/c5/cuts/c5_6_finalchorus_outro_close.mp4`, 107.8 s); the previous cut is archived as `…_v4_chorus-cut-short`.
+- **Checked:** the cut's last 6 s match the cover from 106.72 s, so the video ends at 112.72 s of the cover.

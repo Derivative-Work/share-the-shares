@@ -159,3 +159,8 @@ Every human action: timestamp, what, why, and which production rule allows it. R
   - R4: the human ran Suno's cover feature (an interface the agent can't reach). The settings are logged in `log/prompts/suno/muzak.md`.
   - R1: the instructions for the post-roll's sound, and for the note's placement.
   - The arrow belongs to the human's annotation, the EXCEPTION logged at 18:04:04.
+
+## 2026-10-26T18:47:22-04:00 — The terms page holds until the muzak's chorus ends — R1
+
+- **What:** The human: "make the "terms" page sit longer with the human edits -- just enough that the muzak is allowed to finish the chorus by the very end (roughly 1:50)".
+- **Rule:** R1.
