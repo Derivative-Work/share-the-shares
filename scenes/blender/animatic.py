@@ -859,6 +859,8 @@ def cherub_pose(t, mirror):
         a = T[sid]
         point = max(point, ramp(t, a, a + 0.3) * (1 - ramp(t, a + 3.8, a + 4.3)))
     out["arm_left"] = -40 * point
+    out["arm_top"] = 30 * point     # C5: the other two point too (brief: "every cherub points")
+    out["arm_center"] = 55 * point
     return out
 
 

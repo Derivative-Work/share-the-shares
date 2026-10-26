@@ -38,7 +38,9 @@ POSES = {
     "cherubs": [("rest", {}),
                 ("heads turned left", {"head_top": 20, "head_left": 20, "head_center": 20}),
                 ("heads turned right", {"head_top": -20, "head_left": -20, "head_center": -20}),
-                ("swaying, arm lifted", {"body_top": 6, "body_left": -8, "body_center": 8, "arm_left": -40})],
+                ("swaying, arm lifted", {"body_top": 6, "body_left": -8, "body_center": 8, "arm_left": -40}),
+                ("C5: every cherub points (full swing)", {"arm_left": -40, "arm_top": 30, "arm_center": 55}),
+                ("C5 test: top arm +18", {"arm_top": 18})],
 }
 
 scene = S.setup(w, h, samples, 1)
@@ -46,6 +48,8 @@ S.sheet(cert)
 S.desk()
 S.lights()
 P.print_piece("laborer", layout["laborer"], src=S.LOOK["laborer_ink"])
+ONLY = args[5:]  # optional: only these figures
+POSES = {n: ps for n, ps in POSES.items() if not ONLY or n in ONLY}
 pup = {n: P.build(n, layout[n]) for n in POSES}
 P.build("cherubs", layout["cherubs_mirror"], mirror=True)
 scene.render.image_settings.file_format = "PNG"

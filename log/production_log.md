@@ -510,3 +510,14 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   - `scripts/gold_sheet.py` → `renders/c1/certificate_v05/sheet_gold.png`: the same mix as a picture, for S37's clipped coupons, which are cut from the print;
   - `scripts/animatic_assemble.py`: the C4 caption notes for S36 and S06 are dropped, now that both exist.
 - **Checked:** 720p stills at 98.3, 99.2, 100.0, 102.0 and 226.6 s (`renders/c5/gold_check_v1`).
+
+## 2026-10-26T10:39:20-04:00 — C5: every cherub points
+
+- **Why:** the brief's "every cherub points" (S17, S27, S42); at C4 only the left cherub had an arm cut (c4_review open question 3).
+- **New cuts (`config/puppets.json`):**
+  - `arm_top`: the top cherub's arm, shoulder to elbow and back up toward the chin, pivoting at the shoulder (878, 205). The hand under its cheek stays with the head.
+  - `arm_center`: the centre cherub's hanging arm with its whole hand, pivoting at the shoulder (915, 728). The first cut ended at y 1016 and left the hand on the hoop at full swing (checked on a pose render); it now runs to 1064.
+- **Pointing (`scenes/blender/animatic.py`):** left −40° (as at C4), top +30°, centre +55°. On the pose sheet, the top arm at ±55° crooked into the legs or doubled over the face, so it lifts less. The centre arm at −55° folded across the chest; at +55° it reaches out.
+- **Known:** small synthesis artifacts where the arms hung (a dark mark at the centre cherub's hip); they don't show in the wide shots where the cherubs point.
+- **Commands:** `.venv/bin/python -I scripts/segment.py cherubs`; `… puppet_build.py cherubs` (2.5 min); `blender … c2_poses.py -- renders/c1/certificate_v05 renders/c5/cherub_poses 1280 720 16 cherubs` (`c2_poses.py` now takes optional figure names); stills at the three cues (`renders/c5/cherub_point_v1`).
+- **Outputs:** `assets/puppets/cherubs` (the one-armed C4 build is archived as `archive/puppets/cherubs_c4_one-arm`).
