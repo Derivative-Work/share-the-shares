@@ -131,3 +131,21 @@ Every human action: timestamp, what, why, and which production rule allows it. R
 
 - **What:** The human: "My only notes on this: I don't think S01 (the Suno screen grab) fits for this at all. S08 is sitting still for too long."
 - **Rule:** R1 (a rejection of S01, and a change asked for in words for S08). This also ends the planned R4 step of capturing the real Suno screen.
+
+## 2026-10-26T18:10:00-04:00 — C5 approved; the human's red-pen hedges on the fact card; credits — R1, EXCEPTION
+
+- **What:** The human: "Video is fine." Then:
+  - more hedging on the end card (S47), "via a red pen in a handwritten font":
+    - above "The board may add 2% more…": "It's not required to.";
+    - cross out "to allow different forms of giving" and add next to it "which legally allows non-charitable activities";
+    - after "The fund's equity won't be used for lobbying or political giving.": "So they say.";
+    - circle "to be announced";
+    - underline "Lyrics drafted by Claude, a model made by Anthropic";
+    - after "Reviewed for bias…": "and by the human, October 26, 2026".
+  - "Production log will be hosted on https://github.com/Derivative-Work/share-the-shares."
+  - Credits: "Verse 3…" reads "performed live by the human, one take"; "Animations and edit" adds "the human, DaVinci Resolve".
+- **Rule:**
+  - R1 for the video (C5 approved) and for the credits' wording.
+  - **EXCEPTION** for the fact card: the human wrote the annotations' text. Their claim "which legally allows non-charitable activities" joins the C6 fact-card source check.
+  - The annotation "and by the human, October 26, 2026" records a bias review by the human, alongside Gemini's.
+  - The credit "the human, DaVinci Resolve" records that the human does the final edit, a further EXCEPTION, logged as the edit happens.
