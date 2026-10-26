@@ -2,8 +2,7 @@
 that aren't rendered (live, screen, graphics), the Suno mix, and burned-in review captions (ASS via libass, in the
 certificate's fonts):
   - each lyric line, its words lighting as sung (karaoke timing from the aligned words);
-  - the shot ID top right;
-  - S36's and S06's notes for C5.
+  - the shot ID top right.
 The graphics layer (overlays/graphics.html, rendered by scripts/render_graphics.py) is composited per frame: the
 S02 title, the LIVE bug (S13; blinking on S25-S25c; brief: never on the live shots) and S30's "Post-filter: no
 change" tab over the picture, and full-frame cards for S01 (a stand-in for the screen capture), the live slates, the
@@ -76,10 +75,6 @@ def ass(w, h):
     for sid in POST_IDS:
         L.append(ev(1, t, t + PH[sid]["after_s"], "Id", sid))
         t += PH[sid]["after_s"]
-    a, b = SPAN["S36"]
-    L.append(ev(3, a + PRE, b + 2.5 + PRE, "Note", "S36 (C5): the certificate re-inks brighter, gold creeping into the green"))
-    a, b = SPAN["S06"]
-    L.append(ev(3, a + PRE, a + 4 + PRE, "Note", "C5 engraves the studio, mics and door; grey cards stand in for them here"))
     return "\n".join(L) + "\n"
 
 

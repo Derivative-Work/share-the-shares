@@ -349,6 +349,98 @@ scene = S.setup(args.size[0], args.size[1], args.samples, 1)
 scene.render.image_settings.file_format = "PNG"
 materials()
 SHEET = S.sheet(cert)
+
+
+def gold_reink(sheet_ob):
+    """S36: the green plate re-inks in gold, creeping in from the sheet's edges (a noisy front from the border inward);
+    the gold ink catches a little light. Returns the reveal's value node (0: all green, 1: all gold)."""
+    m = sheet_ob.data.materials[0]
+    n, l = m.node_tree.nodes, m.node_tree.links
+    bsdf = n["Principled BSDF"]
+    base = bsdf.inputs["Base Color"].links[0].from_socket
+    green = next(x for x in n if x.type == "TEX_IMAGE" and x.image and "plate_green" in x.image.name)
+    uv = n.new("ShaderNodeTexCoord")
+    sep = n.new("ShaderNodeSeparateXYZ")
+    l.new(uv.outputs["UV"], sep.inputs["Vector"])
+    # distance to the nearest edge, 0 at the edge .. 0.5 at the centre, roughened with noise
+    edge = None
+    for comp in ("X", "Y"):
+        for flip in (False, True):
+            d = n.new("ShaderNodeMath")
+            if flip:
+                d.operation = "SUBTRACT"
+                d.inputs[0].default_value = 1.0
+                l.new(sep.outputs[comp], d.inputs[1])
+            else:
+                d.operation = "ADD"
+                d.inputs[1].default_value = 0.0
+                l.new(sep.outputs[comp], d.inputs[0])
+            if edge is None:
+                edge = d
+            else:
+                mn = n.new("ShaderNodeMath")
+                mn.operation = "MINIMUM"
+                l.new(edge.outputs[0], mn.inputs[0])
+                l.new(d.outputs[0], mn.inputs[1])
+                edge = mn
+    noise = n.new("ShaderNodeTexNoise")
+    noise.inputs["Scale"].default_value = 7.0
+    noise.inputs["Detail"].default_value = 6.0
+    l.new(uv.outputs["UV"], noise.inputs["Vector"])
+    nz = n.new("ShaderNodeMath")
+    nz.operation = "MULTIPLY_ADD"  # field = edge + 0.22 * (noise - 0.5) ... (noise * 0.22 + (edge - 0.11))
+    nz.inputs[1].default_value = 0.22
+    l.new(noise.outputs["Fac"], nz.inputs[0])
+    off = n.new("ShaderNodeMath")
+    off.operation = "SUBTRACT"
+    off.inputs[1].default_value = 0.11
+    l.new(edge.outputs[0], off.inputs[0])
+    l.new(off.outputs[0], nz.inputs[2])
+    reveal = n.new("ShaderNodeValue")
+    reveal.name = "gold_reveal"
+    front = n.new("ShaderNodeMath")  # (reveal * 0.75 - field) * 14, clamped: a soft creeping front
+    front.operation = "MULTIPLY"
+    front.inputs[1].default_value = 0.75
+    l.new(reveal.outputs[0], front.inputs[0])
+    dif = n.new("ShaderNodeMath")
+    dif.operation = "SUBTRACT"
+    l.new(front.outputs[0], dif.inputs[0])
+    l.new(nz.outputs[0], dif.inputs[1])
+    sharp = n.new("ShaderNodeMath")
+    sharp.operation = "MULTIPLY"
+    sharp.use_clamp = True
+    sharp.inputs[1].default_value = 14.0
+    l.new(dif.outputs[0], sharp.inputs[0])
+    fac = n.new("ShaderNodeMath")  # gold only where the green plate printed
+    fac.operation = "MULTIPLY"
+    l.new(sharp.outputs[0], fac.inputs[0])
+    l.new(green.outputs["Color"], fac.inputs[1])
+    mix = n.new("ShaderNodeMix")
+    mix.data_type = "RGBA"
+    mix.inputs["B"].default_value = [p * g for p, g in zip(S.srgb(S.LOOK["palette"]["paper"]),
+                                                          S.srgb(S.LOOK["palette"]["ink_gold"]))][:3] + [1.0]
+    l.new(fac.outputs[0], mix.inputs["Factor"])
+    l.new(base, mix.inputs["A"])
+    l.new(mix.outputs["Result"], bsdf.inputs["Base Color"])
+    met = n.new("ShaderNodeMath")
+    met.operation = "MULTIPLY"
+    met.inputs[1].default_value = 0.55
+    l.new(fac.outputs[0], met.inputs[0])
+    l.new(met.outputs[0], bsdf.inputs["Metallic"])
+    rough = n.new("ShaderNodeMath")  # 0.82 on paper, 0.45 on the gold
+    rough.operation = "MULTIPLY_ADD"
+    rough.inputs[1].default_value = -0.37
+    rough.inputs[2].default_value = 0.82
+    l.new(fac.outputs[0], rough.inputs[0])
+    l.new(rough.outputs[0], bsdf.inputs["Roughness"])
+    return reveal
+
+
+GOLD = gold_reink(SHEET)
+GREEN_BSDF = M["green"].node_tree.nodes["Principled BSDF"]
+GREEN_RGB = list(GREEN_BSDF.inputs["Base Color"].default_value)
+GOLD_RGB = [p * g for p, g in zip(S.srgb(S.LOOK["palette"]["paper"]), S.srgb(S.LOOK["palette"]["ink_gold"]))][:3] + [1.0]
+GOLD_SPAN = (None, 2.6)  # the creep's length (s) from the key change (S36)
 S.desk()
 KEY, FILL = S.lights()
 KEY_E, KEY_C = KEY.data.energy, tuple(KEY.data.color)
@@ -606,7 +698,7 @@ coupons = []
 for i in range(7):
     x0, y0, x1, y1 = LAYOUT[f"coupon_{i + 1}"]
     uv = (x0 / S.PW, 1 - y1 / S.PH, x1 / S.PW, 1 - y0 / S.PH)
-    c = tex_card(f"S37.coupon{i}", [x0, y0, x1, y1], sheet_img, uv, lift=0.0007)
+    c = tex_card(f"S37.coupon{i}", [x0, y0, x1, y1], cert / "sheet_gold.png", uv, lift=0.0007)  # after S36's re-ink
     hole = plane(f"S37.hole{i}", [x0 + 4, y0 + 4, x1 - 4, y1 - 4], 0.00066, M["desk_hole"])
     show(hole, CLIP[i] + 0.15, end)
     show(c, T["S37"], CLIP[i] + 0.95)
@@ -858,10 +950,14 @@ def apply(t):
     for fn in MOVES:
         fn(t)
     apply_pose(t)
-    # S36: at the key change the certificate re-inks brighter, gold creeping in (here, the light warms and lifts)
+    # S36: at the key change the certificate re-inks brighter: the green plate turns gold, creeping in from the edges
+    # (and stays), the corner discs follow, and the light lifts a little
+    g = ramp(t, T["S36"], T["S36"] + GOLD_SPAN[1])
+    GOLD.outputs[0].default_value = g
+    GREEN_BSDF.inputs["Base Color"].default_value = [a * (1 - g) + b_ * g for a, b_ in zip(GREEN_RGB, GOLD_RGB)]
     k = ramp(t, T["S36"], T["S36"] + 1.0)
-    KEY.data.energy = KEY_E * (1 + 0.18 * k)
-    KEY.data.color = tuple(c0 * (1 - k) + c1 * k for c0, c1 in zip(KEY_C, (1.0, 0.90, 0.72)))
+    KEY.data.energy = KEY_E * (1 + 0.10 * k)
+    KEY.data.color = tuple(c0 * (1 - k) + c1 * k for c0, c1 in zip(KEY_C, (1.0, 0.95, 0.86)))
     pose = camera_at(t)
     if pose:
         loc, target, d = pose

@@ -498,3 +498,15 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   - the arch's ink floor raised, to clear the scan's grain.
 - **Checked:** 720p stills of every prop shot (`renders/c5/props_check_v1`–`v3`).
 - **Next:** S36's gold re-ink, the cherubs' arms, then the C5 renders section by section.
+
+## 2026-10-26T10:28:29-04:00 — C5: S36's gold re-ink
+
+- **What:** at the key change (S36, 98.44 s), the certificate's green plate re-inks in gold.
+  - It creeps in from the sheet's edges over 2.6 s, as a noisy front, and stays for the rest of the film. The gold catches a little light (metallic 0.55, roughness 0.45 against the paper's 0.82).
+  - The corner discs (S14) turn gold with it.
+  - The light lifts a little less than at C4 (+10%, where it was +18%), since the ink now carries the change.
+- **Code:**
+  - `scenes/blender/animatic.py` `gold_reink()`: a reveal value drives the mix toward paper × gold where the green plate printed;
+  - `scripts/gold_sheet.py` → `renders/c1/certificate_v05/sheet_gold.png`: the same mix as a picture, for S37's clipped coupons, which are cut from the print;
+  - `scripts/animatic_assemble.py`: the C4 caption notes for S36 and S06 are dropped, now that both exist.
+- **Checked:** 720p stills at 98.3, 99.2, 100.0, 102.0 and 226.6 s (`renders/c5/gold_check_v1`).
