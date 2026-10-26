@@ -7,7 +7,8 @@ song seconds, duration and frame count), which scripts/animatic_assemble.py comp
   "Post-filter: no change" tab;
   full frames: S01's stand-in screen, the live slates (S26, S29-S31, S40, S45, S46), the S47 fact card, S48's
   announcement page and the "Derived from" credits.
-Usage: .venv/bin/python -I scripts/render_graphics.py [width height step [out dir]]  (default 640 360 2, renders/c4/graphics)
+Usage: .venv/bin/python -I scripts/render_graphics.py [width height step [out dir [job ...]]]  (default 640 360 2,
+       renders/c4/graphics; naming jobs re-renders only those, keeping the others' entries in jobs.json)
 """
 import json
 import subprocess
@@ -67,8 +68,13 @@ def main():
     s01 = {"style": Path("log/prompts/suno/style_prompt.txt").read_text(),
            "lyrics": Path("log/prompts/suno/fetch_accepted/lyrics.txt").read_text()}
     (data / "s01.js").write_text("window.S01 = " + json.dumps(s01) + ";\n")
+    only = sys.argv[5:]
+    old = {j["name"]: j for j in json.loads((OUT / "jobs.json").read_text())["jobs"]} if only else {}
     meta = []
     for name, layer, start, dur, extra in jobs():
+        if only and name not in only and name in old:
+            meta.append(old[name])
+            continue
         still = extra.pop("still", None)
         n = 1 if still else max(1, int(round(dur * fps)))
         q = urllib.parse.urlencode({"layer": layer, "dur": f"{dur:.3f}", **extra})

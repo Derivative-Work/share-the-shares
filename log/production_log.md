@@ -598,3 +598,22 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
 - **Fix:** the face now sits 0.4 mm above. Checked on a 720p still at 210.9 s: the die shows the seal (AMALGAMATED BENEFIT, LLC · CORPORATE SEAL, WHOLLY OWNED, MMXXVI) as it comes down.
 - **Queued** (`renders/c5/logs/queue_s34.sh`, after section 6): S34's frames, 210.45–213.5 s (the descent, the hit and the lift-off into S35). Section 5 will be re-cut and sent after.
 - **Started:** section 6 (220.5–283.44 s; log `renders/c5/logs/section6.log`).
+
+## 2026-10-26T17:32:07-04:00 — C5 sections 5 and 6 cut; all six sections rendered
+
+- **Renders:**
+  - section 6 (220.5–283.44 s), 1,490 frames, no errors;
+  - S34 re-rendered with the die's face, 75 frames (210.45–213.5 s), no errors.
+
+  Every rendered frame of the film is now in `renders/c5/frames` (5,840 frames, 1920×1080, 16 samples).
+- **Found on section 6's sheet:** S40's slate opened its quote with a closing mark (”do I get a say?”): the certificate's typeface draws a straight double quote as a right curly quote.
+  - Fixed: the text in `config/c4_shots.json` now uses curly quotes.
+  - `scripts/render_graphics.py` can re-render named jobs only, keeping the other jobs' entries; `slate_S40` was re-rendered at 1080p.
+- **Cuts:**
+  - `renders/c5/cuts/c5_5_bridge.mp4` (24.1 s, S32–S35);
+  - `renders/c5/cuts/c5_6_finalchorus_outro_close.mp4` (93.9 s, S37–S44, then the S45–S48 cards);
+  - sheets in `renders/c5/sheets/`.
+
+  The first cuts are archived (`…_v1_grey-die`, `…_v1_straight-quotes`).
+- **Checked:** stills of S34's descent, S44's shut drawer, and the fact card in motion.
+- **Status:** **all six C5 sections are ready for review.**
