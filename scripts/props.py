@@ -25,6 +25,42 @@ CFG = json.loads((ROOT / "config/props.json").read_text())["props"]
 AA = cv2.LINE_AA
 
 
+# ---- type in a frame -----------------------------------------------------------------------------------------------
+
+FITS = []  # every line set with fit(): (piece, text, requested size, set size, fits)
+CURRENT = [""]
+
+
+def fit(img, box, s, role, size, spacing=0, align="c", fill=255, margin=0.06):
+    """Set `s` inside `box` (x0, y0, x1, y1, px): the largest size up to `size` whose inked extent (ascenders,
+    descenders and all, measured on the rendered glyphs) clears the box by `margin` of its height on every side,
+    centred on the ink (or aligned left / right). Every line is recorded in FITS, so overflow is reported."""
+    x0, y0, x1, y1 = (int(round(v)) for v in box)
+    bw, bh = x1 - x0, y1 - y0
+    pad = max(2, int(bh * margin))
+    sz = size
+    while True:
+        tw, th = int(bw * 2 + sz * 4), int(sz * 3)
+        tmp = np.zeros((th, tw), np.uint8)
+        C.text(tmp, (tw / 2, th / 2), s, role, sz, spacing=spacing)
+        ys, xs = np.where(tmp > 40)
+        if not len(xs):
+            break
+        iw, ih = xs.max() - xs.min() + 1, ys.max() - ys.min() + 1
+        if (iw <= bw - 2 * pad and ih <= bh - 2 * pad) or sz <= 6:
+            break
+        sz = max(6, int(sz * 0.95))
+    glyph = tmp[ys.min():ys.max() + 1, xs.min():xs.max() + 1]
+    gx = {"c": x0 + (bw - iw) // 2, "l": x0 + pad, "r": x1 - pad - iw}[align]
+    gy = y0 + (bh - ih) // 2
+    ok = iw <= bw - 2 * pad and ih <= bh - 2 * pad and gx >= 0 and gy >= 0 and gx + iw <= img.shape[1] and gy + ih <= img.shape[0]
+    FITS.append((CURRENT[0], s, size, sz, ok))
+    sub = img[max(0, gy):gy + ih, max(0, gx):gx + iw]
+    g = glyph[max(0, -gy):max(0, -gy) + sub.shape[0], max(0, -gx):max(0, -gx) + sub.shape[1]].astype(np.float32) / 255
+    sub[:] = np.round(sub * (1 - g) + fill * g).astype(np.uint8) if fill != 255 else np.maximum(sub, glyph[:sub.shape[0], :sub.shape[1]])
+    return sz
+
+
 # ---- cut props -------------------------------------------------------------------------------------------------
 
 def frac_box(b, w, h):
@@ -72,16 +108,16 @@ def label(img, box, s, size_frac=0.62, frame=False):
         cv2.rectangle(img, (x0, y0), (x1, y1), 255, lw * 2, AA)
         g = lw * 4
         cv2.rectangle(img, (x0 + g, y0 + g), (x1 - g, y1 - g), 255, lw, AA)
-    size = int((y1 - y0) * size_frac)
-    f = C.font("small_caps", size)
-    while f.getlength(s) > (x1 - x0) * 0.9 and size > 8:
-        size -= 1
-        f = C.font("small_caps", size)
-    C.text(img, ((x0 + x1) / 2, (y0 + y1) / 2), s, "small_caps", size)
+    g = max(2, (y1 - y0) // 28) * 6 if frame else 2
+    fit(img, (x0 + g, y0 + g, x1 - g, y1 - g), s, "small_caps", int((y1 - y0) * size_frac), margin=0.1)
 
 
 def cut(name, p):
     ink = load_ink(p)
+    if p.get("upscale"):  # a small figure: enlarged before its labels are set, so they print at a readable size
+        k = p["upscale"]
+        ink = cv2.resize(ink, (ink.shape[1] * k, ink.shape[0] * k), interpolation=cv2.INTER_CUBIC)
+        ink = np.clip((ink - 0.5) * 1.6 + 0.5, 0, 1)  # re-sharpen the line edges
     for e in p.get("erase", []):
         clear(ink, e)
     if "keep" in p:
@@ -256,7 +292,7 @@ def studio(p):
     img[py - 50:py + 50, int(ex - 190):int(ex + 190)] = 0
     cv2.rectangle(img, (int(ex - 190), py - 50), (int(ex + 190), py + 50), 255, 5, AA)
     cv2.rectangle(img, (int(ex - 176), py - 36), (int(ex + 176), py + 36), 255, 2, AA)
-    C.text(img, (ex, py + 4), "SILENCE", "small_caps", 56, spacing=10)
+    fit(img, (ex - 176, py - 36, ex + 176, py + 36), "SILENCE", "small_caps", 56, spacing=10)
     return {"studio": img}
 
 
@@ -274,7 +310,7 @@ def door_plaque(p):
     for x, y in ((40, 40), (W - 40, 40), (40, H - 40), (W - 40, H - 40)):
         cv2.circle(img, (x, y), 9, 255, 3, AA)
         cv2.line(img, (x - 6, y - 6), (x + 6, y + 6), 255, 2, AA)
-    C.text(img, (W / 2, H / 2 + 4), "WHOLLY OWNED", "small_caps", 58, spacing=4)
+    fit(img, (70, 52, W - 70, H - 52), "WHOLLY OWNED", "small_caps", 58, spacing=4)
     return {"door_plaque": img}
 
 
@@ -289,10 +325,9 @@ def calendar_pages(p):
         img = canvas(W, H)
         cv2.rectangle(img, (8, 8), (W - 8, H - 8), 255, 4, AA)
         cv2.rectangle(img, (8, 8), (W - 8, 92), 255, -1, AA)  # the month band, printed solid
-        C.text(img, (W / 2, 52), "IN THE COMING MONTHS", "small_caps", 28, fill=0)
-        size = 230 if len(m) <= 3 else 150
-        C.text(img, (W / 2, 290), m, "display", size)
-        C.text(img, (W / 2, 450), "AMALGAMATED BENEFIT, LLC", "small_caps", 22)
+        fit(img, (22, 14, W - 22, 92), "IN THE COMING MONTHS", "small_caps", 28, fill=0, margin=0.2)
+        fit(img, (30, 112, W - 30, 412), m, "display", 230)
+        fit(img, (30, 424, W - 30, 478), "AMALGAMATED BENEFIT, LLC", "small_caps", 22, margin=0.15)
         for x in (W * 0.3, W * 0.7):  # the binding holes
             cv2.circle(img, (int(x), 22), 7, 0, -1, AA)
         out[f"calendar_page_{i}"] = img
@@ -314,7 +349,7 @@ def coins(p):
     C.rosette(face, c, c, 30, 150, 10, 6, 2)
     cv2.circle(face, (int(c), int(c)), 92, 0, -1, AA)
     cv2.circle(face, (int(c), int(c)), 92, 255, 3, AA)
-    C.text(face, (c, c + 8), "5", "display", 150)
+    fit(face, (c - 70, c - 78, c + 70, c + 78), "5", "display", 150)
     # the stack: each coin a squashed face over a reeded edge band
     S = canvas(W, 420)
     top = cv2.resize(face, (W - 40, 150), interpolation=cv2.INTER_AREA)
@@ -353,8 +388,8 @@ def eraser(p):
     # the maker's panel on the front, knocked out of the hatching
     img[215:325, 110:490] = 0
     cv2.rectangle(img, (110, 215), (490, 325), 255, 3, AA)
-    C.text(img, (300, 252), "INDIA RUBBER", "small_caps", 36, spacing=3)
-    C.text(img, (300, 300), "No. 5", "body_italic", 34)
+    fit(img, (124, 222, 476, 272), "INDIA RUBBER", "small_caps", 36, spacing=3)
+    fit(img, (124, 274, 476, 320), "No. 5", "body_italic", 34)
     return {"eraser": img}
 
 
@@ -375,17 +410,24 @@ def scroll(p):
         m = np.zeros((H, W), bool)
         m[min(y, y + sgn * 60):max(y, y + sgn * 60), x0:x1] = True
         hatch(img, m, 0, 7, 2)
-    C.text(img, (W / 2, 290), "RESOLVED", "display", 76, spacing=8)
+    fit(img, (x0 + 24, 240, x1 - 24, 340), "RESOLVED", "display", 76, spacing=8)
     cv2.line(img, (x0 + 120, 350), (x1 - 120, 350), 255, 3, AA)
     y = 450
     for s in SCROLL_LINES:
-        C.text(img, (W / 2, y), s, "body_italic" if s == "we swear." else "body", 60)
+        fit(img, (x0 + 30, y - 46, x1 - 30, y + 46), s, "body_italic" if s == "we swear." else "body", 60)
         y += 92
     # the fine print below: too small to read, as fine print is
-    fine = ("the foregoing subject to the discretion of the board; the details will be shown in the coming months; "
-            "terms to be announced; ") * 6
-    for ln in wrap(fine, "body", 22, x1 - x0 - 100)[:16]:
-        C.text(img, (W / 2, y), ln, "body", 22)
+    clauses = ["the foregoing subject to the discretion of the board", "the details will be shown in the coming months",
+               "terms to be announced"]
+    room = int((H - 150 - 60 - 16 - 14 - y) // 28) + 1  # the lines that clear the bottom roller's shading
+    n, fine = 1, ""
+    while True:  # as many whole clauses as fit, ending on a full stop
+        trial = "; ".join(clauses[i % 3] for i in range(n)) + "."
+        if len(wrap(trial, "body", 22, x1 - x0 - 100)) > room:
+            break
+        fine, n = trial, n + 1
+    for ln in wrap(fine, "body", 22, x1 - x0 - 100):
+        fit(img, (x0 + 30, y - 14, x1 - 30, y + 14), ln, "body", 22, margin=0.0)
         y += 28
     # the rollers: shaded cylinders with turned knobs
     for cy in (100, H - 100):
@@ -423,27 +465,27 @@ def transfer_form(p):
         cv2.rectangle(g, (x0 + off, y0 + off), (x1 - off, y1 - off), 255, wd, AA)
     C.rosette(g, W / 2, H / 2 + 120, 60, 760, 16, 5, 1, inner_scale=0.5)  # the faint underprint
     g_under = (g.astype(np.float32) * 1.0).astype(np.uint8)
-    C.text(k, (W / 2, 520), "ASSIGNMENT AND TRANSFER", "display", 150, spacing=18)
+    fit(k, (400, 420, W - 400, 620), "ASSIGNMENT AND TRANSFER", "display", 150, spacing=18)
     cv2.line(k, (W // 2 - 1300, 640), (W // 2 + 1300, 640), 255, 4, AA)
     cv2.line(k, (W // 2 - 1300, 654), (W // 2 + 1300, 654), 255, 2, AA)
     y = 850
     for ln in wrap(TRANSFER, "body", 84, W - 1100):
-        C.text(k, (W / 2, y), ln, "body", 84)
+        fit(k, (520, y - 64, W - 520, y + 64), ln, "body", 84, margin=0.0)
         y += 128
     y += 110
     for lab, xc in (("Dated", W * 0.3), ("In the presence of", W * 0.68)):
-        C.text(k, (xc - 250, y), lab, "body_italic", 72, anchor="rm")
+        fit(k, (xc - 760, y - 60, xc - 230, y + 50), lab, "body_italic", 72, align="r")
         cv2.line(k, (int(xc - 220), y + 18), (int(xc + 520), y + 18), 255, 3, AA)
     y += 240
     cv2.line(k, (int(W * 0.5), y), (int(W * 0.82), y), 255, 3, AA)
-    C.text(k, (W * 0.66, y + 60), "Signature of Holder", "body_italic", 56)
+    fit(k, (W * 0.5, y + 20, W * 0.82, y + 100), "Signature of Holder", "body_italic", 56)
     y += 260
-    C.text(k, (W / 2, y), "NOTICE: THE SIGNATURE TO THIS ASSIGNMENT MUST CORRESPOND WITH THE NAME AS WRITTEN UPON",
-           "small_caps", 44)
-    C.text(k, (W / 2, y + 62), "THE FACE OF THE CERTIFICATE IN EVERY PARTICULAR, WITHOUT ALTERATION OR ENLARGEMENT.",
-           "small_caps", 44)
-    C.text(k, (W / 2, y + 170), "Transfers to the Fund are made at the Company's discretion. Baseline, governance "
-           "and valuation milestones to be announced.", "body_italic", 40)
+    fit(k, (420, y - 34, W - 420, y + 30), "NOTICE: THE SIGNATURE TO THIS ASSIGNMENT MUST CORRESPOND WITH THE NAME AS WRITTEN UPON",
+        "small_caps", 44, margin=0.0)
+    fit(k, (420, y + 28, W - 420, y + 92), "THE FACE OF THE CERTIFICATE IN EVERY PARTICULAR, WITHOUT ALTERATION OR ENLARGEMENT.",
+        "small_caps", 44, margin=0.0)
+    fit(k, (420, y + 135, W - 420, y + 205), "Transfers to the Fund are made at the Company's discretion. Baseline, governance "
+           "and valuation milestones to be announced.", "body_italic", 40, margin=0.0)
     return {"transfer_form": k, "transfer_form_green": g_under}
 
 
@@ -452,12 +494,12 @@ def face_down(p):
     """The second document's back: its print shows through the paper, reversed and soft, and can't be read."""
     W, H = 2200, 1700
     front = canvas(W, H)
-    C.text(front, (W / 2, 220), "MEMORANDUM", "display", 120, spacing=12)
+    fit(front, (200, 140, W - 200, 300), "MEMORANDUM", "display", 120, spacing=12)
     y = 420
     body = ("Private and confidential. Re: the arrangements discussed, to be read in conjunction with the "
             "foregoing and not to be circulated. ") * 10
     for ln in wrap(body, "body", 52, W - 500)[:18]:
-        C.text(front, (W / 2, y), ln, "body", 52)
+        fit(front, (200, y - 33, W - 200, y + 33), ln, "body", 52, margin=0.0)
         y += 66
     through = cv2.GaussianBlur(front[:, ::-1], (0, 0), 9).astype(np.float32) * 0.3
     img = through.astype(np.uint8)
@@ -495,7 +537,7 @@ def thermometer_scale(p):
     # the scale: long ticks on the marks, short between, the labels set right of the tube
     for i, y in enumerate(marks):
         cv2.line(img, (cx + tw // 2 + 8, y), (cx + tw // 2 + 70, y), 255, 6, AA)
-        C.text(img, (cx + tw // 2 + 90, y), TICKS[i], "small_caps", 76, anchor="lm")
+        fit(img, (cx + tw // 2 + 84, y - 70, W - 16, y + 70), TICKS[i], "small_caps", 120, align="l", margin=0.04)
         if i:
             for k in range(1, 5):
                 yk = int(y + (marks[i - 1] - y) * k / 5)
@@ -516,7 +558,7 @@ def thermometer_scale(p):
     rb = [(40, by - 70), (W - 40, by - 70), (W - 110, by), (W - 40, by + 70), (40, by + 70), (110, by)]
     img[poly_mask(img.shape, rb)] = 0
     outline(img, rb, 6)
-    C.text(img, (W / 2, by + 6), "BASELINE: TBA", "small_caps", 84, spacing=6)
+    fit(img, (120, by - 58, W - 120, by + 58), "BASELINE: TBA", "small_caps", 84, spacing=6)
     return {"thermometer_full": img}
 
 
@@ -535,9 +577,9 @@ def seal(p):
     C.rosette(img, c, c, 30, 250, 14, 6, 2)
     cv2.circle(img, (int(c), int(c)), 150, 0, -1, AA)
     cv2.circle(img, (int(c), int(c)), 150, 255, 4, AA)
-    C.text(img, (c, c - 40), "WHOLLY", "small_caps", 54, spacing=4)
-    C.text(img, (c, c + 30), "OWNED", "small_caps", 54, spacing=4)
-    C.text(img, (c, c + 95), "MMXXVI", "small_caps", 38, spacing=6)
+    fit(img, (c - 118, c - 82, c + 118, c - 6), "WHOLLY", "small_caps", 54, spacing=4)
+    fit(img, (c - 128, c - 6, c + 128, c + 66), "OWNED", "small_caps", 54, spacing=4)
+    fit(img, (c - 86, c + 70, c + 86, c + 118), "MMXXVI", "small_caps", 38, spacing=6)
     emboss = cv2.GaussianBlur(cv2.dilate(img, np.ones((5, 5), np.uint8)), (0, 0), 3)
     return {"seal": img, "seal_emboss": emboss}
 
@@ -563,17 +605,19 @@ def ledger(p):
     m = np.zeros((H, W), bool)
     m[60:950, mid - 40:mid + 40] = True
     hatch(k, m, 90, 6, 2)  # the gutter's shadow
-    C.text(k, (mid - 360, 110), "LEDGER", "display", 70, spacing=10)
-    C.text(k, (mid + 360, 110), "COUPONS CLIPPED", "small_caps", 46, spacing=4)
-    for x, s in ((mid + 90, "No."), (mid + 305, "Coupon"), (mid + 555, "Date"), (mid - 90, "No."), (mid - 305, "Account"),
-                 (mid - 555, "Per Hundred")):
-        C.text(k, (x, 172), s, "body_italic", 30)
+    fit(k, (mid - 690, 72, mid - 50, 146), "LEDGER", "display", 70, spacing=10)
+    fit(k, (mid + 50, 72, mid + 690, 146), "COUPONS CLIPPED", "small_caps", 46, spacing=4)
+    COLS = {"No.": (40, 140), "Coupon": (140, 470), "Date": (470, 640)}
+    for side, heads in ((1, ("No.", "Coupon", "Date")), (-1, ("No.", "Account", "Per Hundred"))):
+        for h, (a, b_) in zip(heads, (COLS["No."], COLS["Coupon"], COLS["Date"])):
+            xa, xb = sorted((mid + side * a, mid + side * b_))
+            fit(k, (xa + 4, 152, xb - 4, 189), h, "body_italic", 30, margin=0.08)
     for i in range(4):
-        y = 214 + 46 * i
-        C.text(k, (mid + 90, y), str(i + 1), "script", 40)
-        C.text(k, (mid + 305, y), f"No. {i + 1}", "script", 40)
-        C.text(k, (mid + 555, y), "TBA", "script", 40)
-        C.text(k, (mid - 555, y), "5", "script", 40)
+        ya, yb = 190 + 46 * i, 236 + 46 * i
+        for text_, (a, b_), side in ((str(i + 1), COLS["No."], 1), (f"No. {i + 1}", COLS["Coupon"], 1),
+                                     ("TBA", COLS["Date"], 1), ("5", COLS["Date"], -1)):
+            xa, xb = sorted((mid + side * a, mid + side * b_))
+            fit(k, (xa + 6, ya + 2, xb - 6, yb - 2), text_, "script", 40, margin=0.06)
     return {"ledger": k, "ledger_green": g}
 
 
@@ -581,10 +625,18 @@ def main(names):
     OUT.mkdir(parents=True, exist_ok=True)
     for name in names or CFG:
         p = CFG[name]
+        CURRENT[0] = name
         maps = cut(name, p) if p["kind"] == "cut" else GENERATED[name](p)
         for k, img in maps.items():
             cv2.imwrite(str(OUT / f"{k}.png"), img)
             print(f"{k}: {img.shape[1]} x {img.shape[0]}, mean ink {img.mean() / 255:.3f}")
+    bad = [f for f in FITS if not f[4]]
+    shrunk = [f for f in FITS if f[4] and f[3] < f[2]]
+    print(f"type: {len(FITS)} lines set, {len(shrunk)} shrunk to fit, {len(bad)} that don't fit")
+    for f in shrunk:
+        print(f"  shrunk  {f[0]}: {f[1][:50]!r} {f[2]} -> {f[3]} px")
+    for f in bad:
+        print(f"  OVERFLOW {f[0]}: {f[1][:50]!r} at {f[3]} px")
 
 
 if __name__ == "__main__":

@@ -1,5 +1,5 @@
 {
- "_doc": "C5 props (scripts/props.py): the grey cards of the C4 animatic as engraved ink pieces. kind 'cut': a crop of a public-domain source (assets/engravings/sources.tsv). box = crop as fractions of the source image; erase = rectangles [x0, y0, x1, y1] or polygons [[x, y], ...] in fractions of the crop (reference numerals, lead lines, section lines, the patents' own text), cleared before trim; keep = a polygon outside which the crop is cleared (a part cut out of a larger drawing); trim = the final crop, in fractions of the first; despeckle = connected ink components smaller than this (px) are dropped (scan dust); flip = 'v' or 'h'; levels as in config/engravings.json, for the toned (non-bilevel) sources. kind 'generated': drawn by scripts/props.py in the certificate's type, guilloche and hatching. Every piece writes assets/engravings/ink/props/<name>.png (8-bit ink coverage: 255 = full ink) and, where it has one, <name>_green.png (the green plate).",
+ "_doc": "C5 props (scripts/props.py): the grey cards of the C4 animatic as engraved ink pieces. kind 'cut': a crop of a public-domain source (assets/engravings/sources.tsv). box = crop as fractions of the source image; erase = rectangles [x0, y0, x1, y1] or polygons [[x, y], ...] in fractions of the crop (reference numerals, lead lines, section lines, the patents' own text), cleared before trim; keep = a polygon outside which the crop is cleared (a part cut out of a larger drawing); trim = the final crop, in fractions of the first; despeckle = connected ink components smaller than this (px) are dropped (scan dust); flip = 'v' or 'h'; upscale = enlarge a small figure k times before its labels are set (despeckle is then in the enlarged px); levels as in config/engravings.json, for the toned (non-bilevel) sources. kind 'generated': drawn by scripts/props.py in the certificate's type, guilloche and hatching. Every piece writes assets/engravings/ink/props/<name>.png (8-bit ink coverage: 255 = full ink) and, where it has one, <name>_green.png (the green plate).",
  "props": {
   "mic": {
    "kind": "cut",
@@ -170,7 +170,7 @@
     0.79,
     0.4
    ],
-   "despeckle": 30,
+   "despeckle": 270,
    "erase": [
     [
      0.128,
@@ -275,7 +275,8 @@
      "WHOLLY OWNED"
     ]
    ],
-   "role": "the filing cabinet's bank of four drawers; the labels hold the brief's still-to-be-announced terms, and Progress leans out of the bottom one, WHOLLY OWNED"
+   "role": "the filing cabinet's bank of four drawers; the labels hold the brief's still-to-be-announced terms, and Progress leans out of the bottom one, WHOLLY OWNED",
+   "upscale": 3
   },
   "stamp": {
    "kind": "cut",

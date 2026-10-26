@@ -449,3 +449,22 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
 - **Known:** a few leftover stubs from the erased numerals (the stamp's top, the calendar's margin, the cabinet's edges). The patent drawings are line art, with less tone than Durand's engravings.
 - **Not yet:** the props are not in the shots, which waits on the human's review of the sheet. S36's gold re-ink is not a prop and comes with C5's renders.
 - **Status:** **the C5 prop sheet is ready for review.**
+
+## 2026-10-26T10:13:03-04:00 — C5 props: clipped type fixed (prop sheet v2)
+
+- **Why:** the human's review of prop sheet v1 (human interventions, same time).
+- **Found:**
+  - The calendar pages: NOV, DEC, JAN, SOON, TBD and NEXT ran past the page border; the Q of Q1 and Q2 hit the company line.
+  - The scroll's last lines of fine print ran under the bottom roller's shading, and the last line stopped mid-clause.
+  - The filing cabinet's labels printed at 16–27 px: the patent figure is small, so WHOLLY OWNED would not read in S44.
+  - The sheet's own captions: role lines cut at 96 characters, and source lines running off their tiles.
+- **Fixed:**
+  - `scripts/props.py` sets every line with `fit()`, given the frame the line sits in: the largest size up to the design size whose inked extent (ascenders and descenders, measured on the rendered glyphs) clears the frame by a margin, centred on the ink.
+  - Every line is recorded, and each run reports the lines that were shrunk and any that still overflow. This run: 117 lines, 35 shrunk, none overflowing.
+  - The scroll sets only whole clauses that clear the roller, ending on a full stop.
+  - The cabinet cut is enlarged three times before its labels are set (`upscale` in `config/props.json`); WHOLLY OWNED now prints at 48 px on a 1028 px-wide piece.
+  - The thermometer's scale labels are larger.
+  - `scripts/c5_prop_sheet.py` shrinks each source line to fit its tile and wraps each role over two lines, with the captions moved clear of the pictures.
+- **Checked by eye at full size:** the calendar pages, the cabinet, the seal and coin legends (set on a circle, which `fit()` doesn't cover; nothing collides), the eraser, the thermometer, the transfer form, the scroll, the ledger, the door plaque, the studio's SILENCE plaque and the stamp, plus every caption on the sheet.
+- **Outputs:** `renders/c5/c5_props_v2.jpg`; v1 archived as `archive/renders/c5/c5_props_v1_clipped-type.jpg`.
+- **Status:** **the C5 prop sheet v2 is ready for review.**

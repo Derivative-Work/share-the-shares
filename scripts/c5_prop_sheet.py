@@ -30,7 +30,7 @@ TILES = [
     ("thermometer", ["thermometer_full"], "thermometer_scale"), ("seal", ["seal", "seal_emboss"], "seal"),
     ("ledger", ["ledger"], "ledger"), ("scissors", ["scissors"], "scissors"), ("filing cabinet", ["cabinet"], "cabinet"),
 ]
-TW, TH = 900, 760  # tile size; the picture fits in TW x (TH - 120)
+TW, TH = 900, 760  # tile size; the picture fits in (TW - 40) x (TH - 175), the captions below it
 
 
 def ink_rgb(sepia, green=None, emboss=False):
@@ -99,7 +99,22 @@ def source_line(entry):
     r = SOURCES.get(entry["source"])
     if not r:
         return entry["source"]
-    return f"{r[1][:70]} · {r[2]}, {r[3]} · {r[7].split(' (')[0]}"
+    return f"{r[1].split(' (')[0]} · {r[2]}, {r[3]} · {r[7].split(' (')[0]}"
+
+
+def note(size):
+    return ImageFont.truetype(str(ROOT / LOOK["fonts"]["body_italic"]), size)
+
+
+def wrap(s, f, width, d):
+    lines, cur = [], ""
+    for w in s.split():
+        if d.textlength((cur + " " + w).strip(), font=f) > width:
+            lines.append(cur)
+            cur = w
+        else:
+            cur = (cur + " " + w).strip()
+    return lines + [cur]
 
 
 def main(out):
@@ -115,15 +130,24 @@ def main(out):
            fill=tuple(int(v) for v in PAL["ink_sepia"]))
     for i, (title, names, key) in enumerate(TILES):
         x, y = (i % cols) * TW, (i // cols) * TH + 110
-        pic = fit(tile_picture(names), TW - 40, TH - 130)
+        pic = fit(tile_picture(names), TW - 40, TH - 175)
         card = Image.new("RGB", (TW - 16, TH - 16), tuple(int(v) for v in PAL["paper"]))
         card.paste(Image.fromarray(pic.astype(np.uint8)), ((TW - 16 - pic.shape[1]) // 2, 12))
         sheet.paste(card, (x + 8, y + 8))
         entry = CFG[key]
-        d.text((x + 24, y + TH - 112), f"{title.upper()}  ·  {', '.join(entry['shots'])}", font=f_head,
+        d.text((x + 24, y + TH - 150), f"{title.upper()}  ·  {', '.join(entry['shots'])}", font=f_head,
                fill=tuple(int(v) for v in PAL["ink_sepia"]))
-        d.text((x + 24, y + TH - 70), source_line(entry), font=f_note, fill=(90, 70, 50))
-        d.text((x + 24, y + TH - 44), entry["role"][:96], font=f_note, fill=(90, 70, 50))
+        # the source on one line (shrunk to fit), the role wrapped over two; nothing is cut off
+        room = TW - 48
+        size = 22
+        while d.textlength(source_line(entry), font=note(size)) > room and size > 12:
+            size -= 1
+        d.text((x + 24, y + TH - 108), source_line(entry), font=note(size), fill=(90, 70, 50))
+        size = 22
+        while len(wrap(entry["role"], note(size), room, d)) > 2 and size > 12:
+            size -= 1
+        for j, ln in enumerate(wrap(entry["role"], note(size), room, d)):
+            d.text((x + 24, y + TH - 80 + j * (size + 5)), ln, font=note(size), fill=(90, 70, 50))
     sheet.save(out, quality=90)
     print(out, sheet.size)
 
