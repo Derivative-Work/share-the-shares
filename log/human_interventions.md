@@ -104,3 +104,15 @@ Every human action: timestamp, what, why, and which production rule allows it. R
 
 - **What:** The human: "Check the lyrics timing, particularly at the beginning, again. There's also at least one other spot where Suno repeated lyrics".
 - **Rule:** R2: a sync error, information from listening. The agent found the causes and made the fixes.
+
+## 2026-10-26T08:05:00-04:00 — The plan for the stand-in props: approved — R1
+
+- **What:** The agent proposed a plan for the stand-ins:
+  - the grey prop cards drawn as engraved props, from public-domain engravings, pre-1931 US patent drawings, and the certificate's own type and guilloche;
+  - a prop sheet for review before C5;
+  - the S01 capture left to the human (R4);
+  - the credits awaiting approval;
+  - the fact-card check at C6.
+
+  The human: "yes go ahead".
+- **Rule:** R1.
