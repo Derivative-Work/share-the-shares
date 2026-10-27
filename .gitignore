@@ -44,3 +44,7 @@ archive/renders/
 # Puppet layers regenerate from the committed masks (scripts/puppet_build.py).
 assets/puppets/*/layers/
 renders/c4/graphics/
+
+# deliverables: the binaries stay out of git (in MANIFEST.sha256); their .json indexes are tracked
+deliverables/**/*.png
+deliverables/**/*.pdf

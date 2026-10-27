@@ -781,3 +781,9 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   - Progress's jaw clearly opens. Prudence's opens, but subtly (−8° against Progress's −14°).
   - Mercury (the Lawyer) and the cherubs (the choir) have no jaw cut. They nod (C2), so no mouth moves on any of their lines. Asked the human which they mean before cutting jaws.
 - **`scripts/manifest.sh`:** run after the new files.
+
+## 2026-10-27T09:00:00-04:00 — The alignment sheet's binaries taken out of git
+
+- **What happened:** the previous commit (`5c4fb35`, pushed) added `alignment_sheet.pdf` (21 MB) and `alignment_print_4400x3400.png` (17 MB) to git. `.gitignore` covered `*.mov` and `*.mp4` but not PNG or PDF under `deliverables/`.
+- **Fix:** `.gitignore` now leaves out `deliverables/**/*.png` and `*.pdf`. Both files are untracked (kept on disk) and hashed in `MANIFEST.sha256` (5,231 files). `marks.json` stays tracked.
+- **Still in history:** the 38 MB stay in `5c4fb35`. Removing them means rewriting pushed history and a force-push; that is the human's call, and was asked.
