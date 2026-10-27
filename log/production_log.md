@@ -731,4 +731,4 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
 
 - **Why:** the human created github.com/Derivative-Work/share-the-shares (private) and gave the agent access (human interventions, same time). The credits already name it as the production log's home.
 - **Before the push:** the history was scanned for credentials and API keys (none) and for large blobs. The largest are 1.5 MB, puppet previews. Large media stay out of git, listed in `MANIFEST.sha256`.
-- **Pushed:** `main`, 48 commits through `21b7983`, as `origin` (https), tracking `origin/main`. This entry follows as its own commit.
+- **Pushed:** `main`, 46 commits through `21b7983`, as `origin` (https), tracking `origin/main`. This entry follows as its own commit.
