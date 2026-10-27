@@ -184,3 +184,8 @@ Every human action: timestamp, what, why, and which production rule allows it. R
 
 - **What:** The human: "I freed up some space by archiving and deleting renders from already-published videos".
 - **Rule:** R3. The agent was removing each 4K section's frames for lack of disk, and the other projects' renders aren't the agent's to delete.
+
+## 2026-10-27T00:05:27-04:00 — The GitHub repository created — R4
+
+- **What:** The human: "I created github.com/Derivative-Work/share-the-shares and gave you access, go ahead and push what you so far there".
+- **Rule:** R4: creating a repository in the Derivative-Work organization, and granting access to it, are things the agent can't do. Pushing is the agent's step.

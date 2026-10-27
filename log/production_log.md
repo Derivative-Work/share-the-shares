@@ -726,3 +726,9 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
 - **Change:** `scripts/final_queue.sh` no longer removes a section's PNGs once its ProRes intermediate holds every frame. With the frames kept (about 73 GB), a later change to the graphics or timing needs only a re-assembly, not the 4K render again.
   - The new script replaced the old one as a new file, so the running lanes never read a half-edited script.
   - Lanes `a` and `b` were stopped and restarted on it. That lost about 11 minutes: the first frames of section 1, and the S26 plate, which was rendering. The graphics lane had finished (23:47:42), and the join lane only waits.
+
+## 2026-10-27T00:05:27-04:00 — The repository pushed to GitHub
+
+- **Why:** the human created github.com/Derivative-Work/share-the-shares (private) and gave the agent access (human interventions, same time). The credits already name it as the production log's home.
+- **Before the push:** the history was scanned for credentials and API keys (none) and for large blobs. The largest are 1.5 MB, puppet previews. Large media stay out of git, listed in `MANIFEST.sha256`.
+- **Pushed:** `main`, 48 commits through `21b7983`, as `origin` (https), tracking `origin/main`. This entry follows as its own commit.
