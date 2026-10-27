@@ -787,3 +787,13 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
 - **What happened:** the previous commit (`5c4fb35`, pushed) added `alignment_sheet.pdf` (21 MB) and `alignment_print_4400x3400.png` (17 MB) to git. `.gitignore` covered `*.mov` and `*.mp4` but not PNG or PDF under `deliverables/`.
 - **Fix:** `.gitignore` now leaves out `deliverables/**/*.png` and `*.pdf`. Both files are untracked (kept on disk) and hashed in `MANIFEST.sha256` (5,231 files). `marks.json` stays tracked.
 - **Still in history:** the 38 MB stay in `5c4fb35`. Removing them means rewriting pushed history and a force-push; that is the human's call, and was asked.
+
+## 2026-10-27T09:10:00-04:00 — History rewritten to drop the alignment sheet's binaries
+
+- **Why:** the human chose to rewrite history and force-push, so the 38 MB that `5c4fb35` put in git don't stay there (human interventions, same time).
+- **What:**
+  - `5c4fb35` was rebuilt as `a58765d`: the same tree, less the two binaries, with the same message and dates.
+  - `b562d4a` was rebuilt as `127c7f4` with the exact same tree, so the files are identical to before.
+  - `main` was force-pushed with a lease on `b562d4a`.
+  - No blob over 2 MB is reachable from `origin/main`.
+  - The old commits stay on a local branch only, `backup/pre-rewrite-5c4fb35`, until the human is happy to delete it.

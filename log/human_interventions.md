@@ -194,3 +194,8 @@ Every human action: timestamp, what, why, and which production rule allows it. R
 
 - **What:** The human: "It seems like there is some missing mouth movement. Hold the gold at the transition a little longer (eating into "now you might ask..." slightly) so that its fully visible. I also need a render of the captions (with transparency) so it's easy to bring into Resolve (where I'll do the final edit with live footage and compositing). Also generate me an alignment sheet that I can print for said compositing."
 - **Rule:** R1. The final edit in Resolve, with the live footage and compositing, will be the human's, and will be logged when it happens.
+
+## 2026-10-27T09:05:00-04:00 — The mouths to fix; the history rewrite approved — R1
+
+- **What:** Asked which missing mouth movement they meant, the human chose "Mercury's lines" and "Prudence too subtle". Asked whether to rewrite the pushed history to drop the alignment sheet's binaries, the human chose "Rewrite and force-push".
+- **Rule:** R1.
