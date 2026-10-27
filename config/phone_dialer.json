@@ -1,12 +1,8 @@
 {
- "_doc": "The video the human plays on their phone in S45-S46 (scripts/phone_dialer.py -> deliverables/phone/): an invented dialer, no real phone's interface. The pledge number is typed on the post-roll's DTMF timing (config/postroll.json), the call screen shows 'Calling' over the ring, then 'On hold' with a timer through the hold music, until the hang-up. Its sound is the post-roll's to the hang-up, so the tones heard on set line up with the post mix (R2). Times are seconds from the song's end (post-roll time), except lead_in.",
+ "_doc": "The video the human plays on their phone in S45-S46 (scripts/phone_dialer.py -> deliverables/phone/): an invented dialer, no real phone's interface. The pledge number is typed on the post-roll's DTMF timing (config/postroll.json), the call screen shows 'Calling' over the ring, then 'On hold' with a timer through the hold music, to the end of the post-roll: no hang-up on screen (the human, 2026-10-27). Its sound is the whole post-roll's, so the tones heard on set line up with the post mix (R2). Times are seconds from the song's end (post-roll time), except lead_in.",
  "size": [1080, 2400],
  "fps": 24,
  "lead_in": 4.0,
  "lead_in_note": "the empty keypad before the first digit, to start the video and lift the phone",
- "call_after_dial": 0.2,
- "hang_up": 9.0,
- "hang_up_note": "4 s into S46 (8 s long): listen, hang up, then 4 s to fold the sheet into the guitar case",
- "ended_hold": 2.0,
- "tail": 1.0
+ "call_after_dial": 0.2
 }

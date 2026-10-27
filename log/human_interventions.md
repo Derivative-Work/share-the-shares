@@ -199,3 +199,13 @@ Every human action: timestamp, what, why, and which production rule allows it. R
 
 - **What:** Asked which missing mouth movement they meant, the human chose "Mercury's lines" and "Prudence too subtle". Asked whether to rewrite the pushed history to drop the alignment sheet's binaries, the human chose "Rewrite and force-push".
 - **Rule:** R1.
+
+## 2026-10-27T19:30:00-04:00 — A video for the phone in S45 — R1
+
+- **What:** The human: "make me a video I can play on my phone for the pre-credits dialer scene".
+- **Rule:** R1. Playing it on the phone during the live take will be the human's part of S45–S46, and will be logged with the live footage.
+
+## 2026-10-27T19:50:00-04:00 — No hang-up on the phone's screen — R1
+
+- **What:** The human, of the phone video: "remove the hangup".
+- **Rule:** R1.

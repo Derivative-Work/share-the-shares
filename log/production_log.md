@@ -845,3 +845,11 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
 - **Font:** Noto Sans Regular and Bold (OFL), copied into `assets/fonts` with `OFL-notosans.txt`; `SHA256SUMS` updated.
 - **Checked:** a contact sheet of 8 frames (empty pad, "555", "555-01" with the 1 lit, calling, on hold 0:01, call ended); the first tone starts at 5.001 s, on the first digit's frame.
 - **`scripts/manifest.sh`:** run (the mp4 is git-ignored).
+
+## 2026-10-27T19:55:00-04:00 — The phone video without the hang-up
+
+- **Why:** the human: "remove the hangup" (human interventions, 19:50).
+- **`scripts/phone_dialer.py`, `config/phone_dialer.json`:** the "Call ended" screen and the black tail are gone (`hang_up`, `ended_hold` and `tail` removed). The call stays "On hold", its timer running, to the end of the post-roll. The sound is the whole post-roll: dialling, ring, then the hold music to its fade.
+- **`deliverables/phone/S45_S46_dialer.mp4`:** 48.88 s (1,173 frames), long enough to hang up whenever the take needs. The first tone is still at 5.00 s, and "On hold" at 7.81 s. The previous version is archived as `archive/phone/S45_S46_dialer_v1_hang-up.mp4`.
+- **Checked:** frames at 13.5, 30 and 48.5 s are all on hold (0:05, 0:22, 0:40).
+- **`scripts/manifest.sh`:** run.
