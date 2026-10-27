@@ -50,7 +50,7 @@ The live verse: 163.90–192.68 s (S29-S30: the music cuts at the flip; the huma
 | S17a | "The more we grow, the more we give" (the chorus repeat) | 85.01 | 2040 | L24 | lyric |
 | S17b | "so help us grow, so we can give" (the repeat) | 92.00 | 2208 | L26 | lyric |
 | S36 | The key change, just before verse 2 (where Suno put it) | 98.44 | 2363 |  | event |
-| S18 | "Now you might ask who holds the purse" | 99.49 | 2388 | L27 | lyric |
+| S18 | "Now you might ask who holds the purse" | 101.06 | 2425 | L27 | lyric (held: starts +1.57 s off its cue, config/shot_holds.json) |
 | S19 | "who signs and who decides" | 103.38 | 2481 | L28 | lyric |
 | S20 | "Each milestone's measured from a line" | 113.55 | 2725 | L31 | lyric |
 | S21 | "we haven't drawn just yet" | 116.97 | 2807 | L32 | lyric |

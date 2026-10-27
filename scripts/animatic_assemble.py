@@ -55,9 +55,12 @@ def ev(layer, a, b, style, txt):
     return f"Dialogue: {layer},{ts(a)},{ts(b)},{style},,0,0,0,,{txt}"
 
 
-def ass(w, h, captions="full"):
+def ass(w, h, captions="full", only=None):
+    """captions: full (lyrics and shot IDs), ids, or lyrics (lyrics alone: scripts/captions_layer.py); only: the line
+    IDs to caption (default all)"""
     # the styles are sized for the 640x360 animatic; libass scales them to the frame (the C5 cuts are 1080p)
-    L = ["[Script Info]", "ScriptType: v4.00+", "PlayResX: 640", "PlayResY: 360", "",
+    # YCbCr Matrix: None: without it ffmpeg takes the script as TV.601 and squeezes its colours into 16-235
+    L = ["[Script Info]", "ScriptType: v4.00+", "YCbCr Matrix: None", "PlayResX: 640", "PlayResY: 360", "",
          "[V4+ Styles]",
          "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, "
          "Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, "
@@ -70,7 +73,9 @@ def ass(w, h, captions="full"):
          "Style: Bug,IM FELL English SC,15,&H00FFFFFF,&H00FFFFFF,&H001616C8,&H001616C8,0,0,0,0,100,100,2,0,3,3,0,7,14,14,12,1",
          "Style: Note,IM FELL English,14,&H00CCE5EE,&H00CCE5EE,&H001E2C3E,&H64000000,0,1,0,0,100,100,0,0,1,1,0,1,12,12,10,1",
          "", "[Events]", "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text"]
-    for ln in (TM["lines"] if captions == "full" else []):
+    for ln in (TM["lines"] if captions in ("full", "lyrics") else []):
+        if only is not None and ln["id"] not in only:
+            continue
         a, b = ln["start"] - 0.4 + PRE, ln["end"] + 0.6 + PRE
         parts, t = [], ln["start"] - 0.4
         for wd in ln["words"]:
@@ -78,6 +83,8 @@ def ass(w, h, captions="full"):
             parts.append(wd["w"] + " ")
             t = wd["start"]
         L.append(ev(0, a, b, "Cap", "".join(parts)))
+    if captions == "lyrics":
+        return "\n".join(L) + "\n"
     for sid, (a, b) in SPAN.items():
         L.append(ev(1, a + PRE, b + PRE, "Id", sid))
     # the shot IDs of the pre- and post-roll (their pictures are the graphics layer's cards)

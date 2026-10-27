@@ -1,0 +1,64 @@
+{
+ "_doc": "Registration marks on the alignment print (scripts/alignment_sheet.py), and the corner discs' centres, in plate pixels (the live plates are 4400x3400, the sheet edge to edge; print pixels at 400 dpi).",
+ "plate_size": [
+  4400,
+  3400
+ ],
+ "dpi": 400,
+ "marks": {
+  "1": {
+   "xy": [
+    1315,
+    1110
+   ],
+   "where": "left of the company banner"
+  },
+  "2": {
+   "xy": [
+    3355,
+    1145
+   ],
+   "where": "right of the company banner"
+  },
+  "3": {
+   "xy": [
+    3890,
+    1445
+   ],
+   "where": "between the share box and Prudence"
+  },
+  "4": {
+   "xy": [
+    445,
+    2215
+   ],
+   "where": "stub, lower"
+  },
+  "5": {
+   "xy": [
+    465,
+    840
+   ],
+   "where": "stub, upper"
+  }
+ },
+ "corner_discs": {
+  "disc 1": [
+   920,
+   370
+  ],
+  "disc 2": [
+   4030,
+   370
+  ],
+  "disc 3": [
+   4030,
+   2480
+  ],
+  "disc 4": [
+   920,
+   2480
+  ]
+ },
+ "worst_plate_ink_in_a_mark_window": 0.0043
+}

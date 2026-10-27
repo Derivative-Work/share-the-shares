@@ -11,7 +11,8 @@ after the previous shot, which places an insert inside a long line. A quoted cue
 words, and the shot starts at the first matched word. Event cues ("First piano chord", "The key change...", "The
 downbeat after the chorus", "Last chord of the chorus", "The next line") are computed. The shots after the audio
 ends (S45-S48) and the pre-roll (S01) get no time. A cue that can't be found (an ad-lib Suno didn't sing) is listed
-for the ear check.
+for the ear check. config/shot_holds.json moves a shot's start off its cue (the human's notes), so the shot before
+holds longer.
 
 Usage: .venv/bin/python -I scripts/timing_map.py  ->  timing/timing_map.json, timing/timing_map.md, config/shot_anchors.json
 """
@@ -28,6 +29,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from song import STEM, TRACK  # noqa: E402
 
 FPS = json.loads(Path("config/look.json").read_text())["fps"]
+HOLDS = {k: v for k, v in json.loads(Path("config/shot_holds.json").read_text()).items() if not k.startswith("_")}
 ORDINALS = {"first": 1, "second": 2, "third": 3, "fourth": 4}
 ORDINAL = re.compile(r"the (first|second|third|fourth) \"")
 
@@ -151,6 +153,9 @@ def main():
             else:
                 unresolved.append(r["id"])
                 how = "NOT FOUND in the as-sung lyrics"
+        if r["id"] in HOLDS and t is not None:
+            how += f" (held: starts {HOLDS[r['id']]['t'] - t:+.2f} s off its cue, config/shot_holds.json)"
+            t = HOLDS[r["id"]]["t"]
         if t is not None:
             cursor = t
         shots.append({**r, "t": None if t is None else round(t, 3), "frame": fr(t), "line": line_id, "how": how,

@@ -189,3 +189,8 @@ Every human action: timestamp, what, why, and which production rule allows it. R
 
 - **What:** The human: "I created github.com/Derivative-Work/share-the-shares and gave you access, go ahead and push what you so far there".
 - **Rule:** R4: creating a repository in the Derivative-Work organization, and granting access to it, are things the agent can't do. Pushing is the agent's step.
+
+## 2026-10-27T08:20:00-04:00 — Mouths, the gold's hold, a captions layer, an alignment sheet — R1
+
+- **What:** The human: "It seems like there is some missing mouth movement. Hold the gold at the transition a little longer (eating into "now you might ask..." slightly) so that its fully visible. I also need a render of the captions (with transparency) so it's easy to bring into Resolve (where I'll do the final edit with live footage and compositing). Also generate me an alignment sheet that I can print for said compositing."
+- **Rule:** R1. The final edit in Resolve, with the live footage and compositing, will be the human's, and will be logged when it happens.

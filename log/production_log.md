@@ -750,3 +750,34 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
 - **Housekeeping:**
   - `deliverables/live_plates/plates.json.tmp`, the queue's scratch file, was committed by mistake with the 23:45 and 23:53 steps; it is removed from git and `plates.json` added.
   - `scripts/manifest.sh` now covers `deliverables/` too. `MANIFEST.sha256`: 5,222 files, including the master, the plates, the section intermediates and the post-filter preview audio.
+
+## 2026-10-27T08:55:00-04:00 — The gold held at the key change; the captions layer; the alignment sheet; the mouths looked into
+
+- **Why:** the human's notes (human interventions, same time).
+- **The gold (S36 into S18):** S36 lasted 1.05 s (98.44–99.49 s), but the gold's creep took 2.6 s, so S18 cut in with the sheet less than half gold.
+  - `config/shot_holds.json` (new) moves S18's start off its cue to 101.06 s, the beat before "who". S36 now eats "Now you might ask" (99.49–101.17 s). `scripts/timing_map.py` applies it after resolving each cue. Regenerated, the map changes only S18 (`t` 99.49 → 101.06, frame 2388 → 2425; checked by diff).
+  - `scenes/blender/animatic.py` `GOLD_SPAN`: 2.6 → 2.2 s, so the gold is complete at 100.64 s and holds 0.4 s, fully visible on the wide shot, before the cut.
+  - Re-rendered the 4K frames 98.44–103.38 s (120, `renders/final/logs/s3_gold_hold.log`). Section 3 re-assembled (982 frames), and the master re-joined (`scripts/final_queue.sh join`).
+  - Checked in the master at 98.6 (green), 99.6 (creeping), 100.4, 100.8 and 101.02 (gold) and 101.1 s (S18).
+  - Archived as `archive/final_4k/*_v1_gold-cut-early.*`: the previous master, its 1080p copy and section 3's intermediate.
+- **The captions layer (`scripts/captions_layer.py`, new):** the review cuts' karaoke lyrics alone, full length from 0:00, 3840 × 2160, ProRes 4444 with alpha, in `deliverables/captions/`.
+  - `lyrics_captions_4k.mov` has 64 lines, everything but the live verse. `lyrics_captions_4k_verse3_generated_timing.mov` has L45–L52 at the generated take's timing, for the human to retime or drop against the live verse.
+  - ffmpeg's libass filter writes no alpha (and its `alpha=1` option made the frame opaque). So each layer is drawn twice, in colour on black and as a white coverage matte, then merged and un-premultiplied.
+  - Found on the way: an ASS script without `YCbCr Matrix` is taken as TV.601, and ffmpeg squeezes its colours into 16–235, so the review cuts' captions were slightly dull (fill 220 for 238). `ass()` now declares `YCbCr Matrix: None`, and the fill and outline come out exact. The master has no captions, so it is unaffected.
+  - Checked: captions at L63 (frame 5420) and L46 (frame 4080), composited over the render.
+- **The alignment sheet (`scripts/alignment_sheet.py`, new; `deliverables/alignment_sheet/`):**
+  - Page 1, the print: the flat render of the sheet at 170.0 s, during the live verse, when nothing on it moves. It has the figures at rest and is gold, so it matches the plates.
+    - The C1 print file is out of date: its corners are the old "5" rosettes, not the rendered "5 %" discs, and its gold is a different shade.
+  - Five registration marks, sepia, 0.28 in across, on clean paper away from everything that moves.
+    - Each is the emptiest window in its zone, and stays clean in every other frame of all four sheet plates (worst 0.0043).
+    - No marks on the coupons: they are cut away in the final chorus, so S40's plate has a hole there.
+    - None under the signature lines either: faint ink everywhere.
+  - The four corner discs are listed as tracking points. They never change by more than 3/255 in any plate.
+  - Page 2, the key: the marks' and discs' plate-pixel coordinates (plate pixels are print pixels at 400 dpi), and how to print and pin.
+  - The PDF holds both pages losslessly. Pillow's PDF writer stores RGB as JPEG, so the script writes its own Flate-compressed PDF.
+  - Also `alignment_print_4400x3400.png` and `marks.json`.
+- **The mouths:** measured how much of each lyric line its singer's jaw is open for, and looked at shut/open frame pairs in the 4K renders.
+  - The gating works: 98–100% for the soloists, 64–72% for the choir in a few full-cast lines.
+  - Progress's jaw clearly opens. Prudence's opens, but subtly (−8° against Progress's −14°).
+  - Mercury (the Lawyer) and the cherubs (the choir) have no jaw cut. They nod (C2), so no mouth moves on any of their lines. Asked the human which they mean before cutting jaws.
+- **`scripts/manifest.sh`:** run after the new files.

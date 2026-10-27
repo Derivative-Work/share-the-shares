@@ -1,0 +1,7 @@
+{
+ "_doc": "Shot starts moved off their cues (scripts/timing_map.py applies these after resolving each cue): t is the new start in song seconds, so the shot before holds longer. Each entry logs who asked and why.",
+ "S18": {
+  "t": 101.06,
+  "why": "the human, 2026-10-27: hold the gold at the key change (S36) a little longer, eating into \"now you might ask...\" slightly, so it's fully visible. The beat before \"who\" (101.22 s); the gold's creep (animatic.py GOLD_SPAN, now 2.2 s) is complete at 100.64 s"
+ }
+}
