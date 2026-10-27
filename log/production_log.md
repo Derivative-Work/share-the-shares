@@ -695,3 +695,27 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   - Graphics, the fact card's frame 500 at 3840 × 2160: the card and the red pen lay out as at 1080p.
 - **`docs/render_box.md`:** the Puppeteer step, the two smoke commands, the box's Blender version.
 - **`scripts/manifest.sh`:** adds the two smoke frames (3,304 files).
+
+## 2026-10-26T23:45:00-04:00 — The 4K finals queued; the live plates; the post-filtered preview mix
+
+- **Why:** the human: queue the 4K render, make the videos to composite into the live shots, and run the audio through the post-filter (`~/Code/music-deslop`) for this render, as a preview before the human redoes the mix with the live sections (human interventions, same time).
+- **The post-filter** (music-deslop at `68441e2`, release weights `m6f_10k.safetensors`, default chain, `--source suno`; logs in `renders/final/logs/postfilter_*.log`):
+  - `audio/master/postfilter_preview/song_postfilter.wav` from `audio/track/Share the Shares.wav`. The change is −32.1 dB against the music, peak −3.1 dBFS. The fallback partly faded two passages back to the original: 2:38.3–2:41.2 (88% of its change) and 4:02.2–4:06.8 (82%).
+  - `muzak_postfilter.wav` from the human's muzak cover: change −36.1 dB.
+  - Both are the same length as their sources, and cross-correlate at 0 samples, so the timing map holds.
+  - `scripts/postroll_audio.py` takes `--muzak` and `--out`. With no options it writes the same `audio/postroll/postroll.wav` as before (checked). `postroll_postfilter.wav` is the post-roll built on the filtered muzak.
+  - `share_the_shares_postfilter_preview_mix.wav`: the filtered song, then that post-roll; 328.33 s, peak −3.1 dBFS, 24-bit.
+- **The live plates (`scenes/blender/animatic.py --flat [--figures-only]`):** the whole sheet seen straight down through an orthographic camera at its print resolution (4400 × 3400, edge to edge), with the desk left out. These follow the brief's "warp a flat render onto the track".
+  - `sheet`: the certificate as rendered, figures moving. `figures`: the figures and props alone on transparency.
+  - For S26, S29, S31 and S40, with 0.5 s handles. Not for S30, where the sheet lies face down with the static transfer form up, nor for S45–S46, after the song, where nothing on the sheet moves.
+  - From S36 on the world is re-inked gold, so the plates show the gold sheet (`renders/c1/certificate_v05/sheet_gold.png` is its print).
+  - Checked at 152.0 s (S26): both passes frame the sheet exactly; 4 s and 3 s a frame.
+- **`scripts/animatic_assemble.py`:** `--captions none`, `--master` (ProRes 422 HQ, 10-bit 4:2:2, 24-bit PCM), `--no-audio`, `--tmp`. Tested on half a second at 640 × 360.
+- **`scripts/final_queue.sh`** (new), started at 23:42:45 in four lanes (`renders/final/logs/queue.log`):
+  - `graphics`: the graphics layer at 3840 × 2160, every frame. S30's post-filter tab also goes alone, with alpha, to `deliverables/live_plates/S30_postfilter_tab.mov`.
+  - `a`: sections 1–3; `b`: the plates (`deliverables/live_plates/*.mov`, ProRes 4444 with alpha; `plates.json` gives their times), then sections 4–6.
+  - Each section: 3840 × 2160, 64 samples, every frame, then a ProRes intermediate in `renders/final/sections/`. Its PNGs are removed once the intermediate holds every frame. The disk (111 GB free) can't hold all the 4K PNGs (about 12 MB each, 73 GB), and frame sequences are never archived.
+  - `join`: the sections joined, with the preview mix, to `deliverables/final_4k/share_the_shares_4k_postfilter_preview.mov`, plus a 1080p H.264 copy to listen to.
+  - The live shots keep their slates in the master; the human composites over them.
+- **Pace:** 3.6 s a frame for the sections and 4.3 s for the plates, with two Blender lanes on the GPU; about 4 hours in all.
+- **`scripts/manifest.sh`** runs when the queue finishes, so it doesn't hash files still being written.

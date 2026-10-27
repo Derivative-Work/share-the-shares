@@ -174,3 +174,8 @@ Every human action: timestamp, what, why, and which production rule allows it. R
 
 - **What:** The human rsynced the project from the GTX 970 box to the RTX 5090 box (`docs/render_box.md`): "I just moved over this project from the draft box. Prepare it to render here".
 - **Rule:** R3: the agent has no access between the two machines.
+
+## 2026-10-26T23:45:00-04:00 — Queue the 4K finals, plates for the live shots, a post-filtered preview — R1
+
+- **What:** The human: "go ahead and queue the 4K render. I'm also going to need the videos to composite into the live sections. Also run the audio through the postfilter (~/Code/music-deslop) for this render so I can preview what it sounds like before I properly redo the mix with the live sections included."
+- **Rule:** R1. The post-filter was planned as the human's step (R4, 2026-10-25T09:20) because it needs this box's VRAM. Here the agent has access, so the agent ran it at the human's direction; it isn't an R4. The human will do the final mix with the live audio, and that will be logged when it happens.

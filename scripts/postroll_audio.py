@@ -2,8 +2,11 @@
 music (the human's Suno muzak cover) faded in so its first chorus lands on the cut to S46, playing to the end of the
 video. Written at the song's sample rate and channel count, for scripts/animatic_assemble.py to follow the song with.
 
-Usage: .venv/bin/python -I scripts/postroll_audio.py  ->  audio/postroll/postroll.wav
+Usage: .venv/bin/python -I scripts/postroll_audio.py [--muzak FILE] [--out FILE]  ->  audio/postroll/postroll.wav
+  --muzak: another copy of the cover (the post-filtered one for the 4K preview mix), same length and rate
+  --out: where to write (default audio/postroll/postroll.wav); written as 24-bit when it isn't the default
 """
+import argparse
 import json
 from pathlib import Path
 
@@ -31,6 +34,10 @@ def tone(freqs, length, sr, edge=0.005):
 
 
 def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--muzak", default=None)
+    ap.add_argument("--out", default="audio/postroll/postroll.wav")
+    args = ap.parse_args()
     song, sr = sf.read(ROOT / TM["audio"], frames=1, always_2d=True)
     ch = song.shape[1]
     post = sum(PH[s]["after_s"] for s in ("S45", "S46", "S47", "S48"))
@@ -51,7 +58,7 @@ def main():
     m = CFG["muzak"]
     lands = PH["S45"]["after_s"] if m["lands_at"] == "S46" else 0.0  # the chorus lands on the cut to S46
     start = lands - m["fade_in"]  # post-roll time the muzak comes in
-    muz, msr = sf.read(ROOT / m["file"], always_2d=True)
+    muz, msr = sf.read(ROOT / (args.muzak or m["file"]), always_2d=True)
     assert msr == sr, (msr, sr)
     a = int(round((m["chorus"] - m["fade_in"]) * sr))
     n = len(out) - int(round(start * sr))
@@ -61,10 +68,10 @@ def main():
     add(seg * env[:, None], start)
     peak = np.abs(out).max()
     assert peak < 1.0, peak
-    dst = ROOT / "audio/postroll"
-    dst.mkdir(parents=True, exist_ok=True)
-    sf.write(dst / "postroll.wav", out, sr, subtype="PCM_16")
-    print(f"audio/postroll/postroll.wav: {post:.2f} s; dial {d['start']:.2f}-{dial_end:.2f} s, ring {ring_at:.2f}-"
+    dst = ROOT / args.out
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    sf.write(dst, out, sr, subtype="PCM_16" if args.out == ap.get_default("out") else "PCM_24")
+    print(f"{args.out}: {post:.2f} s; dial {d['start']:.2f}-{dial_end:.2f} s, ring {ring_at:.2f}-"
           f"{ring_at + r['length']:.2f} s, muzak from {start:.2f} s (its {m['chorus'] - m['fade_in']:.2f} s), chorus at "
           f"{lands:.2f} s (S46); peak {20 * np.log10(peak):.1f} dBFS")
 

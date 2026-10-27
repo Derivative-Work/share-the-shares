@@ -22,9 +22,14 @@ Modes:
   default     every --step'th frame of the rendered shots between --from and --to (song seconds)
               -> <out>/f_<frame>.png (song frame numbers at the video's fps); live and screen shots are left to the
               assembly's placeholders (scripts/animatic_assemble.py)
+  --flat      every --step'th frame between --from and --to whatever the shot, seen straight down on the whole sheet
+              through an orthographic camera, the desk left out (transparent): the plates the human composites onto
+              the printed sheet in the live shots (brief: "warp a flat render onto the track"). Use the sheet's own
+              aspect (--size 4400 3400 is its print resolution). --figures-only also leaves out the static print, so
+              only the figures and props remain, on transparency.
 
 Usage: blender -b --factory-startup --python scenes/blender/animatic.py -- --out DIR [--cert DIR] [--size W H]
-       [--samples N] [--step K] [--from S] [--to S] [--anchors | --times S ...]
+       [--samples N] [--step K] [--from S] [--to S] [--anchors | --times S ... | --flat [--figures-only]]
 """
 import argparse
 import bisect
@@ -61,6 +66,8 @@ ap.add_argument("--from", dest="t0", type=float, default=0.0)
 ap.add_argument("--to", dest="t1", type=float, default=None)
 ap.add_argument("--anchors", action="store_true")
 ap.add_argument("--times", nargs="+", type=float)
+ap.add_argument("--flat", action="store_true")
+ap.add_argument("--figures-only", action="store_true")
 ap.add_argument("--debug-cam", type=float, default=None, help="print the camera and the sheet corners' projection at t")
 args = ap.parse_args(sys.argv[sys.argv.index("--") + 1:])
 cert = Path(args.cert)
@@ -441,7 +448,7 @@ GREEN_BSDF = M["green"].node_tree.nodes["Principled BSDF"]
 GREEN_RGB = list(GREEN_BSDF.inputs["Base Color"].default_value)
 GOLD_RGB = [p * g for p, g in zip(S.srgb(S.LOOK["palette"]["paper"]), S.srgb(S.LOOK["palette"]["ink_gold"]))][:3] + [1.0]
 GOLD_SPAN = (None, 2.6)  # the creep's length (s) from the key change (S36)
-S.desk()
+DESK = S.desk()
 KEY, FILL = S.lights()
 KEY_E, KEY_C = KEY.data.energy, tuple(KEY.data.color)
 P.print_piece("laborer", LAYOUT["laborer"], src=S.LOOK["laborer_ink"])
@@ -891,6 +898,14 @@ def apply_pose(t):
 CAM = S.camera((0, 0, 1), (0, 0, 0), 50)
 FOV = 2 * math.atan(18 / 50)
 ASPECT = args.size[0] / args.size[1]
+if args.flat:
+    CAM.data.type = "ORTHO"
+    CAM.data.ortho_scale = max(S.SW, S.SH * ASPECT)  # the frame's wider side
+    CAM.location, CAM.rotation_euler = (0, 0, 1), (0, 0, 0)  # straight down, north up
+    DESK.hide_render = True
+    scene.render.film_transparent = True
+    if args.figures_only:
+        SHEET.hide_render = True
 
 
 def frame_box(b, back=False):
@@ -963,6 +978,8 @@ def apply(t):
     k = ramp(t, T["S36"], T["S36"] + 1.0)
     KEY.data.energy = KEY_E * (1 + 0.10 * k)
     KEY.data.color = tuple(c0 * (1 - k) + c1 * k for c0, c1 in zip(KEY_C, (1.0, 0.95, 0.86)))
+    if args.flat:
+        return True
     pose = camera_at(t)
     if pose:
         loc, target, d = pose
@@ -1004,7 +1021,7 @@ else:
     t1 = args.t1 if args.t1 is not None else TM["duration_s"]
     for f in range(int(args.t0 * FPS) // args.step * args.step, int(t1 * FPS) + 1, args.step):
         t = f / FPS
-        if shot_at(t) in PLAN["shots"] and render(t, out / f"f_{f:05d}.png"):
+        if (args.flat or shot_at(t) in PLAN["shots"]) and render(t, out / f"f_{f:05d}.png"):
             n += 1
             if n % 100 == 0:
                 print(f"{n} frames, {time.time() - t_start:.0f} s", flush=True)

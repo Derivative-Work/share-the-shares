@@ -14,11 +14,14 @@ audio/postroll/postroll.wav (scripts/postroll_audio.py). The audio is delayed by
 Frames may be every k'th frame (blender --step k): they play at fps / k, so timing is exact and motion is coarser.
 
 Usage: .venv/bin/python -I scripts/animatic_assemble.py <frames dir> <step> <out.mp4> [--graphics DIR]
-       [--from S] [--to S] [--captions full|ids]
+       [--from S] [--to S] [--captions full|ids|none] [--master] [--no-audio] [--tmp DIR]
   --graphics: the graphics layer's renders (default renders/c4/graphics, the animatic's)
   --from/--to: a section, in song seconds (C5's review cuts, config/c5_sections.json); the pre-roll belongs to a
                section from 0, the post-roll to one running to the end
-  --captions: full (karaoke lyrics, shot IDs: the animatic) or ids (shot IDs only: C5's review cuts)
+  --captions: full (karaoke lyrics, shot IDs: the animatic), ids (shot IDs only: C5's review cuts) or none (the finals)
+  --master: ProRes 422 HQ (10-bit 4:2:2) in a .mov, with 24-bit PCM audio, for compositing in Resolve
+  --no-audio: picture only (the 4K sections, joined and given the full mix afterwards)
+  --tmp: where the composited frames are written (default the system's; /tmp is a RAM disk on the 5090 box)
 """
 import argparse
 import json
@@ -104,7 +107,10 @@ def main():
     ap.add_argument("--graphics", default="renders/c4/graphics")
     ap.add_argument("--from", dest="t0", type=float, default=None)
     ap.add_argument("--to", dest="t1", type=float, default=None)
-    ap.add_argument("--captions", default="full", choices=["full", "ids"])
+    ap.add_argument("--captions", default="full", choices=["full", "ids", "none"])
+    ap.add_argument("--master", action="store_true")
+    ap.add_argument("--no-audio", action="store_true")
+    ap.add_argument("--tmp", default=None)
     a = ap.parse_args()
     frames, step, out = Path(a.frames), a.step, a.out
     pngs = {int(p.stem[2:]): p for p in frames.glob("f_*.png")}
@@ -126,7 +132,7 @@ def main():
             cache[key] = Image.open(G / job["name"] / f"{k:05d}.png").convert("RGBA")
         return cache[key]
 
-    with tempfile.TemporaryDirectory() as td:
+    with tempfile.TemporaryDirectory(dir=a.tmp) as td:
         td = Path(td)
         seq = td / "seq"
         seq.mkdir()
@@ -163,21 +169,30 @@ def main():
                 rows.append(row)
             script = head + "[Events]\n" + "\n".join(rows) + "\n"
         sub.write_text(script)
+        if a.captions == "none":
+            vf = "[0:v]null[v]"
+        else:
+            vf = f"[0:v]ass={sub}:fontsdir=assets/fonts[v]"
+        if a.master:
+            vcodec = ["-c:v", "prores_ks", "-profile:v", "3", "-vendor", "apl0", "-pix_fmt", "yuv422p10le"]
+        else:
+            vcodec = ["-c:v", "libx264", "-preset", "veryfast", "-crf", "22", "-pix_fmt", "yuv420p"]
         # the audio is encoded on its own and muxed in as is: encoded in the same graph as the slow video, the
         # delayed audio came out with broken packet timestamps (a 1.6 s packet at the pre-roll's end), which
         # players that ignore timestamps played ~1.5 s early (v1-v3)
         ms = int(round(PRE * 1000))
-        aud = td / "audio.m4a"
+        aud = td / ("audio.wav" if a.master else "audio.m4a")
+        acodec = ["-c:a", "pcm_s24le"] if a.master else ["-c:a", "aac", "-b:a", "160k"]
         # the post-roll's sound (scripts/postroll_audio.py: the dialling, the ring, the hold music) follows the song
         post = Path("audio/postroll/postroll.wav")
         srcs = ["-i", TM["audio"]] + (["-i", str(post)] if post.exists() else [])
         chain = ("[0:a][1:a]concat=n=2:v=0:a=1," if post.exists() else "[0:a]") + f"adelay={ms}|{ms},apad[a]"
         subprocess.run(["ffmpeg", "-v", "error", "-y", *srcs, "-filter_complex", chain, "-map", "[a]",
-                        "-ss", f"{v0:.3f}", "-t", f"{v1 - v0:.3f}", "-c:a", "aac", "-b:a", "160k", str(aud)], check=True)
-        cmd = ["ffmpeg", "-v", "error", "-y", "-framerate", f"{FPS / step}", "-i", str(seq / "%06d.png"),
-               "-i", str(aud), "-filter_complex", f"[0:v]ass={sub}:fontsdir=assets/fonts[v]",
-               "-map", "[v]", "-map", "1:a", "-t", f"{v1 - v0:.3f}", "-c:v", "libx264", "-preset", "veryfast", "-crf", "22",
-               "-pix_fmt", "yuv420p", "-r", f"{FPS}", "-c:a", "copy", out]
+                        "-ss", f"{v0:.3f}", "-t", f"{v1 - v0:.3f}", *acodec, str(aud)], check=True)
+        audio = [] if a.no_audio else ["-i", str(aud)]
+        amap = [] if a.no_audio else ["-map", "1:a", "-c:a", "copy"]
+        cmd = ["ffmpeg", "-v", "error", "-y", "-framerate", f"{FPS / step}", "-i", str(seq / "%06d.png"), *audio,
+               "-filter_complex", vf, "-map", "[v]", *amap, "-t", f"{v1 - v0:.3f}", *vcodec, "-r", f"{FPS}", out]
         subprocess.run(cmd, check=True)
     print(out, f"{v1 - v0:.1f} s (video {v0:.2f}-{v1:.2f}), {len(pngs)} rendered frames on disk")
 
