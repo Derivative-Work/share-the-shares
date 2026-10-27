@@ -209,3 +209,8 @@ Every human action: timestamp, what, why, and which production rule allows it. R
 
 - **What:** The human, of the phone video: "remove the hangup".
 - **Rule:** R1.
+
+## 2026-10-27T19:58:00-04:00 — A printable transfer form — R1
+
+- **What:** The human: "I also need a printable version of the transfer form".
+- **Rule:** R1. Printing the prop will be the human's part of the live shots, and will be logged with them.

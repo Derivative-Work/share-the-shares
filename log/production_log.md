@@ -853,3 +853,15 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
 - **`deliverables/phone/S45_S46_dialer.mp4`:** 48.88 s (1,173 frames), long enough to hang up whenever the take needs. The first tone is still at 5.00 s, and "On hold" at 7.81 s. The previous version is archived as `archive/phone/S45_S46_dialer_v1_hang-up.mp4`.
 - **Checked:** frames at 13.5, 30 and 48.5 s are all on hold (0:05, 0:22, 0:40).
 - **`scripts/manifest.sh`:** run.
+
+## 2026-10-27T20:05:00-04:00 — The transfer form, printable (the sheet's back)
+
+- **Why:** the human asked for it (human interventions, 19:58); the brief's "The prop" puts the transfer form on the sheet's back, face up in S30.
+- **`scripts/transfer_form_print.py`** (new) → `deliverables/transfer_form/`:
+  - `transfer_form.pdf`: the back alone, letter landscape (11 × 8.5 in), 4400 × 3400 at 400 dpi, lossless (the alignment sheet's Flate PDF writer).
+  - `prop_duplex.pdf`: page 1 the face (the alignment print, with its marks), page 2 the back, for printing both sides at once.
+  - `transfer_form_4400x3400.png`.
+- **Shading:** as the render shades the back (`layer_material`): the paper printed with the sepia plate, then the lathe plate multiplied over it in gold, as the back is from S36 on (S24's `green_ink="ink_gold"`), which covers every live shot. Mixed in linear light from `config/look.json`'s palette, written as sRGB. The paper tone is printed, as on the face's print.
+- **Orientation:** the render has no flip axis (S24 cuts to the back lying beside the sheet), so either duplex setting works. With "flip on short edge", the back reads upright when the sheet is turned over side to side, as in S31.
+- **Checked:** the whole page and a crop of the type at full resolution; a re-run gives byte-identical files.
+- **`scripts/manifest.sh`:** run (the PNG and PDFs are git-ignored).
