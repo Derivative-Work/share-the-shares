@@ -73,6 +73,15 @@
     560
    ],
    "cutout": true
+  },
+  "jaw": {
+   "parent": "head",
+   "z": 5,
+   "pivot": [
+    960,
+    215
+   ],
+   "cutout": true
   }
  }
 }

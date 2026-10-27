@@ -9,9 +9,9 @@ Nothing is keyed by hand: every frame is a function of song time, from timing/ti
 anchors) and config/c4_shots.json (the agent's framing per shot). The puppets move on twos (their pose is sampled at
 the even frame below); the camera, a document camera, moves smoothly and cuts between shots.
   - Mouths follow the voice: inside the figure's own lines (the Founder: Progress; the Board: Prudence; the Lawyer:
-    Mercury, who has no jaw cut and nods instead; the choir: the cherubs, who nod; "everyone": all of them), the jaw
-    opens with the stem's loudness against its local peaks and dips (C3's envelopes), so it opens on each syllable
-    and shuts in each dip, a frame ahead of the sound, in three positions (shut, half, open).
+    Mercury, whose jaw was cut on 2026-10-27 and who nods a little too; the choir: the cherubs, who nod; "everyone":
+    all of them), the jaw opens with the stem's loudness against its local peaks and dips (C3's envelopes), so it
+    opens on each syllable and shuts in each dip, a frame ahead of the sound, in three positions (shut, half, open).
   - The cherubs sway on the beat through every chorus (at the extreme on each beat, one side then the other), and
     fade out with the outro; Mercury's feet reach on the beats.
   - Shot actions are in ACTIONS below, each tied to its shot's anchor.
@@ -796,7 +796,7 @@ def progress_pose(t):
 
 
 def prudence_pose(t):
-    out = {"jaw": -8 * mouth("prudence", t)}
+    out = {"jaw": -16 * mouth("prudence", t)}  # -8 until 2026-10-27 (the human: too subtle)
     sa = 0.0
     if within(t, T["S18"], T["S20"]):
         sa = 6 * math.sin(2 * math.pi * 0.9 * t) + 2 * math.sin(2 * math.pi * 2.3 * t)  # never settle
@@ -820,13 +820,14 @@ def prudence_pose(t):
 
 
 def mercury_pose(t):
-    out = {"wing": 4 * math.sin(2 * math.pi * 0.5 * t), "head": 5 * mouth("mercury", t)}
+    # his jaw (cut 2026-10-27, when the human asked for his mouth to move) carries the words; the nod is now small
+    out = {"wing": 4 * math.sin(2 * math.pi * 0.5 * t), "head": 2 * mouth("mercury", t), "jaw": -22 * mouth("mercury", t)}
     if within(t, T["S10"], T["S11"]):
         ph = 2 * math.pi * 2 * beat_pos(t) + math.pi / 2  # two strides a beat, a foot at full reach on each
         out.update({"leg_back": 28 * math.sin(ph), "leg_front": -28 * math.sin(ph), "leg_bent": 20 * math.sin(ph),
                     "wing": 15 * math.sin(2 * ph), "arm": 6 * math.sin(ph)})
     if within(t, T["S23"], T["S24"]):
-        out["head"] = -8 + 3 * mouth("mercury", t)
+        out["head"] = -8 + 1 * mouth("mercury", t)
         out["arm"] = -10
     if within(t, T["S39"], SPAN["S39"][1]):
         # S39: he pops up out of the fine print: from below the text line, with an overshoot, then a wave of the caduceus

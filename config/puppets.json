@@ -1150,6 +1150,59 @@
       868,
       675
      ]
+    },
+    "jaw": {
+     "box": [
+      985,
+      228,
+      1046,
+      276
+     ],
+     "pivot": [
+      960,
+      215
+     ],
+     "parent": "head",
+     "z": 1,
+     "cut": {
+      "polys": [
+       [
+        [
+         985,
+         238
+        ],
+        [
+         1010,
+         236
+        ],
+        [
+         1030,
+         230
+        ],
+        [
+         1045,
+         236
+        ],
+        [
+         1046,
+         252
+        ],
+        [
+         1035,
+         268
+        ],
+        [
+         1010,
+         276
+        ],
+        [
+         990,
+         268
+        ]
+       ]
+      ]
+     },
+     "note": "chin below the mouth line, hinged behind the cheek (2026-10-27: the human asked for Mercury's mouth to move; he only nodded)"
     }
    }
   },

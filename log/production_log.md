@@ -797,3 +797,23 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   - `main` was force-pushed with a lease on `b562d4a`.
   - No blob over 2 MB is reachable from `origin/main`.
   - The old commits stay on a local branch only, `backup/pre-rewrite-5c4fb35`, until the human is happy to delete it.
+
+## 2026-10-27T09:05:00-04:00 — Mercury's jaw cut; Prudence's jaw opens wider; the re-render queued
+
+- **Why:** the human chose "Mercury's lines" and "Prudence too subtle" (human interventions, 09:05).
+- **Mercury's jaw (`config/puppets.json`):** a hand cut, like Progress's and Prudence's.
+  - The chin is below the mouth line, at piece pixels (985–1046, 228–276), hinged behind the cheek at (960, 215), parented to the head.
+  - It was placed from the 4K S39 close-up, matching the ear's swirl and the dark mouth mark to the ink piece, and checked by overlaying the cut on the engraving.
+  - `scripts/segment.py mercury`: SAM reproduced every existing mask byte for byte. New `masks/jaw.png`, and a new `preview.jpg` (the previous one archived to `archive/puppets/mercury/preview_before-jaw.jpg`).
+  - `scripts/puppet_build.py mercury`: a jaw layer of 2,126 px. The head's hole is filled with engraving.
+- **Poses (`scenes/blender/animatic.py`):**
+  - Mercury: jaw −22° with his words. His nod drops from 5° to 2° (and from 3° to 1° in S23), so the mouth carries the line.
+  - Prudence: jaw −16° (was −8°; Progress's is −14°).
+  - The docstring's note that Mercury has no jaw is corrected.
+- **Checked:**
+  - Mercury at 236.25 s (S39), nod off, jaw open against shut: only an 85 × 73 px patch at his mouth changes. On his small cross-hatched face it reads as a chin flap.
+  - At rest (the flat sheet at 170 s), the new cut differs from before only along its seam: 49 px at 400 dpi. So the S26, S29 and S31 plates and the alignment print stand.
+  - 1080p previews of S39 (Mercury) and S38 (Prudence's close-up), with the song, were sent to the human.
+- **Re-render** (`renders/final/logs/rerender_jaws.sh`, started 09:03:25; `queue.log` JAWS_*):
+  - Two lanes: the Lawyer's lines (46.88–58.14 s), the final chorus's full-cast lines (220.5–248.59 s), all of section 3, and the S40 plates (every figure sings "do I get a say?").
+  - Then: the superseded master (v2), its 1080p copy, the section 2, 3 and 6 intermediates and the S40 plates are archived (`*_before-jaws`), the sections re-assembled, the plates re-encoded and the master re-joined.
