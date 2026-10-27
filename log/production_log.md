@@ -732,3 +732,21 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
 - **Why:** the human created github.com/Derivative-Work/share-the-shares (private) and gave the agent access (human interventions, same time). The credits already name it as the production log's home.
 - **Before the push:** the history was scanned for credentials and API keys (none) and for large blobs. The largest are 1.5 MB, puppet previews. Large media stay out of git, listed in `MANIFEST.sha256`.
 - **Pushed:** `main`, 46 commits through `21b7983`, as `origin` (https), tracking `origin/main`. This entry follows as its own commit.
+
+## 2026-10-27T04:05:00-04:00 — The 4K finals rendered; the live plates; the post-filtered preview master
+
+- **Queue** (`scripts/final_queue.sh`, `renders/final/logs/queue.log`): 23:53:37 to 03:53:24. No failures.
+  - Plates done 01:03:56. Sections, by finish time: 1 (01:29:57), 4 (01:47:18), 5 (02:20:30), 2 (02:36:43), 3 (03:33:38), 6 (03:52:03).
+  - Pace: 3–5 s a frame, with two Blender lanes sharing the GPU.
+  - Each section's ProRes intermediate held every frame: 1,125 + 1,238 + 982 + 1,368 + 579 + 2,588 = 7,880. The 4K PNGs are kept in `renders/final/frames/s1`–`s6`.
+- **The master:** `deliverables/final_4k/share_the_shares_4k_postfilter_preview.mov` (ProRes 422 HQ, 3840 × 2160, 10-bit 4:2:2, 24-bit PCM, 328.33 s, 23.4 GB). Also `share_the_shares_1080p_postfilter_preview.mp4` (H.264 CRF 18, AAC 320k), to listen to.
+  - The master has 7,879 frames. The mix (328.33 s) is 3 ms shorter than the picture (328.333 s), so `-shortest` dropped the last frame, which falls in the final fade to black.
+  - Its audio is identical, sample for sample, to `audio/master/postfilter_preview/share_the_shares_postfilter_preview_mix.wav`.
+  - A contact sheet at 11 times (title, S11, the key change, the S26/S30/S40/S45 slates with S30's tab, the bridge's thermometer, S44, the fact card, the announcement page): every frame as intended, with no captions.
+- **The live plates** (`deliverables/live_plates/`, ProRes 4444 with alpha, 9.7 GB):
+  - S26: 187 frames. S29: 31. S31: 114. S40: 46. Each in `sheet` and `figures`.
+  - Also `S30_postfilter_tab.mov`, 685 frames at 3840 × 2160.
+  - `plates.json` gives each plate's first frame in video time. A mid-S31 frame was checked in both passes.
+- **Housekeeping:**
+  - `deliverables/live_plates/plates.json.tmp`, the queue's scratch file, was committed by mistake with the 23:45 and 23:53 steps; it is removed from git and `plates.json` added.
+  - `scripts/manifest.sh` now covers `deliverables/` too. `MANIFEST.sha256`: 5,222 files, including the master, the plates, the section intermediates and the post-filter preview audio.

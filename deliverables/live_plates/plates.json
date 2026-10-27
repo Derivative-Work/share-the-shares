@@ -1,0 +1,54 @@
+{
+ "_doc": "Flat plates of the whole sheet for the live shots (scripts/final_queue.sh): straight down, orthographic, at the print resolution (4400x3400, the sheet edge to edge). sheet: the whole certificate as rendered, figures moving; figures: the figures and props alone, on transparency. ProRes 4444 with alpha. first_frame_s: the video time of the first frame (song time; there is no pre-roll), including the handle before the shot.",
+ "fps": 24,
+ "plates": [
+  {
+   "shot": "S26",
+   "shot_s": [
+    149.86,
+    156.59
+   ],
+   "first_frame_s": 149.333,
+   "files": [
+    "S26_sheet.mov",
+    "S26_figures.mov"
+   ]
+  },
+  {
+   "shot": "S29",
+   "shot_s": [
+    163.9,
+    164.14
+   ],
+   "first_frame_s": 163.375,
+   "files": [
+    "S29_sheet.mov",
+    "S29_figures.mov"
+   ]
+  },
+  {
+   "shot": "S31",
+   "shot_s": [
+    192.68,
+    196.384
+   ],
+   "first_frame_s": 192.167,
+   "files": [
+    "S31_sheet.mov",
+    "S31_figures.mov"
+   ]
+  },
+  {
+   "shot": "S40",
+   "shot_s": [
+    239.654,
+    240.54
+   ],
+   "first_frame_s": 239.125,
+   "files": [
+    "S40_sheet.mov",
+    "S40_figures.mov"
+   ]
+  }
+ ]
+}
