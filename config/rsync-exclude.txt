@@ -1,0 +1,10 @@
+# Transfer to the RTX 5090 box (docs/render_box.md): rsync -aHAX --exclude-from=config/rsync-exclude.txt
+# Machine-local: rebuilt on the box (uv sync, npm ci).
+/.venv/
+/node_modules/
+__pycache__/
+cache/
+# Frame sequences: regenerable from the logged commands, and the 4K finals replace them (about 20 GB).
+# Remove these two lines to carry the C4/C5 frames over too.
+frames/
+frames_*/

@@ -669,3 +669,15 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
 - **Change (`scenes/blender/animatic.py` `SHUT`):** the drawer front slid over Progress from 267.65 s, during "at the IPO" (the line runs 266.00–269.25 s). It now shuts from 0.25 s after the line ends, over 2 s (269.50–271.50 s).
 - **Re-rendered:** S44's frames 267.6–271.75 s (101, no errors); section 6 re-cut (the previous cut is archived as `…_v5_drawer-early`).
 - **Checked:** at 268.6 and 269.1 s Progress is in full view, saying the line; at 271.6 s the drawer is shut on WHOLLY OWNED.
+
+## 2026-10-26T22:45:29-04:00 — Ready for the transfer to the RTX 5090 box
+
+- **Why:** the human will rsync the project to the 5090 box for the 4K finals.
+- **New:** `config/rsync-exclude.txt` and `docs/render_box.md`.
+  - The transfer leaves out `.venv`, `node_modules`, caches and every frame sequence.
+  - The doc covers the setup on the box: the hash check, the tool versions, `uv sync`, `npm ci` and a 4K smoke frame.
+- **Checked:**
+  - `scripts/manifest.sh` left `MANIFEST.sha256` unchanged (3,302 files), and `sha256sum -c` passes.
+  - The tree is clean.
+  - An rsync dry run moves 4,382 files, 2.7 GB. Only one path matches the exclude patterns, `scripts/render_frames.mjs`, and it isn't excluded (the patterns match directories only).
+  - The scenes render with Eevee, so no GPU setting needs changing.
