@@ -719,3 +719,10 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   - The live shots keep their slates in the master; the human composites over them.
 - **Pace:** 3.6 s a frame for the sections and 4.3 s for the plates, with two Blender lanes on the GPU; about 4 hours in all.
 - **`scripts/manifest.sh`** runs when the queue finishes, so it doesn't hash files still being written.
+
+## 2026-10-26T23:53:37-04:00 — The 4K frames are kept
+
+- **Why:** the human freed disk space by archiving and deleting renders of videos already published (human interventions, same time). There is now 375 GB free, against 111 GB before.
+- **Change:** `scripts/final_queue.sh` no longer removes a section's PNGs once its ProRes intermediate holds every frame. With the frames kept (about 73 GB), a later change to the graphics or timing needs only a re-assembly, not the 4K render again.
+  - The new script replaced the old one as a new file, so the running lanes never read a half-edited script.
+  - Lanes `a` and `b` were stopped and restarted on it. That lost about 11 minutes: the first frames of section 1, and the S26 plate, which was rendering. The graphics lane had finished (23:47:42), and the join lane only waits.

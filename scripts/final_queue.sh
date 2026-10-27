@@ -5,8 +5,8 @@
 #   b         the live plates (S26, S29, S31, S40), then sections 4-6
 #   join      after all three: the sections joined, with the post-filtered preview mix -> deliverables/final_4k/
 # A section is rendered to PNG frames, assembled to a ProRes 422 HQ intermediate (no captions, no audio), and once
-# that holds every frame, its PNGs are removed: the disk can't hold all of them at once (about 12 MB a frame), and
-# frame sequences regenerate from this script and are never archived (CLAUDE.md).
+# that holds every frame, the PNGs are kept for re-assembly (the first run removed them for lack of disk; the box
+# now has the room). Frame sequences regenerate from this script and are never archived (CLAUDE.md).
 # Usage: scripts/final_queue.sh graphics|a|b|join   (progress in renders/final/logs/queue.log)
 set -euo pipefail
 cd "$(git rev-parse --show-toplevel)"
@@ -48,7 +48,7 @@ render_section() {
   .venv/bin/python -I scripts/animatic_assemble.py "$frames" 1 "$mov" --graphics renders/final/graphics \
     --from "$t0" $([ "$n" = 6 ] || echo --to "$t1") --captions none --master --no-audio --tmp renders/final/tmp \
     >> "$LOG/section$n.log" 2>&1
-  # the intermediate must hold the section's every frame before its PNGs go
+  # the intermediate must hold the section's every frame
   local want got
   want=$(.venv/bin/python -I -c "
 import json; tm = json.load(open('timing/timing_map.json'))
@@ -56,8 +56,7 @@ ph = json.load(open('config/c4_shots.json'))['placeholders']
 v1 = $t1 + (sum(ph[i]['after_s'] for i in ('S45', 'S46', 'S47', 'S48')) if $n == 6 else 0)
 print(round(v1 * $FPS) - round($t0 * $FPS))")
   got=$(ffprobe -v error -count_packets -select_streams v:0 -show_entries stream=nb_read_packets -of csv=p=0 "$mov")
-  if [ "$got" != "$want" ]; then mark "S${n}_FAILED $mov has $got frames, wants $want; PNGs kept"; exit 1; fi
-  rm -r "$frames"
+  if [ "$got" != "$want" ]; then mark "S${n}_FAILED $mov has $got frames, wants $want"; exit 1; fi
   mark "S${n}_DONE $mov ($got frames)"
 }
 

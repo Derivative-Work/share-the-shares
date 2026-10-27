@@ -179,3 +179,8 @@ Every human action: timestamp, what, why, and which production rule allows it. R
 
 - **What:** The human: "go ahead and queue the 4K render. I'm also going to need the videos to composite into the live sections. Also run the audio through the postfilter (~/Code/music-deslop) for this render so I can preview what it sounds like before I properly redo the mix with the live sections included."
 - **Rule:** R1. The post-filter was planned as the human's step (R4, 2026-10-25T09:20) because it needs this box's VRAM. Here the agent has access, so the agent ran it at the human's direction; it isn't an R4. The human will do the final mix with the live audio, and that will be logged when it happens.
+
+## 2026-10-26T23:53:00-04:00 — Disk space freed on the 5090 box — R3
+
+- **What:** The human: "I freed up some space by archiving and deleting renders from already-published videos".
+- **Rule:** R3. The agent was removing each 4K section's frames for lack of disk, and the other projects' renders aren't the agent's to delete.
