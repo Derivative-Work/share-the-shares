@@ -832,3 +832,16 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   - `archive/final_4k/*_v2_before-jaws.*`: the master, its 1080p copy, and the section 2, 3 and 6 intermediates. Sections 2 and 6 were in fact their first versions; the name follows the master's.
   - `archive/live_plates/S40_*_v1_before-jaws.mov`.
 - **`scripts/manifest.sh`:** run.
+
+## 2026-10-27T19:40:00-04:00 — The phone's screen for S45–S46 (the dialer video)
+
+- **Why:** the human asked for a video to play on their phone for the pre-credits dialer scene (S45, dialling the pledge line; S46, the hold music and the hang-up).
+- **`scripts/phone_dialer.py`** (new; `config/phone_dialer.json`) → `deliverables/phone/S45_S46_dialer.mp4`: 1080 × 2400 portrait, 24 fps, H.264 with AAC, 16.0 s.
+  - An invented dialer (no real phone's interface): a black screen, a 3 × 4 keypad of round keys, a green call key.
+  - 4.0 s of empty keypad lead-in, to start the video and lift the phone.
+  - Then 555-0142 is typed on the post-roll's DTMF timing (`config/postroll.json`), each key lit while its tone plays: from 5.00 s in the video (post-roll 1.00 s).
+  - "Calling…" from 6.46 s, over the ring; "On hold" with a timer from 7.81 s, through the hold music; "Call ended" at the hang-up, 13.00 s (post-roll 9.00 s, 4 s into S46, leaving 4 s to fold the sheet into the guitar case; `hang_up` in the config); black for the last second.
+  - Its sound is `audio/postroll/postroll.wav` to the hang-up, so the tones the set's mic picks up line up with the post mix (R2).
+- **Font:** Noto Sans Regular and Bold (OFL), copied into `assets/fonts` with `OFL-notosans.txt`; `SHA256SUMS` updated.
+- **Checked:** a contact sheet of 8 frames (empty pad, "555", "555-01" with the 1 lit, calling, on hold 0:01, call ended); the first tone starts at 5.001 s, on the first digit's frame.
+- **`scripts/manifest.sh`:** run (the mp4 is git-ignored).
