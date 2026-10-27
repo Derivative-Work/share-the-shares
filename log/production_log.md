@@ -681,3 +681,17 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   - The tree is clean.
   - An rsync dry run moves 4,382 files, 2.7 GB. Only one path matches the exclude patterns, `scripts/render_frames.mjs`, and it isn't excluded (the patterns match directories only).
   - The scenes render with Eevee, so no GPU setting needs changing.
+
+## 2026-10-26T23:23:23-04:00 — The RTX 5090 box set up for the 4K finals
+
+- **Why:** the human rsynced the project here from the GTX 970 box (`docs/render_box.md`) and asked for it to be made ready to render.
+- **The box:** RTX 5090 (32 GB, driver 595.99.02); Blender 5.2.3 LTS (snap; the draft box has 5.2.2), uv 0.13.0, Node 24.22.0, ffmpeg 8.0.1.
+- **The copy:** `sha256sum -c MANIFEST.sha256` passes on all 3,302 files, and the tree is clean.
+- **Environments:** `uv sync` (CPU torch, as pinned) and `npm ci`.
+  - npm skipped Puppeteer's postinstall (not in `allowScripts`), so its browser wasn't fetched. Installed with `npx puppeteer browsers install chrome-headless-shell` (148.0.7778.97); `chrome` too, for a launch test.
+  - A plain `puppeteer.launch()` dies on Ubuntu's user-namespace restriction; with `render_frames.mjs`'s own options (headless shell, `--no-sandbox`) it starts.
+- **Smoke tests** (`renders/final/smoke/`):
+  - Blender, S44 at 268.6 s, 3840 × 2160, 64 samples: 6 s for the frame. Downscaled to 1080p, it matches section 6's cut at 48.10 s (PSNR 31 dB; the differences are the cut's `S44` slug and its compression).
+  - Graphics, the fact card's frame 500 at 3840 × 2160: the card and the red pen lay out as at 1080p.
+- **`docs/render_box.md`:** the Puppeteer step, the two smoke commands, the box's Blender version.
+- **`scripts/manifest.sh`:** adds the two smoke frames (3,304 files).

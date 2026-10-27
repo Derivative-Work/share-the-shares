@@ -169,3 +169,8 @@ Every human action: timestamp, what, why, and which production rule allows it. R
 
 - **What:** The human: "time the cut to the "wholly owned" a bit later so that the whole "phone lines open at the IPO" can be seen with the mouth moving".
 - **Rule:** R1.
+
+## 2026-10-26T23:20:00-04:00 — The project moved to the RTX 5090 box — R3
+
+- **What:** The human rsynced the project from the GTX 970 box to the RTX 5090 box (`docs/render_box.md`): "I just moved over this project from the draft box. Prepare it to render here".
+- **Rule:** R3: the agent has no access between the two machines.
