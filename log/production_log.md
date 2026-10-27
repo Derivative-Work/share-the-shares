@@ -817,3 +817,18 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
 - **Re-render** (`renders/final/logs/rerender_jaws.sh`, started 09:03:25; `queue.log` JAWS_*):
   - Two lanes: the Lawyer's lines (46.88–58.14 s), the final chorus's full-cast lines (220.5–248.59 s), all of section 3, and the S40 plates (every figure sings "do I get a say?").
   - Then: the superseded master (v2), its 1080p copy, the section 2, 3 and 6 intermediates and the S40 plates are archived (`*_before-jaws`), the sections re-assembled, the plates re-encoded and the master re-joined.
+
+## 2026-10-27T10:12:00-04:00 — The master rebuilt with the new jaws
+
+- **Re-render** (`renders/final/logs/rerender_jaws.sh`, 09:03:25–10:09:23, no errors):
+  - Lane 1: 271 frames of the Lawyer's lines, then the final chorus's full-cast lines.
+  - Lane 2: all of section 3, then the S40 plates.
+- **Rebuilt:**
+  - Sections 2, 3 and 6; every intermediate holds its full count (1,125 / 1,238 / 982 / 1,368 / 579 / 2,588).
+  - The S40 plates: 46 frames each.
+  - The master, re-joined: 7,879 frames, as before. Its 1080p copy too.
+- **Checked:** in the master, Prudence's jaw is clearly open at 233.7 s (S38). Mercury's chin movement in S39 is small at full frame, as in the close-up test.
+- **Archived:**
+  - `archive/final_4k/*_v2_before-jaws.*`: the master, its 1080p copy, and the section 2, 3 and 6 intermediates. Sections 2 and 6 were in fact their first versions; the name follows the master's.
+  - `archive/live_plates/S40_*_v1_before-jaws.mov`.
+- **`scripts/manifest.sh`:** run.
