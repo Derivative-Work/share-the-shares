@@ -877,3 +877,11 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
 - **`scripts/props.py` `calendar_pages`:** the pages redrawn landscape (700 × 400) to the pad's drawn proportions. They have the same band, month and company line, and a fold line at the binding instead of the holes. The previous pages and masks are archived in `archive/props/calendar_pages_v1_upright/`.
 - **Checked:** 4K test frames at 58.20, 58.30, 58.34, 58.37 and 60.40 s. The page's outline matches the pad's, NOV turns to show DEC under it, and the last page, SOON, also sits on the pad.
 - **Re-render** (`renders/final/logs/rerender_calendar.sh`; `queue.log` CAL_*): S12, 58.14–60.61 s, at 4K and 64 samples into section 2's frames. Then the master (v3), its 1080p copy and section 2's intermediate are archived (`*_v3_before-calendar`), section 2 re-assembled and the master re-joined. The calendar isn't on the sheet in any live shot, so the plates and the alignment print stand.
+
+## 2026-10-27T21:40:00-04:00 — The master rebuilt with the calendar on its pad
+
+- **Re-render** (`renders/final/logs/rerender_calendar.sh`, 21:27:33–21:34:29, no errors): 60 frames of S12 at 4K, 64 samples.
+- **Rebuilt:** section 2 (1,238 frames), the master (7,879 frames, as before) and its 1080p copy. Every section intermediate holds its full count.
+- **Checked in the master:** at 58.2, 58.35, 59.0 and 60.4 s the page sits on the pad; Q1 is seen turning over the binding with the next page under it.
+- **Archived:** `archive/final_4k/*_v3_before-calendar.*` (the master, its 1080p copy, section 2's intermediate).
+- **`scripts/manifest.sh`:** run.
