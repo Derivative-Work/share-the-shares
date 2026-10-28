@@ -907,3 +907,16 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   - 4K at 64 samples: S10–S11 (46.88–58.14 s), S39 (234.44–239.654 s).
   - The S40 plates, both passes: their 0.5 s lead-in handle (from 239.125 s) is in S39 and showed the old fine print.
   - Then the master (v4), its 1080p copy, the section 2 and 6 intermediates and the S40 plates (v2) are archived. Sections 2 and 6 are re-assembled, the plates re-encoded and the master re-joined.
+
+## 2026-10-28T10:45:00-04:00 — The master rebuilt with S11's microprint and the fine print inside the border
+
+- **Re-render** (`renders/final/logs/rerender_text.sh`, 10:14:34–10:39:26, no errors): S10–S11, 271 frames; S39, 126 frames; the S40 plates, 46 frames each pass.
+- **Rebuilt:**
+  - Sections 2 and 6; every intermediate holds its full count (1,125 / 1,238 / 982 / 1,368 / 579 / 2,588).
+  - The master, re-joined: 7,879 frames, as before. Its 1080p copy too.
+  - The S40 plates, re-encoded.
+- **Checked:**
+  - In the master: the S10 ticker stops at the border (49.0 s); S11 opens on dotted strands (52.8 s), which are legible by 55.3 s and fill the frame as LLC LLC by 58.0 s; S39's line is whole and clear of the rule (236.6 s).
+  - The S40 sheet plate's first frame (the handle, in S39) shows the new line.
+- **Archived:** `archive/final_4k/*_v4_before-text.*` (the master, its 1080p copy, the section 2 and 6 intermediates) and `archive/live_plates/S40_*_v2_before-fineprint.mov`.
+- **`scripts/manifest.sh`:** run.
