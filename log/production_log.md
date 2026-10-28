@@ -885,3 +885,25 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
 - **Checked in the master:** at 58.2, 58.35, 59.0 and 60.4 s the page sits on the pad; Q1 is seen turning over the binding with the next page under it.
 - **Archived:** `archive/final_4k/*_v3_before-calendar.*` (the master, its 1080p copy, section 2's intermediate).
 - **`scripts/manifest.sh`:** run.
+
+## 2026-10-28T10:15:00-04:00 — S11's guilloche microprinted; the fine print kept inside the border; the re-render queued
+
+- **Why:** the human asked for the "LLC LLC LLC LLC" and similar text zooms to be more convincing (human interventions, 09:20).
+  - In S11 a green line of "LLC LLC LLC LLC LLC" grew from nothing over the strands and the banner's "A". Nothing in the guilloche became letters.
+  - The fine print in S10 (the ticker) and S39 ran on over the border's lathe work and into the stub, and S39's ran over the first signature rule.
+- **S11, real microprint (`scripts/microprint.py`, new) → `renders/c1/microprint/`:**
+  - The banner's left end, 870–1710 × 1100–1600 sheet px, is printed again at 16 px per sheet px (13,440 × 8,000).
+  - Each of the underprint's nine strands is set as a line of tiny "LLC" letters (cap height 2.4 sheet px), computed from the strands' own formula in `certificate.py`.
+  - The sepia type (the company name and "ORGANIZED…") is set again at the same scale. The paper's grain is resampled from the sheet's own seed.
+  - **Checked against the static print:** the sepia differs by 0.97 of 255 on average. The only other differences are the strands themselves, now letters, which read a little lighter.
+  - **`scenes/blender/animatic.py`:** the patch is a card 0.04 mm over the sheet, shown only in S11, with the paper's material (the same roughness and ink relief). The growing LLC text object is removed.
+  - **`config/c4_shots.json`:** S11 now opens wider (GUILLOCHE 940–1640 × 1153–1547, was 1150–1430 × 1270–1430) and pushes in at a constant rate (`ease: exp`) to the same close-up. The strands read as fine dotted lines at the cut, become legible halfway through, and fill the frame with LLC LLC at the end.
+  - Checked in 4K test frames at 52.76, 54.0, 55.3, 56.6 and 58.1 s. The patch covers the frame throughout; the soft shape at the bottom of the opening frame is Mercury's cutout casting its shadow, not a seam.
+- **The fine print (S10, S39):**
+  - Both lines now print through a material clipped between the border's lathe work (its inner edge at x 815) and the first signature rule (from x 1575): x 840–1555 (`clipped()`). The S10 ticker now slides in and out at the border.
+  - S39's line is left-aligned at x 860, 24 px (was 30, centred on x 1140), and reads "BASELINE TO BE ANNOUNCED · AT THE BOARD'S DISCRETION" so it ends whole before the rule. It was "… · SUBJECT TO THE BOARD'S DISCRETION · TERMS APPLY", and the new wording echoes the lyric's "at our discretion".
+  - Checked in 4K test frames at 48.5, 51.5 and 236.6 s.
+- **Re-render** (`renders/final/logs/rerender_text.sh`, started 10:14:34; `queue.log` TEXT_*):
+  - 4K at 64 samples: S10–S11 (46.88–58.14 s), S39 (234.44–239.654 s).
+  - The S40 plates, both passes: their 0.5 s lead-in handle (from 239.125 s) is in S39 and showed the old fine print.
+  - Then the master (v4), its 1080p copy, the section 2 and 6 intermediates and the S40 plates (v2) are archived. Sections 2 and 6 are re-assembled, the plates re-encoded and the master re-joined.

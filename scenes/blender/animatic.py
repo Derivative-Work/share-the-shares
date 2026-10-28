@@ -216,6 +216,25 @@ def materials():
     M["glow"] = mat("c4.glow", GOLD, 0.6, emit=(1.0, 0.82, 0.38), alpha=0.0)
 
 
+def clipped(base, x0, x1):
+    """A copy of `base` printing only between sheet-pixel columns x0 and x1 (the fine print stops at the border)."""
+    m = base.copy()
+    m.name = f"{base.name}.clip{x0}-{x1}"
+    m.surface_render_method = "DITHERED"
+    n, l = m.node_tree.nodes, m.node_tree.links
+    sep = n.new("ShaderNodeSeparateXYZ")
+    l.new(n.new("ShaderNodeNewGeometry").outputs["Position"], sep.inputs["Vector"])
+    gt, lt, both = n.new("ShaderNodeMath"), n.new("ShaderNodeMath"), n.new("ShaderNodeMath")
+    gt.operation, lt.operation, both.operation = "GREATER_THAN", "LESS_THAN", "MULTIPLY"
+    gt.inputs[1].default_value, lt.inputs[1].default_value = S.px_to_world(x0, 0).x, S.px_to_world(x1, 0).x
+    l.new(sep.outputs["X"], gt.inputs[0])
+    l.new(sep.outputs["X"], lt.inputs[0])
+    l.new(gt.outputs["Value"], both.inputs[0])
+    l.new(lt.outputs["Value"], both.inputs[1])
+    l.new(both.outputs["Value"], n["Principled BSDF"].inputs["Alpha"])
+    return m
+
+
 def sheet_xyz(px, py, lift, dx=0.0):
     """A point `lift` above the curled page (texts, which don't bend); on the back (dx), above the flat desk."""
     v = S.px_to_world(px, py)
@@ -508,20 +527,44 @@ fx0, fy0 = tx0 + (tx1 - tx0) * tx0 / S.PW, ty0 + (ty1 - ty0) * ty0 / S.PH
 fw = (tx1 - tx0) * (tx1 - tx0) / S.PW
 show(tex_card("S09.tinier", [fx0, fy0, fx0 + fw, fy0 + fw * S.PH / S.PW], sheet_img, lift=0.00031), T["S09"], T["S10"])
 
-# S10: the fine print scrolls under Mercury's feet like a ticker
+# S10: the fine print scrolls under Mercury's feet like a ticker. Both lines of fine print run between the border's
+# lathe work (its inner edge at x 815 on this line) and the first signature rule (from x 1575); until 2026-10-28 they
+# ran on over both
+FINE = clipped(M["sepia"], 840, 1555)
 tick = text("S10.ticker", "FINE PRINT · SUBJECT TO CHANGE · NOT A CHARITY, PER SE · TERMS APPLY · FINE PRINT · " * 2,
-            "small_caps", 34, (900, 1830), 0.0009, M["sepia"], align="LEFT")
+            "small_caps", 34, (900, 1830), 0.0009, FINE, align="LEFT")
 tick_x = tick.location.x
 MOVES.append(lambda t: setattr(tick.location, "x", tick_x - 0.02 * max(0.0, t - T["S10"])))
 show(tick, T["S10"], T["S11"])
 # S39: the line of fine print he pops up out of
-show(text("S39.fineprint", "BASELINE TO BE ANNOUNCED · SUBJECT TO THE BOARD'S DISCRETION · TERMS APPLY", "small_caps", 30,
-          (1140, 1820), 0.0009, M["sepia"]), T["S39"], SPAN["S39"][1])
+show(text("S39.fineprint", "BASELINE TO BE ANNOUNCED · AT THE BOARD'S DISCRETION", "small_caps", 24,
+          (860, 1820), 0.0009, FINE, align="LEFT"), T["S39"], SPAN["S39"][1])  # until 2026-10-28: 30 px, centred on x 1140, "SUBJECT TO THE BOARD'S DISCRETION · TERMS APPLY"
 
-# S11: the guilloche, looked at closely, is the letters LLC repeated
-llc = text("S11.llc", "LLC LLC LLC LLC LLC", "small_caps", 22, (1240, 1358), 0.0006, M["green"])
-MOVES.append(lambda t: setattr(llc, "scale", [max(1e-4, ramp(t, T["S11"] + 1.0, T["S11"] + 3.0))] * 3))
-show(llc, T["S11"], T["S12"])
+# S11: the guilloche, looked at closely, is the letters LLC repeated. The banner where the camera pushes in is a
+# finer print of the same patch (scripts/microprint.py: each underprint strand set as tiny LLC LLC, the type and the
+# paper's grain as the sheet's), so the push itself resolves the strands into letters. Until 2026-10-28 a line of
+# LLC grew over the strands instead (the human: make the text zooms "more convincing")
+MICRO = ROOT / "renders/c1/microprint"
+mp_box = json.loads((MICRO / "region.json").read_text())["box"]
+micro = S.patch("S11.microprint", *mp_box, 0.00004, 64, 48)
+mm = bpy.data.materials.new("S11.microprint")
+nodes, links = mm.node_tree.nodes, mm.node_tree.links
+bsdf = nodes["Principled BSDF"]
+mtex = nodes.new("ShaderNodeTexImage")
+mtex.image = S.image(MICRO / "color.png")
+mtex.interpolation = "Cubic"
+links.new(mtex.outputs["Color"], bsdf.inputs["Base Color"])
+bsdf.inputs["Roughness"].default_value = 0.82
+bsdf.inputs["Specular IOR Level"].default_value = 0.25
+mg, mk = nodes.new("ShaderNodeTexImage"), nodes.new("ShaderNodeTexImage")
+mg.image, mk.image = S.image(MICRO / "green.png", True), S.image(MICRO / "sepia.png", True)
+mmax = nodes.new("ShaderNodeMath")
+mmax.operation = "MAXIMUM"
+links.new(mg.outputs["Color"], mmax.inputs[0])
+links.new(mk.outputs["Color"], mmax.inputs[1])
+S.ink_bump(nodes, links, mmax.outputs["Value"], bsdf)
+micro.data.materials.append(mm)
+show(micro, T["S11"], T["S12"])
 
 # S12: an engraved calendar in the margin flips pages and never lands
 cal = prop_card("S12.calendar", prop_box("calendar", 3980, 1270, w=300), "calendar", 0.0004, cutout=False)

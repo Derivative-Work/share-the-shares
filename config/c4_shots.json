@@ -86,10 +86,10 @@
    1870
   ],
   "GUILLOCHE": [
-   1150,
-   1270,
-   1430,
-   1430
+   940,
+   1153,
+   1640,
+   1547
   ],
   "GUILLOCHE_ECU": [
    1175,
@@ -315,7 +315,9 @@
    "cam": [
     "GUILLOCHE",
     "GUILLOCHE_ECU"
-   ]
+   ],
+   "ease": "exp",
+   "note": "opens on the banner's left end, where the microprinted strands (scripts/microprint.py) still read as lines, and pushes in at a constant rate until they are letters (2026-10-28; the opening box was 1150-1430 x 1270-1430)"
   },
   "S12": {
    "cam": [

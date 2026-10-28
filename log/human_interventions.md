@@ -219,3 +219,8 @@ Every human action: timestamp, what, why, and which production rule allows it. R
 
 - **What:** The human: "the calendar is not aligned".
 - **Rule:** R1.
+
+## 2026-10-28T09:20:00-04:00 — The text zooms to be more convincing — R1
+
+- **What:** The human: "see if anything can be done to make the "LLC LLC LLC LLC" and similar text zooms more convincing".
+- **Rule:** R1.
