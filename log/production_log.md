@@ -865,3 +865,15 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
 - **Orientation:** the render has no flip axis (S24 cuts to the back lying beside the sheet), so either duplex setting works. With "flip on short edge", the back reads upright when the sheet is turned over side to side, as in S31.
 - **Checked:** the whole page and a crop of the type at full resolution; a re-run gives byte-identical files.
 - **`scripts/manifest.sh`:** run (the PNG and PDFs are git-ignored).
+
+## 2026-10-27T21:27:00-04:00 — S12: the calendar's pages lie on its pad; the 4K re-render queued
+
+- **Why:** the human: "the calendar is not aligned" (human interventions, 20:10). In S12 the pages were upright cards hovering over the engraved calendar, which is drawn at an angle: they covered its top edge and never sat on the pad.
+- **`scenes/blender/animatic.py`:**
+  - `CAL_PAD`: the pad's top page in the engraving's pixels, a parallelogram measured on `calendar.png`. Its corners are the curl (205, 295), the binding strip's ends (895, 75) and (1145, 405), and the rounded corner (455, 630).
+  - Each page's mesh is mapped onto it each frame (`on_pad`).
+  - A page turns over the binding on its right, its free edge sweeping to the strip and lifting.
+  - Each page now shows from 0.18 s before the one above it turns, so the next page lies underneath instead of bare pad.
+- **`scripts/props.py` `calendar_pages`:** the pages redrawn landscape (700 × 400) to the pad's drawn proportions. They have the same band, month and company line, and a fold line at the binding instead of the holes. The previous pages and masks are archived in `archive/props/calendar_pages_v1_upright/`.
+- **Checked:** 4K test frames at 58.20, 58.30, 58.34, 58.37 and 60.40 s. The page's outline matches the pad's, NOV turns to show DEC under it, and the last page, SOON, also sits on the pad.
+- **Re-render** (`renders/final/logs/rerender_calendar.sh`; `queue.log` CAL_*): S12, 58.14–60.61 s, at 4K and 64 samples into section 2's frames. Then the master (v3), its 1080p copy and section 2's intermediate are archived (`*_v3_before-calendar`), section 2 re-assembled and the master re-joined. The calendar isn't on the sheet in any live shot, so the plates and the alignment print stand.

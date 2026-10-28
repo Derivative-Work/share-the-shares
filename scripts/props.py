@@ -319,17 +319,18 @@ MONTHS = ["NOV", "DEC", "JAN", "Q1", "Q2", "SOON", "H2", "TBD", "NEXT", "SOON"] 
 
 @generated
 def calendar_pages(p):
+    """The pages that lie on the calendar's pad (scenes/blender/animatic.py CAL_PAD), at its drawn proportions (about
+    724 x 414 px along and across the engraving's parallelogram), bound along their right edge at its binding strip."""
     out = {}
     for i, m in enumerate(MONTHS):
-        W, H = 420, 520
+        W, H = 700, 400
         img = canvas(W, H)
-        cv2.rectangle(img, (8, 8), (W - 8, H - 8), 255, 4, AA)
-        cv2.rectangle(img, (8, 8), (W - 8, 92), 255, -1, AA)  # the month band, printed solid
-        fit(img, (22, 14, W - 22, 92), "IN THE COMING MONTHS", "small_caps", 28, fill=0, margin=0.2)
-        fit(img, (30, 112, W - 30, 412), m, "display", 230)
-        fit(img, (30, 424, W - 30, 478), "AMALGAMATED BENEFIT, LLC", "small_caps", 22, margin=0.15)
-        for x in (W * 0.3, W * 0.7):  # the binding holes
-            cv2.circle(img, (int(x), 22), 7, 0, -1, AA)
+        cv2.rectangle(img, (6, 6), (W - 6, H - 6), 255, 4, AA)
+        cv2.rectangle(img, (6, 6), (W - 6, 76), 255, -1, AA)  # the month band, printed solid
+        fit(img, (24, 12, W - 60, 76), "IN THE COMING MONTHS", "small_caps", 30, fill=0, margin=0.2)
+        fit(img, (40, 92, W - 76, 322), m, "display", 210)
+        fit(img, (40, 330, W - 76, 384), "AMALGAMATED BENEFIT, LLC", "small_caps", 24, margin=0.15)
+        cv2.line(img, (W - 40, 6), (W - 40, H - 6), 255, 2, AA)  # the fold at the binding
         out[f"calendar_page_{i}"] = img
     return out
 

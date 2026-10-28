@@ -214,3 +214,8 @@ Every human action: timestamp, what, why, and which production rule allows it. R
 
 - **What:** The human: "I also need a printable version of the transfer form".
 - **Rule:** R1. Printing the prop will be the human's part of the live shots, and will be logged with them.
+
+## 2026-10-27T20:10:00-04:00 — The calendar not aligned — R1
+
+- **What:** The human: "the calendar is not aligned".
+- **Rule:** R1.

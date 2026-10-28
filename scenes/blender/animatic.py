@@ -527,20 +527,38 @@ show(llc, T["S11"], T["S12"])
 cal = prop_card("S12.calendar", prop_box("calendar", 3980, 1270, w=300), "calendar", 0.0004, cutout=False)
 show(cal, T["S12"], T["S13"])
 MONTHS = ["NOV", "DEC", "JAN", "Q1", "Q2", "SOON", "H2", "TBD", "NEXT", "SOON"]  # the pages (scripts/props.py)
-PAGE_W, PAGE_H, PAGE_AT = 110, 136, (3925, 1262)
+# the pad's top page in the engraving's pixels (calendar.png), a parallelogram: top left (at the curl), top right and
+# bottom right (the binding strip), bottom left (the rounded corner). Until 2026-10-27 the pages were upright cards
+# hovering over it (the human: "the calendar is not aligned")
+CAL_PAD = ((205, 295), (895, 75), (1145, 405), (455, 630))
+cal_box = prop_box("calendar", 3980, 1270, w=300)
+cal_k = (cal_box[2] - cal_box[0]) / S.image(PROPS / "calendar.png", True).size[0]
+PAD = [Vector((cal_box[0] + x * cal_k, cal_box[1] + y * cal_k)) for x, y in CAL_PAD]
+
+
+def on_pad(u, v):
+    """Sheet pixels of the point (u across from the left edge, v down from the top) on the pad."""
+    tl, tr, br, bl = PAD
+    return (tl * (1 - u) + tr * u) * (1 - v) + (bl * (1 - u) + br * u) * v
+
+
 for i, mname in enumerate(MONTHS):
     a = T["S12"] + i * (SPAN["S12"][1] - T["S12"]) / len(MONTHS)
     b = a + (SPAN["S12"][1] - T["S12"]) / len(MONTHS)
-    pg = prop_card(f"S12.page{i}", [PAGE_AT[0] - PAGE_W / 2, PAGE_AT[1] - PAGE_H / 2, PAGE_AT[0] + PAGE_W / 2,
-                                    PAGE_AT[1] + PAGE_H / 2], f"calendar_page_{i}", 0.0013 - 0.00002 * i)
-    home = pg.location.copy()
+    lift = 0.0013 - 0.00002 * i
+    pg = prop_card(f"S12.page{i}", [0, 0, 100, 100], f"calendar_page_{i}", lift)
+    pg.location = pxyz(0, 0, lift)
+    uv = [(vt.co.x / px_len(100) + 0.5, 0.5 - vt.co.y / px_len(100)) for vt in pg.data.vertices]
 
-    def flip(t, pg=pg, home=home, a=a, b=b):
-        u = ramp(t, b - 0.18, b)  # the page flips up over its binding, and the next lands under it
-        pg.scale.y = max(1e-4, 1 - u)
-        pg.location = home + Vector((0, px_len(PAGE_H) * u / 2, 0.002 * math.sin(math.pi * u)))
+    def flip(t, pg=pg, uv=uv, a=a, b=b, lift=lift):
+        f = ramp(t, b - 0.18, b)  # the page turns over the binding on its right, and the next lies under it
+        for vt, (u, v) in zip(pg.data.vertices, uv):
+            p = on_pad(1 - (1 - u) * (1 - f), v)
+            vt.co = pxyz(p.x, p.y, 0.002 * (1 - u) * math.sin(math.pi * f)) - pxyz(0, 0, 0)
+        pg.data.update()
+    flip(0.0)
     MOVES.append(flip)
-    show(pg, a, b)
+    show(pg, a - (0.18 if i else 0.0), b)  # each lies under the one turning over it
 
 # S14: the corner denominations flip from 5 to 5% (and stay)
 for i in range(4):
