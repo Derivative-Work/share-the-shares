@@ -921,7 +921,7 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
 - **Archived:** `archive/final_4k/*_v4_before-text.*` (the master, its 1080p copy, the section 2 and 6 intermediates) and `archive/live_plates/S40_*_v2_before-fineprint.mov`.
 - **`scripts/manifest.sh`:** run.
 
-## 2026-11-17T23:30:00-05:00 — Brief rev 50 audited against the build; the certificate, seal, shots and fact card brought in line; the full 4K re-render queued
+## 2026-11-17T23:07:00-05:00 — Brief rev 50 audited against the build; the certificate, seal, shots and fact card brought in line; the full 4K re-render queued
 
 - **Why:** the human revised the brief (human interventions, 22:40) and asked that everything it changes be in before the render.
 - **The audit:** `docs/brief.md` re-exported from the doc at rev 50 (`scripts/doc_to_md.py`; rev 34's mirror archived as `archive/docs/brief_rev34.md`) and diffed against rev 34. What it changes in the picture:
@@ -950,7 +950,7 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   3. Lanes a and b (every section at 4K, 64 samples).
   4. The join.
 
-## 2026-11-17T23:55:00-05:00 — The call page for the live verse (`apps/call_page/index.html`)
+## 2026-11-17T23:10:00-05:00 — The call page for the live verse (`apps/call_page/index.html`)
 
 - **Why:** brief rev 50, "The call page" (human interventions, 22:40): "Build it as a simple browser page (Claude Code), not a real call app, so there are no brand logos and every label is exact". The human asked for a SPA to run on their Mac beside the Claude app, with either the live webcam or a video file.
 - **What it shows:**
@@ -971,3 +971,19 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   - Camera mode: 1920 × 1080.
   - File mode: plays; Raise hand shows the badge; the ring follows the file's sound; the overlay toggles.
   - No page errors.
+
+## 2026-11-18T03:05 — Brief rev 50 master rendered; the live-verse excerpts cut
+
+- The full 4K re-render (`renders/final/logs/rerender_brief50.sh`) finished at 02:48:49 (BRIEF50_DONE), with no errors in the section logs. Section frame counts: 1125/1238/982/1368/579/2588; the master and its 1080p copy have 7,879 frames each. The v5 master and its sections are archived in `archive/final_4k/*_v5_before-brief50*`.
+- Spot-checked in the 1080p copy:
+  - S26 (152 s) and S31 (194 s) are wide renders, no longer slates.
+  - The class line (CLASS N / NON-VOTING) is under the shares box.
+  - S34's seal embosses THRESHOLD MET*; its footnote is half-typed at 211.4 s and complete at 212.45 s.
+  - S40 is the Mercury pop.
+- `scripts/live_excerpts.sh` cut the files the screen recording plays into `deliverables/live_excerpts/` (2560×1440, H.264 CRF 18, AAC 256k):
+  - `share_the_shares_chorus2.mp4`: 136.36–164.14 s, 27.8 s, 22 MB.
+  - `share_the_shares_bridge_on.mp4`: 192.68–243.54 s, 50.9 s, 49 MB.
+  - The spans are in `excerpts.json`.
+- The excerpts were sent in this Claude Code session for the session reveal (brief, "The screen recording").
+- Note: the two previous entries' timestamps were corrected (they had read 23:30 and 23:55; the true times are 23:07 and 23:10).
+- Still open: the fact card's IPO line keeps the brief's [placeholders] until pricing (Nov 18–19). Fill in `config/fact_card.json`, then re-render the fact graphics, section 6 and the join.
