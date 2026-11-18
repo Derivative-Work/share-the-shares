@@ -949,3 +949,25 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   2. The graphics layer.
   3. Lanes a and b (every section at 4K, 64 samples).
   4. The join.
+
+## 2026-11-17T23:55:00-05:00 — The call page for the live verse (`apps/call_page/index.html`)
+
+- **Why:** brief rev 50, "The call page" (human interventions, 22:40): "Build it as a simple browser page (Claude Code), not a real call app, so there are no brand logos and every label is exact". The human asked for a SPA to run on their Mac beside the Claude app, with either the live webcam or a video file.
+- **What it shows:**
+  - The title bar: the meeting title "Public Benefit Fund: stakeholder input session", a call timer, the dial-in number 555-0142 (the pledge line, `config/postroll.json`, in the fiction range) and a count of 1.
+  - Your tile, the only video, with your name and a mic that lights with your level, plus a green speaking ring.
+  - The participant list: you in the call, "Board (not joined)" greyed under Invited, and "To join by phone, dial 555-0142".
+  - The toolbar: Mute, Stop video, Raise hand, Participants, Leave. Leave does nothing. Raise hand puts the hand icon on your tile, and nothing else happens (S40).
+- **Sources:**
+  - **The live camera:** any camera macOS offers, Continuity Camera included, at 1080p, 720p or 4K. A mic is measured for the speaking ring, never played.
+  - **A video file:** picked or dropped on the page. It loads paused at a start time you set, Space plays, and its own sound plays and drives the ring.
+  - **Mirror** is off by default, so the guitar reads the right way round.
+- **For the capture:**
+  - The setup panel (S) is never in shot. The cursor hides after 2 s still.
+  - "Post-filter: no change" is off by default, since the edit adds it, and O shows it.
+  - F goes full screen, so the page is its own Space for the swipe.
+  - One self-contained file with no network requests. Settings are remembered in the browser's localStorage, guarded.
+- **Checked** headless (Chrome's fake camera, then a file from the v5 master), screenshots at 1512 × 945 @2x:
+  - Camera mode: 1920 × 1080.
+  - File mode: plays; Raise hand shows the badge; the ring follows the file's sound; the overlay toggles.
+  - No page errors.
