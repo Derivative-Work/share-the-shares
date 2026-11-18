@@ -987,3 +987,7 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
 - The excerpts were sent in this Claude Code session for the session reveal (brief, "The screen recording").
 - Note: the two previous entries' timestamps were corrected (they had read 23:30 and 23:55; the true times are 23:07 and 23:10).
 - Still open: the fact card's IPO line keeps the brief's [placeholders] until pricing (Nov 18–19). Fill in `config/fact_card.json`, then re-render the fact graphics, section 6 and the join.
+
+## 2026-11-18T03:20 — The bridge excerpt resized for the session upload
+
+- The session's file upload refused `share_the_shares_bridge_on.mp4` (47.1 MiB; the limit is 30 MiB). `scripts/live_excerpts.sh` now makes a two-pass copy with the same name in `deliverables/live_excerpts/sendable/` (4,338 kb/s video, AAC 192k; 27.5 MiB), and that copy was sent. The chorus file (21 MiB) was sent as cut. The full-quality original is kept.

@@ -34,3 +34,17 @@ E
 for f in "$OUT"/*.mp4; do
   echo "$f $(ffprobe -v error -show_entries format=duration,size -of csv=p=0 "$f")"
 done
+# The session's file upload takes at most 30 MiB: a two-pass copy under that, same name, in sendable/ (the name shows
+# on screen). Only the bridge file needs it (the chorus is 21 MiB).
+mkdir -p "$OUT/sendable"
+for f in "$OUT"/*.mp4; do
+  [ "$(stat -c %s "$f")" -gt 29000000 ] || continue
+  d=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$f")
+  vb=$(.venv/bin/python -I -c "print(int((27.5 * 8 * 1048576 / $d - 192000) / 1000))")k   # 27.5 MiB minus the audio
+  P=$(mktemp -d)
+  ffmpeg -v error -y -i "$f" -c:v libx264 -profile:v high -preset slow -b:v $vb -pass 1 -passlogfile "$P/p" -an -f null /dev/null
+  ffmpeg -v error -y -i "$f" -c:v libx264 -profile:v high -preset slow -b:v $vb -pass 2 -passlogfile "$P/p" -pix_fmt yuv420p \
+    -c:a aac -b:a 192k -movflags +faststart "$OUT/sendable/$(basename "$f")"
+  rm -rf "$P"
+  echo "$OUT/sendable/$(basename "$f") $(stat -c %s "$OUT/sendable/$(basename "$f")") bytes, video $vb"
+done
