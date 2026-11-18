@@ -1,4 +1,4 @@
-<!-- Exported by the agent from https://claude.ai/artifact/9kd8kySs1GK8P5ExFjM6Wu at doc rev 34, 2026-10-26 (scripts/doc_to_md.py). The live doc is the source of truth; re-export if it changes. -->
+<!-- Exported by the agent from https://claude.ai/artifact/9kd8kySs1GK8P5ExFjM6Wu at doc rev 50, 2026-11-17 (scripts/doc_to_md.py). The live doc is the source of truth; re-export if it changes. -->
 
 # Share the Shares
 
@@ -121,11 +121,11 @@ the more we grow...
 
 ## Video
 
-The whole video takes place inside one engraved stock certificate, animated like paper puppets, and your verse is the only live footage.
+The whole video takes place inside one engraved stock certificate, animated like paper puppets, and the only live footage is your verse, seen on a video call, and the closing phone call.
 
 **The world**
 
-- **The certificate:** green-and-sepia ink on cream paper, with guilloche borders, a vignette at the top, corner denominations, a numbered stub on the left and coupons along the bottom. The company name is invented, such as AMALGAMATED BENEFIT, LLC. No real names or logos appear on it; they belong only on the fact card.
+- **The certificate:** green-and-sepia ink on cream paper, with guilloche borders, a vignette at the top, corner denominations, a numbered stub on the left and coupons along the bottom. The company name is invented, such as AMALGAMATED BENEFIT, LLC. The class line reads CLASS N · NON-VOTING, which is accurate for the fund's shares. No real names, logos or ticker appear on it; they belong only on the fact card.
 - **The cast as allegorical figures:** the Founder is *Progress*, holding a torch. The Board is *Prudence*, seated with scales and a ledger. The Lawyer is *Mercury*, the god of commerce, small enough to run through the fine print. The choir is the row of cherubs in the border.
 - **The engraved worker:** a classic laborer-at-the-anvil engraving sits in the lower corner, as on many old certificates. He never moves or sings.
 - **Motion:** hinged paper-puppet limbs and jaws on twos, with the hatching lines boiling slightly. The camera moves like a document camera: slow pushes, pans and flips.
@@ -139,9 +139,9 @@ The whole video takes place inside one engraved stock certificate, animated like
 5. **Chorus:** the cherub choir sways along the top border. The corner denominations flip from "5" to "5%", and the "Number of shares" box fills with figures that keep changing.
 6. **Verse 2:** *Prudence* weighs coins on her scales. At the bottom are the usual signature lines, President and Secretary, plus a third line, "Recipient," left blank. On "a line we haven't drawn," she rules a baseline across the page with a pen, studies it, and erases it.
 7. **Pre-chorus 2:** on "through this fund," the certificate flips to its back, showing the printed transfer form, and a second document is visible face down underneath. The camera turns away before it can be read.
-8. **Verse 3 (live):** you, holding the certificate as a real printed sheet. You turn it face down, the music cuts, and you play. Before the cut, the camera holds on the engraved laborer in the corner for a beat.
-9. **Bridge:** the stub on the left becomes the thermometer, its perforations marked in "+50%" steps up to "Baseline: TBA." On "watch us when it's not," the corporate seal stamps down and embosses the page.
-10. **Final chorus:** *Prudence* clips the coupons along the bottom one by one, and each clipped coupon flutters into her ledger. Cut to you on "do I get a say?", then back to the cherubs still swaying.
+8. **Verse 3 (live):** the camera holds on the engraved laborer for a beat. Then the video exits full screen, revealing it as a file sent in the Claude Code session that made it, and the music stops. A swipe goes to a video call where you're the only participant, and you play the verse to it.
+9. **Bridge:** the stub on the left becomes the thermometer, its perforations marked in "+50%" steps up to "Baseline: TBA." On "watch us when it's not," the corporate seal stamps down and embosses THRESHOLD MET*, with the fine print below adding "*based on what we expect."
+10. **Final chorus:** *Prudence* clips the coupons along the bottom one by one, and each clipped coupon flutters into her ledger. Swipe to the call on "do I get a say?", where you raise your hand and nobody responds, then back to the cherubs still swaying.
 11. **Outro:** the boilerplate "fully paid and non-assessable" glows as the choir fades. You dial the pledge line and get hold music. The certificate slides into a filing cabinet drawer labeled "Wholly owned," which shuts.
 12. **Closing bookend:** the fact card, set in the same engraved type, then the real announcement page.
 
@@ -149,6 +149,9 @@ The whole video takes place inside one engraved stock certificate, animated like
 
 - **Coupons belong on bonds,** not stock certificates. That's a fine visual liberty, but keep it out of the fact card.
 - **Sources for the engravings:** build from public-domain certificate art, and log the source of each piece.
+- **Keep the real ticker off the certificate.** The certificate belongs to an invented company, and a real ticker on it edges toward a counterfeit record. ANT and the IPO price go on the fact card.
+- **The Class N line and the THRESHOLD MET seal** come from Anthropic's IPO filing (see the fact card). Recheck both against the final prospectus before posting.
+- **No all-seeing-eye motif,** even though it's a classic engraving element and the policy reportedly says "eyes on everything": its conspiracy connotations would distract from the song.
 
 ## Shot list
 
@@ -211,7 +214,7 @@ This follows the certificate scenes above. Cues are lyric lines, not timestamps;
 | S25a | The second "share the shares" | Insert: close on the cherubs singing | R |
 | S25b | "five in every hundred" | Insert: the corner denominations, already 5% (as S14) | R |
 | S25c | "And if we grow by half again" | Insert: the "Number of shares" box, figures changing (as S16) | R, G |
-| S26 | "we'll give two more (at our discretion) then" | Pull back: the certificate is a real sheet of paper in your hands, still animated, with your guitar leaning beside you | L |
+| S26 | "we'll give two more (at our discretion) then" | The video player's controls flicker up for a moment, as if someone nudged the mouse, then fade: the first hint that this is a file on a screen | S |
 | S27 | "so help us grow, so we can give" | Back inside: the cherubs point at camera again | R |
 | S28 | Last chord of the chorus | Hold on the engraved laborer, the only figure that never moved | R |
 
@@ -219,17 +222,17 @@ This follows the certificate scenes above. Cues are lyric lines, not timestamps;
 
 | ID | Cue | Picture | Source |
 | --- | --- | --- | --- |
-| S29 | The downbeat after the chorus | Match cut from the engraved laborer's raised hammer to your hand turning the sheet face down. The music cuts. One beat of real sound | L |
-| S30 | "They call me a specific population" through "and whether I get a say" | One continuous take, guitar and voice, one mic. Locked-off medium shot; the sheet lies face down beside you, the printed transfer form facing up. Overlay: "Post-filter: no change" | L, G |
+| S29 | The downbeat after the chorus | The player exits full screen and shrinks back into the Claude Code session that made it, a file sent in the conversation. The music stops. Hold two to three seconds, legible. Then swipe to the video call, with one beat of real room sound | S |
+| S30 | "They call me a specific population" through "and whether I get a say" | The video call: your webcam tile, one continuous take of guitar and voice. The participant list shows only you, with "Board (not joined)" greyed out. Overlay: "Post-filter: no change" | S, L, G |
 
 ### Bridge
 
 | ID | Cue | Picture | Source |
 | --- | --- | --- | --- |
-| S31 | "And it's real, it isn't nothing" | You turn the sheet face up. The music comes back mid-phrase. Push into the paper | L |
+| S31 | "And it's real, it isn't nothing" | Swipe back to the session and reopen the file full screen; the music comes back mid-phrase. Zoom into the player, then cut to the full render | S |
 | S32 | "a fifth of us, all told" | The stub on the left becomes a thermometer, its perforations marked in +50% steps | R |
 | S33 | "than the ones who bought and sold" | The bulb at the top reads BASELINE: TBA | R |
-| S34 | "then watch us when it's not" | The corporate seal stamps down and embosses the page | R |
+| S34 | "then watch us when it's not" | The corporate seal stamps down and embosses THRESHOLD MET*; the fine print adds "*based on what we expect" | R |
 | S35 | "When it's not, when it's not" | The cherubs crescendo; the whole border trembles | R |
 
 ### Final chorus
@@ -239,7 +242,7 @@ This follows the certificate scenes above. Cues are lyric lines, not timestamps;
 | S37 | "Share the shares, share the shares" | *Prudence* clips the coupons along the bottom, one by one, into her ledger | R |
 | S38 | "at our discretion!" | Close on *Prudence*, scissors raised | R |
 | S39 | "The more we grow, the more we give", the line after "at our discretion" (Suno didn't sing "baseline to be announced!") | *Mercury* pops up out of the fine print | R |
-| S40 | "do I get a say?" | Cut to you, saying it to the sheet in your hands | L |
+| S40 | "do I get a say?" | Swipe to the call: you sing it and click Raise hand. The hand icon appears on your tile; nobody responds. Swipe back | S, L |
 | S41 | The next line | Back inside: the cherubs keep swaying; nobody reacts | R |
 | S42 | "so help us grow, so we can give" | All the cherubs point at camera one last time | R |
 
@@ -249,44 +252,42 @@ This follows the certificate scenes above. Cues are lyric lines, not timestamps;
 | --- | --- | --- | --- |
 | S43 | "The more we grow (the more we give)" | Slow pull back across the whole certificate as "Fully paid and non-assessable" glows | R |
 | S44 | "Phone lines open at the IPO." | *Progress* leans out of a filing-cabinet drawer labeled WHOLLY OWNED, says the line, and the drawer slides shut | R |
-| S45 | Silence | You pick up your phone and dial the pledge number printed along the certificate's bottom edge | L |
-| S46 | Hold music | The chorus as muzak plays down the line. You listen, hang up, fold the certificate in half and slide it into your guitar case | L |
+| S45 | Silence | On the mirrorless camera, at your desk: you pick up your phone and dial the pledge line, the dial-in number from the call page | L |
+| S46 | Hold music | The chorus as muzak plays down the line. You listen, then hang up | L |
 | S47 | After the hang-up | The fact card in engraved type | G |
 | S48 | Last | The real announcement page, then the "Derived from" credits | S, G |
 
-### Live shots: the paper certificate
+### Live shots: the screen recording and the phone call
 
-The live shots (S26, S29 to S31, S40, S45 and S46) use a real printed sheet in place of a screen. Everything that doesn't move is real ink; only the animated figures are composited onto it.
+The verse and its transitions (S26, S29 to S31 and S40) are one continuous screen recording of your own computer. The ending phone call (S45 and S46) is shot on the mirrorless camera.
 
-**The prop**
+**The screen recording**
 
-- Print the certificate's static art on heavy, matte, cream cardstock, letter size or larger: the border, vignette background, text, signature lines and the engraved laborer.
-- Print the figures in their rest poses too, so the composite only replaces what moves.
-- Print the transfer form on the back, so the back seen in S24 is a real object you can show.
-- Print the invented pledge number along the bottom edge, from the 555-0100 to 555-0199 range set aside for fiction.
-- Make several copies; they'll get handled and bent.
+- **Three full-screen spaces, in order:** the finished certificate render playing full screen, the Claude Code session that produced it (the render is a file it sent), and the call page. Swipe between them with three or four fingers; the swipe animation is the transition.
+- **Play the actual final render,** so the music in the recording is real playback. The edit replaces it with the master, except for the silence after the player closes.
+- **Capture the whole display at 60 fps** with macOS screen recording or OBS display capture. Turn on Do Not Disturb, hide the Dock, and check the menu bar for anything personal.
+- **The session reveal:** hold it two to three seconds. Everything legible on screen will be public, so check it first. It's also the on-screen disclosure that an Anthropic product made this video.
 
-**Tracking and compositing**
+**The call page**
 
-- The four corner denominations double as tracking marks. Add small registration marks inside the guilloche if the track needs more.
-- Hold the sheet by its edges, or rest it on the guitar case lid or a table, so your fingers stay off the figures and the sheet stays flat.
-- Composite the animation with a multiply blend, so the paper texture and real light show through, and match the plate's grain and focus. Rotoscope any finger that crosses an animated area.
-- Render the figures for the tracked angle, or warp a flat render onto the track for shots where the sheet stays fairly flat.
+- **Build it as a simple browser page** (Claude Code), not a real call app, so there are no brand logos and every label is exact: the meeting title "Public Benefit Fund: stakeholder input session", a participant list with you and "Board (not joined)", a Raise hand button, and a dial-in number from the 555-0100 to 555-0199 range set aside for fiction.
+- **Your webcam tile is the only video.** Use your phone as the webcam if you want a cleaner picture that still reads as a call.
+- **Raise hand (S40)** shows the hand icon on your tile, and nothing else happens.
 
-**Transitions**
+**Your verse**
 
-- **Into the certificate world:** a real camera push toward the sheet, continued digitally on the plate, then a cut to the full render at matching framing.
-- **The mute and unmute:** turning the sheet face down cuts the music, and turning it face up brings it back mid-phrase. There's no speaker in the scene, so this is a small bit of magic; play it straight.
+- **Sing out loud along with your finished mix** while the webcam records (better than miming, since breath and throat movement match), or record a fresh take on camera and use that audio.
+- **Start in the key of the generated take.** The bridge re-enters when you reopen the file, so nothing has to line up with a click.
+- **"Do I get a say?" (S40) replaces the generated ad-lib.** Log it and the verse as human interventions.
 
-**Indoors or outdoors**
+**The phone call**
 
-Without a screen, both work equally well, so choose by light and sound. Outdoors gives open light and natural ambience; use a windscreen, and keep direct sun off the sheet so the white paper doesn't clip. Indoors gives more control. Either way, shoot all the live shots in one session.
+- **Shot on the mirrorless camera, at the same desk.** You dial the call page's dial-in number, hear the chorus as muzak, and hang up. That hold music carries into the muzak credits.
 
 **Notes**
 
-- **Start verse 3 in the key of the generated take,** and play it free. The bridge re-enters on the flip, so nothing has to line up with a click.
-- **"Do I get a say?" (S40) replaces the generated ad-lib.** Record it in the same session, and log it as a human intervention along with the verse.
-- **The LIVE bug** appears only on rendered shots, never on yours.
+- **The LIVE bug** appears only on rendered shots, never on the screen recording or the phone call.
+- **Three layers** (certificate, session, call) can lose Shorts viewers. The brief, legible session reveal is what keeps it clear.
 
 ## Fact card and disclosure
 
@@ -294,15 +295,19 @@ The closing card states what the fund actually is, including the parts in its fa
 
 **Card text (draft)**
 
-- Announced October 18, 2026: Anthropic commits 5% of its shares to the Anthropic Public Benefit Fund.
+- Announced October 18, 2026: Anthropic commits 5% of its shares to the Anthropic Public Benefit Fund. Its November 10 IPO filing says these were contributed as Class N shares, which carry no vote except as required by law.
 - The board may add 2% more for every 50% rise in Anthropic's value above a baseline not yet announced.
 - Set up as a wholly owned LLC, not a 501(c)(3), to allow different forms of giving.
 - 5% goes to the fund. Anthropic says about 20% of its shares are committed to the public good in total, counting its other commitments. The fund's equity won't be used for lobbying or political giving.
 - Structure, governance and valuation milestones: to be announced.
+- Anthropic's IPO: priced [date], trading on Nasdaq as ANT since [date], at $[final price].
+- In its IPO filing, Anthropic says it has met its own Responsible Scaling Policy threshold for AI-accelerated research, based on what it expects from future models rather than what it has observed from current ones.
 - Separately, Anthropic has given $40M to Public First Action. It says that money is limited to policy work and public education, not candidate spending.
 - AI-generated satire. Lyrics drafted by Claude, a model made by Anthropic. Reviewed for bias by a model from another lab: Gemini [version], October 21, 2026.
 
 **Sources:** [Anthropic announcement](https://www.anthropic.com/news/public-benefit-fund) · [TechCrunch](https://techcrunch.com/2026/10/18/anthropic-says-its-committing-5-of-its-shares-to-a-public-benefit-fund/) · [The National](https://www.thenationalnews.com/future/technology/2026/10/19/anthropic-public-benefit-fund-elon-musk/) · [ESG Today](https://www.esgtoday.com/anthropic-commits-5-of-shares-to-a-new-public-benefit-fund/)
+
+**More sources:** [CNBC IPO guide](https://www.cnbc.com/2026/11/16/anthropic-ipo-date-price-range.html) · [AP report via Unite.AI](https://www.unite.ai/experts-question-anthropics-ipo-safeguards-for-public-benefit/) · [Anthropic DRS/A (SEC)](https://www.sec.gov/Archives/edgar/data/0002130357/000213035726000014/filename1.htm) · [Gizmodo on the RSI threshold](https://gizmodo.com/anthropic-says-its-recursive-self-improvement-alarm-has-been-triggered-2000840253) · [TechCrunch on the RSI warning](https://techcrunch.com/2026/11/02/anthropic-warns-that-its-very-close-to-rsi-capability-aka-self-building-ai/)
 
 ## Production notes
 
@@ -312,13 +317,14 @@ The biggest risk is the trading-lines format: generators tend to merge soloists 
 - **The Lawyer's patter** may come out sung. If so, generate it as a spoken section or record it yourself and log it as a human intervention.
 - **The key change** often gets skipped. If it does, generate the final chorus as its own section in the higher key.
 - **Ad-libs** in the final chorus are easiest added afterward as separate short generations or your own voice.
-- **Timing:** the IPO is reportedly as soon as November, which collides with the closing run (Nov 6, 9 and 12). Ship it as a Short, ideally after the alma mater, so the bridge callback lands.
+- **Timing:** Anthropic expects to price the IPO on November 18 and begin trading on November 19. Post shortly after trading starts, once the final price is on the fact card.
 
 **Facts to verify before release**
 
 - [ ] The Public First figure ($40M) and Anthropic's caveat, rechecked against current reporting
 - [ ] Whether the fund's baseline, governance or milestones have been announced (update the TBA gags if so)
-- [ ] The IPO date
+- [ ] The final IPO price and first trading date (expected November 18 and 19)
+- [ ] The Class N and RSI-threshold wording in the final prospectus, for the certificate, the seal and the fact card
 
 **Review checklist**
 

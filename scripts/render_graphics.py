@@ -41,15 +41,18 @@ def jobs():
     pre = PH["S01"]["before_s"]
     if pre:  # S01 was retired at C5 (before_s 0): no card
         J.append(("S01", "s01", -pre, pre, {}))
-    for sid in ("S26", "S29", "S30", "S31", "S40"):
+    # brief rev 50: S26, S29, S31 and S40 are render (the file the screen recording plays); only S30, the call, is a
+    # slate (until 2026-11-17 all five were, for the printed-sheet live shots)
+    for sid in ("S30",):
         a, b = SPAN[sid]
-        text = PH[sid]["text"].split(": ", 1)[1]
-        J.append((f"slate_{sid}", "slate", a, b - a, {"id": sid, "text": text, "still": "1"}))
+        kind, text = PH[sid]["text"].split(" · ", 1)[1].split(": ", 1)
+        J.append((f"slate_{sid}", "slate", a, b - a, {"id": sid, "kind": kind, "text": text, "still": "1"}))
     t = TM["duration_s"]
     for sid in ("S45", "S46", "S47", "S48"):
         d = PH[sid]["after_s"]
         if sid in ("S45", "S46"):
-            J.append((f"slate_{sid}", "slate", t, d, {"id": sid, "text": PH[sid]["text"].split(": ", 1)[1], "still": "1"}))
+            kind, text = PH[sid]["text"].split(" · ", 1)[1].split(": ", 1)
+            J.append((f"slate_{sid}", "slate", t, d, {"id": sid, "kind": kind, "text": text, "still": "1"}))
         elif sid == "S47":
             J.append(("fact", "fact", t, d, {}))
         else:  # S48: the real page, then the credits
@@ -68,6 +71,8 @@ def main():
     s01 = {"style": Path("log/prompts/suno/style_prompt.txt").read_text(),
            "lyrics": Path("log/prompts/suno/fetch_accepted/lyrics.txt").read_text()}
     (data / "s01.js").write_text("window.S01 = " + json.dumps(s01) + ";\n")
+    # the fact card's IPO line (config/fact_card.json)
+    (data / "fact.js").write_text("window.FACT = " + Path("config/fact_card.json").read_text().strip() + ";\n")
     only = sys.argv[5:]
     old = {j["name"]: j for j in json.loads((OUT / "jobs.json").read_text())["jobs"]} if only else {}
     meta = []

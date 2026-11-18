@@ -197,6 +197,11 @@ def build():
     text(k, ((bx0 + bx1) // 2, by0 - 110), "NUMBER", "small_caps", 50, spacing=6)
     text(k, ((bx0 + bx1) // 2, by0 - 45), "OF SHARES", "small_caps", 50, spacing=6)
     layout["shares_box"] = [bx0, by0, bx1, by1]
+    # The class line (brief rev 50: "CLASS N · NON-VOTING", as the fund's shares are), under the box as its label is
+    # over it: one line runs into the border at any legible size
+    text(k, ((bx0 + bx1) // 2, by1 + 70), "CLASS N", "small_caps", 50, spacing=6)
+    text(k, ((bx0 + bx1) // 2, by1 + 132), "NON-VOTING", "small_caps", 42, spacing=4)
+    layout["class_line"] = [bx0 - 40, by1 + 30, bx1 + 40, by1 + 160]
     # Certificate number (left, below the corner counter)
     text(k, (x0 + 395, 930), "No.", "body_italic", 80)
     text(k, (x0 + 395, 1040), "0042", "display", 110)

@@ -920,3 +920,32 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   - The S40 sheet plate's first frame (the handle, in S39) shows the new line.
 - **Archived:** `archive/final_4k/*_v4_before-text.*` (the master, its 1080p copy, the section 2 and 6 intermediates) and `archive/live_plates/S40_*_v2_before-fineprint.mov`.
 - **`scripts/manifest.sh`:** run.
+
+## 2026-11-17T23:30:00-05:00 — Brief rev 50 audited against the build; the certificate, seal, shots and fact card brought in line; the full 4K re-render queued
+
+- **Why:** the human revised the brief (human interventions, 22:40) and asked that everything it changes be in before the render.
+- **The audit:** `docs/brief.md` re-exported from the doc at rev 50 (`scripts/doc_to_md.py`; rev 34's mirror archived as `archive/docs/brief_rev34.md`) and diffed against rev 34. What it changes in the picture:
+  - **The class line** ("CLASS N · NON-VOTING"): it wasn't on the certificate. **No ticker** on it: none was. **No all-seeing eye:** none of the engravings has one (`assets/engravings/sources.tsv`).
+  - **S34:** the seal embosses THRESHOLD MET*, and the fine print adds "*based on what we expect". It embossed WHOLLY OWNED, with no footnote.
+  - **S26, S29–S31, S40** are a screen recording of this render playing, not the printed sheet; S45–S46 are the mirrorless camera at the desk. The render had slates there.
+  - **The fact card:** three new lines (the Class N shares, the IPO with its price and dates to come, the RSI threshold).
+  - **Retired with the printed sheet:** the alignment print, the printable transfer form and the flat live plates. Left in `deliverables/` for now; not rebuilt.
+- **The certificate, `certificate_v06`** (`scripts/certificate.py`; v05 kept): "CLASS N" over "NON-VOTING" under the Number of Shares box, mirroring its label above. One line runs into the border at any legible size. Only the sepia plate changes (3763–4105 × 1128–1224 px). `scripts/gold_sheet.py` run for v06; `scenes/blender/animatic.py` and `scripts/microprint.py` now default to v06 (the microprint patch is outside the change).
+- **The seal** (`scripts/props.py seal`): the centre reads THRESHOLD / MET* / MMXXVI, its field widened from radius 150 to 196 to hold it. The WHOLLY OWNED die is archived in `archive/props/seal_v1_wholly-owned/`.
+- **The footnote** (`animatic.py` S34): "*BASED ON WHAT WE EXPECT", small caps, 26 px, under the seal at y 2308. It types in from 0.2 s after the hit to 0.9 s, while the die is down, and stays printed. S34's push now ends on `SEAL_FINE` (1390–1910 × 1930–2380; was `SEAL_TIGHT`) so the footnote is in frame.
+- **The screen-recorded shots** (`config/c4_shots.json`): the file the screen recording plays shows render under the player:
+  - S26: held wide, for the controls' flicker.
+  - S29: S28's close on the laborer, held to the downbeat.
+  - S31: wide, as the file reopens.
+  - S40: S39's framing.
+  Only S30, the call, stays a slate. Its placeholder text and the S45/S46 slates were updated to rev 50 (`scripts/render_graphics.py`, `overlays/graphics.html`: a slate now says SCREEN or LIVE).
+- **The fact card** (`overlays/graphics.html`): the rev 50 draft's lines are added. The Public First Action line is kept.
+  - The IPO line reads from `config/fact_card.json` (new) and keeps the brief's [date] and [final price] placeholders until pricing (expected Nov 18 and 19). Filling them needs only the card, section 6 and the join re-made.
+  - Type is 30 px (was 35) so nine items fit, with the red pen's notes given their room. The sources add the IPO filing, CNBC and Gizmodo.
+- **Checked:** 1080p test stills at 147.5, 152, 163.95, 194, 211.0, 211.4, 212.45, 225 and 240 s, and the fact card's last frame.
+- **`scripts/final_queue.sh`:** lane b no longer makes the plates (`plates` alone still does).
+- **Re-render** (`renders/final/logs/rerender_brief50.sh`; `queue.log` BRIEF50_*):
+  1. Archive the v5 master, its 1080p copy and the six section intermediates as `*_v5_before-brief50`.
+  2. The graphics layer.
+  3. Lanes a and b (every section at 4K, 64 samples).
+  4. The join.

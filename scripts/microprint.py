@@ -24,7 +24,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import certificate as C  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
-CERT = ROOT / "renders/c1/certificate_v05"
+CERT = ROOT / "renders/c1/certificate_v06"
 OUT = ROOT / "renders/c1/microprint"
 REGION = (870, 1100, 1710, 1600)   # sheet px: S11's opening framing (GUILLOCHE), with a margin for the camera's lean
 K = 16                             # patch px per sheet px (13440 x 8000; GPU textures stop at 16384)

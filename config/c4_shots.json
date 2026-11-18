@@ -252,6 +252,12 @@
    625,
    3190,
    735
+  ],
+  "SEAL_FINE": [
+   1390,
+   1930,
+   1910,
+   2380
   ]
  },
  "shots": {
@@ -441,6 +447,13 @@
     "SHARES"
    ]
   },
+  "S26": {
+   "cam": [
+    "WIDE",
+    "WIDE"
+   ],
+   "note": "brief rev 50: the verse is a screen recording of this file playing, so the render runs under the player here; held wide while the player's controls flicker over it"
+  },
   "S27": {
    "cam": [
     "CHERUBS_BOTH",
@@ -452,6 +465,20 @@
     "laborer",
     "LABORER_TIGHT"
    ]
+  },
+  "S29": {
+   "cam": [
+    "LABORER_TIGHT",
+    "LABORER_TIGHT"
+   ],
+   "note": "brief rev 50: the verse is a screen recording of this file playing, so the render runs under the player here; S28's close on the laborer held to the downbeat, where the player exits full screen"
+  },
+  "S31": {
+   "cam": [
+    "WIDE",
+    "WIDE"
+   ],
+   "note": "brief rev 50: the verse is a screen recording of this file playing, so the render runs under the player here; the whole sheet as the file reopens full screen, before S32's stub"
   },
   "S32": {
    "cam": [
@@ -468,8 +495,9 @@
   "S34": {
    "cam": [
     "SEAL",
-    "SEAL_TIGHT"
-   ]
+    "SEAL_FINE"
+   ],
+   "note": "brief rev 50: ends on SEAL_FINE (SEAL_TIGHT, 1400-1900 x 1950-2260, until 2026-11-17) so the footnote under the seal, \"*based on what we expect\", is in frame"
   },
   "S35": {
    "cam": [
@@ -519,6 +547,13 @@
     "MERCURY_POP",
     "MERCURY_POP"
    ]
+  },
+  "S40": {
+   "cam": [
+    "MERCURY_POP",
+    "MERCURY_POP"
+   ],
+   "note": "brief rev 50: the verse is a screen recording of this file playing, so the render runs under the player here; S39's framing held under the swipe to the call and back"
   }
  },
  "placeholders": {
@@ -528,27 +563,27 @@
    "retired": "C5: the human: \"I don't think S01 (the Suno screen grab) fits for this at all\" (brief rev 34)"
   },
   "S26": {
-   "text": "S26 · LIVE: pull back, the certificate is a real sheet in your hands, still animated; guitar beside you"
+   "text": "S26 · SCREEN: the player's controls flicker up over the render, then fade"
   },
   "S29": {
-   "text": "S29 · LIVE: match cut from the hammer to your hand turning the sheet face down. The music cuts"
+   "text": "S29 · SCREEN: the player exits full screen into the Claude Code session; the music stops"
   },
   "S30": {
-   "text": "S30 · LIVE: your verse, one take, guitar and voice, one mic; the sheet face down beside you, the transfer form up"
+   "text": "S30 · SCREEN: swipe to the video call; your webcam tile, one take of guitar and voice"
   },
   "S31": {
-   "text": "S31 · LIVE: you turn the sheet face up, the music comes back, push into the paper"
+   "text": "S31 · SCREEN: swipe back, reopen the file full screen; the music comes back"
   },
   "S40": {
-   "text": "S40 · LIVE: “do I get a say?” to the sheet in your hands"
+   "text": "S40 · SCREEN: swipe to the call, “do I get a say?”, Raise hand; swipe back"
   },
   "S45": {
    "after_s": 5.0,
-   "text": "S45 · LIVE: you dial the pledge line, 555-0142"
+   "text": "S45 · LIVE: you dial the pledge line, 555-0142, the call page's dial-in number"
   },
   "S46": {
    "after_s": 8.0,
-   "text": "S46 · LIVE: hold music (the chorus as muzak); hang up, fold the sheet into the guitar case"
+   "text": "S46 · LIVE: hold music (the chorus as muzak) down the line"
   },
   "S47": {
    "after_s": 20.89,

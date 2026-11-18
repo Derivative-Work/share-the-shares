@@ -2,12 +2,12 @@
 # The 4K finals on the RTX 5090 box (config/render_profiles.json "final"), in three lanes run side by side:
 #   graphics  the graphics layer at 3840x2160, every frame (scripts/render_graphics.py) -> renders/final/graphics
 #   a         sections 1-3
-#   b         the live plates (S26, S29, S31, S40), then sections 4-6
+#   b         sections 4-6 (the live plates, S26, S29, S31, S40, only with `plates`: retired with the printed sheet)
 #   join      after all three: the sections joined, with the post-filtered preview mix -> deliverables/final_4k/
 # A section is rendered to PNG frames, assembled to a ProRes 422 HQ intermediate (no captions, no audio), and once
 # that holds every frame, the PNGs are kept for re-assembly (the first run removed them for lack of disk; the box
 # now has the room). Frame sequences regenerate from this script and are never archived (CLAUDE.md).
-# Usage: scripts/final_queue.sh graphics|a|b|join   (progress in renders/final/logs/queue.log)
+# Usage: scripts/final_queue.sh graphics|a|b|plates|join   (progress in renders/final/logs/queue.log)
 set -euo pipefail
 cd "$(git rev-parse --show-toplevel)"
 LOG=renders/final/logs
@@ -107,7 +107,10 @@ case "${1:-}" in
     mark GRAPHICS_DONE
     ;;
   a) for n in 1 2 3; do render_section $n; done; mark LANE_A_DONE ;;
-  b) plates; for n in 4 5 6; do render_section $n; done; mark LANE_B_DONE ;;
+  # the flat plates were for compositing onto the printed sheet; brief rev 50 retired it (the verse is a screen
+  # recording), so lane b no longer makes them: `plates` alone still does
+  b) for n in 4 5 6; do render_section $n; done; mark LANE_B_DONE ;;
+  plates) plates ;;
   join)
     wait_for LANE_A_DONE; wait_for LANE_B_DONE
     mkdir -p "$OUT"
@@ -119,5 +122,5 @@ case "${1:-}" in
       -c:v libx264 -preset slow -crf 18 -pix_fmt yuv420p -c:a aac -b:a 320k "$OUT/share_the_shares_1080p_postfilter_preview.mp4"
     mark JOIN_DONE
     ;;
-  *) echo "usage: $0 graphics|a|b|join" >&2; exit 2 ;;
+  *) echo "usage: $0 graphics|a|b|plates|join" >&2; exit 2 ;;
 esac

@@ -575,7 +575,7 @@ TH_GEOM = {"cx": 170, "tw": 100, "top": 470, "foot": 2280, "bulb_y": 290, "bulb_
 
 @generated
 def seal(p):
-    """The corporate seal's die (its legend round a rosette) and the embossed impression it leaves (a height map)."""
+    """The corporate seal's die (its legend round a rosette, THRESHOLD MET* at its centre) and the embossed impression it leaves (a height map)."""
     W = 900
     c = W / 2
     img = canvas(W, W)
@@ -586,11 +586,14 @@ def seal(p):
         cv2.line(img, (int(c + r0 * np.cos(a)), int(c + r0 * np.sin(a))), (int(c + r1 * np.cos(a)), int(c + r1 * np.sin(a))), 255, 2, AA)
     circle_text(img, c, c, c - 90, "AMALGAMATED BENEFIT, LLC · CORPORATE SEAL · ", "small_caps", 66, span=352)
     C.rosette(img, c, c, 30, 250, 14, 6, 2)
-    cv2.circle(img, (int(c), int(c)), 150, 0, -1, AA)
-    cv2.circle(img, (int(c), int(c)), 150, 255, 4, AA)
-    fit(img, (c - 118, c - 82, c + 118, c - 6), "WHOLLY", "small_caps", 54, spacing=4)
-    fit(img, (c - 128, c - 6, c + 128, c + 66), "OWNED", "small_caps", 54, spacing=4)
-    fit(img, (c - 86, c + 70, c + 86, c + 118), "MMXXVI", "small_caps", 38, spacing=6)
+    cv2.circle(img, (int(c), int(c)), 196, 0, -1, AA)  # 150 until the centre had THRESHOLD to hold
+    cv2.circle(img, (int(c), int(c)), 196, 255, 4, AA)
+    # brief rev 50: it embosses THRESHOLD MET* (the IPO filing's RSI threshold); the footnote is set in the scene,
+    # below the seal (scenes/blender/animatic.py S34). Until 2026-11-17 the centre read WHOLLY OWNED
+    # (archive/props/seal_v1_wholly-owned/)
+    fit(img, (c - 176, c - 104, c + 176, c - 16), "THRESHOLD", "small_caps", 62, spacing=2)
+    fit(img, (c - 130, c - 14, c + 130, c + 84), "MET*", "small_caps", 92, spacing=6)
+    fit(img, (c - 86, c + 96, c + 86, c + 144), "MMXXVI", "small_caps", 38, spacing=6)
     emboss = cv2.GaussianBlur(cv2.dilate(img, np.ones((5, 5), np.uint8)), (0, 0), 3)
     return {"seal": img, "seal_emboss": emboss}
 

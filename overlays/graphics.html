@@ -56,11 +56,11 @@ html, body { margin: 0; background: transparent; overflow: hidden; }
 #fact .frame { position: absolute; inset: 40px; border: 14px double var(--green); }
 #fact .frame2 { position: absolute; inset: 70px; border: 2px solid var(--green); }
 #fact h2 { position: absolute; top: 105px; left: 0; right: 0; text-align: center; margin: 0; font: 74px/1 'Abril'; letter-spacing: 10px; }
-#fact ul { position: absolute; top: 205px; left: 160px; right: 160px; margin: 0; padding: 0; list-style: none; }
-#fact li { font: 35px/1.28 'Fell'; margin: 0 0 27px; padding-left: 42px; position: relative; }
+#fact ul { position: absolute; top: 196px; left: 150px; right: 150px; margin: 0; padding: 0; list-style: none; }
+#fact li { font: 30px/1.24 'Fell'; margin: 0 0 17px; padding-left: 38px; position: relative; }  /* 35px, 27px apart, until brief rev 50 added three lines */
 /* the red pen (the human's hedges, C5): marks and notes over the printed card, placed from the laid-out text */
 #pen { position: absolute; inset: 0; pointer-events: none; }
-#fact li.roomy { margin-top: 52px; }  /* a line with a note written above it: room for the pen between the lines */
+#fact li.roomy { margin-top: 58px; }  /* a line with a note written above it: room for the pen between the lines */
 #pen svg { position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: visible; }
 #pen path { fill: none; stroke: var(--pen); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; opacity: .92; }
 #pen .note { position: absolute; white-space: nowrap; font: 600 40px/1 'Pen'; color: var(--pen); opacity: .92; transform-origin: 0 100%; }
@@ -84,7 +84,7 @@ html, body { margin: 0; background: transparent; overflow: hidden; }
   <div class="layer" id="bug"><div class="box"><span class="dot"></span>LIVE</div><div class="tel">PLEDGE LINE 555-0142</div></div>
   <div class="layer" id="postfilter"><div class="tab">Post-filter: no change</div></div>
   <div class="layer full" id="slate"><div class="card"><div class="id"></div><div class="what"></div>
-    <div class="note">Live footage: your shot goes here. Shoot it with the printed certificate (brief, "Live shots").</div></div></div>
+    <div class="note"></div></div></div>
   <div class="layer" id="s01">
     <div class="col" style="left:60px;width:700px"><h2>Style prompt</h2><div class="mono" id="s01style"></div></div>
     <div class="col" style="left:800px;width:640px"><h2>Lyrics</h2><div style="position:absolute;top:80px;left:30px;right:30px;bottom:30px;overflow:hidden"><div class="mono" id="s01lyrics"></div></div></div>
@@ -92,12 +92,13 @@ html, body { margin: 0; background: transparent; overflow: hidden; }
     <div class="foot">Stand-in for S01: the real generation screen is a screen capture from your account (R4).</div>
   </div>
   <div class="layer" id="fact"><div class="frame"></div><div class="frame2"></div><h2 class="ruled">THE TERMS</h2><ul id="factlist"></ul>
-    <div class="src">Sources: Anthropic's announcement (anthropic.com/news/public-benefit-fund) · TechCrunch · The National · ESG Today</div>
+    <div class="src">Sources: Anthropic's announcement (anthropic.com/news/public-benefit-fund) · its IPO filing (SEC) · TechCrunch · The National · ESG Today · CNBC · Gizmodo</div>
     <div id="pen"><svg viewBox="0 0 1920 1080"></svg></div></div>
   <div class="layer" id="announce"><img id="annimg" src="../assets/screens/announcement.png"></div>
   <div class="layer" id="credits"><h2>DERIVED FROM</h2><ul id="credlist"></ul></div>
 </div>
 <script src="data/s01.js"></script>
+<script src="data/fact.js"></script>
 <script>
 const q = new URLSearchParams(location.search);
 const W = Number(q.get('w') || 1920), H = Number(q.get('h') || 1080);
@@ -109,13 +110,17 @@ el.style.display = 'block';
 const clamp01 = (x) => Math.min(1, Math.max(0, x));
 const ease = (x) => { x = clamp01(x); return x * x * (3 - 2 * x); };
 
+const IPO = (window.FACT || {}).ipo || {};
 // the fact card's text: the brief's draft (section "Fact card and disclosure"); checked against the sources at C6
 const FACTS = [
-  "Announced October 18, 2026: Anthropic commits 5% of its shares to the Anthropic Public Benefit Fund.",
+  "Announced October 18, 2026: Anthropic commits 5% of its shares to the Anthropic Public Benefit Fund. Its November 10 IPO filing says these were contributed as Class N shares, which carry no vote except as required by law.",
   "The board may add 2% more for every 50% rise in Anthropic's value above a baseline not yet announced.",
   "Set up as a wholly owned LLC, not a 501(c)(3), to allow different forms of giving.",
   "5% goes to the fund. Anthropic says about 20% of its shares are committed to the public good in total, counting its other commitments. The fund's equity won't be used for lobbying or political giving.",
   "Structure, governance and valuation milestones: to be announced.",
+  // brief rev 50: the IPO (config/fact_card.json; the brief's [placeholders] until it prices) and the RSI threshold
+  `Anthropic's IPO: priced ${IPO.priced || '[date]'}, trading on Nasdaq as ANT since ${IPO.trading_since || '[date]'}, at $${IPO.price || '[final price]'}.`,
+  "In its IPO filing, Anthropic says it has met its own Responsible Scaling Policy threshold for AI-accelerated research, based on what it expects from future models rather than what it has observed from current ones.",
   "Separately, Anthropic has given $40M to Public First Action. It says that money is limited to policy work and public education, not candidate spending.",
 ];
 const SATIRE = "AI-generated satire. Lyrics drafted by Claude, a model made by Anthropic. Reviewed for bias by a model from another lab: Gemini 4 Argon, October 21, 2026.";
@@ -135,7 +140,7 @@ const MARK = {  // fact index -> [phrase, span id]
   2: [["to allow different forms of giving", "m_allow"]],
   3: [["The fund's equity won't be used for lobbying or political giving.", "m_lobby"]],
   4: [["to be announced", "m_tba"]],
-  6: [["Lyrics drafted by Claude, a model made by Anthropic", "m_lyrics"], ["Gemini 4 Argon, October 21, 2026.", "m_review"]],
+  8: [["Lyrics drafted by Claude, a model made by Anthropic", "m_lyrics"], ["Gemini 4 Argon, October 21, 2026.", "m_review"]],  // the satire line (6 until brief rev 50)
 };
 const PEN = [  // what the pen does, in order: kind, target span, note text
   ["note_arrow", "m_may", "It’s not required to."],  // up and to the right, an arrow back down to "may add"
@@ -232,8 +237,13 @@ if (LAYER === 'credits') {
   for (const [k, v] of CREDITS) { const li = document.createElement('li'); li.innerHTML = `<span>${k}</span>&ensp;${v}`; ul.appendChild(li); }
 }
 if (LAYER === 'slate') {
-  el.querySelector('.id').textContent = (q.get('id') || '') + ' · LIVE';
+  const kind = q.get('kind') || 'LIVE';
+  el.querySelector('.id').textContent = (q.get('id') || '') + ' · ' + kind;
   el.querySelector('.what').textContent = q.get('text') || '';
+  // brief rev 50: the verse is a screen recording (the player, the session, the call page); the phone call is live
+  el.querySelector('.note').textContent = kind === 'SCREEN'
+    ? 'Screen recording goes here: the call page (brief, "Live shots").'
+    : 'Live footage goes here: the mirrorless camera, at your desk (brief, "The phone call").';
 }
 window.ready = (async () => {
   if (LAYER === 'fact') { await document.fonts.ready; layoutPen(); }

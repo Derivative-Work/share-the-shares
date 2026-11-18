@@ -58,7 +58,7 @@ BACK_DX = 0.40  # the certificate's back (S24) lies on the desk this far to the 
 
 ap = argparse.ArgumentParser()
 ap.add_argument("--out", required=True)
-ap.add_argument("--cert", default=str(ROOT / "renders/c1/certificate_v05"))
+ap.add_argument("--cert", default=str(ROOT / "renders/c1/certificate_v06"))  # v06: the class line (brief rev 50)
 ap.add_argument("--size", nargs=2, type=int, default=[640, 360])
 ap.add_argument("--samples", type=int, default=8)
 ap.add_argument("--step", type=int, default=2)
@@ -757,6 +757,21 @@ MOVES.append(move_seal)
 show(seal, T["S34"], SEAL_UP[1])
 show(seal_face, T["S34"], SEAL_UP[1])
 show(emboss_card("S34.emboss", [1480, 1930, 1820, 2270], "seal_emboss", "seal_mask", 0.00012), SEAL_HIT, end)
+# the footnote to the seal's THRESHOLD MET* (brief rev 50: "the fine print adds '*based on what we expect'"), typed
+# into the gap under the seal while the die is still down, and printed from then on; left-set at its final centring
+# (its width measured in the font: 402 px at 26 px) so it doesn't slide as it types
+FOOT = "*BASED ON WHAT WE EXPECT"
+foot = text("S34.footnote", FOOT, "small_caps", 26, (1650 - 201, 2308), 0.0009, M["sepia"], align="LEFT")
+FOOT_TYPE = (SEAL_HIT + 0.2, SEAL_HIT + 0.9)
+
+
+def type_foot(t):
+    n = len(FOOT) if t >= FOOT_TYPE[1] else int(len(FOOT) * ramp(t, *FOOT_TYPE)) if t > FOOT_TYPE[0] else 0
+    foot.data.body = FOOT[:n] or " "
+
+
+MOVES.append(type_foot)
+show(foot, FOOT_TYPE[0], end)
 
 # S37: Prudence clips the coupons one by one; each flutters into her ledger (on the desk, right of the sheet)
 ledger = prop_card("S37.ledger", prop_box("ledger", 4730, 2700, w=500), "ledger", 0.004)
