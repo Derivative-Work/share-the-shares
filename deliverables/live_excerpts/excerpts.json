@@ -1,0 +1,3 @@
+{"_doc": "The files the screen recording plays (scripts/live_excerpts.sh): song-time spans in the master (song time = video time).",
+ "share_the_shares_chorus2.mp4": {"from_s": 136.36, "to_s": 164.14, "covers": "S25 (from 3.0 s before it) to S29's end, the downbeat"},
+ "share_the_shares_bridge_on.mp4": {"from_s": 192.68, "to_s": 243.54, "covers": "S31 to S41 + 3.0 s (S40, the swipe to the call, inside)"}}
