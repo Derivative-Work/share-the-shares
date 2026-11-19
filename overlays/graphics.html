@@ -114,10 +114,10 @@ const IPO = (window.FACT || {}).ipo || {};
 // the fact card's text: the brief's draft (section "Fact card and disclosure"); checked against the sources at C6
 const FACTS = [
   "Announced October 18, 2026: Anthropic commits 5% of its shares to the Anthropic Public Benefit Fund. Its November 10 IPO filing says these were contributed as Class N shares, which carry no vote except as required by law.",
-  "The board may add 2% more for every 50% rise in Anthropic's value above a baseline not yet announced.",
+  "The board may add 2% more for every 50% rise in Anthropic's share price, starting from the IPO price.",  // the S-1/A of Nov 17 (was \"above a baseline not yet announced\")
   "Set up as a wholly owned LLC, not a 501(c)(3), to allow different forms of giving.",
   "5% goes to the fund. Anthropic says about 20% of its shares are committed to the public good in total, counting its other commitments. The fund's equity won't be used for lobbying or political giving.",
-  "Structure, governance and valuation milestones: to be announced.",
+  "The fund's governance structure: to be announced. Until then, Anthropic's board decides what it gives.",  // the S-1/A of Nov 17 (was \"Structure, governance and valuation milestones: to be announced.\")
   // brief rev 50: the IPO (config/fact_card.json; the brief's [placeholders] until it prices) and the RSI threshold
   `Anthropic's IPO: priced ${IPO.priced || '[date]'}, trading on Nasdaq as ANT since ${IPO.trading_since || '[date]'}, at $${IPO.price || '[final price]'}.`,
   "In its IPO filing, Anthropic says it has met its own Responsible Scaling Policy threshold for AI-accelerated research, based on what it expects from future models rather than what it has observed from current ones.",

@@ -9,7 +9,7 @@ YouTube metadata for the main video. Written by the agent; the human cuts the vi
   - **The fund's terms:** the announcement still says what the card says: LLC "rather than a 501(c)(3)", for "adjustability between different forms of giving"; "roughly 20%" in total; no fund equity "for lobbying or political giving, in the US or abroad".
   - **$40M to Public First Action:** confirmed on Anthropic's page: two $20M donations (February and July 2026), which "cannot be used to influence the election of any candidate".
   - **The IPO:** $83, priced November 18, trading from November 19 (CNBC). The final prospectus (424B4) wasn't on EDGAR yet when checked (last filings: an S-1MEF and an FWP on November 18). Check it, or the opening trade, before upload.
-  - **Changed since the card was drafted: the baseline and the managers.** The November 17 filing says the board may add up to 2% "each time our share price appreciates 50% above the prior share price milestone, beginning with our initial public offering price". So the baseline is the IPO price, $83, and the first milestone is $124.50. The card's "above a baseline not yet announced" is out of date, and so is the "valuation milestones" part of "Structure, governance and valuation milestones: to be announced". The filing also names the fund's initial managers (Dario Amodei, Daniela Amodei, Jack Clark, Neil "Buddy" Shah). The board decides the fund's giving "until it approves a specific governance structure", so governance itself is still to come. The lyrics and the certificate's TBA gags satirize the October announcement and can stand. The card is the factual part, so the human decides whether it changes (a graphics-only re-render of the last 32 s, as on November 18).
+  - **Changed since the card was drafted: the baseline and the managers.** The November 17 filing says the board may add up to 2% "each time our share price appreciates 50% above the prior share price milestone, beginning with our initial public offering price". So the baseline is the IPO price, $83, and the first milestone is $124.50. The card's "above a baseline not yet announced" is out of date, and so is the "valuation milestones" part of "Structure, governance and valuation milestones: to be announced". The filing also names the fund's initial managers (Dario Amodei, Daniela Amodei, Jack Clark, Neil "Buddy" Shah). The board decides the fund's giving "until it approves a specific governance structure", so governance itself is still to come. The lyrics and the certificate's TBA gags satirize the October announcement and can stand. **Fixed on the card** (the human, November 19; master v8): "The board may add 2% more for every 50% rise in Anthropic's share price, starting from the IPO price." and "The fund's governance structure: to be announced. Until then, Anthropic's board decides what it gives." Swap the cut's last 32 s (from S47, 4:56) for the new master's.
 - **The repository is private.** The credits and the description point to github.com/Derivative-Work/share-the-shares, so make it public before the video goes up.
 - **Licence:** video and assets CC BY-NC-SA 4.0 (`LICENSE-media.md`, `LICENSES/`), code MIT (`LICENSE`), confirmed by the human on November 19.
 - **The brief's review checklist** still has the Gemini rerun open. The card dates the human's own review November 18, 2026; Gemini's pass stays October 21.
@@ -28,7 +28,7 @@ YouTube metadata for the main video. Written by the agent; the human cuts the vi
 
 ## Main video (16:9, 3840×2160, 24 fps)
 
-**Source for the cut:** `deliverables/final_4k/share_the_shares_4k_postfilter_preview.mov` (ProRes 422, 24-bit PCM, 5:28.33; v7, rebuilt November 18 with the IPO line). The cut replaces S29–S31 and S40 with the screen recording and S45–S46 with the phone call. **Captions:** `deliverables/share_the_shares.en.srt` (76 cues, master time, which the cut keeps). **Thumbnail:** none made yet (see Settings).
+**Source for the cut:** `deliverables/final_4k/share_the_shares_4k_postfilter_preview.mov` (ProRes 422, 24-bit PCM, 5:28.33; v8, rebuilt November 19 with the IPO line and the filing's baseline and governance). The cut replaces S29–S31 and S40 with the screen recording and S45–S46 with the phone call. **Captions:** `deliverables/share_the_shares.en.srt` (76 cues, master time, which the cut keeps). **Thumbnail:** none made yet (see Settings).
 
 ### Title
 
@@ -64,7 +64,7 @@ The first two are the strongest: a face and a question beat a document, and "Boa
 ```
 AI-generated satire. A 1980s all-star charity single where every star is from the same company, sung inside an engraved stock certificate. A benefit single asks the public to give. This one ends up asking them to buy, because most of the gift only grows if the stock does.
 
-The fund is real: on October 18, 2026, Anthropic committed 5% of its shares to the Anthropic Public Benefit Fund. The song is about its terms: the growth escalator, a baseline and governance still to be announced, and the timing, just before the IPO.
+The fund is real: on October 18, 2026, Anthropic committed 5% of its shares to the Anthropic Public Benefit Fund. The song is about its terms: the growth escalator, a baseline the announcement left unstated, governance still to come, and the timing, just before the IPO.
 
 A disclosure: the lyrics were drafted by Claude, a model made by Anthropic, the company this song is about, and the video was made by Claude Code in the session you see at 2:44. So the lyrics were reviewed for bias by a model from another lab (Gemini 4 Argon, Oct 21) and by the human (Nov 18). The human performed verse 3 and "do I get a say?" live, and cut the video. Every prompt, production step and human intervention is logged:
 https://github.com/Derivative-Work/share-the-shares
@@ -87,10 +87,10 @@ CHAPTERS
 
 THE TERMS
 • Announced Oct 18, 2026: Anthropic commits 5% of its shares to the Anthropic Public Benefit Fund. Its Nov 10 IPO filing says these were contributed as Class N shares, which carry no vote except as required by law.
-• The board may add 2% more for every 50% rise in Anthropic's value above a baseline not yet announced.
+• The board may add 2% more for every 50% rise in Anthropic's share price, starting from the IPO price.
 • Set up as a wholly owned LLC, not a 501(c)(3), to allow different forms of giving.
 • 5% goes to the fund. Anthropic says about 20% of its shares are committed to the public good in total, counting its other commitments. The fund's equity won't be used for lobbying or political giving.
-• Structure, governance and valuation milestones: to be announced.
+• The fund's governance structure: to be announced. Until then, Anthropic's board decides what it gives.
 • Anthropic's IPO priced Nov 18, 2026 at $83 a share; it trades on Nasdaq as ANT from Nov 19.
 • In its IPO filing, Anthropic says it has met its own Responsible Scaling Policy threshold for AI-accelerated research, based on what it expects from future models rather than what it has observed from current ones.
 • Separately, Anthropic has given $40M to Public First Action. It says that money is limited to policy work and public education, not candidate spending.

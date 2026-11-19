@@ -1058,3 +1058,14 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   - **Out of date on the card:** the filing sets the 2% top-ups' baseline at the IPO price ("beginning with our initial public offering price") and names the fund's initial managers; the board decides the fund's giving until it approves a governance structure. "Above a baseline not yet announced" and the "valuation milestones" in "to be announced" no longer hold. Left for the human to decide (METADATA.md); the video is otherwise done.
 - **Licences** (the human's R1): `LICENSE` (MIT), `LICENSE-media.md` (CC BY-NC-SA 4.0, with what it does and doesn't cover: the public-domain engravings, Anthropic's announcement page, the OFL fonts, MediaPipe, the audits, Suno's records) and `LICENSES/CC-BY-NC-SA-4.0.txt`, the same legal code as the sibling repos.
 - **METADATA.md:** the fact status and links to verify; the licence confirmed; the intervention count frozen at 39; eight clickbait-adjacent title and thumbnail pairs (four from the human's footage, four from the master).
+
+## 2026-11-19T01:10 — The fact card's baseline and governance lines corrected; section 6 and the master rebuilt (v8)
+
+- **Why:** the S-1/A of November 17 sets the 2% top-ups' baseline at the IPO price and leaves the fund's giving to the board until a governance structure is approved (production log 2026-11-19T01:10, facts). The human: "Yes fix the fact card." This is the human's R1 on a correction the agent found; the intervention count stays frozen at 39.
+- **The card** (`overlays/graphics.html`):
+  - "The board may add 2% more for every 50% rise in Anthropic's share price, starting from the IPO price." (was "… in Anthropic's value above a baseline not yet announced.")
+  - "The fund's governance structure: to be announced. Until then, Anthropic's board decides what it gives." (was "Structure, governance and valuation milestones: to be announced.")
+  - The red pen still lands where it did: the arrow to "may add" and the circle on "to be announced". Each line still fits on one line, so the layout is unchanged.
+- **Rebuilt** (`renders/final/logs/rerender_baseline.sh`): the fact graphics; section 6 re-assembled from its frames (2,588); the master and its 1080p copy re-joined (7,879 frames each). Checked at 316 s in the 1080p copy.
+- **Archived:** `archive/final_4k/*_v7_before-baseline.*`.
+- `METADATA.md`: the description's terms match the card; the cut's last 32 s (from S47, 4:56) come from the new master.
