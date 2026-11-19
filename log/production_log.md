@@ -1099,7 +1099,7 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   - The desk's papers are props about AI-driven job changes: a redacted recruiter's cold email (contract work producing Claude Code RLHF data); the human's email address, which is meant to be public and already is; and the public version of Microsoft's voluntary buyout memo.
   - Nothing to change.
 
-## 2026-11-19T02:15 — The five Shorts; the README
+## 2026-11-19T02:10 — The five Shorts; the README
 
 - **The human:** "Make all of them, then I'll release as appropriate. Also make the README".
 - **`scripts/shorts.py`** → `deliverables/shorts/share_the_shares_short_{1_verse,2_pitch,3_hand,4_threshold,5_pledge}.mp4` (1080×1920, 24 fps, H.264 CRF 18, AAC 256k; from the human's cut, `~/Downloads/share-the-shares-master.mov`):
