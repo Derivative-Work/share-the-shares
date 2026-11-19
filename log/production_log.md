@@ -1049,3 +1049,12 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
 - **`METADATA.md`** (new, as in the sibling repos):
   - Title options, a description with the disclosure, chapters at the master's times, the fact card's terms with sources, credits, tags and settings.
   - Open before upload: the brief's facts to verify (the final prospectus for the price, Class N and RSI wording; Public First; any announced baseline); the repo is private and the credits point to it; this repo has no licence files (the series' CC BY-NC-SA 4.0 / MIT is assumed in the description, pending the human); no thumbnail yet (three candidates named).
+
+## 2026-11-19T01:10 — Facts checked against the filings; licences added; title and thumbnail options
+
+- **Facts** (the brief's "Facts to verify before release"), against the November 17 S-1/A on EDGAR (downloaded and searched), Anthropic's announcement and its Public First page:
+  - Confirmed: Class N's 846,840,960 shares to the fund and their lack of a vote; the RSI threshold "met … based on what we expect"; the announcement's LLC, 20% and no-lobbying wording; $40M to Public First Action with the candidate restriction.
+  - Not yet checkable: the final prospectus (no 424B4 on EDGAR; the latest are an S-1MEF and an FWP, November 18). The $83 price stands on CNBC's report.
+  - **Out of date on the card:** the filing sets the 2% top-ups' baseline at the IPO price ("beginning with our initial public offering price") and names the fund's initial managers; the board decides the fund's giving until it approves a governance structure. "Above a baseline not yet announced" and the "valuation milestones" in "to be announced" no longer hold. Left for the human to decide (METADATA.md); the video is otherwise done.
+- **Licences** (the human's R1): `LICENSE` (MIT), `LICENSE-media.md` (CC BY-NC-SA 4.0, with what it does and doesn't cover: the public-domain engravings, Anthropic's announcement page, the OFL fonts, MediaPipe, the audits, Suno's records) and `LICENSES/CC-BY-NC-SA-4.0.txt`, the same legal code as the sibling repos.
+- **METADATA.md:** the fact status and links to verify; the licence confirmed; the intervention count frozen at 39; eight clickbait-adjacent title and thumbnail pairs (four from the human's footage, four from the master).

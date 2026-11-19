@@ -1,18 +1,28 @@
 # Upload metadata
 
-YouTube metadata for the main video. Written by the agent; the human cuts the video (DaVinci Resolve) and uploads. Prepared November 19, 2026, the day ANT starts trading. The brief says to post shortly after trading starts, once the final price is on the fact card, and it is ($83, production log 2026-11-18T23:15).
+YouTube metadata for the main video. Written by the agent; the human cuts the video (DaVinci Resolve) and uploads. Prepared November 19, 2026, the day ANT starts trading. The video is done (the human, November 19). The brief says to post shortly after trading starts, once the final price is on the fact card, and it is ($83, production log 2026-11-18T23:15).
 
 **Before uploading:**
-- **The facts the brief asks to verify** ("Facts to verify before release"). Status as of November 19:
-  - **IPO price and dates:** on the card as priced November 18, trading from November 19, at $83 (CNBC, November 18). Most reports call it confirmed; StockAnalysis said Anthropic hadn't announced it yet. Check the final prospectus (424B4) or Anthropic's release once it's out.
-  - **The Class N and RSI-threshold wording:** still checked only against the November 10 filing. Check the final prospectus; the certificate's class line, S34's seal and the card all use it.
-  - **The $40M to Public First Action and Anthropic's caveat:** recheck against current reporting.
-  - **Baseline, governance or milestones:** if any have been announced, the TBA gags (S33, the card's "to be announced") need a decision before release.
+- **Facts** (the brief's "Facts to verify before release"), checked by the agent on November 19 against the filings on EDGAR and Anthropic's pages. "Confirmed" means a primary source says it; the rest needs a look in a browser.
+  - **Class N, no vote:** confirmed. The last amended S-1 (S-1/A, November 17) says the fund got 846,840,960 Class N shares, 5% of fully diluted shares as of June 30, 2026, and that Class N "is not entitled to vote on any matter that is submitted to a vote of stockholders, except as otherwise required by law".
+  - **The RSI threshold:** confirmed, same filing: "we made a determination that we have met this threshold based on what we expect from future models and our overall rate of progress, rather than on what we have observed from current models."
+  - **The fund's terms:** the announcement still says what the card says: LLC "rather than a 501(c)(3)", for "adjustability between different forms of giving"; "roughly 20%" in total; no fund equity "for lobbying or political giving, in the US or abroad".
+  - **$40M to Public First Action:** confirmed on Anthropic's page: two $20M donations (February and July 2026), which "cannot be used to influence the election of any candidate".
+  - **The IPO:** $83, priced November 18, trading from November 19 (CNBC). The final prospectus (424B4) wasn't on EDGAR yet when checked (last filings: an S-1MEF and an FWP on November 18). Check it, or the opening trade, before upload.
+  - **Changed since the card was drafted: the baseline and the managers.** The November 17 filing says the board may add up to 2% "each time our share price appreciates 50% above the prior share price milestone, beginning with our initial public offering price". So the baseline is the IPO price, $83, and the first milestone is $124.50. The card's "above a baseline not yet announced" is out of date, and so is the "valuation milestones" part of "Structure, governance and valuation milestones: to be announced". The filing also names the fund's initial managers (Dario Amodei, Daniela Amodei, Jack Clark, Neil "Buddy" Shah). The board decides the fund's giving "until it approves a specific governance structure", so governance itself is still to come. The lyrics and the certificate's TBA gags satirize the October announcement and can stand. The card is the factual part, so the human decides whether it changes (a graphics-only re-render of the last 32 s, as on November 18).
 - **The repository is private.** The credits and the description point to github.com/Derivative-Work/share-the-shares, so make it public before the video goes up.
-- **Licence:** this repo has no `LICENSE` or `LICENSE-media.md` yet. The series uses video and assets CC BY-NC-SA 4.0 and code MIT (Not Yet, All Systems Operational), and the description below says so. Confirm, and the agent adds the files.
-- **The brief's review checklist** still has the Gemini rerun open. The card now dates the human's own review November 18, 2026 (human interventions 39); Gemini's pass stays October 21.
+- **Licence:** video and assets CC BY-NC-SA 4.0 (`LICENSE-media.md`, `LICENSES/`), code MIT (`LICENSE`), confirmed by the human on November 19.
+- **The brief's review checklist** still has the Gemini rerun open. The card dates the human's own review November 18, 2026; Gemini's pass stays October 21.
 - **Timing:** the human's cut keeps the master's timing (the live sections replace shots in place; human, 2026-11-19), so the chapters and subtitles below are in master time and final.
-- **Intervention count:** the credits read 39 (`grep -c '^## ' log/human_interventions.md`). The live verse, "do I get a say?", the phone call and the cut itself are logged as the human's when done; if that raises the count before release, the credits card is re-rendered (`scripts/render_graphics.py 3840 2160 1 renders/final/graphics credits`; then section 6 and the join, as `renders/final/logs/rerender_ipo.sh`).
+- **Intervention count: frozen at 39** (the human, November 19: "the video itself is done"). The credits and the description read 39, the entries up to the IPO line on November 18. Entries logged after that come after the video and don't change it.
+
+**Links to verify:**
+- Anthropic's last amended S-1, November 17 (Class N, the fund, the baseline, the managers, the RSI threshold): https://www.sec.gov/Archives/edgar/data/2130357/000162828026074338/anthropicpbc-sx1ax3.htm. It's large; search the page for "Initial Public Benefit Issuance", "beginning with our initial public offering price", "initial managers" and "observe or expect".
+- Anthropic's filings, for the final prospectus (424B4) when it appears: https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=2130357&type=424B4
+- The fund's announcement, October 18: https://www.anthropic.com/news/public-benefit-fund
+- Public First Action, $40M: https://www.anthropic.com/news/donation-public-first-action
+- The IPO price: https://www.cnbc.com/2026/11/18/anthropic-ipo-ai-offering-price.html
+- The managers, as reported (citing the November 10 filing): https://www.billionaires.africa/2026/11/16/american-billionaires-dario-and-daniela-amodei-to-run-anthropics-66-billion-benefit-fund/
 
 ---
 
@@ -31,6 +41,23 @@ Share the Shares — an all-star benefit single (sort of)
 Alternatives:
 - `Share the Shares: a 1980s charity single for a pre-IPO fund`
 - `Share the Shares — help us grow, so we can give`
+
+### Clickbait-adjacent titles and thumbnails
+
+Each title is paired with a thumbnail. The titles stay true to the video, so none of them is bait the video doesn't pay off. For the ones marked **(yours)**, the picture comes from your footage, so you make it. For the rest the agent can make it from the master at 1280×720.
+
+| Title | Thumbnail |
+|---|---|
+| `I was the only one who showed up to the stakeholder meeting` | **(yours)** Your call tile, alone, with "Board (not joined)" greyed out in the participant list. The boardroom background is behind you and your hand is raised. Big text: **1 PARTICIPANT**. |
+| `They're giving away 5% of the company. I asked one question.` | **(yours)** The raised-hand frame from S40, close on your face, with **DO I GET A SAY?** in the certificate's red pen and no reply. |
+| `Anthropic's AI wrote a charity single about Anthropic's IPO` | **(yours)** The S29 session reveal: the Claude Code session with the video sent as a file, a red-pen circle on the file, and **IT MADE THIS ABOUT ITSELF**. Check that everything legible on screen is fine to publish. |
+| `I called the pledge line. Please hold.` | **(yours)** S45/S46: you at the desk with the phone to your ear, looking at the camera, with **PLEASE HOLD** in engraved capitals. |
+| `"Threshold met*" (*based on what we expect)` | S34's seal close up: THRESHOLD MET* embossed, with the red pen circling "*based on what we expect". From the master at 3:30–3:32. |
+| `Help us grow, so we can give (buy the stock)` | The certificate wide, the corner 5 flipped to 5%, with the red pen's arrow to "at our discretion" and **BUY TO GIVE?** |
+| `The board may add 2%. It's not required to.` | The fact card's line with the red pen's "It's not required to." large, the rest of the card soft behind it (296–317 s in the master). |
+| `Share the Shares — an all-star benefit single (sort of)` | Prudence with her scissors raised over the coupons (S38, from 3:52), the cherubs behind. The straight option. |
+
+The first two are the strongest: a face and a question beat a document, and "Board (not joined)" works as a joke on its own without the song. For a set of A/B thumbnails (YouTube's "Test & compare"), pair the call tile with the seal.
 
 ### Description
 
@@ -111,7 +138,7 @@ Share the Shares, AI music video, AI generated, AI satire, Anthropic, Anthropic 
 | Language / caption language | English / English |
 | Captions | Upload `deliverables/share_the_shares.en.srt` as English subtitles. Not burned in. |
 | License | Standard YouTube License. YouTube's only Creative Commons option is CC BY, which would drop the NC-SA terms; the description states the licence instead. |
-| Thumbnail | None yet. Candidates from the master: S34's seal embossing THRESHOLD MET* (3:30–3:32), Prudence with the scissors raised (S38, from 3:52), or the empty call tile with "Board (not joined)" from the live footage. Say which and the agent makes it at 1280×720 with the title. |
+| Thumbnail | None yet: see "Clickbait-adjacent titles and thumbnails". The call-tile ones are the human's to make from the footage; the agent makes the master-frame ones at 1280×720 on request. |
 | Chapters | From the description (first at 0:00; each over 10 s), at the master's shot and line times. |
 | End screen | Over the credits' last seconds. The cut ends on the credits, about 6 s long in the master, so lengthen that card if you want a full 20 s end screen. |
 | Comments | Open. |

@@ -246,3 +246,9 @@ Every human action: timestamp, what, why, and which production rule allows it. R
 - **Changed:** the fact card's IPO line (config/fact_card.json: priced November 18, 2026, trading on Nasdaq as ANT since November 19, 2026, at $83); the human's own review, the red-pen note under the satire line, "and by the human, October 26, 2026" → "November 18, 2026" (Gemini's date, October 21, stands); the credit "Verse 3 and “do I get a say?”: performed live by the human" (it ended ", one take").
 - **Also:** the human will cut the whole video themselves this time (the brief's edit is theirs).
 - **Rule:** R1.
+
+## 2026-11-19T01:10:00-05:00 — Licences confirmed; the intervention count frozen at 39 — R1
+
+- **What:** The human: "See which facts you can check on your end, and provide links for me to verify. Yes, those licenses are fine -- add them. Suggest some clickbait-adjacent thumbnail/title options (including ones that use my fake video call and similar, though I recognize I'll have to make those myself). Let's freeze the human interventions at 39; the video itself is done."
+- **Decided:** video and assets CC BY-NC-SA 4.0, code MIT, as in the series. The credits' and description's count stays 39 (the entries through 2026-11-18T23:15); this entry and any after it come after the video.
+- **Rule:** R1.
