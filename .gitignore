@@ -48,3 +48,5 @@ renders/c4/graphics/
 # deliverables: the binaries stay out of git (in MANIFEST.sha256); their .json indexes are tracked
 deliverables/**/*.png
 deliverables/**/*.pdf
+# the call page with its backgrounds inlined (scripts/build_call_page.py); the source is apps/call_page/index.html
+deliverables/call_page/*.html
