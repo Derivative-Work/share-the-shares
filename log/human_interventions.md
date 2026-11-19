@@ -239,3 +239,10 @@ Every human action: timestamp, what, why, and which production rule allows it. R
 
 - **What:** The human: "Add background replacement to the call page too".
 - **Rule:** R1.
+
+## 2026-11-18T23:15:00-05:00 — The IPO line filled in, the audit date and the live credit changed — R1
+
+- **What:** The human: "Pull the numbers, they should be published now. Update my audit date to today. Remove "one take" from my credit for the audio. Then remake whatever that changes so I can get started with my cut".
+- **Changed:** the fact card's IPO line (config/fact_card.json: priced November 18, 2026, trading on Nasdaq as ANT since November 19, 2026, at $83); the human's own review, the red-pen note under the satire line, "and by the human, October 26, 2026" → "November 18, 2026" (Gemini's date, October 21, stands); the credit "Verse 3 and “do I get a say?”: performed live by the human" (it ended ", one take").
+- **Also:** the human will cut the whole video themselves this time (the brief's edit is theirs).
+- **Rule:** R1.

@@ -1,8 +1,9 @@
 {
  "_doc": "The fact card's IPO line (brief rev 50, \"Card text (draft)\": \"Anthropic's IPO: priced [date], trading on Nasdaq as ANT since [date], at $[final price].\"). null keeps the brief's bracketed placeholder on the card. Anthropic expects to price on November 18 and trade from November 19, 2026 (brief, open items); fill these in then and re-render the fact card (scripts/render_graphics.py 3840 2160 1 renders/final/graphics fact), then re-assemble section 6 and re-join the master.",
  "ipo": {
-  "priced": null,
-  "trading_since": null,
-  "price": null
- }
+  "priced": "November 18, 2026",
+  "trading_since": "November 19, 2026",
+  "price": "83"
+ },
+ "_source": "CNBC, 2026-11-18 (cnbc.com/2026/11/18/anthropic-ipo-ai-offering-price.html): priced Wednesday Nov 18 at $83 a share, above the $70-78 range; trading on Nasdaq as ANT from Thursday Nov 19. Same figure in StockAnalysis, Crypto Briefing, Stock Titan."
 }

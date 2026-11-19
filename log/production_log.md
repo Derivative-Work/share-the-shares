@@ -1029,3 +1029,12 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   - The boardroom, the slide with mirroring on, and blur all composite.
   - The unbuilt page falls back to no background without errors.
   - The faint 1858 print reads at low confidence (the coat comes through partly see-through); a colour webcam picture should score far higher.
+
+## 2026-11-18T23:15 — The IPO line filled in; the human's review date and live credit changed; section 6 and the master rebuilt
+
+- **The IPO** (`config/fact_card.json`, with its source): Anthropic priced on Wednesday, November 18, 2026 at $83 a share, above its $70–78 range; it trades on Nasdaq as ANT from Thursday, November 19 (CNBC, 2026-11-18; the same price is reported by StockAnalysis, Crypto Briefing and Stock Titan). The card reads "Anthropic's IPO: priced November 18, 2026, trading on Nasdaq as ANT since November 19, 2026, at $83." Trading starts tomorrow, so "since" is true from the video's release.
+- **The red-pen note** under the satire line (`overlays/graphics.html`): "and by the human, November 18, 2026" (was October 26). Gemini's date, October 21, stands. (A first pass changed Gemini's date by mistake; it was caught on the rendered card and put back before anything was assembled.)
+- **The credits:** "Verse 3 and “do I get a say?” — performed live by the human" (", one take" removed). The human-interventions count reads 39.
+- **Rebuilt** (`renders/final/logs/rerender_ipo.sh`): the fact and credits graphics at 4K; section 6 re-assembled from its frames on disk (graphics only changed; no Blender render); the master and its 1080p copy re-joined.
+- **Archived:** `archive/final_4k/*_v6_before-ipo.*` (the master, its 1080p copy, section 6's intermediate).
+- The human will cut the whole video themselves from here.
