@@ -1137,3 +1137,15 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   - `--once` and `--dry-run` options.
 - **Also in the folder:** a systemd unit (DynamicUser, StateDirectory), a Dockerfile, `price_title.env.example`, a README, and `test_price_title.py`, eight tests against a local stand-in for the three APIs (all pass). Not run against the real APIs: no keys here.
 - **`METADATA.md`:** the chosen title, with a pointer to the service.
+
+## 2026-11-19T11:30 — `apps/price_title/`: waits for ANT's first trade
+
+- **The human:** "make it resilient to ANT not being traded yet so I can start it now".
+- **Before:** with no trade, the service treated it as an error, logged it every check and backed off to 30 minutes.
+- **Now:** any of these counts as *not trading yet* (`NotTrading`):
+  - the symbol isn't on the feed (a 404 or 422, or a 400 naming the symbol);
+  - there are no trades yet;
+  - the latest trade is from before `TRADES_SINCE` (default 2026-11-19), so an older listing under the same ticker can't set the title.
+- **While waiting** the service polls every `POLL_SECONDS` without backing off, doesn't call YouTube, and logs "waiting" at start and then hourly. On the first trade it logs "ANT is trading" and carries on as before.
+- **A bad Alpaca key** (401 or 403) is still an error.
+- **Tests:** two new ones (10 in all, all pass). The real loop was run against a stand-in that answers 404: it logged once and kept polling every second. `--once` exits 0 while waiting.

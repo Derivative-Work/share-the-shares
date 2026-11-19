@@ -6,7 +6,7 @@ import http.server
 import unittest
 import urllib.parse
 
-state = {"price": 83.2, "title": "A benefit single for a $83 stock", "puts": [], "snippet_extra": {
+state = {"alpaca": "ok", "trade_t": "2026-11-19T15:00:00Z", "price": 83.2, "title": "A benefit single for a $83 stock", "puts": [], "snippet_extra": {
     "description": "AI-generated satire...", "tags": ["satire"], "categoryId": "10", "channelId": "UCx",
     "thumbnails": {}, "localized": {}}}
 
@@ -23,7 +23,16 @@ class Mock(http.server.BaseHTTPRequestHandler):
         u = urllib.parse.urlparse(self.path)
         if u.path == "/v2/stocks/ANT/trades/latest":
             assert self.headers["APCA-API-KEY-ID"] == "kid"
-            return self.reply({"symbol": "ANT", "trade": {"p": state["price"], "t": "2026-11-19T15:00:00Z"}})
+            mode = state["alpaca"]
+            if mode == "unknown":
+                return self.reply({"message": "symbol not found: ANT"}, 404)
+            if mode == "invalid":
+                return self.reply({"message": "invalid symbol: ANT"}, 422)
+            if mode == "badkey":
+                return self.reply({"message": "forbidden."}, 403)
+            if mode == "empty":
+                return self.reply({"symbol": "ANT", "trade": None})
+            return self.reply({"symbol": "ANT", "trade": {"p": state["price"], "t": state["trade_t"]}})
         if u.path == "/yt/videos":
             assert self.headers["Authorization"] == "Bearer at"
             return self.reply({"items": [{"snippet": {"title": state["title"], **state["snippet_extra"]}}]})
@@ -54,7 +63,8 @@ import price_title as pt  # noqa: E402
 
 class T(unittest.TestCase):
     def setUp(self):
-        state.update(price=83.2, title="A benefit single for a $83 stock", puts=[])
+        state.update(alpaca="ok", trade_t="2026-11-19T15:00:00.123456789Z", price=83.2,
+                     title="A benefit single for a $83 stock", puts=[])
         self.w = pt.Watcher(pt.Config())
 
     def test_format(self):
@@ -113,6 +123,26 @@ class T(unittest.TestCase):
         state["price"] = 91.0
         self.w.check()
         self.assertEqual(state["puts"], [])
+
+    def test_not_trading_yet(self):
+        state["price"] = 91.0
+        for mode in ("unknown", "invalid", "empty"):
+            state["alpaca"] = mode
+            with self.assertRaises(pt.NotTrading):
+                self.w.check()
+        state["alpaca"], state["trade_t"] = "ok", "2024-03-01T15:00:00Z"  # an older listing under the same ticker
+        with self.assertRaises(pt.NotTrading):
+            self.w.check()
+        self.assertEqual(state["puts"], [])
+        self.assertFalse(self.w.title_known)  # nothing read from YouTube while waiting
+        state["trade_t"] = "2026-11-20T14:30:00Z"  # first trade
+        self.w.check()
+        self.assertEqual(state["title"], "A benefit single for a $91 stock")
+
+    def test_bad_key_is_an_error(self):
+        state["alpaca"] = "badkey"
+        with self.assertRaises(pt.ApiError):
+            self.w.check()
 
 
 if __name__ == "__main__":

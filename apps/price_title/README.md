@@ -36,6 +36,7 @@ docker run -d --name price-title --restart unless-stopped --env-file /etc/price-
 
 - **Rounding and flapping.** The price is rounded half up to `PRICE_DECIMALS` (default 0, so `$83`). The title only changes once the price is `HYSTERESIS` (default 0.6) of a dollar from the shown price. At `$83`, it moves to `$84` at 83.60, not 83.50, and back at 83.40, so a price hovering around 83.50 doesn't flap.
 - **Quota.** Each title change costs 50 of YouTube's 10,000 daily quota units, and each read of the title costs 1. `MIN_UPDATE_SECONDS` (default 900) allows at most 96 changes a day, under half the quota. The service reads the title only at start and right before each change.
+- **Before ANT trades** it just waits. This covers the symbol not being on the feed yet (404 or 422), no trades yet, and trades dated before `TRADES_SINCE` (default 2026-11-19), so an older listing under the same ticker can't set the title. It keeps polling every `POLL_SECONDS` without backing off, doesn't touch YouTube, and logs "waiting" at start and then hourly. On the first trade it logs "ANT is trading" and carries on as normal. It's safe to start now. A bad Alpaca key (401 or 403) is still reported as an error.
 - **Outside market hours** the latest trade stays the same, so nothing changes. Alpaca's IEX feed includes extended-hours trades.
 - **Errors** are logged and retried with backoff (up to 30 minutes), and the title is re-read after any failure. If the quota runs out, or Google refuses the refresh token, the service waits an hour; for a refused token, run `authorize.py` again.
 - **`STATE_DIR`** keeps the last change's time, so a restart doesn't skip `MIN_UPDATE_SECONDS`.
@@ -44,4 +45,4 @@ All settings are listed in `price_title.env.example` and documented at the top o
 
 ## Tests
 
-`python3 test_price_title.py` runs the watcher against a local stand-in for Alpaca, Google's token endpoint and the YouTube API. It covers rounding, hysteresis, the guard, a hand edit between checks, the minimum interval, dry runs, and the request body, which must keep the description, tags and category.
+`python3 test_price_title.py` runs the watcher against a local stand-in for Alpaca, Google's token endpoint and the YouTube API. It covers waiting for the first trade, rounding, hysteresis, the guard, a hand edit between checks, the minimum interval, dry runs, and the request body, which must keep the description, tags and category.

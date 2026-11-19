@@ -8,6 +8,8 @@ Every setting comes from the environment (see price_title.env.example):
   ALPACA_KEY_ID, ALPACA_SECRET_KEY        Alpaca API key (market data; a free paper-trading key works)
   ALPACA_FEED          iex                iex (free) or sip (paid subscription)
   SYMBOL               ANT
+  TRADES_SINCE         2026-11-19         ignore trades before this date (UTC), so an older listing under the same
+                                          ticker can't set the title; until the first trade, the service just waits
   YOUTUBE_VIDEO_ID                        e.g. YpJn6DwTLlk
   GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_REFRESH_TOKEN
                                           OAuth for the channel that owns the video (authorize.py makes the token;
@@ -43,6 +45,11 @@ UA = "price-title/1.0"
 WRITABLE = ("title", "description", "tags", "categoryId", "defaultLanguage", "defaultAudioLanguage")
 
 log = logging.getLogger("price_title")
+
+
+class NotTrading(Exception):
+    """No usable trade yet: the symbol isn't listed on the feed, has no trades, or only has trades from before
+    TRADES_SINCE. Not an error; the service keeps polling and touches nothing on YouTube."""
 
 
 class ApiError(Exception):
@@ -81,6 +88,9 @@ class Config:
         self.alpaca_secret = env("ALPACA_SECRET_KEY")
         self.feed = env("ALPACA_FEED", "iex")
         self.symbol = env("SYMBOL", "ANT").upper()
+        self.since = env("TRADES_SINCE", "2026-11-19")
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", self.since):
+            sys.exit("price_title: TRADES_SINCE must be YYYY-MM-DD")
         self.video = env("YOUTUBE_VIDEO_ID")
         self.client_id = env("GOOGLE_CLIENT_ID")
         self.client_secret = env("GOOGLE_CLIENT_SECRET")
@@ -154,11 +164,20 @@ class Google:
 
 def latest_trade(cfg):
     q = urllib.parse.urlencode({"feed": cfg.feed})
-    r = request(f"{ALPACA_DATA_URL}/v2/stocks/{urllib.parse.quote(cfg.symbol)}/trades/latest?{q}",
-                headers={"APCA-API-KEY-ID": cfg.alpaca_id, "APCA-API-SECRET-KEY": cfg.alpaca_secret})
+    try:
+        r = request(f"{ALPACA_DATA_URL}/v2/stocks/{urllib.parse.quote(cfg.symbol)}/trades/latest?{q}",
+                    headers={"APCA-API-KEY-ID": cfg.alpaca_id, "APCA-API-SECRET-KEY": cfg.alpaca_secret})
+    except ApiError as e:
+        # an unknown symbol is a 404 or 422 (or a 400 naming the symbol); a bad key (401/403) stays an error
+        if e.status in (404, 422) or (e.status == 400 and "symbol" in e.body.lower()):
+            raise NotTrading(f"{cfg.symbol} isn't on the {cfg.feed} feed yet ({e})") from None
+        raise
     t = r.get("trade") or {}
-    if "p" not in t:
-        raise RuntimeError(f"no trade for {cfg.symbol} on the {cfg.feed} feed: {r}")
+    if "p" not in t or not t.get("p"):
+        raise NotTrading(f"no trades for {cfg.symbol} on the {cfg.feed} feed yet")
+    if str(t.get("t", ""))[:10] < cfg.since:
+        raise NotTrading(f"{cfg.symbol}'s latest trade on the {cfg.feed} feed ({t.get('t')}, ${t['p']}) is from "
+                         f"before TRADES_SINCE ({cfg.since})")
     return float(t["p"]), t.get("t")
 
 
@@ -201,6 +220,9 @@ class Watcher:
 
     def check(self):
         price, at = latest_trade(self.cfg)
+        if not getattr(self, "trading", False):
+            self.trading = True
+            log.info("%s is trading: %.2f at %s", self.cfg.symbol, price, at)
         if not self.title_known:
             snip, m = self.read_title()
             log.info("title now: %r%s", snip["title"], "" if m or not self.cfg.guard else " (doesn't match the template)")
@@ -241,13 +263,22 @@ def main():
     log.info("watching %s (%s feed) for video %s; template %r%s", cfg.symbol, cfg.feed, cfg.video, cfg.template,
              "; DRY RUN" if cfg.dry_run else "")
     if "--once" in sys.argv[1:]:
-        w.check()
+        try:
+            w.check()
+        except NotTrading as e:
+            log.info("waiting: %s", e)
         return
     backoff = cfg.poll
+    waiting_logged = 0.0
     while True:
         try:
             w.check()
             backoff = cfg.poll
+        except NotTrading as e:
+            backoff = cfg.poll
+            if time.time() - waiting_logged >= 3600:  # say so at start, then hourly
+                log.info("waiting: %s; checking every %.0f s", e, cfg.poll)
+                waiting_logged = time.time()
         except ApiError as e:
             if e.status == 403 and "quotaExceeded" in e.body:
                 backoff = 3600
