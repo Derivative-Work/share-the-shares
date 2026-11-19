@@ -32,7 +32,9 @@ YouTube metadata for the main video and the Shorts. Written by the agent; the hu
 
 ### Title
 
-Recommended (51 characters):
+**Chosen (November 19):** `A benefit single for a $83 stock`, with thumbnail #6 (BUY TO GIVE?). The price follows ANT's: `apps/price_title/` is a service that polls Alpaca and rewrites the title when the whole-dollar price moves (it leaves the description, tags and category alone, and stops if the title is changed by hand).
+
+Recommended before (51 characters):
 
 ```
 Share the Shares — an all-star benefit single (sort of)

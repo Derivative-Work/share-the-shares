@@ -1122,3 +1122,18 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
 - **The notes:** `docs/release_notes.md`. `scripts/release.sh --draft docs/release_notes.md` creates the draft release v1.0.
 - **The link** (https://www.youtube.com/watch?v=YpJn6DwTLlk) is in the README, METADATA.md (uploaded November 19) and the Shorts' shared description.
 - `.gitignore`: `release/`.
+
+## 2026-11-19T09:45 — The title follows the stock: `apps/price_title/`
+
+- **The human:** going with "A benefit single for a $83 stock" for thumbnail #6, and "Make me a service I can deploy on a VPS or similar that accepts an Alpaca key, the video ID, and a YouTube data API key that watches ANT and updates the video title".
+- **One change from the request:** a YouTube API key can't edit a video. `videos.update` needs OAuth as the channel's owner, so the service takes an OAuth client ID, secret and refresh token instead. `authorize.py` makes the token once, with a loopback flow and PKCE.
+- **`apps/price_title/price_title.py`** (standard library only):
+  - Polls Alpaca's latest trade for ANT once a minute (IEX feed by default).
+  - Rewrites the title from `TITLE_TEMPLATE` when the whole-dollar price changes. Rounding is half up, with a 0.6-dollar hysteresis against flapping.
+  - At most one change per 15 minutes: each costs 50 of the 10,000 daily quota units.
+  - Re-reads the title before each change and writes back the snippet's description, tags, category and languages, so they aren't wiped.
+  - `TITLE_GUARD` leaves a title changed by hand alone.
+  - Backs off on errors; on an exhausted quota or a refused token it waits an hour.
+  - `--once` and `--dry-run` options.
+- **Also in the folder:** a systemd unit (DynamicUser, StateDirectory), a Dockerfile, `price_title.env.example`, a README, and `test_price_title.py`, eight tests against a local stand-in for the three APIs (all pass). Not run against the real APIs: no keys here.
+- **`METADATA.md`:** the chosen title, with a pointer to the service.

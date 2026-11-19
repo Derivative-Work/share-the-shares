@@ -1,0 +1,20 @@
+[Unit]
+Description=Keep "Share the Shares"' YouTube title on ANT's price
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+ExecStart=/usr/bin/python3 /opt/price-title/price_title.py
+EnvironmentFile=/etc/price-title.env
+Environment=STATE_DIR=/var/lib/price-title
+StateDirectory=price-title
+DynamicUser=yes
+Restart=always
+RestartSec=30
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target
