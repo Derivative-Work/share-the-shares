@@ -1007,3 +1007,25 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   - A faint underprint rosette bottom right; the middle is left empty for the head.
   - Output: `deliverables/call_backgrounds/fund_slide_3840.png`.
 - Both are 3840×2160 and fictional only: no real names or logos.
+
+## 2026-11-18T19:50 — The call page replaces the background
+
+- `apps/call_page/index.html`: a Background section in setup, plus the B key to cycle. The options:
+  - None.
+  - Blur (the camera's own picture, blurred).
+  - The engraved boardroom.
+  - The fund's slide.
+  - Your image (pick one or drop it on the page; it isn't remembered, like the video file).
+  - Edge: normal, soft or sharp.
+- How it works:
+  - The person is cut out in the browser by MediaPipe Tasks Vision 1.2.0 (pinned, jsDelivr) with the selfie segmenter's landscape model (float16, version 1, Google's model storage). GPU delegate, CPU fallback.
+  - Both load from the web the first time a background is chosen. If they fail, the page says so and turns the background off.
+  - The video is drawn cover-cropped to a 640×360 input. The mask is eased over frames (0.65 new) against flicker, through a smoothstep threshold, and feathered.
+  - The person, then the background, are drawn on a canvas over the hidden video. Mirroring flips only the person and the blur, so the slide's words never read backwards.
+  - A paused file isn't re-segmented.
+- `scripts/build_call_page.py` inlines the two backgrounds (WebP, 2560×1440, 945 KB and 169 KB) into `deliverables/call_page/call_page.html` (1.5 MB; git-ignored, in the manifest). The source page offers only blur and your own image.
+- Tested headless (puppeteer, a fake camera playing a public-domain portrait photograph: the Met 286624, *Peter Force*, ca. 1858, salted paper print; scratch only, not kept):
+  - The mask's confidence is the person's: 0.32 in the middle of the frame, 0 at the edges.
+  - The boardroom, the slide with mirroring on, and blur all composite.
+  - The unbuilt page falls back to no background without errors.
+  - The faint 1858 print reads at low confidence (the coat comes through partly see-through); a colour webcam picture should score far higher.

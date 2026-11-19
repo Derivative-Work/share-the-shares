@@ -234,3 +234,8 @@ Every human action: timestamp, what, why, and which production rule allows it. R
 
 - **What:** The human plans to film the call (S30) with a superimposed background ("partially to make it look more like how someone would actually be on such a call, and partially to simplify framing the shot") and asked for ideas; of the five suggested, the human: "make both so I can compare" (the empty engraved boardroom and the fund's branded slide).
 - **Rule:** R1. Compositing the background onto the live footage will be the human's part of the live shot, and will be logged with it.
+
+## 2026-11-18T19:50:00-05:00 — Background replacement in the call page — R1
+
+- **What:** The human: "Add background replacement to the call page too".
+- **Rule:** R1.

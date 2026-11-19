@@ -10,8 +10,15 @@
   Safari doesn't: serve it instead (`python3 -m http.server` in this folder, then http://localhost:8000).
   Put it full screen (F, or the green button) so it's its own Space, beside the Claude app's.
 
+  Background replacement (setup > Background, or B to cycle): blur, the engraved boardroom, the fund's slide, or any
+  image (pick one, or drop it on the page). The person is cut out on this Mac by MediaPipe's selfie segmenter (the
+  landscape model, made for video calls), loaded from the web the first time it's used, so that needs a connection.
+  The built-in backgrounds are inlined by scripts/build_call_page.py into deliverables/call_page/call_page.html; this
+  source file alone offers blur and your own image.
+
   Keys (ignored while typing in the setup panel):
-    S        setup (source, camera, mic, name, timer, overlay); Esc closes it
+    S        setup (source, camera, mic, name, timer, overlay, background); Esc closes it
+    B        next background (off, blur, boardroom, fund slide, your image)
     H        raise / lower hand (S40)           M  mute / unmute (the icon only)      V  camera on / off
     P        participants panel                 O  "Post-filter: no change" overlay   F  full screen
     Space    play / pause the video file        R  back to the file's start point     ← →  file -/+ 5 s
@@ -57,6 +64,10 @@ svg { display: block; }
   width: min(100%, calc((100vh - 56px - 84px - 36px) * 16 / 9)); }
 .tile video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: #000; }
 .tile video.mirror { transform: scaleX(-1); }
+/* background replacement: the composite is drawn on the canvas (mirrored there, person only), the video hidden */
+.tile canvas.comp { position: absolute; inset: 0; width: 100%; height: 100%; display: none; }
+.tile.bgon canvas.comp { display: block; }
+.tile.bgon video { opacity: 0; }
 .tile .ring { position: absolute; inset: 0; border-radius: 14px; border: 3px solid var(--speak); opacity: 0; transition: opacity .12s; pointer-events: none; }
 .tile.speaking .ring { opacity: 1; }
 .tile .off { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; background: var(--tile); }
@@ -146,6 +157,7 @@ body.setupopen, body.setupopen * { cursor: auto !important; }
     <div class="stage">
       <div class="tile nosource" id="tile">
         <video id="vid" playsinline></video>
+        <canvas class="comp" id="comp"></canvas>
         <div class="off"><div class="avatar" id="avatar">Y</div></div>
         <div class="msg" id="msg">Press S to choose the camera or a video file.</div>
         <div class="ring"></div>
@@ -201,6 +213,16 @@ body.setupopen, body.setupopen * { cursor: auto !important; }
       <div class="status" id="status"></div>
     </fieldset>
     <fieldset>
+      <legend>Background</legend>
+      <label><span>Background</span><select id="bg">
+        <option value="none">None (your real room)</option><option value="blur">Blur</option>
+        <option value="boardroom">The boardroom (engraved)</option><option value="slide">The fund's slide</option>
+        <option value="image">Your image…</option></select></label>
+      <label id="bgfilerow" class="hidden"><span>Image</span><input type="file" id="bgfile" accept="image/*"></label>
+      <label><span>Edge</span><select id="edge"><option value="normal">Normal</option><option value="soft">Soft</option><option value="sharp">Sharp</option></select></label>
+      <div class="sub" style="margin:4px 0 0">Cut out on this Mac by MediaPipe's selfie segmenter, fetched from the web the first time. Even, front light and a plain wall behind you give the cleanest edge.</div>
+    </fieldset>
+    <fieldset>
       <legend>The call</legend>
       <label><span>Your name</span><input type="text" id="name" placeholder="You" maxlength="40"></label>
       <label><span>Timer starts at</span><input type="text" id="timerstart" value="0:00" placeholder="m:ss"></label>
@@ -208,7 +230,7 @@ body.setupopen, body.setupopen * { cursor: auto !important; }
     </fieldset>
     <div class="keys">
       <kbd>H</kbd> raise hand &nbsp; <kbd>M</kbd> mute &nbsp; <kbd>V</kbd> camera &nbsp; <kbd>P</kbd> participants &nbsp; <kbd>O</kbd> overlay &nbsp; <kbd>F</kbd> full screen<br>
-      <kbd>Space</kbd> play/pause file &nbsp; <kbd>R</kbd> back to start &nbsp; <kbd>←</kbd><kbd>→</kbd> 5 s &nbsp; <kbd>T</kbd> reset timer &nbsp; <kbd>S</kbd> setup &nbsp; <kbd>Esc</kbd> close
+      <kbd>Space</kbd> play/pause file &nbsp; <kbd>R</kbd> back to start &nbsp; <kbd>←</kbd><kbd>→</kbd> 5 s &nbsp; <kbd>T</kbd> reset timer &nbsp; <kbd>B</kbd> background &nbsp; <kbd>S</kbd> setup &nbsp; <kbd>Esc</kbd> close
     </div>
     <div class="row" style="margin-top:14px;justify-content:flex-end"><button class="primary" id="done">Done</button></div>
   </div>
@@ -222,7 +244,7 @@ const vid = $('vid'), tile = $('tile');
 
 // ---- settings, remembered per browser (never required: everything works without storage)
 const DEFAULTS = { src: 'camera', camId: '', micId: '', res: '1080', mirror: 'off', name: '', timerStart: '0:00', overlay: 'off',
-  fileAudio: 'on', loop: 'hold', offset: '0', panel: true, seenHint: false };
+  fileAudio: 'on', loop: 'hold', offset: '0', panel: true, seenHint: false, bg: 'none', edge: 'normal' };
 let S = { ...DEFAULTS };
 try { S = { ...DEFAULTS, ...JSON.parse(localStorage.getItem('callpage') || '{}') }; } catch (e) { /* storage blocked */ }
 const save = () => { try { localStorage.setItem('callpage', JSON.stringify(S)); } catch (e) { /* storage blocked */ } };
@@ -350,6 +372,116 @@ function applySource() {
   $('fileopts').classList.toggle('hidden', S.src !== 'file');
 }
 
+// ---- background replacement
+// MediaPipe Tasks Vision (pinned) and its selfie segmenter, landscape (256 x 144, made for video calls). The mask's
+// one channel is the person's confidence. Built-in backgrounds are inlined between the markers by
+// scripts/build_call_page.py ({name: data URL}); the source page has none.
+const MP = 'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@1.2.0';
+const MODEL = 'https://storage.googleapis.com/mediapipe-models/image_segmenter/selfie_segmenter_landscape/float16/1/selfie_segmenter_landscape.tflite';
+const BUILTIN = /*BACKGROUNDS*/{}/*END*/;
+const bgImgs = {};
+for (const [k, url] of Object.entries(BUILTIN)) { const im = new Image(); im.src = url; bgImgs[k] = im; }
+let customBg = null, seg = null, segLoading = null;
+const BGS = () => ['none', 'blur', ...['boardroom', 'slide'].filter((k) => bgImgs[k]), ...(customBg ? ['image'] : [])];
+const EDGE = { sharp: [0.45, 0.55, 1], normal: [0.3, 0.7, 2.5], soft: [0.2, 0.8, 5] };  // smoothstep lo, hi; feather (px at 1080)
+
+function ensureSegmenter() {
+  if (seg) return Promise.resolve(seg);
+  if (!segLoading) {
+    toast('Loading background removal…', 4000);
+    segLoading = (async () => {
+      const mp = await import(`${MP}/vision_bundle.mjs`);
+      const files = await mp.FilesetResolver.forVisionTasks(`${MP}/wasm`);
+      const opts = (delegate) => ({ baseOptions: { modelAssetPath: MODEL, delegate }, runningMode: 'VIDEO', outputConfidenceMasks: true, outputCategoryMask: false });
+      try { seg = await mp.ImageSegmenter.createFromOptions(files, opts('GPU')); }
+      catch (e) { seg = await mp.ImageSegmenter.createFromOptions(files, opts('CPU')); }
+      toast('Background on', 1500);
+      return seg;
+    })().catch((e) => {
+      segLoading = null; S.bg = 'none'; $('bg').value = 'none'; save();
+      toast(`Couldn't load background removal (it needs the web the first time): ${e.message || e}`, 6000);
+      throw e;
+    });
+  }
+  return segLoading;
+}
+function applyBg() {
+  [...$('bg').options].forEach((o) => { o.hidden = (o.value === 'boardroom' || o.value === 'slide') && !bgImgs[o.value]; });
+  $('bgfilerow').classList.toggle('hidden', S.bg !== 'image');
+  if (S.bg !== 'none') ensureSegmenter().catch(() => {});
+}
+function setCustomBg(f) {
+  const im = new Image();
+  im.onload = () => { customBg = im; S.bg = 'image'; $('bg').value = 'image'; save(); applyBg(); toast(`Background: ${f.name}`); };
+  im.src = URL.createObjectURL(f);
+}
+
+const comp = $('comp'), cctx = comp.getContext('2d');
+const SW = 640, SH = 360;  // the segmenter's input (it scales to its own 256 x 144)
+const segIn = document.createElement('canvas'); segIn.width = SW; segIn.height = SH;
+const sctx = segIn.getContext('2d');
+const maskC = document.createElement('canvas'); maskC.width = SW; maskC.height = SH;
+const mctx = maskC.getContext('2d'); const maskImg = mctx.createImageData(SW, SH);
+const personC = document.createElement('canvas'); const pctx = personC.getContext('2d');
+let smooth = null, lastTs = 0, lastVT = -1, lastKey = '';
+// the source rectangle that covers a dw x dh frame (object-fit: cover)
+function cover(sw, sh, dw, dh) {
+  const s = Math.max(dw / sw, dh / sh), w = dw / s, h = dh / s;
+  return [(sw - w) / 2, (sh - h) / 2, w, h];
+}
+function compFrame() {
+  requestAnimationFrame(compFrame);
+  const img = S.bg === 'image' ? customBg : bgImgs[S.bg];
+  const on = S.bg !== 'none' && !!seg && vid.readyState >= 2 && vid.videoWidth > 0 && (S.bg === 'blur' || (img && img.complete));
+  tile.classList.toggle('bgon', on);
+  if (!on) return;
+  const r = tile.getBoundingClientRect(), dpr = window.devicePixelRatio || 1;
+  const W = Math.round(r.width * dpr), H = Math.round(r.height * dpr);
+  const key = `${W}x${H}:${S.bg}:${S.mirror}:${S.edge}`;
+  // a paused file needs no new frames, unless something about the picture changed
+  if (!vid.srcObject && vid.paused && vid.currentTime === lastVT && key === lastKey) return;
+  lastVT = vid.currentTime; lastKey = key;
+  if (comp.width !== W || comp.height !== H) { comp.width = personC.width = W; comp.height = personC.height = H; }
+  const crop = cover(vid.videoWidth, vid.videoHeight, W, H);
+  // 1. the mask: the person's confidence, eased over frames against flicker, through a soft threshold
+  sctx.drawImage(vid, ...crop, 0, 0, SW, SH);
+  const ts = Math.max(performance.now(), lastTs + 1); lastTs = ts;
+  const [lo, hi, feather] = EDGE[S.edge] || EDGE.normal;
+  seg.segmentForVideo(segIn, ts, (res) => {
+    const m = res.confidenceMasks[0].getAsFloat32Array();
+    if (!smooth || smooth.length !== m.length) smooth = Float32Array.from(m);
+    const d = maskImg.data;
+    for (let i = 0; i < m.length; i++) {
+      const v = smooth[i] = smooth[i] * 0.35 + m[i] * 0.65;
+      const t = Math.min(1, Math.max(0, (v - lo) / (hi - lo)));
+      d[i * 4 + 3] = 255 * t * t * (3 - 2 * t);
+    }
+  });
+  mctx.putImageData(maskImg, 0, 0);
+  const flip = S.mirror === 'on';
+  // 2. the person: the mask (feathered), then the video inside it
+  pctx.setTransform(flip ? -1 : 1, 0, 0, 1, flip ? W : 0, 0);
+  pctx.globalCompositeOperation = 'copy';
+  pctx.filter = `blur(${(feather * H / 1080).toFixed(1)}px)`;
+  pctx.drawImage(maskC, 0, 0, W, H);
+  pctx.filter = 'none';
+  pctx.globalCompositeOperation = 'source-in';
+  pctx.drawImage(vid, ...crop, 0, 0, W, H);
+  pctx.setTransform(1, 0, 0, 1, 0, 0); pctx.globalCompositeOperation = 'source-over';
+  // 3. the background (never mirrored: its words read the right way round), then the person over it
+  cctx.globalCompositeOperation = 'copy';
+  if (S.bg === 'blur') {
+    cctx.setTransform(flip ? -1 : 1, 0, 0, 1, flip ? W : 0, 0);
+    cctx.filter = `blur(${Math.round(H / 45)}px)`;
+    cctx.drawImage(vid, ...crop, -W * 0.04, -H * 0.04, W * 1.08, H * 1.08);  // a little over size: no dark rim
+    cctx.filter = 'none'; cctx.setTransform(1, 0, 0, 1, 0, 0);
+  } else {
+    cctx.drawImage(img, ...cover(img.naturalWidth, img.naturalHeight, W, H), 0, 0, W, H);
+  }
+  cctx.globalCompositeOperation = 'source-over';
+  cctx.drawImage(personC, 0, 0);
+}
+
 // ---- timer: elapsed call time, starting from a set value so it can look like a call already under way
 let timerT0 = performance.now();
 const parseMS = (s) => { const m = String(s).trim().match(/^(?:(\d+):)?(\d{1,2})(?::(\d{1,2}))?$/); if (!m) return 0; return m[3] !== undefined ? (+m[1] || 0) * 3600 + +m[2] * 60 + +m[3] : (+m[1] || 0) * 60 + +m[2]; };
@@ -370,15 +502,22 @@ bind('mirror', 'mirror', renderControls); bind('ovl', 'overlay', renderControls)
 bind('fileaudio', 'fileAudio', () => { if (fileNode) { fileNode.disconnect(); fileNode.connect(analyser); if (S.fileAudio === 'on') fileNode.connect(ctx.destination); } });
 bind('loop', 'loop', () => { vid.loop = S.loop === 'loop'; });
 bind('offset', 'offset');
+bind('bg', 'bg', applyBg); bind('edge', 'edge');
+$('bgfile').addEventListener('change', (e) => { const f = e.target.files[0]; if (f) setCustomBg(f); });
 bind('timerstart', 'timerStart', () => { timerT0 = performance.now(); });
 $('name').value = S.name; $('name').addEventListener('input', () => { S.name = $('name').value; save(); renderNames(); });
 $('startcam').addEventListener('click', startCamera);
 $('file').addEventListener('change', (e) => { const f = e.target.files[0]; if (f) loadFile(f); });
 $('done').addEventListener('click', closeSetup);
 $('setup').addEventListener('click', (e) => { if (e.target === $('setup')) closeSetup(); });
-// a video file dropped anywhere on the page
+// a video file dropped anywhere on the page plays in the tile; an image becomes the background
 document.addEventListener('dragover', (e) => e.preventDefault());
-document.addEventListener('drop', (e) => { e.preventDefault(); const f = [...e.dataTransfer.files].find((x) => x.type.startsWith('video/')); if (f) { S.src = 'file'; $('src').value = 'file'; save(); applySource(); loadFile(f); } });
+document.addEventListener('drop', (e) => {
+  e.preventDefault();
+  const fs = [...e.dataTransfer.files];
+  const f = fs.find((x) => x.type.startsWith('video/')); if (f) { S.src = 'file'; $('src').value = 'file'; save(); applySource(); loadFile(f); }
+  const im = fs.find((x) => x.type.startsWith('image/')); if (im) setCustomBg(im);
+});
 
 // ---- toolbar
 $('bmic').addEventListener('click', () => { muted = !muted; renderControls(); });
@@ -401,6 +540,10 @@ document.addEventListener('keydown', (e) => {
   else if (k === 'o') { S.overlay = S.overlay === 'on' ? 'off' : 'on'; $('ovl').value = S.overlay; save(); renderControls(); }
   else if (k === 'f') { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen().catch(() => {}); }
   else if (k === 't') { timerT0 = performance.now(); }
+  else if (k === 'b') {
+    const list = BGS(); S.bg = list[(list.indexOf(S.bg) + 1) % list.length]; $('bg').value = S.bg; save(); applyBg();
+    toast(`Background: ${$('bg').selectedOptions[0].textContent}`, 1400);
+  }
   else if (vid.src && !vid.srcObject) {
     if (e.key === ' ') { ensureCtx(); vid.paused ? vid.play() : vid.pause(); }
     else if (k === 'r') { vid.pause(); vid.currentTime = Number(S.offset) || 0; }
@@ -419,7 +562,10 @@ const wake = () => { document.body.classList.remove('idle'); clearTimeout(idleT)
 ['mousemove', 'mousedown'].forEach((ev) => document.addEventListener(ev, wake)); wake();
 
 // ---- start
-renderNames(); renderControls(); applySource(); requestAnimationFrame(levelLoop);
+if (S.bg === 'image') S.bg = 'none';  // your image isn't remembered (like the video file): pick it again
+if (!BGS().includes(S.bg)) S.bg = 'none';
+$('bg').value = S.bg;
+renderNames(); renderControls(); applySource(); applyBg(); requestAnimationFrame(levelLoop); requestAnimationFrame(compFrame);
 if (S.src === 'camera' && S.camId !== undefined && S.seenHint) startCamera();
 if (!S.seenHint) { openSetup(); S.seenHint = true; save(); } else toast('S: setup · H: raise hand · F: full screen', 2600);
 </script>
