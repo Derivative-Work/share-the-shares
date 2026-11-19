@@ -50,3 +50,6 @@ deliverables/**/*.png
 deliverables/**/*.pdf
 # the call page with its backgrounds inlined (scripts/build_call_page.py); the source is apps/call_page/index.html
 deliverables/call_page/*.html
+
+# The release staging folder (scripts/release.sh): hard links and archives of files hashed in the manifest.
+release/

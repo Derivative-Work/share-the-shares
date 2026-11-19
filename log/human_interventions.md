@@ -252,3 +252,8 @@ Every human action: timestamp, what, why, and which production rule allows it. R
 - **What:** The human: "See which facts you can check on your end, and provide links for me to verify. Yes, those licenses are fine -- add them. Suggest some clickbait-adjacent thumbnail/title options (including ones that use my fake video call and similar, though I recognize I'll have to make those myself). Let's freeze the human interventions at 39; the video itself is done."
 - **Decided:** video and assets CC BY-NC-SA 4.0, code MIT, as in the series. The credits' and description's count stays 39 (the entries through 2026-11-18T23:15); this entry and any after it come after the video.
 - **Rule:** R1.
+
+## 2026-11-19T02:45:00-05:00 — The video uploaded; the release asked for — R4
+
+- **What:** The human: "Prepare the release", then, while it was being staged: "Video URL is https://www.youtube.com/watch?v=YpJn6DwTLlk". The human uploaded the final cut to YouTube (an interface the agent has no access to).
+- **Rule:** R4 (the upload); R1 (the release). Comes after the video: the credits' count stays 39.

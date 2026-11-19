@@ -1,6 +1,6 @@
 # Upload metadata
 
-YouTube metadata for the main video. Written by the agent; the human cuts the video (DaVinci Resolve) and uploads. Prepared November 19, 2026, the day ANT starts trading. The video is done (the human, November 19). The brief says to post shortly after trading starts, once the final price is on the fact card, and it is ($83, production log 2026-11-18T23:15).
+YouTube metadata for the main video and the Shorts. Written by the agent; the human cut the video (DaVinci Resolve) and uploads. **Uploaded November 19, 2026:** https://www.youtube.com/watch?v=YpJn6DwTLlk. The files are in the [v1.0 release](https://github.com/Derivative-Work/share-the-shares/releases/tag/v1.0) (`scripts/release.sh`). Prepared November 19, 2026, the day ANT starts trading. The video is done (the human, November 19). The brief says to post shortly after trading starts, once the final price is on the fact card, and it is ($83, production log 2026-11-18T23:15).
 
 **Before uploading:**
 - **Facts** (the brief's "Facts to verify before release"), checked by the agent on November 19 against the filings on EDGAR and Anthropic's pages. "Confirmed" means a primary source says it; the rest needs a look in a browser.
@@ -183,7 +183,7 @@ Everything stays clear of the parts Shorts covers. Release them as appropriate. 
 Shared settings: Music; not made for kids; altered or synthetic content **yes**; related video, the main video; captions burned in, no subtitle file. Shorts pick a frame for the thumbnail, so choose one in the app. Every description ends with:
 
 ```
-Full video: <link>
+Full video: https://www.youtube.com/watch?v=YpJn6DwTLlk
 AI-generated satire. Lyrics drafted by Claude, made by Anthropic; music by Suno; video by Claude Code. A human approved each stage and performed verse 3 live. Production log: https://github.com/Derivative-Work/share-the-shares
 #AIgenerated #satire #Shorts
 ```

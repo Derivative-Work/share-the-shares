@@ -2,7 +2,7 @@
 
 **AI-generated satire.** A 1980s all-star charity single for the Anthropic Public Benefit Fund, where every star is from the same company and the whole video takes place inside one engraved stock certificate, animated like paper puppets. A benefit single exists to get the public to give. This one ends up asking the public to buy, because most of the gift only grows if the stock does.
 
-**Watch:** links are added here after the upload. The upload's title, description, chapters, thumbnails and the five Shorts are in [`METADATA.md`](METADATA.md).
+**Watch:** [the video](https://www.youtube.com/watch?v=YpJn6DwTLlk) · [the release](https://github.com/Derivative-Work/share-the-shares/releases/tag/v1.0) (the files: the video, the five Shorts, subtitles, thumbnails, the call page and the audio). The upload's title, description, chapters and thumbnails, and the Shorts' metadata, are in [`METADATA.md`](METADATA.md).
 
 **The fund is real.** On October 18, 2026, Anthropic committed 5% of its shares to the fund, and the song and the fact card say so. The satire is about the terms: the board's discretion over a growth escalator, governance still to come, and the timing, just before the IPO (priced November 18, 2026; trading as ANT from November 19).
 

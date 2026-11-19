@@ -1110,3 +1110,15 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   - Checked on frames from each: the call crop, the stacked shots, the captions and the fact lines.
 - **`METADATA.md`:** a Shorts section with each file, its span, title, description and the shared settings.
 - **`README.md`** (new, as in the sibling repos): what the video is, the conflict of interest, how it was made, what's real and made up, the fact card verbatim with sources, where things are, how to reproduce it, the licences and the credits. The upload links are added after the upload.
+
+## 2026-11-19T02:45 — The v1.0 release staged; the video's link
+
+- **The final cut** is copied into the repository's large files: `deliverables/final_cut/share_the_shares_1920x1080.mov` (525,717,782 bytes, from the human's `~/Downloads/share-the-shares-master.mov`; git-ignored, in the manifest).
+- **`scripts/release.sh`** (as All Systems Operational's) stages `release/` (git-ignored; the videos hard-linked) with:
+  - the video, the five Shorts, the subtitles, the thumbnails (zip) and the call page;
+  - `inputs.tar` (722 MB): Suno's take, its stems zip, the muzak, the post-filtered audio and the post-roll;
+  - `SHA256SUMS`.
+  It checks every file against the 2 GiB limit, and every file in the tar against `MANIFEST.sha256`. Left out: the 24 GB 4K master and its sections (they regenerate); the human's raw footage and the DaVinci project; the session transcript.
+- **The notes:** `docs/release_notes.md`. `scripts/release.sh --draft docs/release_notes.md` creates the draft release v1.0.
+- **The link** (https://www.youtube.com/watch?v=YpJn6DwTLlk) is in the README, METADATA.md (uploaded November 19) and the Shorts' shared description.
+- `.gitignore`: `release/`.
