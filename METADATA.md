@@ -28,7 +28,7 @@ YouTube metadata for the main video. Written by the agent; the human cuts the vi
 
 ## Main video (16:9, 3840×2160, 24 fps)
 
-**Source for the cut:** `deliverables/final_4k/share_the_shares_4k_postfilter_preview.mov` (ProRes 422, 24-bit PCM, 5:28.33; v8, rebuilt November 19 with the IPO line and the filing's baseline and governance). The cut replaces S29–S31 and S40 with the screen recording and S45–S46 with the phone call. **Captions:** `deliverables/share_the_shares.en.srt` (76 cues, master time, which the cut keeps). **Thumbnail:** none made yet (see Settings).
+**Source for the cut:** `deliverables/final_4k/share_the_shares_4k_postfilter_preview.mov` (ProRes 422, 24-bit PCM, 5:28.33; v8, rebuilt November 19 with the IPO line and the filing's baseline and governance). The cut replaces S29–S31 and S40 with the screen recording and S45–S46 with the phone call. **Captions:** `deliverables/share_the_shares.en.srt` (76 cues, master time, which the cut keeps). **Thumbnail:** one of `deliverables/thumbnails/` (see Settings).
 
 ### Title
 
@@ -44,7 +44,7 @@ Alternatives:
 
 ### Clickbait-adjacent titles and thumbnails
 
-Each title is paired with a thumbnail. The titles stay true to the video, so none of them is bait the video doesn't pay off. For the ones marked **(yours)**, the picture comes from your footage, so you make it. For the rest the agent can make it from the master at 1280×720.
+Each title is paired with a thumbnail. The titles stay true to the video, so none of them is bait the video doesn't pay off. All eight are made from the human's cut (`deliverables/thumbnails/thumbnail_<n>_*.jpg`, in table order); **(yours)** marks the ones built on the human's footage.
 
 | Title | Thumbnail |
 |---|---|
@@ -138,7 +138,7 @@ Share the Shares, AI music video, AI generated, AI satire, Anthropic, Anthropic 
 | Language / caption language | English / English |
 | Captions | Upload `deliverables/share_the_shares.en.srt` as English subtitles. Not burned in. |
 | License | Standard YouTube License. YouTube's only Creative Commons option is CC BY, which would drop the NC-SA terms; the description states the licence instead. |
-| Thumbnail | None yet: see "Clickbait-adjacent titles and thumbnails". The call-tile ones are the human's to make from the footage; the agent makes the master-frame ones at 1280×720 on request. |
+| Thumbnail | Eight options in `deliverables/thumbnails/` (1280×720 JPEG, `contact_sheet.jpg` to compare), made by `scripts/thumbnails.py` from the human's cut, numbered as the table in "Clickbait-adjacent titles and thumbnails". |
 | Chapters | From the description (first at 0:00; each over 10 s), at the master's shot and line times. |
 | End screen | Over the credits' last seconds. The cut ends on the credits, about 6 s long in the master, so lengthen that card if you want a full 20 s end screen. |
 | Comments | Open. |

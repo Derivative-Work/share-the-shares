@@ -1069,3 +1069,18 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
 - **Rebuilt** (`renders/final/logs/rerender_baseline.sh`): the fact graphics; section 6 re-assembled from its frames (2,588); the master and its 1080p copy re-joined (7,879 frames each). Checked at 316 s in the 1080p copy.
 - **Archived:** `archive/final_4k/*_v7_before-baseline.*`.
 - `METADATA.md`: the description's terms match the card; the cut's last 32 s (from S47, 4:56) come from the new master.
+
+## 2026-11-19T01:45 — The thumbnail options, from the human's cut
+
+- **Source:** the human's final cut from DaVinci Resolve, `~/Downloads/share-the-shares-master.mov` (H.264 1920×1080, 24 fps, 5:28.6, master timing; not copied into the repo).
+- **`scripts/thumbnails.py`** → `deliverables/thumbnails/thumbnail_1…8_*.jpg` (1280×720) and `contact_sheet.jpg`, one per title in METADATA.md:
+  1. The call (172 s) with the participant list enlarged, "Board (not joined)" circled, "no-show", **1 PARTICIPANT**.
+  2. Close on the face at "do I get a say?" (240.3 s), **DO I GET A SAY?** in the pen.
+  3. The session (164.5 s), cropped to the conversation column (the session title and the player), the player circled, **IT MADE THIS ABOUT ITSELF**. The terminal, the browser tabs and the menu bar are cropped out.
+  4. The phone on hold over the stub and the 5% corner (292 s), **PLEASE HOLD**. The printed email above it is cropped out.
+  5. The seal just embossed with its whole footnote (212.3 s), contrast raised, the footnote circled, "says who?". A first version pasted the footnote from another frame; the camera had moved, so it was replaced by this single frame.
+  6. The certificate wide in chorus 1 (66 s), **BUY TO GIVE?**
+  7. The fact card's "may add" line (316 s) enlarged on paper, **THE BOARD MAY ADD 2%**, "It's not required to."
+  8. Prudence with the scissors (233.5 s), **SHARE THE SHARES**, "(sort of)".
+- Type: Abril Fatface, the pen in Caveat, the certificate's palette.
+- **Noticed in the cut, left to the human:** the session reveal (from 2:44) shows a terminal with a hostname, an internal IP and a file listing, plus the browser's tabs. The phone call's desk (from 4:43) shows a printed email with a name and an email address, and a real company memo.
