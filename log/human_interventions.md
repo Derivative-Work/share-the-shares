@@ -229,3 +229,8 @@ Every human action: timestamp, what, why, and which production rule allows it. R
 
 - **What:** The human revised the brief (rev 34 → 50): the verse is now a screen recording of the finished render played in this Claude Code session, a swipe to a faked video call, and back; the phone call is shot on the mirrorless camera. Rev 50 also adds the certificate's CLASS N · NON-VOTING line, THRESHOLD MET* on the seal with its footnote, and fact-card lines on the Class N shares, the IPO and the RSI threshold. The human: "Re-read the brief -- the live shot now calls for switching over via this actual Claude Code session via a sent video, and a faked video call. Build the UI for the call as the brief describes as a SPA that I can run on my Mac alongside the Claude app to quickly switch between the two. I would like to either be able to use the live webcam or provide a video file to the SPA. Then send excerpts of the video as live shots to use for the captures themselves."; then, mid-step: "before you do the render: make sure there's nothing the brief there says needs to be changed".
 - **Rule:** R1 (the brief is the human's).
+
+## 2026-11-18T19:25:00-05:00 — Virtual backgrounds for the call — R1
+
+- **What:** The human plans to film the call (S30) with a superimposed background ("partially to make it look more like how someone would actually be on such a call, and partially to simplify framing the shot") and asked for ideas; of the five suggested, the human: "make both so I can compare" (the empty engraved boardroom and the fund's branded slide).
+- **Rule:** R1. Compositing the background onto the live footage will be the human's part of the live shot, and will be logged with it.

@@ -1,0 +1,3 @@
+{"_doc": "Virtual backgrounds for the call page (S30), two to compare (2026-11-18). Made by scripts/call_backgrounds.py; the boardroom's passes by scenes/blender/boardroom.py (renders/call_backgrounds/boardroom, 7680x4320).",
+ "boardroom_3840.png": "The empty boardroom from the head of the table, engraved in sepia on the certificate's paper: 'Board (not joined)' as a room.",
+ "fund_slide_3840.png": "The fund's branded background: gold lathe frame, AMALGAMATED BENEFIT, LLC / Public Benefit Fund top left, 'STAKEHOLDER INPUT SESSION / Your input matters.* / *Input is advisory and non-binding.' bottom left; the middle left empty for the head."}

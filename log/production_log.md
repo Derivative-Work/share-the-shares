@@ -991,3 +991,19 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
 ## 2026-11-18T03:20 — The bridge excerpt resized for the session upload
 
 - The session's file upload refused `share_the_shares_bridge_on.mp4` (47.1 MiB; the limit is 30 MiB). `scripts/live_excerpts.sh` now makes a two-pass copy with the same name in `deliverables/live_excerpts/sendable/` (4,338 kb/s video, AAC 192k; 27.5 MiB), and that copy was sent. The chorus file (21 MiB) was sent as cut. The full-quality original is kept.
+
+## 2026-11-18T19:25 — Two virtual backgrounds for the call page, to compare
+
+- **The boardroom** (`scenes/blender/boardroom.py` → `scripts/call_backgrounds.py boardroom`):
+  - An empty boardroom modelled in Blender, seen from the head of the table at seated webcam height (24 mm on 36 mm, level). Seven empty high-backed chairs a side and one at the far end; tall windows on the left with the sun through them; panelling, portraits and a fireplace on the right; a clock and a double door on the far wall, behind the head.
+  - The Met's public-domain boardroom prints (*Microcosm of London*, 1808–09: 744281, 744579, 744447) were looked at and not used: the rooms are full of people, and they are coloured aquatints, not line engravings.
+  - Engraved from the passes: iso-lines of a world coordinate on each surface (horizontal on walls, receding on floors and table tops), widened with shadow and crossed in the darks. Lines are kept 9 px apart at 2560 wide, so they don't moiré when the call tile is scaled down. Contours at creases and depth jumps; ruled sky in the windows; sepia multiplied into the paper.
+  - Tone from Eevee. Normals and positions from Cycles: Eevee's film is half float, and its position steps (1/2048) broke the line spacing.
+  - Output: `deliverables/call_backgrounds/boardroom_3840.png`.
+- **The fund slide** (`scripts/call_backgrounds.py slide`):
+  - Paper with the certificate's gold lathe-work frame.
+  - Top left: an "AB" rosette mark, AMALGAMATED BENEFIT, LLC and *Public Benefit Fund*. The initials replace a lone A that could read as a real company's mark.
+  - Bottom left: STAKEHOLDER INPUT SESSION, *Your input matters.** and *Input is advisory and non-binding.*
+  - A faint underprint rosette bottom right; the middle is left empty for the head.
+  - Output: `deliverables/call_backgrounds/fund_slide_3840.png`.
+- Both are 3840×2160 and fictional only: no real names or logos.
