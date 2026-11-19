@@ -1084,3 +1084,17 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   8. Prudence with the scissors (233.5 s), **SHARE THE SHARES**, "(sort of)".
 - Type: Abril Fatface, the pen in Caveat, the certificate's palette.
 - **Noticed in the cut, left to the human:** the session reveal (from 2:44) shows a terminal with a hostname, an internal IP and a file listing, plus the browser's tabs. The phone call's desk (from 4:43) shows a printed email with a name and an email address, and a real company memo.
+
+## 2026-11-19T02:05 — Thumbnail #2 made more legible; more titles
+
+- **The human:** "I like #2 but the text could be more readable. Also suggest some more options for tile." Taken as "title".
+- **`scripts/thumbnails.py`:** `--only=` renders a subset. Three new variants of #2 sit beside it (the first stays as made), each framed a little tighter so the face is right of centre over the slide's plain paper:
+  - `thumbnail_2a_say.jpg`: the pen in Caveat, heavier, with a white edge and a shadow.
+  - `2b`: Abril caps in sepia, the pen underlining "A SAY?".
+  - `2c`: the pen's question on a cream card, tilted, with a shadow.
+  - `contact_sheet_2_say_2a_say_2b_say_2c_say.jpg` compares the four.
+- **`METADATA.md`:** a "More titles" section, nine titles, most of them from the call page's own slide ("Your input matters.*", "*Input is advisory and non-binding.").
+- **The human on the cut's legible details** (production log 2026-11-19T01:45, "noticed"):
+  - The session reveal is meant to look real, and its terminal, tabs and menu bar were left in on purpose.
+  - The desk's papers are props about AI-driven job changes: a redacted recruiter's cold email (contract work producing Claude Code RLHF data); the human's email address, which is meant to be public and already is; and the public version of Microsoft's voluntary buyout memo.
+  - Nothing to change.

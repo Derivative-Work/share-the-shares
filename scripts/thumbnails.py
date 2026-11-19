@@ -5,7 +5,7 @@ Type: Abril Fatface for the engraved caps, Caveat for the fact card's red pen; t
 (config/look.json). Frames that show the desk's papers or the Mac's screen are cropped to the phone, the call or the
 player: the email, the terminal and the browser tabs stay out.
 
-Usage: .venv/bin/python -I scripts/thumbnails.py CUT.mov [OUT DIR]   (default deliverables/thumbnails/)
+Usage: .venv/bin/python -I scripts/thumbnails.py CUT.mov [OUT DIR] [--only=2a_say,2b_say]   (default deliverables/thumbnails/)
 """
 import json
 import subprocess
@@ -124,6 +124,51 @@ def t2_say(cut, tmp):
     return img
 
 
+def _say_base(cut, tmp):
+    """The S40 close-up with the face pushed right of centre: the left half is the slide's plain paper."""
+    f = frame(cut, 240.3, tmp)
+    return crop(f, (150, 200, 1250, 819))
+
+
+def t2a_say(cut, tmp):
+    """#2, more legible: the pen, bigger and heavier, on the clear paper left of the face, with a dark edge."""
+    img = _say_base(cut, tmp)
+    for y, s_, size in ((215, "DO I GET", 132), (375, "A SAY?", 158)):
+        text(img, (30, y), s_, font(CAVEAT, size, 700), PEN, "lm", rotate=-3, stroke=11, stroke_fill="#FFFFFF",
+             shadow=10)
+    return img
+
+
+def t2b_say(cut, tmp):
+    """#2, engraved: the question in Abril caps, sepia on the paper, the pen underlining SAY."""
+    img = _say_base(cut, tmp)
+    band(img, 0, 720, PAL["paper"], 0)
+    f1, f2 = font(ABRIL, 92), font(ABRIL, 136)
+    text(img, (34, 230), "DO I GET", f1, PAL["ink_sepia"], "lm", stroke=6, stroke_fill=PAL["paper"], shadow=6)
+    text(img, (30, 370), "A SAY?", f2, PAL["ink_sepia"], "lm", stroke=6, stroke_fill=PAL["paper"], shadow=6)
+    d = ImageDraw.Draw(img)
+    w = d.textlength("A SAY?", font=f2)
+    d.line([(36, 452), (30 + w * 0.55, 446), (30 + w - 6, 456)], fill=PEN, width=10, joint="curve")
+    return img
+
+
+def t2c_say(cut, tmp):
+    """#2, as a sticky note: the pen's question on a cream card with a shadow, tilted, over the paper."""
+    img = _say_base(cut, tmp).convert("RGBA")
+    card = Image.new("RGBA", (450, 330), (0, 0, 0, 0))
+    ImageDraw.Draw(card).rounded_rectangle((10, 10, 440, 320), 14, fill="#FFF8E1", outline=PAL["paper_shadow"], width=3)
+    t = Image.new("RGB", card.size)
+    text(card, (225, 110), "DO I GET", font(CAVEAT, 112, 700), PEN, "mm")
+    text(card, (225, 240), "A SAY?", font(CAVEAT, 136, 700), PEN, "mm")
+    card = card.rotate(5, resample=Image.BICUBIC, expand=True)
+    sh = Image.new("RGBA", img.size, (0, 0, 0, 0))
+    a = card.split()[3].point(lambda v: int(v * 0.55)).filter(ImageFilter.GaussianBlur(14))
+    sh.paste((0, 0, 0, 255), (44, 196), a)
+    img.alpha_composite(sh)
+    img.alpha_composite(card, (28, 176))
+    return img.convert("RGB")
+
+
 def t3_itself(cut, tmp):
     """Anthropic's AI wrote a charity single about Anthropic's IPO: the session, with the video sent as a file."""
     f = frame(cut, 164.5, tmp)
@@ -194,26 +239,32 @@ def t8_prudence(cut, tmp):
     return img
 
 
-OPTIONS = [("1_participant", t1_participant), ("2_say", t2_say), ("3_itself", t3_itself), ("4_hold", t4_hold),
+OPTIONS = [("1_participant", t1_participant), ("2_say", t2_say), ("2a_say", t2a_say), ("2b_say", t2b_say), ("2c_say", t2c_say), ("3_itself", t3_itself), ("4_hold", t4_hold),
            ("5_seal", t5_seal), ("6_buy", t6_buy), ("7_required", t7_required), ("8_prudence", t8_prudence)]
 
 
 def main():
-    cut = Path(sys.argv[1]).expanduser()
-    out = Path(sys.argv[2]) if len(sys.argv) > 2 else ROOT / "deliverables/thumbnails"
+    args = [a for a in sys.argv[1:] if not a.startswith("--only=")]
+    only = next((a[7:].split(",") for a in sys.argv[1:] if a.startswith("--only=")), None)
+    cut = Path(args[0]).expanduser()
+    out = Path(args[1]) if len(args) > 1 else ROOT / "deliverables/thumbnails"
     out.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory() as tmp:
         tiles = []
         for name, fn in OPTIONS:
+            if only and name not in only:
+                continue
             img = fn(cut, tmp)
             p = out / f"thumbnail_{name}.jpg"
             img.save(p, quality=90, optimize=True)
             tiles.append(img)
             print(p, p.stat().st_size)
-        sheet = Image.new("RGB", (W * 2 + 30, (H + 15) * 4 + 15), "#111")
+        rows = (len(tiles) + 1) // 2
+        sheet = Image.new("RGB", (W * 2 + 30, (H + 15) * rows + 15), "#111")
         for k, im in enumerate(tiles):
             sheet.paste(im, (10 + (k % 2) * (W + 10), 15 + (k // 2) * (H + 15)))
-        sheet.resize((sheet.width // 2, sheet.height // 2), Image.LANCZOS).save(out / "contact_sheet.jpg", quality=88)
+        name = "contact_sheet.jpg" if not only else f"contact_sheet_{'_'.join(only)}.jpg"
+        sheet.resize((sheet.width // 2, sheet.height // 2), Image.LANCZOS).save(out / name, quality=88)
 
 
 if __name__ == "__main__":

@@ -59,6 +59,22 @@ Each title is paired with a thumbnail. The titles stay true to the video, so non
 
 The first two are the strongest: a face and a question beat a document, and "Board (not joined)" works as a joke on its own without the song. For a set of A/B thumbnails (YouTube's "Test & compare"), pair the call tile with the seal.
 
+### More titles
+
+The human's pick is thumbnail #2, made more legible as `thumbnail_2a_say.jpg` (the pen, heavier, with a white edge), `2b` (engraved caps, the pen underlining SAY) and `2c` (the pen on a card). These titles go with it; the ones that quote the call page's own slide work best, because the thumbnail shows that slide:
+
+- `Your input matters.* (*advisory and non-binding)`
+- `My input is advisory and non-binding`
+- `I asked the AI company's new charity fund one question`
+- `Do I get a say? — a charity single for a trillion-dollar IPO`
+- `The AI wrote its company a charity single. I got one verse.`
+- `I sang to an empty board meeting`
+- `A charity single where the charity is the company`
+- `They'll give more if you buy the stock`
+- `Anthropic's 5% gift, as a 1980s all-star charity single`
+
+Under 60 characters each, so none is cut off in search or on the home feed. For YouTube's title test (up to three), try `Your input matters.* (*advisory and non-binding)` against `I asked the AI company's new charity fund one question` and the recommended title above.
+
 ### Description
 
 ```
