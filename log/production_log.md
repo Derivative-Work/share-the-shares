@@ -1038,3 +1038,14 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
 - **Rebuilt** (`renders/final/logs/rerender_ipo.sh`): the fact and credits graphics at 4K; section 6 re-assembled from its frames on disk (graphics only changed; no Blender render); the master and its 1080p copy re-joined.
 - **Archived:** `archive/final_4k/*_v6_before-ipo.*` (the master, its 1080p copy, section 6's intermediate).
 - The human will cut the whole video themselves from here.
+
+## 2026-11-19T00:10 — The subtitles and the upload metadata
+
+- **Subtitles** (`scripts/subtitles.py` → `deliverables/share_the_shares.en.srt`, 76 cues):
+  - The 72 lyric lines from `timing/timing_map.json`, "♪" on the sung ones, kept on screen at least 1.2 s and never overlapping.
+  - Sound cues: `[electric piano]` at the start, and in the post-roll `[phone dialing]`, `[ringing]` and `[hold music: "Share the Shares" as muzak]` (`config/postroll.json`'s times).
+  - Verse 3 reads "pledged", the brief's post-audit word; the generated take sang "spent". `--spent` switches it.
+- **Timing:** the human: "Just use the timing from the master you have; my edits did not adjust the timing around my sections, and within them they are pretty close to where the originals were". So the file is in master time. The script's anchors (`--verse`, `--verse-lines`, `--bridge`, `--postroll`, `--end`) are kept for a cut that moves things; with none given, the master's timing is used and there is no `[music stops]` cue. Recorded here as information about the human's cut; the cut itself is the human's to log.
+- **`METADATA.md`** (new, as in the sibling repos):
+  - Title options, a description with the disclosure, chapters at the master's times, the fact card's terms with sources, credits, tags and settings.
+  - Open before upload: the brief's facts to verify (the final prospectus for the price, Class N and RSI wording; Public First; any announced baseline); the repo is private and the credits point to it; this repo has no licence files (the series' CC BY-NC-SA 4.0 / MIT is assumed in the description, pending the human); no thumbnail yet (three candidates named).

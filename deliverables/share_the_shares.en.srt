@@ -1,0 +1,304 @@
+1
+00:00:00,120 --> 00:00:02,760
+[electric piano]
+
+2
+00:00:02,800 --> 00:00:07,910
+Right now, somewhere, a job is changing.
+
+3
+00:00:09,730 --> 00:00:10,930
+Maybe yours.
+
+4
+00:00:12,330 --> 00:00:14,100
+We can't promise to fix that.
+
+5
+00:00:15,910 --> 00:00:18,620
+But we can promise a percentage.
+
+6
+00:00:20,580 --> 00:00:23,800
+♪ We built a thing that thinks so fast
+
+7
+00:00:23,840 --> 00:00:25,550
+♪ it's rewriting what we do,
+
+8
+00:00:27,440 --> 00:00:29,410
+♪ and some of what it's changing
+
+9
+00:00:29,920 --> 00:00:32,370
+♪ is the work that pays for you.
+
+10
+00:00:34,170 --> 00:00:36,380
+♪ So we gathered here this morning
+
+11
+00:00:36,890 --> 00:00:39,620
+♪ in a studio we own,
+
+12
+00:00:40,490 --> 00:00:43,240
+♪ to give away a part of us
+
+13
+00:00:43,710 --> 00:00:46,370
+♪ to a fund we keep at home.
+
+14
+00:00:46,880 --> 00:00:48,510
+♪ It's not a charity, per se,
+
+15
+00:00:49,620 --> 00:00:51,990
+♪ it's an LLC, wholly owned,
+
+16
+00:00:52,750 --> 00:00:54,640
+♪ flexible, adjustable,
+
+17
+00:00:55,090 --> 00:00:57,820
+♪ the details will be shown...
+
+18
+00:00:58,140 --> 00:01:00,120
+♪ In the coming months!
+
+19
+00:01:00,610 --> 00:01:04,120
+♪ Share the shares, share the shares,
+
+20
+00:01:04,160 --> 00:01:06,880
+♪ five in every hundred, we'll be there.
+
+21
+00:01:06,920 --> 00:01:10,870
+♪ And if we grow by half again,
+
+22
+00:01:11,160 --> 00:01:14,588
+♪ two more at our discretion then.
+
+23
+00:01:14,628 --> 00:01:17,750
+♪ The more we grow, the more we give,
+
+24
+00:01:17,960 --> 00:01:22,780
+♪ so help us grow, so we can give.
+
+25
+00:01:25,010 --> 00:01:28,660
+♪ The more we grow, the more we give,
+
+26
+00:01:30,270 --> 00:01:31,820
+♪ the more we give,
+
+27
+00:01:32,000 --> 00:01:38,690
+♪ so help us grow, so we can give.
+
+28
+00:01:39,490 --> 00:01:43,190
+♪ Now you might ask who holds the purse,
+
+29
+00:01:43,380 --> 00:01:46,310
+♪ who signs and who decides
+
+30
+00:01:46,660 --> 00:01:49,830
+♪ which cause is worthy, which is not,
+
+31
+00:01:50,040 --> 00:01:53,240
+♪ and who sits on which side.
+
+32
+00:01:53,550 --> 00:01:56,930
+♪ Each milestone's measured from a line
+
+33
+00:01:56,970 --> 00:01:59,640
+♪ we haven't drawn just yet,
+
+34
+00:02:00,870 --> 00:02:04,220
+♪ but trust us, it's a generous line,
+
+35
+00:02:04,390 --> 00:02:06,940
+♪ the best one you can get.
+
+36
+00:02:07,420 --> 00:02:10,720
+♪ Not for lobbying, not for campaigns,
+
+37
+00:02:10,890 --> 00:02:12,920
+♪ not for politics, we swear...
+
+38
+00:02:13,260 --> 00:02:14,880
+♪ Through this fund!
+
+39
+00:02:14,920 --> 00:02:19,320
+♪ through this fund.
+
+40
+00:02:19,360 --> 00:02:22,660
+♪ Share the shares, share the shares,
+
+41
+00:02:22,700 --> 00:02:26,220
+♪ five in every hundred, we'll be there.
+
+42
+00:02:26,260 --> 00:02:29,630
+♪ And if we grow by half again,
+
+43
+00:02:29,860 --> 00:02:33,392
+♪ two more at our discretion then.
+
+44
+00:02:33,432 --> 00:02:36,550
+♪ The more we grow, the more we give,
+
+45
+00:02:36,590 --> 00:02:43,490
+♪ so help us grow, so we can give.
+
+46
+00:02:44,140 --> 00:02:47,690
+♪ They call me a specific population;
+
+47
+00:02:48,510 --> 00:02:50,290
+♪ there's a study on my case,
+
+48
+00:02:51,580 --> 00:02:53,710
+♪ two hundred million pledged to learn
+
+49
+00:02:55,180 --> 00:02:56,990
+♪ what happens to my place.
+
+50
+00:02:58,491 --> 00:03:00,620
+♪ I don't need a giant cardboard check
+
+51
+00:03:01,730 --> 00:03:03,600
+♪ with the number "TBA."
+
+52
+00:03:05,435 --> 00:03:07,380
+♪ I'd just like to know who's choosing,
+
+53
+00:03:08,910 --> 00:03:11,530
+♪ and whether I get a say.
+
+54
+00:03:12,680 --> 00:03:15,310
+♪ And it's real, it isn't nothing:
+
+55
+00:03:16,384 --> 00:03:18,730
+♪ a fifth of us, all told,
+
+56
+00:03:19,460 --> 00:03:21,610
+♪ set aside for something bigger
+
+57
+00:03:22,340 --> 00:03:25,660
+♪ than the ones who bought and sold.
+
+58
+00:03:26,810 --> 00:03:29,300
+♪ If a promise holds while holding's cheap,
+
+59
+00:03:30,450 --> 00:03:32,490
+♪ then watch us when it's not.
+
+60
+00:03:32,530 --> 00:03:34,540
+♪ When it's not!
+
+61
+00:03:34,860 --> 00:03:36,160
+♪ When it's not!
+
+62
+00:03:36,490 --> 00:03:38,600
+♪ When it's not!
+
+63
+00:03:40,500 --> 00:03:43,840
+♪ Share the shares, share the shares,
+
+64
+00:03:43,880 --> 00:03:47,170
+♪ five in every hundred, we'll be there.
+
+65
+00:03:47,480 --> 00:03:50,950
+♪ And if we grow by half again,
+
+66
+00:03:51,100 --> 00:03:54,400
+♪ two more at our discretion then.
+
+67
+00:03:54,440 --> 00:03:58,820
+♪ The more we grow, the more we give,
+
+68
+00:03:59,654 --> 00:04:00,854
+♪ do I get a say?
+
+69
+00:04:01,470 --> 00:04:07,560
+♪ So help us grow, so we can give.
+
+70
+00:04:08,590 --> 00:04:12,246
+♪ The more we grow, the more we give,
+
+71
+00:04:12,286 --> 00:04:15,010
+♪ the more we grow, the more we give,
+
+72
+00:04:17,730 --> 00:04:21,260
+♪ the more we grow...
+
+73
+00:04:26,000 --> 00:04:29,550
+Phone lines open at the IPO.
+
+74
+00:04:44,440 --> 00:04:46,000
+[phone dialing]
+
+75
+00:04:46,050 --> 00:04:47,000
+[ringing]
+
+76
+00:04:47,040 --> 00:05:28,290
+[hold music: “Share the Shares” as muzak]
+
