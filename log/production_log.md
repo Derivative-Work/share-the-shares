@@ -1098,3 +1098,15 @@ Append-only. One entry per action: timestamp, step (shot ID where relevant), wha
   - The session reveal is meant to look real, and its terminal, tabs and menu bar were left in on purpose.
   - The desk's papers are props about AI-driven job changes: a redacted recruiter's cold email (contract work producing Claude Code RLHF data); the human's email address, which is meant to be public and already is; and the public version of Microsoft's voluntary buyout memo.
   - Nothing to change.
+
+## 2026-11-19T02:50 — The five Shorts; the README
+
+- **The human:** "Make all of them, then I'll release as appropriate. Also make the README".
+- **`scripts/shorts.py`** → `deliverables/shorts/share_the_shares_short_{1_verse,2_pitch,3_hand,4_threshold,5_pledge}.mp4` (1080×1920, 24 fps, H.264 CRF 18, AAC 256k; from the human's cut, `~/Downloads/share-the-shares-master.mov`):
+  - Lengths and spans (cut time): 1 verse, 42.9 s (156.4–199.3); 2 pitch, 52.0 s (46.7–98.7); 3 hand, 28.5 s (219.9–248.4); 4 threshold, 27.9 s (192.4–220.3); 5 pledge, 51.8 s (265.6–317.33).
+  - **Layout:** stacked. At the top, "AI-GENERATED SATIRE" in the pen's red, SHARE THE SHARES in Abril between rules, and a subtitle in Fell italic. The picture sits in the band from y 420 to 1320: 16:9 at full width, or, on the call page, a 6:5 crop around the tile (888×740 from x 370, y 220). The lyric sits below at y 1420, in IM Fell English 68, from the subtitles file with its "♪" and sound cues dropped. Everything stays clear of the top 140 px, the bottom 330 and the right-hand buttons.
+  - **The call page is found per frame:** its dark header (mean < 45) over a light tile (mean > 120) at 192×108, with runs under 4 frames ignored. Found: 165.73–193.07 (the verse) and 239.82–241.48 (S40). Short 4 opens on the last 0.67 s of the call, as the file is reopened on "And it's real".
+  - **Short 5:** while the fact card is up, its marked lines are spelled out below it in turn (IM Fell English 50), with the red pen's notes in Caveat, timed from the card's start: 0.5 s, then from 5.2 s, when the pen starts, every 3 s.
+  - Checked on frames from each: the call crop, the stacked shots, the captions and the fact lines.
+- **`METADATA.md`:** a Shorts section with each file, its span, title, description and the shared settings.
+- **`README.md`** (new, as in the sibling repos): what the video is, the conflict of interest, how it was made, what's real and made up, the fact card verbatim with sources, where things are, how to reproduce it, the licences and the credits. The upload links are added after the upload.

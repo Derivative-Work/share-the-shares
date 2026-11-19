@@ -168,3 +168,58 @@ Share the Shares, AI music video, AI generated, AI satire, Anthropic, Anthropic 
 
 - Verse 3 reads "pledged" (the brief, after the audit). If the live take sings "spent", run `.venv/bin/python -I scripts/subtitles.py --spent`.
 - If a live line lands well off the generated take's time, `--verse-lines` takes the eight verse starts; `--verse`, `--bridge`, `--postroll` and `--end` shift whole stretches, for a cut that moves them.
+
+---
+
+## Shorts (1080×1920, 24 fps)
+
+Five vertical cuts from the human's final cut (`scripts/shorts.py`; `deliverables/shorts/share_the_shares_short_<n>_*.mp4`). Each one is stacked:
+- **Top:** "AI-GENERATED SATIRE" in the pen's red (a Short has no fact card or credits), the title in engraved capitals and a subtitle.
+- **Middle:** the picture, 16:9. On the call page it's cropped to 6:5 around the tile.
+- **Below:** the lyric, burned in.
+
+Everything stays clear of the parts Shorts covers. Release them as appropriate. Upload each after the main video, with its link in the description ("Full video").
+
+Shared settings: Music; not made for kids; altered or synthetic content **yes**; related video, the main video; captions burned in, no subtitle file. Shorts pick a frame for the thumbnail, so choose one in the app. Every description ends with:
+
+```
+Full video: <link>
+AI-generated satire. Lyrics drafted by Claude, made by Anthropic; music by Suno; video by Claude Code. A human approved each stage and performed verse 3 live. Production log: https://github.com/Derivative-Work/share-the-shares
+#AIgenerated #satire #Shorts
+```
+
+### 1. The verse — `share_the_shares_short_1_verse.mp4` (42.9 s; 2:36.4–3:19.3)
+
+The end of chorus 2, the player closing in the Claude Code session, the live verse on the call (portrait from 2:45.7 to 3:13.1), and the bridge coming back through "a fifth of us, all told". The first to release: it's the human turn and stands on its own.
+
+- **Title:** `My input is advisory and non-binding` (or `I sang to an empty board meeting`)
+- **Description:** `The AI company's new charity fund held a stakeholder input session. I was the only one who showed up.`
+- **Frame for the thumbnail:** the call, mid-verse (about 0:15).
+
+### 2. The pitch — `share_the_shares_short_2_pitch.mp4` (52.0 s; 0:46.7–1:38.7)
+
+"It's not a charity, per se, it's an LLC, wholly owned", "In the coming months!", and chorus 1 through "so help us grow, so we can give". The joke's turn, from a gift to a buy pitch.
+
+- **Title:** `A charity single where the charity is the company`
+- **Description:** `Anthropic committed 5% of its shares to a fund that grows when the stock does. So the charity single asks you to help it grow.`
+
+### 3. The raised hand — `share_the_shares_short_3_hand.mp4` (28.5 s; 3:39.9–4:08.4)
+
+The final chorus: the coupons clipped, "at our discretion", Mercury, then the call for "do I get a say?" (portrait, 3:59.8–4:01.5), nobody answers, back to the cherubs singing "so help us grow". Short enough to loop. Release a week after #1, as its call-back.
+
+- **Title:** `I raised my hand at the shareholder singalong`
+- **Description:** `Do I get a say? (The board has not joined.)`
+
+### 4. Threshold met* — `share_the_shares_short_4_threshold.mp4` (27.9 s; 3:12.4–3:40.3)
+
+The bridge: "And it's real, it isn't nothing", the thermometer to "Baseline: TBA", the seal embossing THRESHOLD MET* with "*based on what we expect", and "When it's not!". It opens on the last 0.7 s of the call as the file reopens.
+
+- **Title:** `"Threshold met*" (*based on what we expect)`
+- **Description:** add the fact the gag rests on: `In its IPO filing, Anthropic says it has met its own Responsible Scaling Policy threshold for AI-accelerated research, based on what it expects from future models rather than what it has observed from current ones. (S-1/A, Nov 17, 2026: https://www.sec.gov/Archives/edgar/data/2130357/000162828026074338/anthropicpbc-sx1ax3.htm)`
+
+### 5. The pledge line — `share_the_shares_short_5_pledge.mp4` (51.8 s; 4:25.6–5:17.3)
+
+"Phone lines open at the IPO", the drawer, the phone call to 555-0142 and the hold music, then the fact card. The card is too small to read at phone width, so its marked lines are spelled out large below it in turn, with the red pen's notes: the 5% as non-voting shares; "The board may add 2%…" / "It's not required to."; the LLC / "which legally allows non-charitable activities"; no lobbying / "So they say."; governance to be announced; the IPO at $83. It ends as the card gives way to the announcement page.
+
+- **Title:** `I called the pledge line. Please hold.`
+- **Description:** the terms as in the main video's description, with its sources.
